@@ -1,0 +1,111 @@
+{
+	"name": "css-blank-pseudo",
+	"description": "Style form elements when they are empty",
+	"version": "6.0.0",
+	"contributors": [
+		{
+			"name": "Antonio Laguna",
+			"email": "antonio@laguna.es",
+			"url": "https://antonio.laguna.es"
+		},
+		{
+			"name": "Romain Menke",
+			"email": "romainmenke@gmail.com"
+		},
+		{
+			"name": "Jonathan Neal",
+			"email": "jonathantneal@hotmail.com"
+		}
+	],
+	"license": "MIT-0",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/csstools"
+		},
+		{
+			"type": "opencollective",
+			"url": "https://opencollective.com/csstools"
+		}
+	],
+	"engines": {
+		"node": "^14 || ^16 || >=18"
+	},
+	"main": "dist/index.cjs",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.cjs",
+			"default": "./dist/index.mjs"
+		},
+		"./browser": {
+			"import": "./dist/browser.mjs",
+			"require": "./dist/browser.cjs",
+			"default": "./dist/browser.mjs"
+		},
+		"./browser-global": {
+			"default": "./dist/browser-global.js"
+		}
+	},
+	"files": [
+		"CHANGELOG.md",
+		"LICENSE.md",
+		"README.md",
+		"dist"
+	],
+	"dependencies": {
+		"postcss-selector-parser": "^6.0.13"
+	},
+	"peerDependencies": {
+		"postcss": "^8.4"
+	},
+	"devDependencies": {
+		"@csstools/postcss-tape": "*",
+		"puppeteer": "^20.7.4"
+	},
+	"scripts": {
+		"build": "rollup -c ../../rollup/default.mjs",
+		"docs": "node ../../.github/bin/generate-docs/install.mjs && node ../../.github/bin/generate-docs/readme.mjs",
+		"lint": "node ../../.github/bin/format-package-json.mjs",
+		"prepublishOnly": "npm run build && npm run test",
+		"test": "node .tape.mjs && node ./test/_import.mjs && node ./test/_require.cjs && node ./test/_valid-replacements.mjs",
+		"test:browser": "node ./test/_browser.mjs",
+		"test:rewrite-expects": "REWRITE_EXPECTS=true node .tape.mjs"
+	},
+	"homepage": "https://github.com/csstools/postcss-plugins/tree/main/plugins/css-blank-pseudo#readme",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/csstools/postcss-plugins.git",
+		"directory": "plugins/css-blank-pseudo"
+	},
+	"bugs": "https://github.com/csstools/postcss-plugins/issues",
+	"keywords": [
+		"a11y",
+		"accessibility",
+		"blank",
+		"css",
+		"empty",
+		"input",
+		"javascript",
+		"js",
+		"polyfill",
+		"postcss",
+		"postcss-plugin",
+		"pseudo",
+		"select",
+		"selectors",
+		"textarea"
+	],
+	"csstools": {
+		"cssdbId": "blank-pseudo-class",
+		"exportName": "postcssBlankPseudo",
+		"humanReadableName": "PostCSS Blank Pseudo",
+		"specUrl": "https://www.w3.org/TR/selectors-4/#blank"
+	},
+	"volta": {
+		"extends": "../../package.json"
+	}
+}

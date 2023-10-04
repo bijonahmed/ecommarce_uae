@@ -1,0 +1,296 @@
+[
+  {
+    "name": "cart",
+    "path": "/cart",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\cart.vue",
+    "chunkName": "pages/cart",
+    "_name": "_23ce1dd5"
+  },
+  {
+    "name": "changepassword",
+    "path": "/changepassword",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\changepassword.vue",
+    "chunkName": "pages/changepassword",
+    "_name": "_76a67340"
+  },
+  {
+    "name": "checkout",
+    "path": "/checkout",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\checkout.vue",
+    "chunkName": "pages/checkout",
+    "_name": "_5272167b"
+  },
+  {
+    "name": "customer-review",
+    "path": "/customer-review",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\customer-review.vue",
+    "chunkName": "pages/customer-review",
+    "_name": "_58e86f02"
+  },
+  {
+    "name": "flas-sale",
+    "path": "/flas-sale",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\flas-sale.vue",
+    "chunkName": "pages/flas-sale",
+    "_name": "_61596c17"
+  },
+  {
+    "name": "forget-password",
+    "path": "/forget-password",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\forget-password.vue",
+    "chunkName": "pages/forget-password",
+    "_name": "_4e7d2154"
+  },
+  {
+    "name": "login",
+    "path": "/login",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\login.vue",
+    "chunkName": "pages/login",
+    "_name": "_352d6df8"
+  },
+  {
+    "name": "official-store",
+    "path": "/official-store",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\official-store.vue",
+    "chunkName": "pages/official-store",
+    "_name": "_57e1b318"
+  },
+  {
+    "name": "official-store-grid",
+    "path": "/official-store-grid",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\official-store-grid.vue",
+    "chunkName": "pages/official-store-grid",
+    "_name": "_82a578a2"
+  },
+  {
+    "name": "OfficialStoreFilter",
+    "path": "/OfficialStoreFilter",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\OfficialStoreFilter.vue",
+    "chunkName": "pages/OfficialStoreFilter",
+    "_name": "_261bf589"
+  },
+  {
+    "name": "OfficialStoreFilterGrid",
+    "path": "/OfficialStoreFilterGrid",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\OfficialStoreFilterGrid.vue",
+    "chunkName": "pages/OfficialStoreFilterGrid",
+    "_name": "_6196f16f"
+  },
+  {
+    "name": "payment",
+    "path": "/payment",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\payment.vue",
+    "chunkName": "pages/payment",
+    "_name": "_75ffbf3e"
+  },
+  {
+    "name": "product-details",
+    "path": "/product-details",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\product-details.vue",
+    "chunkName": "pages/product-details",
+    "_name": "_1c05dfbf"
+  },
+  {
+    "name": "product-grid",
+    "path": "/product-grid",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\product-grid.vue",
+    "chunkName": "pages/product-grid",
+    "_name": "_36701119"
+  },
+  {
+    "name": "product-list",
+    "path": "/product-list",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\product-list.vue",
+    "chunkName": "pages/product-list",
+    "_name": "_73afca71"
+  },
+  {
+    "name": "refund",
+    "path": "/refund",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\refund.vue",
+    "chunkName": "pages/refund",
+    "_name": "_66e3fa26"
+  },
+  {
+    "name": "return-and-replacement",
+    "path": "/return-and-replacement",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\return-and-replacement.vue",
+    "chunkName": "pages/return-and-replacement",
+    "_name": "_77809a74"
+  },
+  {
+    "name": "sell-on-ecommerce",
+    "path": "/sell-on-ecommerce",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\sell-on-ecommerce.vue",
+    "chunkName": "pages/sell-on-ecommerce",
+    "_name": "_20997188"
+  },
+  {
+    "name": "sell-on-filter",
+    "path": "/sell-on-filter",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\sell-on-filter.vue",
+    "chunkName": "pages/sell-on-filter",
+    "_name": "_2745d140"
+  },
+  {
+    "name": "seller-form",
+    "path": "/seller-form",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\seller-form.vue",
+    "chunkName": "pages/seller-form",
+    "_name": "_7281852d"
+  },
+  {
+    "name": "service",
+    "path": "/service",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\service.vue",
+    "chunkName": "pages/service",
+    "_name": "_a44074e0"
+  },
+  {
+    "name": "update-password",
+    "path": "/update-password",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\update-password.vue",
+    "chunkName": "pages/update-password",
+    "_name": "_0113c40c"
+  },
+  {
+    "name": "affiliate-affiliate-dashboard",
+    "path": "/affiliate/affiliate-dashboard",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\affiliate\\\\affiliate-dashboard.vue",
+    "chunkName": "pages/affiliate/affiliate-dashboard",
+    "_name": "_84d83748"
+  },
+  {
+    "name": "affiliate-affiliate-programe",
+    "path": "/affiliate/affiliate-programe",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\affiliate\\\\affiliate-programe.vue",
+    "chunkName": "pages/affiliate/affiliate-programe",
+    "_name": "_2f96956e"
+  },
+  {
+    "name": "affiliate-affiliate-programe-register",
+    "path": "/affiliate/affiliate-programe-register",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\affiliate\\\\affiliate-programe-register.vue",
+    "chunkName": "pages/affiliate/affiliate-programe-register",
+    "_name": "_5a7870d7"
+  },
+  {
+    "name": "affiliate-affiliate-transfer",
+    "path": "/affiliate/affiliate-transfer",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\affiliate\\\\affiliate-transfer.vue",
+    "chunkName": "pages/affiliate/affiliate-transfer",
+    "_name": "_1c46e5d3"
+  },
+  {
+    "name": "category-all-category",
+    "path": "/category/all-category",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\category\\\\all-category.vue",
+    "chunkName": "pages/category/all-category",
+    "_name": "_5f80311d"
+  },
+  {
+    "name": "category-category-grid",
+    "path": "/category/category-grid",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\category\\\\category-grid.vue",
+    "chunkName": "pages/category/category-grid",
+    "_name": "_4aa95b5c"
+  },
+  {
+    "name": "category-category-list",
+    "path": "/category/category-list",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\category\\\\category-list.vue",
+    "chunkName": "pages/category/category-list",
+    "_name": "_17eb0baa"
+  },
+  {
+    "name": "seller-seller-account-setting",
+    "path": "/seller/seller-account-setting",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\seller\\\\seller-account-setting.vue",
+    "chunkName": "pages/seller/seller-account-setting",
+    "_name": "_1c835e56"
+  },
+  {
+    "name": "seller-seller-customer-returns",
+    "path": "/seller/seller-customer-returns",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\seller\\\\seller-customer-returns.vue",
+    "chunkName": "pages/seller/seller-customer-returns",
+    "_name": "_33bad8c4"
+  },
+  {
+    "name": "seller-seller-inventories",
+    "path": "/seller/seller-inventories",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\seller\\\\seller-inventories.vue",
+    "chunkName": "pages/seller/seller-inventories",
+    "_name": "_6d76e4a0"
+  },
+  {
+    "name": "seller-seller-inventory-post",
+    "path": "/seller/seller-inventory-post",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\seller\\\\seller-inventory-post.vue",
+    "chunkName": "pages/seller/seller-inventory-post",
+    "_name": "_f438648a"
+  },
+  {
+    "name": "seller-seller-message",
+    "path": "/seller/seller-message",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\seller\\\\seller-message.vue",
+    "chunkName": "pages/seller/seller-message",
+    "_name": "_19e06ba6"
+  },
+  {
+    "name": "seller-seller-orders",
+    "path": "/seller/seller-orders",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\seller\\\\seller-orders.vue",
+    "chunkName": "pages/seller/seller-orders",
+    "_name": "_2579e3a2"
+  },
+  {
+    "name": "seller-seller-profile",
+    "path": "/seller/seller-profile",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\seller\\\\seller-profile.vue",
+    "chunkName": "pages/seller/seller-profile",
+    "_name": "_31b1b2cf"
+  },
+  {
+    "name": "seller-seller-wallet",
+    "path": "/seller/seller-wallet",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\seller\\\\seller-wallet.vue",
+    "chunkName": "pages/seller/seller-wallet",
+    "_name": "_52375543"
+  },
+  {
+    "name": "user-my-reviews",
+    "path": "/user/my-reviews",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\user\\\\my-reviews.vue",
+    "chunkName": "pages/user/my-reviews",
+    "_name": "_18a5870c"
+  },
+  {
+    "name": "user-user-orders",
+    "path": "/user/user-orders",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\user\\\\user-orders.vue",
+    "chunkName": "pages/user/user-orders",
+    "_name": "_0a907d57"
+  },
+  {
+    "name": "user-user-profile",
+    "path": "/user/user-profile",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\user\\\\user-profile.vue",
+    "chunkName": "pages/user/user-profile",
+    "_name": "_83dbaeb2"
+  },
+  {
+    "name": "user-user-whichlist",
+    "path": "/user/user-whichlist",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\user\\\\user-whichlist.vue",
+    "chunkName": "pages/user/user-whichlist",
+    "_name": "_156d88b9"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "D:\\\\php8\\\\htdocs\\\\uae_ecommarce\\\\Ecommerce\\\\frontend\\\\pages\\\\index.vue",
+    "chunkName": "pages/index",
+    "_name": "_1bc1a5ed"
+  }
+]

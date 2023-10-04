@@ -1,0 +1,28 @@
+{
+  "name": "HR",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/auth": "^4.9.1",
+    "@nuxtjs/auth-next": "5.0.0-1667386184.dfbbb54",
+    "@nuxtjs/axios": "^5.13.6",
+    "bootstrap-vue": "^2.23.1",
+    "cookie-universal-nuxt": "^2.2.2",
+    "core-js": "^3.25.3",
+    "defu": "^6.1.2",
+    "jquery": "^3.7.0",
+    "metismenu": "^3.0.7",
+    "nuxt": "^2.15.8",
+    "toastr": "^2.1.4",
+    "vform": "^2.1.2",
+    "vue": "^2.7.10",
+    "vue-server-renderer": "^2.7.10",
+    "vue-template-compiler": "^2.7.10"
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "Appliances": {
+    "description": "Auto imported from components/Appliances.vue"
+  },
+  "BestPrice": {
+    "description": "Auto imported from components/BestPrice.vue"
+  },
+  "BigSavingGrocery": {
+    "description": "Auto imported from components/BigSavingGrocery.vue"
+  },
+  "BrandiOfficialStore": {
+    "description": "Auto imported from components/BrandiOfficialStore.vue"
+  },
+  "CategoryMultipleProduct": {
+    "description": "Auto imported from components/CategoryMultipleProduct.vue"
+  },
+  "CategoryPart": {
+    "description": "Auto imported from components/CategoryPart.vue"
+  },
+  "CategoryProductFilter": {
+    "description": "Auto imported from components/CategoryProductFilter.vue"
+  },
+  "CategoryProductFilterGrid": {
+    "description": "Auto imported from components/CategoryProductFilterGrid.vue"
+  },
+  "CategoryRecentView": {
+    "description": "Auto imported from components/CategoryRecentView.vue"
+  },
+  "CommonMiniTabNavbar": {
+    "description": "Auto imported from components/Common_MiniTabNavbar.vue"
+  },
+  "CommonMobileSearchProduct": {
+    "description": "Auto imported from components/Common_MobileSearchProduct.vue"
+  },
+  "CommonMobileSidebar": {
+    "description": "Auto imported from components/Common_MobileSidebar.vue"
+  },
+  "DelasForYour": {
+    "description": "Auto imported from components/DelasForYour.vue"
+  },
+  "DesktopViewOption": {
+    "description": "Auto imported from components/DesktopViewOption.vue"
+  },
+  "ExtraDiscount": {
+    "description": "Auto imported from components/ExtraDiscount.vue"
+  },
+  "FlashSaleFilter": {
+    "description": "Auto imported from components/FlashSaleFilter.vue"
+  },
+  "FlashSelling": {
+    "description": "Auto imported from components/FlashSelling.vue"
+  },
+  "Footer": {
+    "description": "Auto imported from components/Footer.vue"
+  },
+  "HealthandBeauty": {
+    "description": "Auto imported from components/HealthandBeauty.vue"
+  },
+  "LargeAppliance": {
+    "description": "Auto imported from components/LargeAppliance.vue"
+  },
+  "LimitedStock": {
+    "description": "Auto imported from components/LimitedStock.vue"
+  },
+  "LimitedStokDetails": {
+    "description": "Auto imported from components/LimitedStokDetails.vue"
+  },
+  "LoginPopup": {
+    "description": "Auto imported from components/LoginPopup.vue"
+  },
+  "LogoAndPayment": {
+    "description": "Auto imported from components/LogoAndPayment.vue"
+  },
+  "MoreCollection": {
+    "description": "Auto imported from components/MoreCollection.vue"
+  },
+  "Navbar": {
+    "description": "Auto imported from components/Navbar.vue"
+  },
+  "NavSlider": {
+    "description": "Auto imported from components/NavSlider.vue"
+  },
+  "OfficalStore": {
+    "description": "Auto imported from components/OfficalStore.vue"
+  },
+  "OfficialStoreDeals": {
+    "description": "Auto imported from components/OfficialStoreDeals.vue"
+  },
+  "OfficialStoreProductList": {
+    "description": "Auto imported from components/OfficialStoreProductList.vue"
+  },
+  "PhoneDeals": {
+    "description": "Auto imported from components/PhoneDeals.vue"
+  },
+  "PhoneSuperSales": {
+    "description": "Auto imported from components/PhoneSuperSales.vue"
+  },
+  "PhoneTables": {
+    "description": "Auto imported from components/PhoneTables.vue"
+  },
+  "ProductListFilterGrid": {
+    "description": "Auto imported from components/ProductListFilterGrid.vue"
+  },
+  "ProductListFilterList": {
+    "description": "Auto imported from components/ProductListFilterList.vue"
+  },
+  "RecentView": {
+    "description": "Auto imported from components/RecentView.vue"
+  },
+  "ShopFromOurCollection": {
+    "description": "Auto imported from components/ShopFromOurCollection.vue"
+  },
+  "TopAppliancesDeals": {
+    "description": "Auto imported from components/TopAppliancesDeals.vue"
+  },
+  "TopBannarDesktopView": {
+    "description": "Auto imported from components/TopBannarDesktopView.vue"
+  },
+  "TopDeals": {
+    "description": "Auto imported from components/TopDeals.vue"
+  },
+  "TopPower": {
+    "description": "Auto imported from components/TopPower.vue"
+  },
+  "TopSellingItem": {
+    "description": "Auto imported from components/TopSellingItem.vue"
+  },
+  "Tutorial": {
+    "description": "Auto imported from components/Tutorial.vue"
+  }
+}

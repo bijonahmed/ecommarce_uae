@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- title  -->
+    <title>Login || Ecommerce</title>
+
+    <!-- bootstrap 5.3    -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    
+    <!-- fontawsome cdn  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- fav icon -->
+    <link rel="icon" href="images/cat(1).jpg">
+
+    <!-- owl carousel -->
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+    <!-- swiper js slider css  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    
+    <!-- ajax for price slider  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/pricerange.css">
+
+    <!-- style css  -->     
+    <link rel="stylesheet" href="css/captcha.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+  </head>
+  <body style="    background-image: url(../images/login_bg.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  overflow: hidden;">
+    
+
+    <div class="container">
+        
+        <div class="row d-flex align-item-center " style="height: 100vh;">
+            <div class="col-lg-4 col-md-6 m-auto in_row ">
+                <div class="login_section">
+                    <div class="log_sec">
+                        <h2>Welcome back</h2>
+                        <p> Sign in to continue your Account</p>
+
+                        <form action="" method="post" enctype="multipart/form-data">
+                            <div class="group">
+                                <input style="--i:0;" required="" type="text" class="input">
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>User Name</label>
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="group">
+                                <input   required="" type="password" class="input">
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Password</label>
+                                <i class="fa-regular fa-eye-slash toggle-password" ></i>
+                            </div>
+                            <button type="submit" class="btn_login">Login</button>
+                        </form>
+                        <div class="text-end">
+                            <a href="forget-password.html">Forget Password?</a>
+                        </div>
+                    
+                        <div class="social_login">
+                            <span  class="signup_link">Don't Have Account?<button  class="sign_up">SignUp</button></span>
+                            <div class=""><h5>Or SignIn with:</h5></div>
+                            <div>
+                                <a href="#facebook"><img src="images/social/icons8-facebook.svg" alt=""></a>
+                                <a href="#google"><img src="images/social/icons8-google.svg" alt=""></a>
+                                <a href="#twitter"><img src="images/social/icons8-twitter.svg" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sign_sec">
+                        <div >
+                            <h1>Sign Up</h1>
+                            <p>SignUp to register a new Account.</p>
+                        </div>
+                        <form action="" method="post" enctype="multipart/form-data">
+                            <div class="group">
+                                <input style="--i:0;" required="" type="text" class="input">
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>User Name</label>
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="group">
+                                <input style="--i:0;" required="" type="email" class="input">
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Email Address</label>
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div class="group">
+                                <input  style="--i:1;" required="" type="password" class="input">
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Password</label>
+                                <i class="fa-regular fa-eye-slash toggle-password" ></i>
+                            </div>
+                            <div class="group">
+                                <input  style="--i:1;" required="" type="password" class="input">
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Retype Password</label>
+                                <i class="fa-regular fa-eye-slash toggle-password" ></i>
+                            </div>
+                            <!-- captcha  -->
+                            <div class="mt-2">
+                                <div class="submit__control">
+                                    <h3>Are you human?</h3>
+                                    <div class="submit__generated"></div>
+                                    <span class="fa-solid fa-refresh"></span>
+                                    <div>
+                                        <!-- <span class="submit__error hide" >Incorrect value</span>
+                                        <span class="submit__error--empty hide">Required field cannot be left blank</span> -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" disabled style="opacity: .8;" class="btn_login submit mt-2 ">Sign Up </button>
+                        </form>
+                        <div class="social_login">
+                            <div>
+                                <h6>Allready have Account?<button type="button" class="signIn">LogIn</button></h6>
+                            </div>
+                            <div class=""><h5>Or SignUp with:</h5></div>
+                            <div>
+                                <a href="#facebook"><img src="images/social/icons8-facebook.svg" alt=""></a>
+                                <a href="#google"><img src="images/social/icons8-google.svg" alt=""></a>
+                                <a href="#twitter"><img src="images/social/icons8-twitter.svg" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script> <!--Jquery 3.7-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $(".toggle-password").click(function() {
+                $(this).toggleClass("fa-eye-slash fa-eye");
+                input = $(this).parent().find("input");
+                if (input.attr("type") == "password") {
+                    input.attr("type", "text");
+                } else {
+                    input.attr("type", "password");
+                }
+            });
+
+            $(".sign_up").on("click", function(){
+                $(".log_sec").css({"transform":"translateX(-100%)", "transition-duration" : "1s","opacity":"0"});
+                $(".log_sec").addClass("inactive");
+
+                $(".sign_sec").css({"transform":"translateX(-100%)", "transition-duration" : "1s","opacity":"1","filter": "none"});
+                $(".sign_sec").removeClass("inactive");
+                $(".sign_sec").addClass("active");
+            })
+            $(".signIn").on("click", function(){
+                $(".log_sec").css({"transform":"translateX(0%)", "transition-duration" : "1s","opacity":"1"});
+                $(".log_sec").removeClass("inactive");
+                $(".log_sec").addClass("active");
+
+                $(".sign_sec").css({"transform":"translateX(100%)", "transition-duration" : "1s","opacity":"0","filter": "blur(3px)"});
+                $(".sign_sec").addClass("inactive");
+            })
+
+            
+        })
+    </script>
+    <!-- Captcha -->
+    <script>
+        $(document).ready(function(){
+            var a, b, c,
+            submitContent,
+            captcha,
+            locked,
+            validSubmit = false,
+            timeoutHandle;
+
+        // Generating a simple sum (a + b) to make with a result (c)
+        function generateCaptcha(){
+        a = Math.ceil(Math.random() * 10);
+        b = Math.ceil(Math.random() * 10);
+        c = a + b;
+        submitContent = '<span>' + a + '</span> + <span>' + b + '</span>' +
+            ' = <input class="submit__input" type="text" maxlength="2" size="2" required />';
+        $('.submit__generated').html(submitContent);
+
+        init();
+        }
+
+
+        // Check the value 'c' and the input value.
+        function checkCaptcha(){
+        if(captcha === c){
+            // Pop the green valid icon
+            $('.submit__generated')
+            .removeClass('unvalid')
+            .addClass('valid');
+            $('.submit').removeClass('overlay');
+            $('.submit').attr("disabled",false);   
+            $('.submit').css('opacity',"1");         
+            $('.submited_overlay').fadeOut('fast');
+
+            $('.submit__error').addClass('hide');
+            $('.submit__error--empty').addClass('hide');
+            validSubmit = true;
+        }
+        else {
+            if(captcha === ''){
+            $('.submit__error').addClass('hide');
+            $('.submit__error--empty').removeClass('hide');
+            }
+            else {
+            $('.submit__error').removeClass('hide');
+            $('.submit__error--empty').addClass('hide');
+            }
+            // Pop the red unvalid icon
+            $('.submit__generated')
+            .removeClass('valid')
+            .addClass('unvalid');
+            $('.submit').addClass('overlay');
+            $('.submit__overlay').fadeIn('fast');
+            validSubmit = false;
+        }
+        return validSubmit;
+        }
+
+        function unlock(){ locked = false; }
+
+
+        // Refresh button click - Reset the captcha
+        $('.submit__control span.fa-refresh').on('click', function(){
+        if (!locked) {
+            locked = true;
+            setTimeout(unlock, 500);
+            generateCaptcha();
+            setTimeout(checkCaptcha, 0);
+        }
+        });
+
+
+        // init the action handlers - mostly useful when 'c' is refreshed
+        function init(){
+        $('form').on('submit', function(e){
+            e.preventDefault();
+            if($('.submit__generated').hasClass('valid')){
+            // var formValues = [];
+            captcha = $('.submit__input').val();
+            if(captcha !== ''){
+                captcha = Number(captcha);
+            }
+
+            checkCaptcha();
+
+            if(validSubmit === true){
+                validSubmit = false;
+                // Temporary direct 'success' simulation
+                submitted();
+            }
+            }
+            else {
+            return false;
+            }
+        });
+
+
+        // Captcha input result handler
+        $('.submit__input').on('propertychange change keyup input paste', function(){
+            // Prevent the execution on the first number of the string if it's a 'multiple number string'
+            // (i.e: execution on the '1' of '12')
+            window.clearTimeout(timeoutHandle);
+            timeoutHandle = window.setTimeout(function(){
+            captcha = $('.submit__input').val();
+            if(captcha !== ''){
+                captcha = Number(captcha);
+            }
+            checkCaptcha();
+            },150);
+        });
+
+
+        // Add the ':active' state CSS when 'enter' is pressed
+        $('body')
+            .on('keydown', function(e) {
+            if (e.which === 13) {
+                if($('.submit-form').hasClass('overlay')){
+                checkCaptcha();
+                } else {
+                $('.submit-form').addClass('enter-press');
+                }
+            }
+            })
+            .on('keyup', function(e){
+            if (e.which === 13) {
+                $('.submit-form').removeClass('enter-press');
+            }
+            });
+
+
+        // Refresh button click - Reset the captcha
+        $('.submit-control span.fa-refresh').on('click', function(){
+            if (!locked) {
+            locked = true;
+            setTimeout(unlock, 500);
+            generateCaptcha();
+            setTimeout(checkCaptcha, 0);
+            }
+        });
+
+
+        // Submit white overlay click
+        $('.submit-form-overlay').on('click', function(){
+            checkCaptcha();
+        });
+        }
+
+        generateCaptcha();
+        })
+    </script>
+  </body>
+</html>
