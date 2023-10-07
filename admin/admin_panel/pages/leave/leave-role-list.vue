@@ -9,7 +9,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0 p-0">
                                 <li class="breadcrumb-item">
-                                    <router-link to="/"><a href="javascript:;"><i class="bx bx-home-alt"></i></a></router-link>
+                                    <router-link to="/hrm/dashboard"><a href="javascript:;"><i class="bx bx-home-alt"></i></a></router-link>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">Leave Role List </li>
                             </ol>

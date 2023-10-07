@@ -6,7 +6,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item">
-                            <router-link to="/" href="javascript:;"><i class="bx bx-home-alt"></i></router-link>
+                            <router-link to="/hrm/dashboard" href="javascript:;"><i class="bx bx-home-alt"></i></router-link>
                         </li>
 
                         <li class="breadcrumb-item active" aria-current="page">Holiday Management</li>

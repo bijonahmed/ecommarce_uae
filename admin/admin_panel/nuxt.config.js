@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "Welcome to HRM ",
+    title: "Welcome to Ecommerce ",
     htmlAttrs: {
       lang: "en",
     },
@@ -30,6 +30,7 @@ export default {
     ],
     script: [
       { src: "/js/bootstrap.bundle.min.js" },
+      { src: "https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js", },
       { src: "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js", },
       { src: "https://getbootstrap.com/docs/5.0/examples/sidebars/sidebars.js", ssr: false},
       { src: "/plugins/metismenu/js/metisMenu.min.js" },
@@ -44,7 +45,9 @@ export default {
       { src: "/js/pace.min.js" },
     ],
   },
-  css: [],
+  css: [
+    'quill/dist/quill.snow.css', // Adjust the path as needed
+  ],
   plugins: [
     "~/plugins/vform.js",
     // { src: "~/plugins/jquery.js", ssr: false },
@@ -84,8 +87,8 @@ export default {
   },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-   // baseURL: "http://127.0.0.1:8000/api",
-    baseURL: "https://hr.api.onlinesoft.co.uk/api",
+    baseURL: "http://127.0.0.1:8000/api",
+   // baseURL: "https://hr.api.onlinesoft.co.uk/api",
   },
   // router: {
   //   middleware: ['auth']

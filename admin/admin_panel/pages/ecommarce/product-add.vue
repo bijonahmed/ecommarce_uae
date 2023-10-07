@@ -1,0 +1,345 @@
+<template lang="en">
+<div>
+    <!--start page wrapper -->
+    <div class="page-wrapper">
+        <div class="page-content">
+            <!--breadcrumb-->
+            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+                <div class="ps-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0 p-0">
+                            <li class="breadcrumb-item">
+                                <router-link to="/" href="javascript:;"><i class="bx bx-home-alt"></i></router-link>
+                            </li>
+                            <li class="breadcrumb-item" aria-current="page">
+                                <router-link to="/ecommarce/product-list">Product List</router-link>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">New Product</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <!--end breadcrumb-->
+            <!--end row-->
+            <div class="row">
+                <div class="col-xl-12 mx-auto">
+                    <div class="card border-top border-0 border-4 border-info">
+                        <div class="card-body">
+                            <div class="border p-4 rounded">
+                                <div class="card">
+                                    <form @submit.prevent="saveData()" id="formrest" class="forms-sample" enctype="multipart/form-data">
+                                        <div class="card-body">
+                                            <ul class="nav nav-pills mb-3" role="tablist">
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link active" data-bs-toggle="pill" href="#primary-pills-home" role="tab" aria-selected="true">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="tab-icon"><i class='bx bx-home font-18 me-1'></i>
+                                                            </div>
+                                                            <div class="tab-title">General</div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="tab-icon"><i class='bx bx-user-pin font-18 me-1'></i>
+                                                            </div>
+                                                            <div class="tab-title">Data</div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link" data-bs-toggle="pill" href="#primary-pills-contact" role="tab" aria-selected="false">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="tab-icon"><i class='bx bx-link font-18 me-1'></i>
+                                                            </div>
+                                                            <div class="tab-title">Link</div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content" id="pills-tabContent">
+                                                <div class="tab-pane fade show active" id="primary-pills-home" role="tabpanel">
+                                                    <!-- General  -->
+                                                    <div class="row mb-3 required">
+                                                        <label for="input-name-1" class="col-sm-2 col-form-label">Product Name</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" name="name" placeholder="Product Name" v-model="insertdata.name" class="form-control" />
+                                                            <input type="hidden" name="id" id="id" class="form-control" />
+                                                            <span class="text-danger" v-if="errors.name">{{ errors.name[0] }}</span>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-3">
+                                                        <label for="input-description-1" class="col-sm-2 col-form-label">Description</label>
+                                                        <div class="col-sm-10">
+
+                                                            <client-only placeholder="loading...">
+                                                                <ckeditor-nuxt v-model="insertdata.description" :config="editorConfig" class="form-control" />
+                                                            </client-only>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-3 required">
+                                                        <label for="input-meta-title-1" class="col-sm-2 col-form-label">Meta Tag Title</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" name="meta_title" value placeholder="Meta Tag Title" id="meta_title" v-model="insertdata.meta_title" class="form-control" />
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-3">
+                                                        <label for="input-meta-description-1" class="col-sm-2 col-form-label">Meta Tag Description</label>
+                                                        <div class="col-sm-10">
+                                                            <textarea name="meta_description" rows="5" placeholder="Meta Tag Description" v-model="insertdata.meta_description" id="meta_description" class="form-control"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-3">
+                                                        <label for="input-meta-description-1" class="col-sm-2 col-form-label">Meta Tag Keywords</label>
+                                                        <div class="col-sm-10">
+                                                            <textarea name="meta_keyword" rows="5" placeholder="Meta Tag Keywords" id="meta_keyword" class="form-control" v-model="insertdata.meta_keyword"></textarea>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mb-3 required">
+                                                        <label for="input-meta-title-1" class="col-sm-2 col-form-label">Product Tags</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" name="meta_title" placeholder="Product Tags" id="meta_title" v-model="insertdata.meta_title" class="form-control" />
+                                                            <small>Comma separated</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="primary-pills-profile" role="tabpanel">
+                                                    <!-- Data -->
+                                                    <div class="card">
+                                                        <div class="card-body">
+
+                                                            <div class="row mb-3 required">
+                                                                <label for="input-meta-title-1" class="col-sm-2 col-form-label">Model</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" name="meta_title" placeholder="Model" id="meta_title" v-model="insertdata.meta_title" class="form-control" />
+
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row mb-3 required">
+                                                                <label for="input-meta-title-1" class="col-sm-2 col-form-label">SKU</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" name="meta_title" placeholder="SKU" id="meta_title" v-model="insertdata.meta_title" class="form-control" />
+                                                                    <small>Stock Keeping Unit</small>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row mb-3 required">
+                                                                <label for="input-meta-title-1" class="col-sm-2 col-form-label">Location</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" name="meta_title" placeholder="Location" id="meta_title" v-model="insertdata.meta_title" class="form-control" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row mb-3 required">
+                                                                <label for="input-meta-title-1" class="col-sm-2 col-form-label">Price</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" name="meta_title" placeholder="Price" id="meta_title" v-model="insertdata.meta_title" class="form-control" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row mb-3 required">
+                                                                <label for="input-meta-title-1" class="col-sm-2 col-form-label">Stock Quantity</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" name="meta_title" placeholder="Price" id="meta_title" v-model="insertdata.meta_title" class="form-control" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row mb-3 required">
+                                                                <label for="input-meta-title-1" class="col-sm-2 col-form-label">Stock Minimum Quantity</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" name="meta_title" id="meta_title" v-model="insertdata.meta_title" class="form-control" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row mb-3 required">
+                                                                <label for="input-meta-title-1" class="col-sm-2 col-form-label">Out Of Stock Status</label>
+                                                                <div class="col-sm-10">
+                                                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="parent_id" id="parent_id" v-model="insertdata.parent_id">
+                                                                        <option selected>Select</option>
+                                                                        <!-- categories -->
+                                                                        <option value="6">2-3 Days</option>
+                                                                        <option value="7">In Stock</option>
+                                                                        <option value="5">Out Of Stock</option>
+                                                                        <option value="8">Pre-Order</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="primary-pills-contact" role="tabpanel">
+                                                    <!-- SEO -->
+                                                    <div class="card">
+                                                        <div class="card-body">
+
+                                                            <div class="row mb-3">
+                                                                <label for="input-meta-description-1" class="col-sm-2 col-form-label">Manufacturer</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" name="keyword" placeholder="Manufacturer" id="keyword" class="form-control" />
+
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row mb-3">
+                                                                <label for="input-meta-description-1" class="col-sm-2 col-form-label">Categories</label>
+                                                                <div class="col-sm-10">
+                                                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="parent_id" id="parent_id" v-model="insertdata.parent_id">
+                                                                        <option selected>Select</option>
+                                                                        <!-- categories -->
+                                                                        <option v-for='data in categories' :value='data.id'>{{ data.name }}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row mb-3">
+                                                                <label for="input-meta-description-1" class="col-sm-2 col-form-label">Download</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" name="keyword" value placeholder="Download" id="Download" class="form-control" />
+
+                                                                </div>
+                                                            </div>
+
+                                                            <button type="submit" class="btn btn-success px-5 w-100"><i class="bx bx-check-circle mr-1"></i> Submit</button>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end row-->
+        </div>
+    </div>
+    <!--end page wrapper -->
+</div>
+</template>
+
+<script>
+export default {
+    components: {
+        'ckeditor-nuxt': () => {
+            if (process.client) {
+                return import('@blowstack/ckeditor-nuxt')
+            }
+        },
+    },
+    head: {
+        title: 'Product Add',
+    },
+    data() {
+        return {
+            editorConfig: {
+                removePlugins: ['Title'],
+                simpleUpload: {
+                    uploadUrl: 'path_to_image_controller',
+                    headers: {
+                        'Authorization': 'optional_token'
+                    }
+                }
+            },
+            insertdata: {
+                id: '',
+                name: '',
+                description: '',
+                meta_title: '',
+                meta_description: '',
+                meta_keyword: '',
+                parent_id: '',
+                mobile_view_class: '',
+                keyword: '',
+                status: 1,
+            },
+            categories: [],
+            notifmsg: '',
+            file: '',
+            errors: {},
+        }
+    },
+
+    async mounted() {
+        this.fetchDataParent();
+        await this.loadCKEditor();
+        CKEDITOR.replace('editor');
+    },
+    methods: {
+        async fetchDataParent() {
+            try {
+                const response = await this.$axios.get(`/category/getCategoryListParent`);
+                this.categories = response.data;
+
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        onFileSelected() {
+            this.file = this.$refs.file.files[0];
+        },
+        loadCKEditor() {
+            return new Promise((resolve) => {
+                if (typeof CKEDITOR === 'undefined') {
+                    const script = document.createElement('script');
+                    script.src = 'https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js';
+                    script.async = true;
+                    script.onload = resolve;
+                    document.head.appendChild(script);
+                } else {
+                    resolve();
+                }
+            });
+        },
+        saveData() {
+            const formData = new FormData();
+            formData.append('file', this.file);
+            formData.append('id', this.insertdata.id);
+            formData.append('name', this.insertdata.name);
+            formData.append('mobile_view_class', this.insertdata.mobile_view_class);
+            //formData.append('description', desc);
+            formData.append('description', this.insertdata.description);
+            formData.append('meta_title', this.insertdata.meta_title);
+            formData.append('meta_description', this.insertdata.meta_description);
+            formData.append('meta_keyword', this.insertdata.meta_keyword);
+            formData.append('parent_id', this.insertdata.parent_id);
+            formData.append('status', this.insertdata.status);
+            formData.append('keyword', this.insertdata.keyword);
+            // formData.append('status', this.insertdata.status);
+            const headers = {
+                'Content-Type': 'multipart/form-data'
+            };
+            this.$axios.post('/category/save',
+                formData, {
+                    headers
+                }).then((res) => {
+                $('#formrest')[0].reset();
+                this.success_noti();
+                this.$router.push('/ecommarce/category-list');
+            }).catch(error => {
+                if (error.response.status === 422) {
+                    this.errors = error.response.data.errors;
+                }
+            });
+        },
+        success_noti() {
+            Lobibox.notify('success', {
+                pauseDelayOnHover: true,
+                continueDelayOnInactiveTab: false,
+                position: 'top right',
+                icon: 'bx bx-check-circle',
+                msg: 'Your data has been successfully inserted.'
+            });
+        },
+    },
+}
+</script>

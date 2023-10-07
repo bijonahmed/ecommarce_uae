@@ -9,7 +9,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item">
-                                <router-link to="/" href="javascript:;"><i class="bx bx-home-alt"></i></router-link>
+                                <router-link to="/hrm/dashboard" href="javascript:;"><i class="bx bx-home-alt"></i></router-link>
                             </li>
                             <li class="breadcrumb-item" aria-current="page">
                                 <router-link to="/user/user_list">User List</router-link>
