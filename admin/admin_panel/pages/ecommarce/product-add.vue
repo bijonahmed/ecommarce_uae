@@ -173,37 +173,32 @@
                                                             <div class="row mb-3">
                                                                 <label for="input-meta-description-1" class="col-sm-2 col-form-label">Categories</label>
                                                                 <div class="col-sm-10">
-                                                                    <MultiSelectComponent/>
-                                                                    <!-- <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="category_id" v-model="insertdata.category_id" @change="getCategorys">
+
+                                                                    <div>
+                                                                        <input v-model="searchTerm" @input="search" class="form-control" placeholder="Search..." />
+                                                                        <ul v-if="searchResults.length">
+                                                                            <li v-for="result in searchResults" :key="result.name">
+                                                                                {{ result.category }} <button @click="addToSelected(result)"><i class="fadeIn animated bx bx-plus-circle"></i></button>
+                                                                            </li>
+                                                                        </ul>
+                                                                        <div v-else>
+                                                                            <!-- <small>No results found.</small> -->
+                                                                        </div>
+                                                                        <div v-if="selectedItems.length" style="background-color:#c8c8c8; padding:1px; border-radius:5px;">
+                                                                             
+                                                                            <div v-for="item in selectedItems" :key="item.id">
+                                                                                {{ item.category }} <button @click="removeFromSelected(item)"><i class="fadeIn animated bx bx-minus-circle"></i></button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- <MultiSelectComponent/> -->
+                                                                        <!-- <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="category_id" v-model="insertdata.category_id" @change="getCategorys">
                                                                         <option selected>Select</option>
                                                                         <option v-for='data in categories' :value='data.id'>{{ data.name }}</option>
                                                                     </select> -->
-                                                                </div>
-                                                            </div>
-                                                            <div class="row mb-3">
-                                                                <label for="input-meta-description-1" class="col-sm-2 col-form-label">Sub Categories</label>
-                                                                <div class="col-sm-10">
-                                                                    <!-- <MultiSelectComponent /> -->
-                                                                    <div class="multiselect-checkbox">
-                                                                        <label v-for="(option, index) in options" :key="index">
-                                                                            <input type="checkbox" v-model="selectedValues" :value="option.value" @click="handleCheckboxClick(option.value)" class="checkbox" />
-                                                                            {{ option.label }}
-                                                                        </label>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <!-- insubcategory -->
-                                                            <div class="row mb-3">
-                                                                <label for="input-meta-description-1" class="col-sm-2 col-form-label">In Sub Categories</label>
-                                                                <div class="col-sm-10">
-                                                                    <div class="multiselect-checkbox">
-                                                                        <label v-for="(option, index) in insubcategory" :key="index">
-                                                                            <input type="checkbox" v-model="selectedValuesinsub" :value="option.value" class="checkbox" />
-                                                                            {{ option.label }}
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+
                                                             <div class="row mb-3">
                                                                 <label for="input-meta-description-1" class="col-sm-2 col-form-label">Download Link</label>
                                                                 <div class="col-sm-10">
@@ -231,11 +226,8 @@
 </template>
 
 <script>
-import Multiselect from 'vue-multiselect';
-import MultiSelectComponent from '@/components/MultiSelectComponent.vue';
 export default {
     components: {
-        MultiSelectComponent,
         'ckeditor-nuxt': () => {
             if (process.client) {
                 return import('@blowstack/ckeditor-nuxt')
@@ -268,59 +260,46 @@ export default {
                 keyword: '',
                 status: 1,
             },
-            categories: [],
-            subcategory: [],
-            selectedValues: [],
-            selectedValuesinsub: [],
-            insubcategory: [], // Will hold the selected options
-            options: [],
+            selectedCategory: null,
+
+            results: [],
+            selectedItems: [],
+            searchTerm: '',
+            searchResults: [],
+
             notifmsg: '',
             file: '',
             errors: {},
         }
     },
     async mounted() {
-        this.fetchDataParent();
         await this.loadCKEditor();
         CKEDITOR.replace('editor');
     },
     methods: {
-        toggleDropdown() {
-            this.isOpen = !this.isOpen;
+        addToSelected(result) {
+            this.selectedItems.push(result);
         },
-        toggleDropdownInsub() {
-            this.isOpens = !this.isOpens;
+        removeFromSelected(item) {
+            const index = this.selectedItems.indexOf(item);
+            if (index !== -1) {
+                this.selectedItems.splice(index, 1);
+            }
         },
-        handleCheckboxClick(value) {
-            if (this.selectedValues.includes(value)) {
-                this.selectedValues = this.selectedValues.filter(item => item !== value);
+        search() {
+            if (this.searchTerm.length > 2) {
+                this.$axios.$get(`/category/search?term=${this.searchTerm}`)
+                    .then(response => {
+                        this.searchResults = response;
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
             } else {
-                this.selectedValues.push(value);
-            }
-            const arr_val = this.selectedValues;
-            this.$axios.get(`/category/getInSubCategoryChild/${arr_val}`).then(response => {
-                console.log(response.data)
-                this.insubcategory = response.data;
-            });
-            console.log(this.selectedValues);
-            // Display an alert with the value of the clicked checkbox
-            // console.log(`Checkbox clicked with value: ${value}`);
-        },
-        getCategorys() {
-            const id = this.insertdata.category_id;
-            // alert(id);
-            this.$axios.get(`/category/getSubCategoryChild/${id}`).then(response => {
-                this.options = response.data;
-            });
-        },
-        async fetchDataParent() {
-            try {
-                const response = await this.$axios.get(`/category/getCategoryList`);
-                this.categories = response.data;
-            } catch (error) {
-                console.error(error);
+                this.searchResults = [];
             }
         },
+
         onFileSelected() {
             this.file = this.$refs.file.files[0];
         },
@@ -361,7 +340,7 @@ export default {
                 }).then((res) => {
                 $('#formrest')[0].reset();
                 this.success_noti();
-                this.$router.push('/ecommarce/category-list');
+                this.$router.push('/ecommarce/category-list-autocomplete');
             }).catch(error => {
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
@@ -382,29 +361,23 @@ export default {
 </script>
 
 <style scoped>
-.multiselect-checkbox {
-    position: relative;
+/* CSS */
+ul {
+    list-style-type: none;
+    /* Removes default bullet points */
+    padding: 0;
+    /* Removes default padding */
 }
 
-.selected-values {
-    border: 1px solid #ccc;
-    padding: 10px;
-    cursor: pointer;
+li {
+    padding: 1px 0;
+    /* Adjusts spacing between list items */
+    border-bottom: 1px solid #ccc;
+    /* Adds a border between list items */
 }
 
-.dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    max-height: 150px;
-    overflow-y: auto;
-    padding: 5px;
-    width: 100%;
-}
-
-label {
-    display: block;
+li:last-child {
+    border-bottom: none;
+    /* Removes border from the last list item */
 }
 </style>

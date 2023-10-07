@@ -23,6 +23,11 @@ class CategoryController extends Controller
         $user = User::find($id->id);
         $this->userid = $user->id;
     }
+    public function index()
+    {
+        $categories = Categorys::with('children.children.children.children.children')->select('name')->where('parent_id', 0)->get();
+        return response()->json($categories);
+    }
     public function save(Request $request)
     {
         //dd($request->all());
@@ -108,12 +113,6 @@ class CategoryController extends Controller
     public function allCategory(Request $request)
     {
         $categories = Categorys::with('children.children.children.children.children')->where('parent_id', 0)->get();
-        
-        return response()->json($categories);
-    }
-    public function getCategoryListParent(Request $request)
-    {
-        $categories = Categorys::orderBy('name', 'asc')->get();
         return response()->json($categories);
     }
     public function findCategoryRow($id)
@@ -139,10 +138,8 @@ class CategoryController extends Controller
     }
     public function getInSubCategoryChild($data)
     {
-        // echo $data; // 2,55,48,27,59
         $selectedValues = trim($data);
         $queries = DB::select("SELECT id,name,parent_id FROM `categorys` WHERE `parent_id` IN ($selectedValues)");
-        //$queries =  DB::table('categorys')->select('id', 'name','parent_id')->whereIn('parent_id', [$selectedValues])->get();//Categorys::select('id', 'name')->whereIn('parent_id', [$commaSeparatedString])->get();
         $result = [];
         foreach ($queries as $key => $v) {
             $result[] = [
@@ -152,6 +149,27 @@ class CategoryController extends Controller
         }
         return response()->json($result);
     }
+    public function searchCategory(Request $request)
+    {
+        $term = $request->input('term');
+        $results = Categorys::where('name', 'like', '%' . $term . '%')
+            // ->orWhere('category', 'like', '%' . $term . '%')
+            ->get();
+        $formattedResults = [];
+        foreach ($results as $result) {
+            $path = [];
+            $category = $result;
+            while ($category) {
+                array_unshift($path, $category->name);
+                $category = $category->parent;
+            }
+            $formattedResults[] = [
+                'name' => $result->name,
+                'category' => implode(' > ', $path)
+            ];
+        }
+        return response()->json($formattedResults);
+    }
     public function categoryProducts()
     {
         $data =  Categorys::select('id', 'name')->get();
@@ -159,7 +177,7 @@ class CategoryController extends Controller
         $modifiedCollection = $collection->map(function ($item) {
             return [
                 'value' => $item['id'],
-                'label' => $item['name'],
+                'label' => "Electronics > Computer > Accessories >" . $item['name'],
             ];
         });
         return response()->json($modifiedCollection, 200);

@@ -40,7 +40,7 @@
                         <div class="col-md-8">
                             <ul>
                                 <li v-for="category in categories" :key="category.id">
-                                    {{ category.name }} <span @click="editCategory(category.id)"><i class="bx bx-edit"></i></span>
+                                    <span class="badge bg-primary">{{ category.name }} <span @click="editCategory(category.id)"><i class="bx bx-edit"></i></span></span>
                                     <TreeView :categories="category.children" v-if="category.children && category.children.length > 0" />
                                 </li>
                             </ul>
