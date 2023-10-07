@@ -107,7 +107,8 @@ class CategoryController extends Controller
     }
     public function allCategory(Request $request)
     {
-        $categories = Categorys::with('children.children.children')->where('parent_id', 0)->get();
+        $categories = Categorys::with('children.children.children.children.children')->where('parent_id', 0)->get();
+        
         return response()->json($categories);
     }
     public function getCategoryListParent(Request $request)
@@ -123,5 +124,44 @@ class CategoryController extends Controller
             'message' => 'success'
         ];
         return response()->json($response, 200);
+    }
+    public function getSubCategoryChild($id)
+    {
+        $data = Categorys::where('parent_id', $id)->get();
+        $collection = collect($data);
+        $modifiedCollection = $collection->map(function ($item) {
+            return [
+                'value' => $item['id'],
+                'label' => $item['name'],
+            ];
+        });
+        return response()->json($modifiedCollection, 200);
+    }
+    public function getInSubCategoryChild($data)
+    {
+        // echo $data; // 2,55,48,27,59
+        $selectedValues = trim($data);
+        $queries = DB::select("SELECT id,name,parent_id FROM `categorys` WHERE `parent_id` IN ($selectedValues)");
+        //$queries =  DB::table('categorys')->select('id', 'name','parent_id')->whereIn('parent_id', [$selectedValues])->get();//Categorys::select('id', 'name')->whereIn('parent_id', [$commaSeparatedString])->get();
+        $result = [];
+        foreach ($queries as $key => $v) {
+            $result[] = [
+                'value' => $v->id,
+                'label' => $v->name
+            ];
+        }
+        return response()->json($result);
+    }
+    public function categoryProducts()
+    {
+        $data =  Categorys::select('id', 'name')->get();
+        $collection = collect($data);
+        $modifiedCollection = $collection->map(function ($item) {
+            return [
+                'value' => $item['id'],
+                'label' => $item['name'],
+            ];
+        });
+        return response()->json($modifiedCollection, 200);
     }
 }

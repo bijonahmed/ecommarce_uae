@@ -25,6 +25,7 @@
     "toastr": "^2.1.4",
     "vform": "^2.1.2",
     "vue": "^2.7.10",
+    "vue-multiselect": "^2.1.7",
     "vue-quill-editor": "^3.0.6",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.10"

@@ -92,8 +92,11 @@ Route::group([
 ], function () {
     Route::post('save', [CategoryController::class, 'save']);
     Route::get('getCategoryList', [CategoryController::class, 'allCategory']);
+    Route::get('categoryForProducts', [CategoryController::class, 'categoryProducts']);
     Route::get('getCategoryListParent', [CategoryController::class, 'getCategoryListParent']);
     Route::get('categoryRow/{id}', [CategoryController::class, 'findCategoryRow']);
+    Route::get('getSubCategoryChild/{id}', [CategoryController::class, 'getSubCategoryChild']);
+    Route::get('getInSubCategoryChild/{data}', [CategoryController::class, 'getInSubCategoryChild']);
 });
 Route::group([
     'middleware' => 'api',

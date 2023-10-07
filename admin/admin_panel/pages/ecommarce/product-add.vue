@@ -67,24 +67,20 @@
                                                             <input type="text" name="name" placeholder="Product Name" v-model="insertdata.name" class="form-control" />
                                                             <input type="hidden" name="id" id="id" class="form-control" />
                                                             <span class="text-danger" v-if="errors.name">{{ errors.name[0] }}</span>
-
                                                         </div>
                                                     </div>
                                                     <div class="row mb-3">
                                                         <label for="input-description-1" class="col-sm-2 col-form-label">Description</label>
                                                         <div class="col-sm-10">
-
                                                             <client-only placeholder="loading...">
                                                                 <ckeditor-nuxt v-model="insertdata.description" :config="editorConfig" class="form-control" />
                                                             </client-only>
-
                                                         </div>
                                                     </div>
                                                     <div class="row mb-3 required">
                                                         <label for="input-meta-title-1" class="col-sm-2 col-form-label">Meta Tag Title</label>
                                                         <div class="col-sm-10">
                                                             <input type="text" name="meta_title" value placeholder="Meta Tag Title" id="meta_title" v-model="insertdata.meta_title" class="form-control" />
-
                                                         </div>
                                                     </div>
                                                     <div class="row mb-3">
@@ -99,7 +95,6 @@
                                                             <textarea name="meta_keyword" rows="5" placeholder="Meta Tag Keywords" id="meta_keyword" class="form-control" v-model="insertdata.meta_keyword"></textarea>
                                                         </div>
                                                     </div>
-
                                                     <div class="row mb-3 required">
                                                         <label for="input-meta-title-1" class="col-sm-2 col-form-label">Product Tags</label>
                                                         <div class="col-sm-10">
@@ -112,15 +107,12 @@
                                                     <!-- Data -->
                                                     <div class="card">
                                                         <div class="card-body">
-
                                                             <div class="row mb-3 required">
                                                                 <label for="input-meta-title-1" class="col-sm-2 col-form-label">Model</label>
                                                                 <div class="col-sm-10">
                                                                     <input type="text" name="meta_title" placeholder="Model" id="meta_title" v-model="insertdata.meta_title" class="form-control" />
-
                                                                 </div>
                                                             </div>
-
                                                             <div class="row mb-3 required">
                                                                 <label for="input-meta-title-1" class="col-sm-2 col-form-label">SKU</label>
                                                                 <div class="col-sm-10">
@@ -128,35 +120,30 @@
                                                                     <small>Stock Keeping Unit</small>
                                                                 </div>
                                                             </div>
-
                                                             <div class="row mb-3 required">
                                                                 <label for="input-meta-title-1" class="col-sm-2 col-form-label">Location</label>
                                                                 <div class="col-sm-10">
                                                                     <input type="text" name="meta_title" placeholder="Location" id="meta_title" v-model="insertdata.meta_title" class="form-control" />
                                                                 </div>
                                                             </div>
-
                                                             <div class="row mb-3 required">
                                                                 <label for="input-meta-title-1" class="col-sm-2 col-form-label">Price</label>
                                                                 <div class="col-sm-10">
                                                                     <input type="text" name="meta_title" placeholder="Price" id="meta_title" v-model="insertdata.meta_title" class="form-control" />
                                                                 </div>
                                                             </div>
-
                                                             <div class="row mb-3 required">
                                                                 <label for="input-meta-title-1" class="col-sm-2 col-form-label">Stock Quantity</label>
                                                                 <div class="col-sm-10">
                                                                     <input type="text" name="meta_title" placeholder="Price" id="meta_title" v-model="insertdata.meta_title" class="form-control" />
                                                                 </div>
                                                             </div>
-
                                                             <div class="row mb-3 required">
                                                                 <label for="input-meta-title-1" class="col-sm-2 col-form-label">Stock Minimum Quantity</label>
                                                                 <div class="col-sm-10">
                                                                     <input type="text" name="meta_title" id="meta_title" v-model="insertdata.meta_title" class="form-control" />
                                                                 </div>
                                                             </div>
-
                                                             <div class="row mb-3 required">
                                                                 <label for="input-meta-title-1" class="col-sm-2 col-form-label">Out Of Stock Status</label>
                                                                 <div class="col-sm-10">
@@ -177,37 +164,53 @@
                                                     <!-- SEO -->
                                                     <div class="card">
                                                         <div class="card-body">
-
                                                             <div class="row mb-3">
                                                                 <label for="input-meta-description-1" class="col-sm-2 col-form-label">Manufacturer</label>
                                                                 <div class="col-sm-10">
                                                                     <input type="text" name="keyword" placeholder="Manufacturer" id="keyword" class="form-control" />
-
                                                                 </div>
                                                             </div>
-
                                                             <div class="row mb-3">
                                                                 <label for="input-meta-description-1" class="col-sm-2 col-form-label">Categories</label>
                                                                 <div class="col-sm-10">
-                                                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="parent_id" id="parent_id" v-model="insertdata.parent_id">
+                                                                    <MultiSelectComponent/>
+                                                                    <!-- <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="category_id" v-model="insertdata.category_id" @change="getCategorys">
                                                                         <option selected>Select</option>
-                                                                        <!-- categories -->
-                                                                        <option v-for='data in categories' :value='data.id'>{{ data.name }}
-                                                                        </option>
-                                                                    </select>
+                                                                        <option v-for='data in categories' :value='data.id'>{{ data.name }}</option>
+                                                                    </select> -->
                                                                 </div>
                                                             </div>
-
                                                             <div class="row mb-3">
-                                                                <label for="input-meta-description-1" class="col-sm-2 col-form-label">Download</label>
+                                                                <label for="input-meta-description-1" class="col-sm-2 col-form-label">Sub Categories</label>
                                                                 <div class="col-sm-10">
-                                                                    <input type="text" name="keyword" value placeholder="Download" id="Download" class="form-control" />
-
+                                                                    <!-- <MultiSelectComponent /> -->
+                                                                    <div class="multiselect-checkbox">
+                                                                        <label v-for="(option, index) in options" :key="index">
+                                                                            <input type="checkbox" v-model="selectedValues" :value="option.value" @click="handleCheckboxClick(option.value)" class="checkbox" />
+                                                                            {{ option.label }}
+                                                                        </label>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-
+                                                            <!-- insubcategory -->
+                                                            <div class="row mb-3">
+                                                                <label for="input-meta-description-1" class="col-sm-2 col-form-label">In Sub Categories</label>
+                                                                <div class="col-sm-10">
+                                                                    <div class="multiselect-checkbox">
+                                                                        <label v-for="(option, index) in insubcategory" :key="index">
+                                                                            <input type="checkbox" v-model="selectedValuesinsub" :value="option.value" class="checkbox" />
+                                                                            {{ option.label }}
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-3">
+                                                                <label for="input-meta-description-1" class="col-sm-2 col-form-label">Download Link</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" name="keyword" value placeholder="Download" class="form-control" />
+                                                                </div>
+                                                            </div>
                                                             <button type="submit" class="btn btn-success px-5 w-100"><i class="bx bx-check-circle mr-1"></i> Submit</button>
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -228,8 +231,11 @@
 </template>
 
 <script>
+import Multiselect from 'vue-multiselect';
+import MultiSelectComponent from '@/components/MultiSelectComponent.vue';
 export default {
     components: {
+        MultiSelectComponent,
         'ckeditor-nuxt': () => {
             if (process.client) {
                 return import('@blowstack/ckeditor-nuxt')
@@ -253,7 +259,7 @@ export default {
             insertdata: {
                 id: '',
                 name: '',
-                description: '',
+                category_id: '',
                 meta_title: '',
                 meta_description: '',
                 meta_keyword: '',
@@ -263,23 +269,54 @@ export default {
                 status: 1,
             },
             categories: [],
+            subcategory: [],
+            selectedValues: [],
+            selectedValuesinsub: [],
+            insubcategory: [], // Will hold the selected options
+            options: [],
             notifmsg: '',
             file: '',
             errors: {},
         }
     },
-
     async mounted() {
         this.fetchDataParent();
         await this.loadCKEditor();
         CKEDITOR.replace('editor');
     },
     methods: {
+        toggleDropdown() {
+            this.isOpen = !this.isOpen;
+        },
+        toggleDropdownInsub() {
+            this.isOpens = !this.isOpens;
+        },
+        handleCheckboxClick(value) {
+            if (this.selectedValues.includes(value)) {
+                this.selectedValues = this.selectedValues.filter(item => item !== value);
+            } else {
+                this.selectedValues.push(value);
+            }
+            const arr_val = this.selectedValues;
+            this.$axios.get(`/category/getInSubCategoryChild/${arr_val}`).then(response => {
+                console.log(response.data)
+                this.insubcategory = response.data;
+            });
+            console.log(this.selectedValues);
+            // Display an alert with the value of the clicked checkbox
+            // console.log(`Checkbox clicked with value: ${value}`);
+        },
+        getCategorys() {
+            const id = this.insertdata.category_id;
+            // alert(id);
+            this.$axios.get(`/category/getSubCategoryChild/${id}`).then(response => {
+                this.options = response.data;
+            });
+        },
         async fetchDataParent() {
             try {
-                const response = await this.$axios.get(`/category/getCategoryListParent`);
+                const response = await this.$axios.get(`/category/getCategoryList`);
                 this.categories = response.data;
-
             } catch (error) {
                 console.error(error);
             }
@@ -343,3 +380,31 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+.multiselect-checkbox {
+    position: relative;
+}
+
+.selected-values {
+    border: 1px solid #ccc;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    max-height: 150px;
+    overflow-y: auto;
+    padding: 5px;
+    width: 100%;
+}
+
+label {
+    display: block;
+}
+</style>

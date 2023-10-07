@@ -21,6 +21,11 @@ export default {
         rel: "stylesheet",
         href: "https://getbootstrap.com/docs/5.0/examples/sidebars/sidebars.css",
       },
+ {
+        rel: "stylesheet",
+        href: "https://unpkg.com/vue-multiselect@2.1.6/dist/vue-multiselect.min.css",
+      },
+      
       { rel: "stylesheet", href: "/plugins/notifications/css/lobibox.min.css" },
       { rel: "stylesheet", href: "/plugins/metismenu/css/metisMenu.min.css" },
       { rel: "stylesheet", href: "/css/pace.min.css" },
