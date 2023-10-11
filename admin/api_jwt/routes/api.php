@@ -14,7 +14,7 @@ use App\Http\Controllers\Setting\SettingController;
 use App\Http\Controllers\UnauthenticatedController;
 use App\Http\Controllers\Leave\LeaveController;
 use App\Http\Controllers\Rota\RotaController;
-use App\Http\Controllers\Attendance\AttendanceController;
+use App\Http\Controllers\Product\ProductController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -95,7 +95,27 @@ Route::group([
     Route::get('categoryRow/{id}', [CategoryController::class, 'findCategoryRow']);
     Route::get('getSubCategoryChild/{id}', [CategoryController::class, 'getSubCategoryChild']);
     Route::get('search', [CategoryController::class, 'searchCategory']);
+     
 });
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'product'
+], function () {
+    Route::post('save', [ProductController::class, 'save']);
+    Route::post('getSesData', [ProductController::class, 'getSesData']);
+    Route::get('categoryRow/{id}', [CategoryController::class, 'findCategoryRow']);
+    Route::get('getSubCategoryChild/{id}', [CategoryController::class, 'getSubCategoryChild']);
+    Route::get('search', [CategoryController::class, 'searchCategory']);
+});
+
+
+
+
+
+
+
+
 Route::group([
     'middleware' => 'api',
     'prefix' => 'project'

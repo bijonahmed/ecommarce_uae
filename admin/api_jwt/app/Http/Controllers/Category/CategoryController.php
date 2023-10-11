@@ -165,11 +165,22 @@ class CategoryController extends Controller
             }
             $formattedResults[] = [
                 'name' => $result->name,
+                'id' => $result->id,
                 'category' => implode(' > ', $path)
             ];
         }
         return response()->json($formattedResults);
     }
+
+
+
+ 
+
+
+
+
+
+    
     public function categoryProducts()
     {
         $data =  Categorys::select('id', 'name')->get();

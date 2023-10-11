@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2023 at 04:25 AM
+-- Generation Time: Oct 11, 2023 at 06:43 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -140,7 +140,7 @@ INSERT INTO `bank_short_code` (`id`, `bank_id`, `name`, `status`, `entry_by`) VA
 --
 
 CREATE TABLE `categorys` (
-  `id` int(11) NOT NULL,
+  `id` bigint(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `slug` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
@@ -208,7 +208,12 @@ INSERT INTO `categorys` (`id`, `name`, `slug`, `description`, `meta_title`, `met
 (66, 'Powder', 'powder', NULL, NULL, NULL, NULL, 63, 0, '', 1, NULL, NULL, '2023-10-06 04:42:43', '2023-10-06 04:42:43'),
 (67, 'Lipstick', 'lipstick', NULL, NULL, NULL, NULL, 63, 0, '', 1, NULL, NULL, '2023-10-06 04:42:53', '2023-10-06 04:42:53'),
 (68, 'Eyeliner & Kajal', 'eyeliner-kajal', NULL, NULL, NULL, NULL, 63, 0, '', 1, NULL, NULL, '2023-10-06 04:43:04', '2023-10-06 04:43:04'),
-(69, 'Mascara', 'mascara', NULL, NULL, NULL, NULL, 63, 0, '', 1, NULL, NULL, '2023-10-06 04:43:15', '2023-10-06 04:43:15');
+(69, 'Mascara', 'mascara', NULL, NULL, NULL, NULL, 63, 0, '', 1, NULL, NULL, '2023-10-06 04:43:15', '2023-10-06 04:43:15'),
+(70, 'Mascar1', 'mascara----1', NULL, NULL, NULL, NULL, 69, 0, '', 1, NULL, NULL, '2023-10-07 17:42:59', '2023-10-07 17:43:18'),
+(71, 'Mascara-2', 'mascara2', NULL, NULL, NULL, NULL, 69, 0, '', 1, NULL, NULL, '2023-10-07 17:43:54', '2023-10-07 17:43:54'),
+(72, 'Mascara-3', 'mascara-3', NULL, NULL, NULL, NULL, 69, 0, '', 1, NULL, NULL, '2023-10-07 18:52:36', '2023-10-07 18:52:36'),
+(73, 'Mascara-45', 'mascara-45', NULL, NULL, NULL, NULL, 72, 0, '', 1, NULL, NULL, '2023-10-07 18:53:41', '2023-10-07 18:53:41'),
+(74, 'Mascara-450', 'mascara-450', NULL, NULL, NULL, NULL, 73, 0, '', 1, NULL, NULL, '2023-10-07 18:54:47', '2023-10-07 18:54:47');
 
 -- --------------------------------------------------------
 
@@ -1687,7 +1692,7 @@ ALTER TABLE `bank_short_code`
 -- AUTO_INCREMENT for table `categorys`
 --
 ALTER TABLE `categorys`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT for table `circumstances`

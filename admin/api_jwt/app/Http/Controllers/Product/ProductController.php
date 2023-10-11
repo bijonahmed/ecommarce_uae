@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers\Attendance;
+namespace App\Http\Controllers\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
@@ -8,14 +8,15 @@ use Helper;
 use App\Models\Holiday;
 use App\Models\User;
 use App\Models\LeaveType;
-use App\Models\LeaveRule;
+use App\Models\Categorys;
 use App\Models\HolidayList;
 use App\Models\LeaveAllocation;
 use Illuminate\Support\Str;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
+use Session;
 use DB;
-class AttendanceController extends Controller
+class ProductController extends Controller
 {
     protected $userid;
     public function __construct()
@@ -26,48 +27,62 @@ class AttendanceController extends Controller
         $this->userid = $user->id;
     }
 
-
-
-
-    public function uploadDocuments(Request $request)
+ 
+    public function save(Request $request)
     {
+    //dd($request->all());
+   
         $validator = Validator::make($request->all(), [
-            'file'          => 'required',
+            'name'          => 'required',
             'status'        => 'required',
         ]);
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
-
-        $data = array(
-            'status'        => $request->status,
-            'entry_by'      => $this->userid,
-        );
-        if (!empty($request->file('file'))) {
-            $files = $request->file('file');
-            $fileName = Str::random(20);
-            $ext = strtolower($files->getClientOriginalExtension());
-            $path = $fileName . '.' . $ext;
-            $uploadPath = '/backend/files/';
-            $upload_url = $uploadPath . $path;
-            $files->move(public_path('/backend/files/'), $upload_url);
-            $file_url = $uploadPath . $path;
-            $data['file'] = $file_url;
-        }
-        DB::table('upload_attendance')->truncate();
+        //DB::enableQueryLog();
+        $category     = $request->category;
+        $dynamicArray = explode(',',$category); // Convert the string to an array
+        $results      = Categorys::whereIn('id', $dynamicArray)->get();
         
-        if (empty($request->id)) {
-            $id = DB::table('upload_attendance')->insertGetId($data);
-        } else {
-            $id = $request->id;
-            DB::table('upload_attendance')->where('id', $request->id)->update($data);
+        $formattedResults = [];
+        foreach ($results as $result) {
+            $path = [];
+            $category = $result;
+            while ($category) {
+                array_unshift($path, $category->id);
+                $category = $category->parent;
+            }
+            $formattedResults[] = [
+                'category_id' => $result->id,
+                'parent_id' => implode(',', $path)
+            ];
         }
-        $first_row = DB::table('upload_attendance')->first();
-        $response = [
-            'file_url' => !empty($first_row->file) ? url($first_row->file) : "",
-            'message' => 'Upload Done:' . $id
-        ];
-        return response()->json($response);
+
+        dd($formattedResults);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        exit; 
+    }
+
+  
+
+
+    public function getSesData(){
+        echo "get session";
+        $data = Session::get('temp_data');
+        dd($data);
     }
 
     public function getUploadAttendance(){
