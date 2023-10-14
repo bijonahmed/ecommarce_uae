@@ -57,15 +57,7 @@
                                                         </div>
                                                     </a>
                                                 </li>
-                                                <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" data-bs-toggle="pill" href="#attribute" role="tab" aria-selected="false">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="tab-icon"><i class='fadeIn animated bx bx-outline font-18 me-1'></i>
-                                                            </div>
-                                                            <div class="tab-title">Attribute</div>
-                                                        </div>
-                                                    </a>
-                                                </li>
+
                                                 <li class="nav-item" role="presentation">
                                                     <a class="nav-link" data-bs-toggle="pill" href="#image" role="tab" aria-selected="false">
                                                         <div class="d-flex align-items-center">
@@ -80,19 +72,11 @@
                                                 <div class="tab-pane fade show active" id="primary-pills-home" role="tabpanel">
                                                     <!-- General  -->
                                                     <div class="row mb-3 required">
-                                                        <label for="input-name-1" class="col-sm-2 col-form-label">Product Name</label>
+                                                        <label for="input-name-1" class="col-sm-2 col-form-label required-label">Product Name</label>
                                                         <div class="col-sm-10">
                                                             <input type="text" name="name" placeholder="Product Name" v-model="insertdata.name" class="form-control" />
                                                             <input type="hidden" name="id" id="id" class="form-control" />
                                                             <span class="text-danger" v-if="errors.name">{{ errors.name[0] }}</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mb-3">
-                                                        <label for="input-description-1" class="col-sm-2 col-form-label">Description</label>
-                                                        <div class="col-sm-10">
-                                                            <client-only placeholder="loading...">
-                                                                <ckeditor-nuxt v-model="insertdata.description" :config="editorConfig" class="form-control" />
-                                                            </client-only>
                                                         </div>
                                                     </div>
                                                     <div class="row mb-3 required">
@@ -116,7 +100,9 @@
                                                     <div class="row mb-3 required">
                                                         <label for="input-meta-title-1" class="col-sm-2 col-form-label">Product Tags</label>
                                                         <div class="col-sm-10">
-                                                            <input type="text" name="meta_title" placeholder="Product Tags" v-model="insertdata.product_tag" class="form-control" />
+                                                            <input type="text" placeholder="Product Tags" v-model="insertdata.ptag" class="form-control" @input="addCommas" />
+                                                            <input type="hidden" placeholder="Product Tags" v-model="insertdata.product_tag" class="form-control" />
+                                                            {{product_tag_msg}}
                                                             <small>Comma separated</small>
                                                         </div>
                                                     </div>
@@ -128,43 +114,75 @@
                                                             <div class="row mb-3 required">
                                                                 <label for="input-meta-title-1" class="col-sm-2 col-form-label">Model</label>
                                                                 <div class="col-sm-10">
-                                                                    <input type="text" name="meta_title" placeholder="Model" id="model" v-model="insertdata.model" class="form-control" />
+                                                                    <input type="text" placeholder="Model" id="model" v-model="insertdata.model" class="form-control" />
                                                                 </div>
                                                             </div>
                                                             <div class="row mb-3 required">
                                                                 <label for="input-meta-title-1" class="col-sm-2 col-form-label">SKU</label>
                                                                 <div class="col-sm-10">
-                                                                    <input type="text" name="meta_title" placeholder="SKU" v-model="insertdata.sku" class="form-control" />
+                                                                    <input type="text" placeholder="SKU" v-model="insertdata.sku" class="form-control" />
                                                                     <small>Stock Keeping Unit</small>
                                                                 </div>
                                                             </div>
                                                             <div class="row mb-3 required">
-                                                                <label for="input-meta-title-1" class="col-sm-2 col-form-label">Location</label>
+                                                                <label for="input-meta-title-1" class="col-sm-2 col-form-label">External Link</label>
                                                                 <div class="col-sm-10">
-                                                                    <input type="text" name="meta_title" placeholder="Location" v-model="insertdata.location" class="form-control" />
+                                                                    <input type="text" placeholder="External Link" v-model="insertdata.external_link" class="form-control" />
+                                                                </div>
+                                                            </div>
+                                                            <hr />
+
+                                                            <div class="row mb-3">
+                                                                <label for="input-description-1" class="col-sm-2 col-form-label">Description</label>
+                                                                <div class="col-sm-10">
+                                                                    <client-only placeholder="loading...">
+                                                                        <ckeditor-nuxt v-model="insertdata.description" :config="editorConfig" class="form-control" />
+                                                                    </client-only>
+                                                                </div>
+                                                            </div>
+                                                            <hr>
+
+                                                            <div class="row mb-3 required">
+                                                                <label for="input-meta-title-1" class="col-sm-4 col-form-label required-label">Price</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" placeholder="Price" v-model="insertdata.price" class="form-control" @input="validateInput" />
+                                                                    <span class="text-danger" v-if="errors.price">{{ errors.price[0] }}</span>
                                                                 </div>
                                                             </div>
                                                             <div class="row mb-3 required">
-                                                                <label for="input-meta-title-1" class="col-sm-2 col-form-label">Price</label>
-                                                                <div class="col-sm-10">
-                                                                    <input type="text" name="meta_title" placeholder="Price" v-model="insertdata.price" class="form-control" />
+                                                                <label for="input-meta-title-1" class="col-sm-4 col-form-label">Unit</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" placeholder="Unit (e.g. KG, Pc etc)" v-model="insertdata.unit" class="form-control" />
                                                                 </div>
                                                             </div>
                                                             <div class="row mb-3 required">
-                                                                <label for="input-meta-title-1" class="col-sm-2 col-form-label">Stock Quantity</label>
-                                                                <div class="col-sm-10">
-                                                                    <input type="text" placeholder="1" v-model="insertdata.stock_qty" class="form-control" />
+                                                                <label for="input-meta-title-1" class="col-sm-4 col-form-label">Discount</label>
+                                                                <div class="col-sm-4">
+                                                                    <input type="text" placeholder="0" v-model="insertdata.discount" class="form-control" @input="validateInput" />
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" v-model="insertdata.discount_status">
+                                                                        <option selected>Select</option>
+                                                                        <option value="1">Percent</option>
+                                                                        <option value="2">Flat</option>
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                             <div class="row mb-3 required">
-                                                                <label for="input-meta-title-1" class="col-sm-2 col-form-label">Stock Minimum Quantity</label>
-                                                                <div class="col-sm-10">
-                                                                    <input type="text" v-model="insertdata.stock_mini_qty" class="form-control" />
+                                                                <label for="input-meta-title-1" class="col-sm-4 col-form-label required-label">Quantity</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" placeholder="1" v-model="insertdata.stock_qty" class="form-control" @input="validateInput" />
                                                                 </div>
                                                             </div>
                                                             <div class="row mb-3 required">
-                                                                <label for="input-meta-title-1" class="col-sm-2 col-form-label">Out Of Stock Status</label>
-                                                                <div class="col-sm-10">
+                                                                <label for="input-meta-title-1" class="col-sm-4 col-form-label required-label">Minimum Quantity</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" v-model="insertdata.stock_mini_qty" class="form-control" @input="validateInput" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-3 required">
+                                                                <label for="input-meta-title-1" class="col-sm-4 col-form-label">Out Of Stock Status</label>
+                                                                <div class="col-sm-8">
                                                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example" v-model="insertdata.stock_status">
                                                                         <option selected>Select</option>
                                                                         <!-- categories -->
@@ -172,6 +190,79 @@
                                                                         <option value="7">In Stock</option>
                                                                         <option value="5">Out Of Stock</option>
                                                                         <option value="8">Pre-Order</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <hr />
+                                                            <div class="row mb-3 required">
+                                                                <label for="input-meta-title-1" class="col-sm-4 col-form-label">Free Shipping</label>
+                                                                <div class="col-sm-8">
+                                                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" v-model="insertdata.free_shopping">
+                                                                        <option selected>Select</option>
+                                                                        <option value="0">No</option>
+                                                                        <option value="1">Yes</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-3 required">
+                                                                <label for="input-meta-title-1" class="col-sm-4 col-form-label">Flat Rate</label>
+                                                                <div class="col-sm-4">
+                                                                    <select class="form-select" aria-label=".form-select-sm example" v-model="insertdata.flat_rate_status">
+                                                                        <option selected>Select</option>
+                                                                        <option value="0">No</option>
+                                                                        <option value="1">Yes</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <input type="text" v-model="insertdata.flat_rate_price" class="form-control" @input="validateInput" />
+                                                                </div>
+                                                            </div>
+                                                            <hr />
+                                                            <div class="row mb-3 required">
+                                                                <label for="input-meta-title-1" class="col-sm-4 col-form-label">Shipping Days</label>
+                                                                <div class="col-sm-4">
+                                                                    <input type="text" v-model="insertdata.shipping_days" class="form-control" @input="validateInput" />
+                                                                    <span class="text-danger" v-if="errors.shipping_days">{{ errors.shipping_days[0] }}</span>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    Days
+                                                                </div>
+                                                            </div>
+                                                            <hr />
+                                                            <div class="row mb-3 required">
+                                                                <label for="input-meta-title-1" class="col-sm-4 col-form-label">Vat</label>
+                                                                <div class="col-sm-4">
+                                                                    <input type="text" v-model="insertdata.vat" class="form-control" @input="validateInput" />
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <select class="form-select" aria-label=".form-select-sm example" v-model="insertdata.vat_status">
+                                                                        <option selected>Select</option>
+                                                                        <option value="1">Flat</option>
+                                                                        <option value="2">Percent</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-3 required">
+                                                                <label for="input-meta-title-1" class="col-sm-4 col-form-label">Tax</label>
+                                                                <div class="col-sm-4">
+                                                                    <input type="text" v-model="insertdata.tax" class="form-control" @input="validateInput" />
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <select class="form-select" aria-label=".form-select-sm example" v-model="insertdata.tax_status">
+                                                                        <option selected>Select</option>
+                                                                        <option value="1">Flat</option>
+                                                                        <option value="2">Percent</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <hr />
+                                                            <div class="row mb-3 required">
+                                                                <label for="input-meta-title-1" class="col-sm-4 col-form-label">Status</label>
+                                                                <div class="col-sm-4">
+                                                                    <select class="form-select" aria-label=".form-select-sm example" v-model="insertdata.cash_dev_status">
+                                                                        <option selected>Select</option>
+                                                                        <option value="1">Yes</option>
+                                                                        <option value="2">No</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -189,7 +280,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="row mb-3">
-                                                                <label for="input-meta-description-1" class="col-sm-2 col-form-label">Categories</label>
+                                                                <label for="input-meta-description-1" class="col-sm-2 col-form-label required-label">Categories</label>
                                                                 <div class="col-sm-10">
                                                                     <div>
                                                                         <input v-model="categories" @input="search" class="form-control" placeholder="Search..." />
@@ -201,7 +292,8 @@
                                                                         <div v-else>
                                                                             <!-- <small>No results found.</small> -->
                                                                         </div>
-                                                                        <span class="d-none_">
+                                                                        <span class="text-danger" v-if="errors.category">{{ errors.category[0] }}</span>
+                                                                        <span class="d-none">
                                                                             <textarea v-model="multi_categories" placeholder="Selected Value" class="w-100"></textarea>
                                                                         </span>
                                                                         <div v-if="selectedItems.length" class="bgColor">
@@ -223,26 +315,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="attribute" role="tabpanel">
-                                                    <div class="row mb-3">
-                                                        <label for="input-meta-description-1" class="col-sm-2 col-form-label">Download Link</label>
-                                                        <div class="col-sm-10">
-                                                            <input type="text" name="keyword" value placeholder="Download" class="form-control" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mb-3">
-                                                        <label for="input-meta-description-1" class="col-sm-2 col-form-label">Download Link</label>
-                                                        <div class="col-sm-10">
-                                                            <input type="text" name="keyword" value placeholder="Download" class="form-control" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mb-3">
-                                                        <label for="input-meta-description-1" class="col-sm-2 col-form-label">Download Link</label>
-                                                        <div class="col-sm-10">
-                                                            <input type="text" name="keyword" value placeholder="Download" class="form-control" />
-                                                        </div>
-                                                    </div>
-                                                </div>
+
                                                 <div class="tab-pane fade" id="image" role="tabpanel">
                                                     <div class="alert alert-info" bis_skin_checked="1"><i class="fas fa-info-circle"></i> Must Upload Products Images 300x300px</div>
                                                     <div class="row mb-3">
@@ -268,7 +341,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button type="submit" class="btn btn-success px-5 w-100"><i class="bx bx-check-circle mr-1"></i> Submit</button>
+                                                    <button type="submit" class="btn btn-success px-5 w-100"><i class="bx bx-check-circle mr-1"></i> Save & Next</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -288,6 +361,9 @@
 
 <script>
 export default {
+    directives: {
+        'click-outside': require('@/directives/click-outside').default
+    },
     components: {
         'ckeditor-nuxt': () => {
             if (process.client) {
@@ -310,7 +386,6 @@ export default {
                 }
             },
             insertdata: {
-
                 id: '',
                 name: '',
                 description: '',
@@ -318,23 +393,38 @@ export default {
                 meta_description: '',
                 meta_keyword: '',
                 product_tag: '',
+                ptag: '',
                 model: '',
                 sku: '',
-                location: '',
+                external_link: '',
+                cash_dev_status: 2,
                 price: '',
+                unit: '',
                 stock_qty: 1,
                 stock_mini_qty: 1,
                 stock_status: '',
                 manufacturer: '',
                 download_link: '',
-               // categories: '',
-                //multi_categories: '',
-                files: '',
+                discount: 0,
+                discount_status: 1,
+                shipping_days: 1,
+                free_shopping: 0,
+                flat_rate_status: 0,
+                flat_rate_price: 0,
+                vat: 0,
+                vat_status: 1,
+                tax: 0,
+                tax_status: 1,
+                //Attribute 
+                // sku: [],
+                // qty: [],
+                // price: [],
+                //END  Attribute
+                //files: '',
                 images: '',
- 
-
                 status: 1,
             },
+            inputValue: '',
             previewUrl: null,
             // addPreviewUrls: [],
             images: [],
@@ -344,16 +434,97 @@ export default {
             selectedItems: [],
             categories: '',
             searchResults: [],
+            parentAttributes: [],
+            attrVals: [],
+            product_tag_msg: '',
+            //this for attribue select
+            // options: [],
+            // showDropdown: false,
+            // selectedOptions: [],
+            // selectAll: false,
+            // storedValues: [],
+            //end
             notifmsg: '',
             file: '',
+            files: '',
             errors: {},
         }
     },
     async mounted() {
         await this.loadCKEditor();
+        //await this.fetchParentAttr();
         CKEDITOR.replace('editor');
+        // document.addEventListener('click', this.handleClickOutside);
     },
+    // beforeDestroy() {
+    //     document.removeEventListener('click', this.handleClickOutside);
+    // },
     methods: {
+        // storeValues() {
+        //     this.storedValues = [...this.selectedOptions];
+        // },
+        // closeDropdown() {
+        //     this.showDropdown = false;
+        // },
+        // toggleDropdown() {
+        //     this.showDropdown = !this.showDropdown;
+        // },
+        // toggleAll() {
+        //     if (this.selectAll) {
+        //         this.selectedOptions = this.attrVals.map(option => option.name);
+        //     } else {
+        //         this.selectedOptions = [];
+        //     }
+        // },
+        // onChangeAttribute() {
+        //     const parentAttrVal = $(".parentAttrVal").val();
+        //     this.$axios.get(`/category/attributeValRows/${parentAttrVal}`).then(response => {
+        //         this.attrVals = response.data.data;
+        //     });
+        // },
+        // async fetchParentAttr() {
+        //     $(".customerSpinner").show();
+        //     try {
+        //         const response = await this.$axios.get(`/category/attributes`);
+        //         this.parentAttributes = response.data;
+        //         $(".customerSpinner").hide();
+        //     } catch (error) {
+        //         console.error(error);
+        //     }
+        // },
+        validateInput() {
+            if (!/^[+-]?\d*\.?\d*$/.test(this.insertdata.price)) {
+                this.insertdata.price = this.insertdata.price.slice(0, -1);
+            }
+            if (!/^[+-]?\d*\.?\d*$/.test(this.insertdata.discount)) {
+                this.insertdata.discount = this.insertdata.discount.slice(0, -1);
+            }
+            if (!/^[+-]?\d*\.?\d*$/.test(this.insertdata.stock_qty)) {
+                this.insertdata.stock_qty = this.insertdata.stock_qty.slice(0, -1);
+            }
+            if (!/^[+-]?\d*\.?\d*$/.test(this.insertdata.stock_mini_qty)) {
+                this.insertdata.stock_mini_qty = this.insertdata.stock_mini_qty.slice(0, -1);
+            }
+            if (!/^[+-]?\d*\.?\d*$/.test(this.insertdata.flat_rate_price)) {
+                this.insertdata.flat_rate_price = this.insertdata.flat_rate_price.slice(0, -1);
+            }
+            if (!/^[+-]?\d*\.?\d*$/.test(this.insertdata.shipping_days)) {
+                this.insertdata.shipping_days = this.insertdata.shipping_days.slice(0, -1);
+            }
+            if (!/^[+-]?\d*\.?\d*$/.test(this.insertdata.vat)) {
+                this.insertdata.vat = this.insertdata.vat.slice(0, -1);
+            }
+            if (!/^[+-]?\d*\.?\d*$/.test(this.insertdata.tax)) {
+                this.insertdata.tax = this.insertdata.tax.slice(0, -1);
+            }
+        },
+        // addAtribute() {
+        //     this.$router.push('/ecommarce/attributes-list');
+        // },
+        addCommas() {
+            this.product_tag_msg = this.insertdata.ptag.replace(/\s+/g, ', ');
+            this.insertdata.product_tag = this.product_tag_msg;
+        },
         handleImageUpload(event) {
             const files = event.target.files;
             for (let i = 0; i < files.length; i++) {
@@ -386,6 +557,7 @@ export default {
             this.images.splice(index, 1);
         },
         previewImage(event) {
+            this.onFileSelected();
             const file = event.target.files[0];
             this.previewUrl = URL.createObjectURL(file);
             this.checkImageDimensionsThunbnail(file);
@@ -411,15 +583,10 @@ export default {
             this.$refs.files.value = '';
         },
         addToSelected(result) {
-
             //console.log(result);
-           
-
             this.selectedItems.push(result);
             this.multi_categories = this.selectedItems.map(result => result.id).join(',');
             //this.selectedItemIds = this.selectedItems.map(item => item.id).join(', ');
-
-
         },
         removeFromSelected(item) {
             const index = this.selectedItems.indexOf(item);
@@ -445,7 +612,8 @@ export default {
             }
         },
         onFileSelected() {
-            this.file = this.$refs.file.files[0];
+            //this.file = this.$refs.file.files[0];
+            this.files = this.$refs.files.files[0];
         },
         loadCKEditor() {
             return new Promise((resolve) => {
@@ -462,9 +630,13 @@ export default {
         },
         saveData() {
             const formData = new FormData();
+            const input = this.$refs.images;
+            for (let i = 0; i < input.files.length; i++) {
+                formData.append('images[]', input.files[i]);
+            }
             formData.append('id', this.insertdata.id);
-            formData.append('files', this.files); 
-            formData.append('images', this.images); //multiple
+            formData.append('files', this.files);
+            // formData.append('images', this.images); //multiple
             formData.append('category', this.multi_categories);
             formData.append('name', this.insertdata.name);
             formData.append('description', this.insertdata.description);
@@ -474,7 +646,7 @@ export default {
             formData.append('product_tag', this.insertdata.product_tag);
             formData.append('model', this.insertdata.model);
             formData.append('sku', this.insertdata.sku);
-            formData.append('location', this.insertdata.location);
+            formData.append('external_link', this.insertdata.external_link);
             formData.append('price', this.insertdata.price);
             formData.append('stock_qty', this.insertdata.stock_qty);
             formData.append('stock_mini_qty', this.insertdata.stock_mini_qty);
@@ -483,6 +655,19 @@ export default {
             formData.append('download_link', this.insertdata.download_link);
             formData.append('status', this.insertdata.status);
             formData.append('keyword', this.insertdata.keyword);
+            //new
+            formData.append('unit', this.insertdata.unit);
+            formData.append('discount', this.insertdata.discount);
+            formData.append('discount_status', this.insertdata.discount_status);
+            formData.append('free_shopping', this.insertdata.free_shopping);
+            formData.append('flat_rate_status', this.insertdata.flat_rate_status);
+            formData.append('flat_rate_price', this.insertdata.flat_rate_price);
+            formData.append('vat', this.insertdata.vat);
+            formData.append('vat_status', this.insertdata.vat_status);
+            formData.append('tax', this.insertdata.tax);
+            formData.append('tax_status', this.insertdata.tax_status);
+            formData.append('cash_dev_status', this.insertdata.cash_dev_status);
+            formData.append('shipping_days', this.insertdata.shipping_days);
             // formData.append('status', this.insertdata.status);
             const headers = {
                 'Content-Type': 'multipart/form-data'
@@ -493,7 +678,10 @@ export default {
                 }).then((res) => {
                 $('#formrest')[0].reset();
                 this.success_noti();
-                this.$router.push('/ecommarce/product-list');
+                const product_id = res.data.product_id;
+                this.$router.push({ path: '/ecommarce/product-varient', query: { parameter: product_id } })
+                return false; 
+                //this.$router.push('/ecommarce/product-list');
             }).catch(error => {
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors;
@@ -514,6 +702,12 @@ export default {
 </script>
 
 <style scoped>
+.required-label::after {
+    content: "\2605";
+    color: red;
+    margin-right: 4px;
+}
+
 /* CSS */
 ol,
 ul {
@@ -539,5 +733,44 @@ ul {
     margin-top: 10px;
     width: 300px;
     height: 300px;
+}
+
+/* for checkbox */
+.multiselect {
+    position: relative;
+    font-family: Arial, sans-serif;
+    width: 100%;
+}
+
+.select-box {
+    border: 1px solid #ccc;
+    padding: 8px;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.dropdown {
+    border: 1px solid #ccc;
+    border-top: none;
+    max-height: 400px;
+    overflow-y: auto;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    background-color: #fff;
+    z-index: 1;
+}
+
+label {
+    display: block;
+    padding: 5px;
+}
+
+input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.widthtxtbox {
+    width: 50px;
 }
 </style>

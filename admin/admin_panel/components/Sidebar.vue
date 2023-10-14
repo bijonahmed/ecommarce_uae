@@ -4,7 +4,7 @@
     <div class="sidebar-header">
         <div>
             <Nuxt-link to="/" href="javascript:;">
-                <h4 class="logo-text"><img src="/images/logo-img.jpg" alt="logo icon" style="height: 50px;width: 70px;"> </h4>
+                <center><h4 class="logo-text text-center"><img src="/images/futuregenit-logo.png" width="180" alt="" /> </h4></center>
             </Nuxt-link>
         </div>
         <div class="toggle-icon ms-auto" @click="hideleftsidebar"><i class='bx bx-arrow-to-left'></i></div>
@@ -40,6 +40,9 @@
                 <ul class="menu dropdown-menu" aria-labelledby="submenuDropdown_30" style="width:100%;">
                     <li>
                         <Nuxt-link to="/ecommarce/category-list"><i class="bx bx-right-arrow-alt"></i>Category</Nuxt-link>
+                    </li>
+                    <li>
+                        <Nuxt-link to="/ecommarce/attributes-list"><i class="bx bx-right-arrow-alt"></i>Attributes</Nuxt-link>
                     </li>
                 </ul>
             </li>
@@ -147,6 +150,48 @@ hr {
     padding: 0px 0px 0px 0px;
     font-size: 15px;
     border: 0;
+}
+.sidebar-wrapper {
+	width: 250px;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	background: #000;
+	border-right: 0 solid #e4e4e4;
+	z-index: 11;
+	box-shadow: 0 .3rem .8rem rgba(0, 0, 0, .12) !important;
+	transition: all .2s ease-out;
+}
+.sidebar-wrapper .metismenu ul a {
+	padding: 0px 0px 0px 10px;
+	font-size: 15px;
+	border: 0;
+}
+.sidebar-wrapper .metismenu ul {
+	border: 1px solid #353434;
+	background: #090808;
+}
+.sidebar-wrapper .metismenu a {
+	font-size: 15px;
+	color: #cecdcd;
+	letter-spacing: .5px;
+}
+.sidebar-header {
+  width: 250px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  padding: 0 15px;
+  z-index: 5;
+  background: #000;
+    background-clip: border-box;
+  background-clip: padding-box;
+  border-bottom: 1px solid #e4e4e4;
 }
 </style>
 <script>

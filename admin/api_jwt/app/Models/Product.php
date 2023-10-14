@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -7,32 +8,42 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use AuthorizesRequests;
 use DB;
+
 class Product extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
     public $table = "product";
     protected $fillable = [
         'name',
-        'status',
-        'entry_by',
-        'status',
+        'slug',
+        'description',
+        'meta_title',
+        'meta_description',
+        'meta_keyword',
+        'product_tag',
+        'model',
+        'sku',
+        'external_link',
+        'cash_dev_status',
+        'price',
+        'unit',
+        'stock_qty',
+        'stock_mini_qty',
+        'stock_status',
+        'manufacturer',
+        'download_link',
+        'discount',
+        'discount_status',
+        'shipping_days',
+        'free_shopping',
+        'flat_rate_status',
+        'flat_rate_price',
+        'vat',
+        'vat_status',
+        'tax',
+        'tax_status',
+        'thumnail_img',
+        'images',
+        'status'
     ];
-    public static function filterList()
-    {
-        return DB::table('organogram_level')->get();
-    }
-
- 
-    public static function editId($id)
-    {
-        return DB::table('organogram_level')->where('id', $id)->first();
-    }
-
-
-  public static function hierarchyRoweditId($id)
-    {
-        return DB::table('organogram_hierarchy')->where('id', $id)->first();
-    }
-    
- 
 }

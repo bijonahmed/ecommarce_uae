@@ -7,7 +7,7 @@
                 <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3">
                     <div class="col mx-auto">
                         <div class="text-center">
-                            <img src="/images/logo-img.jpg" width="180" alt="" />
+                            <img src="/images/futuregenit-logo.png" width="180" alt="" />
                         </div>
                         <div class="card">
                             <div class="card-body">

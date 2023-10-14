@@ -8,7 +8,12 @@ use Helper;
 use App\Models\User;
 use App\Models\Categorys;
 use App\Category;
-use App\Models\Profile;
+use App\Models\AttributeValues;
+use App\Models\Attribute;
+use App\Models\SubAttribute;
+use App\Models\Variant;
+use App\Models\ProductAttributeValue;
+use App\Models\Product;
 use Illuminate\Support\Str;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
@@ -27,6 +32,102 @@ class CategoryController extends Controller
     {
         $categories = Categorys::with('children.children.children.children.children')->select('name')->where('parent_id', 0)->get();
         return response()->json($categories);
+    }
+    public function saveAttribute(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name'      => 'required',
+                'status'    => 'required',
+            ],
+            [
+                // 'name'   => 'Attribute name is required',
+                'status' => 'Status is required',
+            ]
+        );
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+        $data = array(
+            'arr_value'                  => $request->arr_value,
+            'name'                       => $request->name,
+            'status'                     => $request->status,
+            'entry_by'                   => $this->userid
+        );
+        //dd($data);
+        if (empty($request->id)) {
+            //Attribute::insertGetId($data);
+            $chk = Attribute::where('name', strtolower($request->name))->first();
+            $newRecord = new Attribute();
+            if (empty($chk)) {
+                $newRecord->name        =  strtolower($request->name);
+                $newRecord->status      = $request->status;
+                $newRecord->entry_by    = $this->userid;
+                $newRecord->save();
+                $lastInsertedId = $newRecord->id;
+            } else {
+                $lastInsertedId = $chk->id;
+            }
+            if (!empty($request->arr_value)) {
+                $arr_val = $request->arr_value;
+                $arrexplode = explode(",", $arr_val);
+                $arrCount = count($arrexplode);
+                for ($i = 0; $i < $arrCount; $i++) {
+                    $newRecord                  = new AttributeValues();
+                    $newRecord->name            = $arrexplode[$i];
+                    $newRecord->attributes_id   = $lastInsertedId;
+                    $newRecord->status          = $request->status;
+                    $newRecord->entry_by        = $this->userid;
+                    $newRecord->save();
+                }
+            }
+        } else {
+            $data = Attribute::find($request->id);
+            $data->name              =  $request->input('name');
+            $data->status            =  $request->input('status');
+            $data->save();
+        }
+        $response = [
+            'message' => 'Successfull',
+        ];
+        return response()->json($response);
+    }
+    public function saveAttributeVal(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name'          => 'required',
+                'status'        => 'required',
+            ],
+            [
+                'name'            => 'Name is required',
+                'status'          => 'Status is required',
+            ]
+        );
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+        $data = array(
+           // 'attributes_id'              => $request->attributes_id,
+            'name'                       => $request->name,
+            'status'                     => $request->status,
+            'entry_by'                   => $this->userid
+        );
+        if (empty($request->id)) {
+            AttributeValues::insertGetId($data);
+        } else {
+            $data = AttributeValues::find($request->id);
+           // $data->attributes_id     =  $request->input('attributes_id');
+            $data->name              =  $request->input('name');
+            $data->status            =  $request->input('status');
+            $data->save();
+        }
+        $response = [
+            'message' => 'Successfull',
+        ];
+        return response()->json($response);
     }
     public function save(Request $request)
     {
@@ -115,9 +216,84 @@ class CategoryController extends Controller
         $categories = Categorys::with('children.children.children.children.children')->where('parent_id', 0)->get();
         return response()->json($categories);
     }
+    public function getAttribute(Request $request)
+    {
+        $attribute = Attribute::where('status', 1)->get();
+        return response()->json($attribute);
+    }
+    public function getAttributeList(Request $request)
+    {
+        $attribute = Attribute::orderBy('name', 'asc')->get();
+
+        $collection = collect($attribute);
+        $modifiedArr = $collection->map(function ($item) {
+            return [
+                'id'     => $item['id'],
+                'name'   => ucfirst($item['name']),
+                'status' => $item['status'],
+            ];
+        });
+        //dd($modifiedArr);
+        return response()->json($modifiedArr);
+    }
+    public function getAttributeValList(Request $request)
+    {
+        $searchTerm = $request->terms;
+        $attrWithsubAtt = Attribute::join('attributes_values', 'attributes_values.attributes_id', '=', 'attributes.id')
+            ->select('attributes_values.*', 'attributes.name as att_name')
+            ->where('attributes_values.name', 'like', '%' . $searchTerm . '%')
+            ->orderBy('attributes.name', 'asc')
+            ->get();
+
+            $collection = collect($attrWithsubAtt);
+            $modifiedArr = $collection->map(function ($item) {
+                return [
+                    'id'         => $item['id'],
+                    'att_name'   => ucfirst($item['att_name']),
+                    'name'       => ucfirst($item['name']),
+                    'status'     => $item['status'],
+                ];
+            });
+
+
+        return response()->json($modifiedArr, 200);
+    }
+    public function getCategoryListParent(Request $request)
+    {
+        $categories = Categorys::where('status', 1)->get();
+        return response()->json($categories);
+    }
     public function findCategoryRow($id)
     {
         $data = Categorys::find($id);
+        $response = [
+            'data' => $data,
+            'message' => 'success'
+        ];
+        return response()->json($response, 200);
+    }
+    public function attributeRow($id)
+    {
+        $data = Attribute::find($id);
+        $response = [
+            'data' => $data,
+            'message' => 'success'
+        ];
+        return response()->json($response, 200);
+    }
+    public function attributeValRow($id)
+    {
+        ///122555
+        $data = AttributeValues::find($id);
+        $response = [
+            'data' => $data,
+            'message' => 'success'
+        ];
+        return response()->json($response, 200);
+    }
+    public function attributeValRows($id)
+    {
+        $data = AttributeValues::where('attributes_id', $id)->get();
         $response = [
             'data' => $data,
             'message' => 'success'
@@ -170,27 +346,5 @@ class CategoryController extends Controller
             ];
         }
         return response()->json($formattedResults);
-    }
-
-
-
- 
-
-
-
-
-
-    
-    public function categoryProducts()
-    {
-        $data =  Categorys::select('id', 'name')->get();
-        $collection = collect($data);
-        $modifiedCollection = $collection->map(function ($item) {
-            return [
-                'value' => $item['id'],
-                'label' => "Electronics > Computer > Accessories >" . $item['name'],
-            ];
-        });
-        return response()->json($modifiedCollection, 200);
     }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 11, 2023 at 06:43 PM
+-- Generation Time: Oct 14, 2023 at 10:52 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -80,6 +80,172 @@ INSERT INTO `apply_job` (`id`, `job_publish_id`, `job_title`, `candidate_name`, 
 (3, 2, 'Senior BI Engineer', 'Kabir', 'Dhaka', 'kabir@gmail.com', '01915728983', '10 Yrs', 'MSC', 'TEST', '1050', '/backend/files/mURkiEiAo1NR9wFEJ2No.pdf', '2023-08-29', '', 2, 1, '2023-08-29 10:45:32'),
 (4, 2, 'Senior BI Engineer', 'Jannat', 'DHK', 'jannat@gmail.com', '01915728984', '10 Yrs', 'TEST', 'Computer', '50000', '/backend/files/FHSfhhsLtpUDx5w1yGaX.doc', '2023-08-29', NULL, 8, NULL, '2023-08-29 10:46:47'),
 (5, 1, 'Software Engineer', 'Kabir ahmed', 'DHK', 'karim@gmail.com', '01915728985', '10 Yrs', 'TEST', 'DK', '50000', '/backend/files/BEMMoAGUMb0lFvg49YPF.pdf', '2023-08-29', NULL, NULL, NULL, '2023-08-29 11:07:25');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attributes`
+--
+
+CREATE TABLE `attributes` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp(),
+  `entry_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `attributes`
+--
+
+INSERT INTO `attributes` (`id`, `name`, `status`, `created_at`, `updated_at`, `entry_by`) VALUES
+(1, 'size', 1, '2023-10-14 10:28:05', '2023-10-14 16:28:05', 1),
+(2, 'color', 1, '2023-10-14 10:30:19', '2023-10-14 16:30:19', 1),
+(3, 'capacity', 1, '2023-10-14 10:30:43', '2023-10-14 16:30:43', 1),
+(4, 'sleeve length', 1, '2023-10-14 10:31:01', '2023-10-14 16:31:01', 1),
+(5, 'neckline', 1, '2023-10-14 10:31:23', '2023-10-14 16:31:23', 1),
+(6, 'closure type', 1, '2023-10-14 10:31:45', '2023-10-14 16:31:45', 1),
+(7, 'material', 1, '2023-10-14 10:32:02', '2023-10-14 16:32:02', 1),
+(8, 'brand', 1, '2023-10-14 10:32:29', '2023-10-14 16:32:29', 1),
+(9, 'weight', 1, '2023-10-14 10:32:52', '2023-10-14 16:32:52', 1),
+(10, 'gender', 1, '2023-10-14 10:33:05', '2023-10-14 16:33:05', 1),
+(11, 'style', 1, '2023-10-14 10:33:25', '2023-10-14 16:33:25', 1),
+(12, 'pattern', 1, '2023-10-14 10:33:42', '2023-10-14 16:33:42', 1),
+(13, 'fit', 1, '2023-10-14 10:33:58', '2023-10-14 16:33:58', 1),
+(14, 'type', 1, '2023-10-14 10:34:14', '2023-10-14 16:34:14', 1),
+(15, 'occasion', 1, '2023-10-14 10:34:27', '2023-10-14 16:34:27', 1),
+(16, 'season', 1, '2023-10-14 10:34:40', '2023-10-14 16:34:40', 1),
+(17, 'features', 1, '2023-10-14 10:34:56', '2023-10-14 16:34:56', 1),
+(18, 'compatibility', 1, '2023-10-14 10:35:12', '2023-10-14 16:35:12', 1),
+(19, 'resolution', 1, '2023-10-14 10:35:43', '2023-10-14 16:35:43', 1),
+(20, 'warranty', 1, '2023-10-14 10:35:58', '2023-10-14 16:35:58', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attributes_values`
+--
+
+CREATE TABLE `attributes_values` (
+  `id` int(11) NOT NULL,
+  `attributes_id` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `entry_by` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `attributes_values`
+--
+
+INSERT INTO `attributes_values` (`id`, `attributes_id`, `name`, `status`, `entry_by`, `created_at`, `updated_at`) VALUES
+(1, 1, 'S', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(2, 1, 'M', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(3, 1, 'L', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(4, 1, 'XL', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(5, 1, 'XXL', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(6, 1, 'XXXL', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(7, 1, '3XL', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(8, 1, '1', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(9, 1, '2', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(10, 1, '3', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(11, 1, '4', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(12, 1, '5', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(13, 1, '6', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(14, 1, '10', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(15, 1, '11', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(16, 1, '12', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(17, 1, '13', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(18, 1, '16', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(19, 1, '17', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(20, 1, '18', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(21, 1, '19', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(22, 1, '20', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(23, 1, '21', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(24, 1, '25', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(25, 1, '30', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(26, 1, '45', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(27, 1, '60', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(28, 1, '54', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(29, 1, '28', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(30, 1, '230', 1, 1, '2023-10-14 16:28:05', '2023-10-14 16:28:05'),
+(31, 2, 'Green', 1, 1, '2023-10-14 16:30:19', '2023-10-14 16:30:19'),
+(32, 2, 'Blue', 1, 1, '2023-10-14 16:30:19', '2023-10-14 16:30:19'),
+(33, 2, 'Yellow', 1, 1, '2023-10-14 16:30:19', '2023-10-14 16:30:19'),
+(34, 2, 'Red', 1, 1, '2023-10-14 16:30:19', '2023-10-14 16:30:19'),
+(35, 2, 'Dark', 1, 1, '2023-10-14 16:30:19', '2023-10-14 16:30:19'),
+(36, 2, 'White', 1, 1, '2023-10-14 16:30:19', '2023-10-14 16:30:19'),
+(37, 2, 'Neviblue', 1, 1, '2023-10-14 16:30:19', '2023-10-14 16:30:19'),
+(38, 2, 'Darkness', 1, 1, '2023-10-14 16:30:19', '2023-10-14 16:30:19'),
+(39, 2, 'Whiteness', 1, 1, '2023-10-14 16:30:19', '2023-10-14 16:30:19'),
+(40, 3, '1GB', 1, 1, '2023-10-14 16:30:43', '2023-10-14 16:30:43'),
+(41, 3, '2GB', 1, 1, '2023-10-14 16:30:43', '2023-10-14 16:30:43'),
+(42, 3, '3GB', 1, 1, '2023-10-14 16:30:43', '2023-10-14 16:30:43'),
+(43, 3, '5GB', 1, 1, '2023-10-14 16:30:43', '2023-10-14 16:30:43'),
+(44, 3, '6GB', 1, 1, '2023-10-14 16:30:43', '2023-10-14 16:30:43'),
+(45, 3, '7GB', 1, 1, '2023-10-14 16:30:43', '2023-10-14 16:30:43'),
+(46, 3, '1TB', 1, 1, '2023-10-14 16:30:43', '2023-10-14 16:30:43'),
+(47, 3, '2TB', 1, 1, '2023-10-14 16:30:43', '2023-10-14 16:30:43'),
+(48, 3, '3TB', 1, 1, '2023-10-14 16:30:43', '2023-10-14 16:30:43'),
+(49, 4, 'Short Sleeve', 1, 1, '2023-10-14 16:31:01', '2023-10-14 16:31:01'),
+(50, 4, 'Long Sleeve', 1, 1, '2023-10-14 16:31:01', '2023-10-14 16:31:01'),
+(51, 4, 'Sleeveless', 1, 1, '2023-10-14 16:31:01', '2023-10-14 16:31:01'),
+(52, 5, 'Round Neck', 1, 1, '2023-10-14 16:31:23', '2023-10-14 16:31:23'),
+(53, 5, 'V-neck', 1, 1, '2023-10-14 16:31:23', '2023-10-14 16:31:23'),
+(54, 5, 'Scoop Neck', 1, 1, '2023-10-14 16:31:23', '2023-10-14 16:31:23'),
+(55, 6, 'Zipper', 1, 1, '2023-10-14 16:31:45', '2023-10-14 16:31:45'),
+(56, 6, 'Button', 1, 1, '2023-10-14 16:31:45', '2023-10-14 16:31:45'),
+(57, 6, 'Velcro', 1, 1, '2023-10-14 16:31:45', '2023-10-14 16:31:45'),
+(58, 7, 'Cotton', 1, 1, '2023-10-14 16:32:02', '2023-10-14 16:32:02'),
+(59, 7, 'Leather', 1, 1, '2023-10-14 16:32:02', '2023-10-14 16:32:02'),
+(60, 7, 'Metal', 1, 1, '2023-10-14 16:32:02', '2023-10-14 16:32:02'),
+(61, 8, 'Nike', 1, 1, '2023-10-14 16:32:29', '2023-10-14 16:32:29'),
+(62, 8, 'Apple', 1, 1, '2023-10-14 16:32:29', '2023-10-14 16:32:29'),
+(63, 8, 'Sony', 1, 1, '2023-10-14 16:32:29', '2023-10-14 16:32:29'),
+(64, 9, 'Light', 1, 1, '2023-10-14 16:32:52', '2023-10-14 16:32:52'),
+(65, 9, 'Medium', 1, 1, '2023-10-14 16:32:52', '2023-10-14 16:32:52'),
+(66, 9, 'Heavy', 1, 1, '2023-10-14 16:32:52', '2023-10-14 16:32:52'),
+(67, 10, 'Male', 1, 1, '2023-10-14 16:33:05', '2023-10-14 16:33:05'),
+(68, 10, 'Female', 1, 1, '2023-10-14 16:33:05', '2023-10-14 16:33:05'),
+(69, 10, 'Unisex', 1, 1, '2023-10-14 16:33:05', '2023-10-14 16:33:05'),
+(70, 11, 'Casual', 1, 1, '2023-10-14 16:33:25', '2023-10-14 16:33:25'),
+(71, 11, ' Formal', 1, 1, '2023-10-14 16:33:25', '2023-10-14 16:33:25'),
+(72, 11, ' Sporty', 1, 1, '2023-10-14 16:33:25', '2023-10-14 16:33:25'),
+(73, 12, 'Striped', 1, 1, '2023-10-14 16:33:42', '2023-10-14 16:33:42'),
+(74, 12, 'Polka Dot', 1, 1, '2023-10-14 16:33:42', '2023-10-14 16:33:42'),
+(75, 12, 'Solid', 1, 1, '2023-10-14 16:33:42', '2023-10-14 16:33:42'),
+(76, 13, 'Slim Fit', 1, 1, '2023-10-14 16:33:58', '2023-10-14 16:33:58'),
+(77, 13, 'Loose Fit', 1, 1, '2023-10-14 16:33:58', '2023-10-14 16:33:58'),
+(78, 13, 'Regular Fit', 1, 1, '2023-10-14 16:33:58', '2023-10-14 16:33:58'),
+(79, 14, 'Shirt', 1, 1, '2023-10-14 16:34:14', '2023-10-14 16:34:14'),
+(80, 14, 'Pants', 1, 1, '2023-10-14 16:34:14', '2023-10-14 16:34:14'),
+(81, 14, 'Shoes', 1, 1, '2023-10-14 16:34:14', '2023-10-14 16:34:14'),
+(82, 15, 'Party', 1, 1, '2023-10-14 16:34:27', '2023-10-14 16:34:27'),
+(83, 15, 'Wedding', 1, 1, '2023-10-14 16:34:27', '2023-10-14 16:34:27'),
+(84, 15, 'Casual', 1, 1, '2023-10-14 16:34:27', '2023-10-14 16:34:27'),
+(85, 16, 'Spring', 1, 1, '2023-10-14 16:34:40', '2023-10-14 16:34:40'),
+(86, 16, 'Summer', 1, 1, '2023-10-14 16:34:40', '2023-10-14 16:34:40'),
+(87, 16, 'Fall', 1, 1, '2023-10-14 16:34:40', '2023-10-14 16:34:40'),
+(88, 16, 'Winter', 1, 1, '2023-10-14 16:34:40', '2023-10-14 16:34:40'),
+(89, 17, 'Waterproof', 1, 1, '2023-10-14 16:34:56', '2023-10-14 16:34:56'),
+(90, 17, 'UV Protection', 1, 1, '2023-10-14 16:34:56', '2023-10-14 16:34:56'),
+(91, 17, 'Breathable', 1, 1, '2023-10-14 16:34:56', '2023-10-14 16:34:56'),
+(92, 18, 'iOS', 1, 1, '2023-10-14 16:35:12', '2023-10-14 16:35:12'),
+(93, 18, 'Android', 1, 1, '2023-10-14 16:35:12', '2023-10-14 16:35:12'),
+(94, 18, 'Windows', 1, 1, '2023-10-14 16:35:12', '2023-10-14 16:35:12'),
+(95, 3, '16GB', 1, 1, '2023-10-14 16:35:29', '2023-10-14 16:35:29'),
+(96, 3, '32GB', 1, 1, '2023-10-14 16:35:29', '2023-10-14 16:35:29'),
+(97, 3, '64GB', 1, 1, '2023-10-14 16:35:29', '2023-10-14 16:35:29'),
+(98, 19, '720p', 1, 1, '2023-10-14 16:35:43', '2023-10-14 16:35:43'),
+(99, 19, '1080p', 1, 1, '2023-10-14 16:35:43', '2023-10-14 16:35:43'),
+(100, 19, '4K', 1, 1, '2023-10-14 16:35:43', '2023-10-14 16:35:43'),
+(101, 20, '1 Year', 1, 1, '2023-10-14 16:35:58', '2023-10-14 16:35:58'),
+(102, 20, '2 Years', 1, 1, '2023-10-14 16:35:58', '2023-10-14 16:35:58'),
+(103, 20, 'Lifetime', 1, 1, '2023-10-14 16:35:58', '2023-10-14 16:35:58');
 
 -- --------------------------------------------------------
 
@@ -1300,6 +1466,187 @@ INSERT INTO `posts` (`id`, `title`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `product`
+--
+
+CREATE TABLE `product` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `slug` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `meta_title` varchar(255) DEFAULT NULL,
+  `meta_description` text DEFAULT NULL,
+  `meta_keyword` varchar(255) DEFAULT NULL,
+  `product_tag` varchar(255) DEFAULT NULL,
+  `model` int(11) DEFAULT NULL,
+  `sku` varchar(255) DEFAULT NULL,
+  `external_link` varchar(255) DEFAULT NULL,
+  `cash_dev_status` int(11) DEFAULT NULL,
+  `price` double(10,5) DEFAULT NULL,
+  `unit` varchar(255) DEFAULT NULL,
+  `stock_qty` int(11) DEFAULT NULL,
+  `stock_mini_qty` int(11) DEFAULT NULL,
+  `stock_status` int(11) DEFAULT NULL,
+  `manufacturer` int(11) DEFAULT NULL,
+  `download_link` varchar(255) DEFAULT NULL,
+  `discount` double(10,5) DEFAULT NULL,
+  `discount_status` int(11) DEFAULT NULL,
+  `shipping_days` int(11) DEFAULT NULL,
+  `free_shopping` int(11) DEFAULT NULL,
+  `flat_rate_status` int(11) DEFAULT NULL,
+  `flat_rate_price` double(10,5) DEFAULT NULL,
+  `vat` varchar(255) DEFAULT NULL,
+  `vat_status` int(11) DEFAULT NULL,
+  `tax` varchar(255) DEFAULT NULL,
+  `tax_status` int(11) DEFAULT NULL,
+  `thumnail_img` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `entry_by` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`id`, `name`, `slug`, `description`, `meta_title`, `meta_description`, `meta_keyword`, `product_tag`, `model`, `sku`, `external_link`, `cash_dev_status`, `price`, `unit`, `stock_qty`, `stock_mini_qty`, `stock_status`, `manufacturer`, `download_link`, `discount`, `discount_status`, `shipping_days`, `free_shopping`, `flat_rate_status`, `flat_rate_price`, `vat`, `vat_status`, `tax`, `tax_status`, `thumnail_img`, `status`, `entry_by`, `created_at`, `updated_at`) VALUES
+(1, 'Amazon Essentials Women\'s', 'Amazon-Essentials-Short-Sleeve-Crewneck-T-Shirt', '<p>sdsd</p>', 'tag', 'Product1', 'Product1', 'tesing, data, mesign,', 0, 'SKU', 'http://localhost:3000/ecommarce/product-add', 2, 10.00000, 'KG', 1, 1, 7, 0, 'fgh', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/BfaCxgEuEkpgQ4BETzAl.jpg', 1, 1, NULL, NULL),
+(2, 'Pretty Polly Women\'s Eco Active Wear Short Sleeve T-Shirt', 'pretty-polly-women-s-eco-active-wear-short-sleeve-t-shirt', '<h2 style=\"margin-left:0px;\">About this item</h2><ul><li><span style=\"color:rgb(15,17,17);\">94% Polyamide, 6% Elastane</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Pull On closure</span></li><li><span style=\"color:rgb(15,17,17);\">Machine Wash</span></li><li><span style=\"color:rgb(15,17,17);\">SUSTAINABLE: Pretty Polly’s new range of Active-Wear is another step towards a sustainable future. Uniquely made from predominately recycled yarns, the garments are seamless, soft and very comfortable to wear, specially made to move with you as you exercise.</span></li><li><span style=\"color:rgb(15,17,17);\">SHORT SLEEVE T-SHIRT: Pretty Polly Active-Wear Short Sleeve T-Shirt is a seamless top which features a patterned mesh panels detail on the sides for breathability. Fitted sleeves and full back.</span></li><li><span style=\"color:rgb(15,17,17);\">FEATURES: Garment has specially designed mesh panel to aid breathability. Stay cool when working out or doing other activities while wearing the Eco Active Wear.</span></li><li><span style=\"color:rgb(15,17,17);\">ACTIVITIES: The perfect apparel for yoga, pilates, and other non-vigorous workouts. Also great to wear when lounging or running errands.</span></li><li><span style=\"color:rgb(15,17,17);\">CARE INSTRUCTIONS: Machine Wash, Line Dry.</span></li></ul>', 'Pretty Polly Women\'s Eco Active Wear Short Sleeve T-Shirt', 'Pretty Polly Women\'s Eco Active Wear Short Sleeve T-Shirt', 'Pretty Polly Women\'s Eco Active Wear Short Sleeve T-Shirt', 'tat, ata', 0, 'SKU', 'http://localhost:3000/ecommarce/product-add', 2, 5000.00000, 'PC', 1, 1, 7, 0, 'Juices', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/OD4UvxeoKVR7RJbX6I6i.jpg', 1, 1, NULL, NULL),
+(3, 'Butterfly Women\'s Higo Lady Shirt,', 'butterfly-women-s-higo-lady-shirt-', '<h2 style=\"margin-left:0px;\">About this item</h2><ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, women’s table tennis shirt with a triangle pattern</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players</span></li><li><span style=\"color:rgb(15,17,17);\">Offers short sleeves, a V-neck style collar and a women’s tapered cut</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester)</span></li></ul>', 'Butterfly Women\'s Higo Lady Shirt,', 'Butterfly Women\'s Higo Lady Shirt,', 'Butterfly Women\'s Higo Lady Shirt,', '', 0, 'SKU', 'http://localhost:3000/ecommarce/product-add', 2, 500.00000, 'KG', 1, 1, 7, 0, 'fgh', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/y7bCz9xCiFutYGC0Bh8m.jpg', 1, 1, NULL, NULL),
+(4, 'Women\'s Higo Lady Shirt,', 'women-s-higo-lady-shirt-', '<h2 style=\"margin-left:0px;\">About this item</h2><ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, women’s table tennis shirt with a triangle pattern</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players</span></li><li><span style=\"color:rgb(15,17,17);\">Offers short sleeves, a V-neck style collar and a women’s tapered cut</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester)</span></li></ul>', 'Women\'s Higo Lady Shirt,', '', 'Women\'s Higo Lady Shirt,', '', 0, '48778', '', 2, 6500.00000, 'KG', 1, 1, 0, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/2e0Yu34IU6YJDksixmcb.jpg', 1, 1, NULL, NULL),
+(5, 'ButterflyTable Tennis Shirt', 'butterflytable-tennis-shirt', '<ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, table tennis shirt for men</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players’ Timo Boll, Dimitrij Ovtcharov and Patrick Franziska</span></li><li><span style=\"color:rgb(15,17,17);\">A three button Henley style shirt with complementing pattern. Shirt allows room to move with slits on the side of the hem.</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester).</span></li></ul>', 'ButterflyTable Tennis Shirt', 'ButterflyTable Tennis Shirt', 'ButterflyTable Tennis Shirt', 'ButterflyTable, Tennis, Shirt', 0, 'SKU', '', 2, 500.00000, '156', 1, 1, 0, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/QIMz4358Zf7It78r4y2S.jpg', 1, 1, NULL, NULL),
+(6, 'Tennis Shirt', 'tennis-shirt', '<ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, table tennis shirt for men</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players’ Timo Boll, Dimitrij Ovtcharov and Patrick Franziska</span></li><li><span style=\"color:rgb(15,17,17);\">A three button Henley style shirt with complementing pattern. Shirt allows room to move with slits on the side of the hem.</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester).</span></li></ul>', 'Tennis Shirt', 'Tennis Shirt', 'Tennis Shirt', ', Tennis, Shirt', 223, '23', '', 2, 23.00000, 'KG', 1, 1, 0, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/MMKa0CB2lxnICqaL1OcB.jpg', 1, 1, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_attributes`
+--
+
+CREATE TABLE `product_attributes` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `attributes_id` int(11) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `product_attributes`
+--
+
+INSERT INTO `product_attributes` (`id`, `product_id`, `attributes_id`, `created_at`, `updated_at`) VALUES
+(1, 6, 2, '2023-10-15 02:50:31', '2023-10-15 02:50:31'),
+(2, 6, 13, '2023-10-15 02:50:51', '2023-10-15 02:50:51'),
+(3, 6, 8, '2023-10-15 02:51:30', '2023-10-15 02:51:30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_attributes_values_history`
+--
+
+CREATE TABLE `product_attributes_values_history` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `attribute_id` int(11) DEFAULT NULL,
+  `product_attribute_id` int(11) DEFAULT NULL,
+  `product_att_value_id` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `product_attributes_values_history`
+--
+
+INSERT INTO `product_attributes_values_history` (`id`, `product_id`, `attribute_id`, `product_attribute_id`, `product_att_value_id`, `created_at`, `updated_at`) VALUES
+(1, 6, 2, 1, 31, '2023-10-14 20:50:31', '2023-10-14 20:50:31'),
+(2, 6, 2, 1, 36, '2023-10-14 20:50:31', '2023-10-14 20:50:31'),
+(3, 6, 2, 1, 37, '2023-10-14 20:50:31', '2023-10-14 20:50:31'),
+(4, 6, 13, 2, 31, '2023-10-14 20:50:51', '2023-10-14 20:50:51'),
+(5, 6, 13, 2, 36, '2023-10-14 20:50:51', '2023-10-14 20:50:51'),
+(6, 6, 13, 2, 37, '2023-10-14 20:50:51', '2023-10-14 20:50:51'),
+(7, 6, 13, 2, 76, '2023-10-14 20:50:51', '2023-10-14 20:50:51'),
+(8, 6, 13, 2, 77, '2023-10-14 20:50:51', '2023-10-14 20:50:51'),
+(9, 6, 13, 2, 78, '2023-10-14 20:50:51', '2023-10-14 20:50:51'),
+(10, 6, 8, 3, 31, '2023-10-14 20:51:30', '2023-10-14 20:51:30'),
+(11, 6, 8, 3, 36, '2023-10-14 20:51:30', '2023-10-14 20:51:30'),
+(12, 6, 8, 3, 37, '2023-10-14 20:51:30', '2023-10-14 20:51:30'),
+(13, 6, 8, 3, 61, '2023-10-14 20:51:30', '2023-10-14 20:51:30'),
+(14, 6, 8, 3, 62, '2023-10-14 20:51:30', '2023-10-14 20:51:30'),
+(15, 6, 8, 3, 63, '2023-10-14 20:51:30', '2023-10-14 20:51:30'),
+(16, 6, 8, 3, 76, '2023-10-14 20:51:30', '2023-10-14 20:51:30'),
+(17, 6, 8, 3, 77, '2023-10-14 20:51:30', '2023-10-14 20:51:30'),
+(18, 6, 8, 3, 78, '2023-10-14 20:51:30', '2023-10-14 20:51:30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `produc_categories`
+--
+
+CREATE TABLE `produc_categories` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `parent_id` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `produc_categories`
+--
+
+INSERT INTO `produc_categories` (`id`, `product_id`, `category_id`, `parent_id`) VALUES
+(1, 1, 69, '32,63,69'),
+(2, 1, 71, '32,63,69,71'),
+(3, 1, 72, '32,63,69,72'),
+(4, 1, 73, '32,63,69,72,73'),
+(5, 1, 74, '32,63,69,72,73,74'),
+(6, 2, 71, '32,63,69,71'),
+(7, 2, 72, '32,63,69,72'),
+(8, 3, 71, '32,63,69,71'),
+(9, 3, 72, '32,63,69,72'),
+(10, 4, 71, '32,63,69,71'),
+(11, 5, 72, '32,63,69,72'),
+(12, 5, 73, '32,63,69,72,73'),
+(13, 6, 71, '32,63,69,71'),
+(14, 6, 72, '32,63,69,72');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `produc_img_history`
+--
+
+CREATE TABLE `produc_img_history` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `images` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `produc_img_history`
+--
+
+INSERT INTO `produc_img_history` (`id`, `product_id`, `images`) VALUES
+(1, 1, '/backend/files/652ac7a06d651product(5).jpg'),
+(2, 1, '/backend/files/652ac7a06e3f6product(6).jpg'),
+(3, 1, '/backend/files/652ac7a06ee00product(7).jpg'),
+(4, 1, '/backend/files/652ac7a06fa9cproduct(8).jpg'),
+(5, 2, '/backend/files/652ac897f229dproduct(2).jpg'),
+(6, 2, '/backend/files/652ac897f32ddproduct(3).jpg'),
+(7, 2, '/backend/files/652ac897f41ecproduct(4).jpg'),
+(8, 3, '/backend/files/652acf19c637fproduct(8).jpg'),
+(9, 4, '/backend/files/652acf6c1f15bproduct(7).jpg'),
+(10, 5, '/backend/files/652ad1023fe58product(6).jpg'),
+(11, 5, '/backend/files/652ad102407c1product(7).jpg'),
+(12, 6, '/backend/files/652ad222c8844product(1).jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `projects`
 --
 
@@ -1448,6 +1795,20 @@ INSERT INTO `users` (`id`, `role_id`, `employee_id`, `name`, `email`, `image`, `
 (4, 2, 4, 'Employee-3', 'we2022@gmail.com', NULL, '343434', '', NULL, NULL, NULL, NULL, NULL, 'PasswordPassword', NULL, '$2y$10$oOca7klZbcO0xXV8glSx6ORQBIPsXOVNmZBdnex7JzeT7cjlyiLcm', NULL, 1, NULL, '2023-09-03 04:40:03', 1),
 (5, 2, 2, 'Md. JONS', 'Ibraheem@gmail.com', '/backend/files/mIpe6aKfR5Lw5NDWFHAF.jpg', '+8801915728982', 'Mirpur-1', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'http://localhost:3000/profile', '', '', '112233456', NULL, '$2y$10$j0HQIkxcqrnN5Dt7hlm3rOhLzq.TBOhrbtmQi9tkrnybICy91U5lS', NULL, 1, NULL, NULL, 1);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `variants`
+--
+
+CREATE TABLE `variants` (
+  `id` int(11) NOT NULL,
+  `attribute_id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -1462,6 +1823,18 @@ ALTER TABLE `annual_pay`
 -- Indexes for table `apply_job`
 --
 ALTER TABLE `apply_job`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `attributes`
+--
+ALTER TABLE `attributes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `attributes_values`
+--
+ALTER TABLE `attributes_values`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1631,6 +2004,36 @@ ALTER TABLE `posts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `product_attributes`
+--
+ALTER TABLE `product_attributes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `product_attributes_values_history`
+--
+ALTER TABLE `product_attributes_values_history`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `produc_categories`
+--
+ALTER TABLE `produc_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `produc_img_history`
+--
+ALTER TABLE `produc_img_history`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `projects`
 --
 ALTER TABLE `projects`
@@ -1661,6 +2064,12 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `variants`
+--
+ALTER TABLE `variants`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -1675,6 +2084,18 @@ ALTER TABLE `annual_pay`
 --
 ALTER TABLE `apply_job`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `attributes`
+--
+ALTER TABLE `attributes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `attributes_values`
+--
+ALTER TABLE `attributes_values`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
 -- AUTO_INCREMENT for table `bank_master`
@@ -1833,6 +2254,36 @@ ALTER TABLE `posts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `product`
+--
+ALTER TABLE `product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `product_attributes`
+--
+ALTER TABLE `product_attributes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `product_attributes_values_history`
+--
+ALTER TABLE `product_attributes_values_history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `produc_categories`
+--
+ALTER TABLE `produc_categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `produc_img_history`
+--
+ALTER TABLE `produc_img_history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
@@ -1861,6 +2312,12 @@ ALTER TABLE `tasks`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `variants`
+--
+ALTER TABLE `variants`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

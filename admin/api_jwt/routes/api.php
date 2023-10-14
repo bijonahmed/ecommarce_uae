@@ -91,11 +91,20 @@ Route::group([
     'prefix' => 'category'
 ], function () {
     Route::post('save', [CategoryController::class, 'save']);
+    Route::post('saveAttribute', [CategoryController::class, 'saveAttribute']);
+    Route::post('saveAttributeVal', [CategoryController::class, 'saveAttributeVal']);
     Route::get('getCategoryList', [CategoryController::class, 'allCategory']);
     Route::get('categoryRow/{id}', [CategoryController::class, 'findCategoryRow']);
+    Route::get('getCategoryListParent', [CategoryController::class, 'getCategoryListParent']);
     Route::get('getSubCategoryChild/{id}', [CategoryController::class, 'getSubCategoryChild']);
+    Route::get('attributeRow/{id}', [CategoryController::class, 'attributeRow']);
+    Route::get('attributeValRow/{id}', [CategoryController::class, 'attributeValRow']);
+    Route::get('attributeValRows/{id}', [CategoryController::class, 'attributeValRows']);
     Route::get('search', [CategoryController::class, 'searchCategory']);
-     
+    Route::get('attributes', [CategoryController::class, 'getAttribute']);
+    Route::get('attributes-list', [CategoryController::class, 'getAttributeList']);
+    Route::get('attributes-val-list', [CategoryController::class, 'getAttributeValList']);
+
 });
 
 Route::group([
@@ -103,10 +112,11 @@ Route::group([
     'prefix' => 'product'
 ], function () {
     Route::post('save', [ProductController::class, 'save']);
-    Route::post('getSesData', [ProductController::class, 'getSesData']);
-    Route::get('categoryRow/{id}', [CategoryController::class, 'findCategoryRow']);
-    Route::get('getSubCategoryChild/{id}', [CategoryController::class, 'getSubCategoryChild']);
-    Route::get('search', [CategoryController::class, 'searchCategory']);
+    Route::get('getProductList', [ProductController::class, 'getProductList']);
+    Route::get('insertProductAttrAndValues', [ProductController::class, 'insertProductAttrAndValues']);
+  //  Route::get('categoryRow/{id}', [CategoryController::class, 'findCategoryRow']);
+   // Route::get('getSubCategoryChild/{id}', [CategoryController::class, 'getSubCategoryChild']);
+   // Route::get('search', [CategoryController::class, 'searchCategory']);
 });
 
 
