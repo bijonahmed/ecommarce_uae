@@ -114,6 +114,7 @@ Route::group([
     Route::post('save', [ProductController::class, 'save']);
     Route::get('getProductList', [ProductController::class, 'getProductList']);
     Route::get('insertProductAttrAndValues', [ProductController::class, 'insertProductAttrAndValues']);
+    Route::get('getAttrHistory/{id}', [ProductController::class, 'getAttrHistory']);
   //  Route::get('categoryRow/{id}', [CategoryController::class, 'findCategoryRow']);
    // Route::get('getSubCategoryChild/{id}', [CategoryController::class, 'getSubCategoryChild']);
    // Route::get('search', [CategoryController::class, 'searchCategory']);

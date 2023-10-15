@@ -10,7 +10,6 @@ use App\Models\User;
 use App\Models\ProductAttributeValue;
 use App\Models\Categorys;
 use App\Models\ProductAttributes;
-
 use App\Models\Product;
 use Illuminate\Support\Str;
 use App\Rules\MatchOldPassword;
@@ -124,7 +123,6 @@ class ProductController extends Controller
             DB::table('produc_categories')->insert($formattedResults);
             $resdata['product_id'] = $product_id;
             return response()->json($resdata);
-
         } else {
             //update
         }
@@ -134,9 +132,8 @@ class ProductController extends Controller
         $data = Product::all();
         return response()->json($data);
     }
-
-    public function insertProductAttrAndValues(Request $request){
-
+    public function insertProductAttrAndValues(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'product_attribute_id'       => 'required|integer',
         ]);
@@ -146,16 +143,11 @@ class ProductController extends Controller
         $data = array(
             'product_id'                 => $request->product_id,
             'attributes_id'              => $request->product_attribute_id,
-             
         );
         $product_attribute_id = ProductAttributes::insertGetId($data);
-
         if (!empty($request->AttrValues)) {
             $arr_val = $request->AttrValues;
-          //  $arrexplode = explode(",", $arr_val);
-           // dd($arr_val);
-             
-            foreach($arr_val as $key=>$v) {
+            foreach ($arr_val as $key => $v) {
                 $newRecord                  = new ProductAttributeValue();
                 $newRecord->product_att_value_id  = $v;
                 $newRecord->attribute_id          = $request->product_attribute_id;
@@ -164,29 +156,35 @@ class ProductController extends Controller
                 $newRecord->save();
             }
         }
-         
-        echo json_encode("success");
-        exit; 
-
+        $response = [
+            'message' => 'Successfull',
+        ];
+        return response()->json($response);
     }
-    /*
-        //Insert category
-        $category     = $request->category;
-        $dynamicArray = explode(',', $category); // Convert the string to an array
-        $results      = Categorys::whereIn('id', $dynamicArray)->get();
-        $formattedResults = [];
-        foreach ($results as $result) {
-            $path = [];
-            $category = $result;
-            while ($category) {
-                array_unshift($path, $category->id);
-                $category = $category->parent;
-            }
-            $formattedResults[] = [
-                'category_id' => $result->id,
-                'parent_id' => implode(',', $path)
+    public function getAttrHistory($id)
+    {
+        $product_id = (int) $id;
+        $Attrdata = DB::select("SELECT product_attributes.id,product_attributes.attributes_id,attributes.name FROM product_attributes 
+                 LEFT JOIN attributes ON (attributes.id=product_attributes.attributes_id) WHERE product_id = '$product_id'");
+        $formatedData = [];
+        $categoriesData = $Attrdata; //Category::all(); // Assuming you have a Category model and table
+        foreach ($categoriesData as $val) {
+            $atthistory =  DB::table('product_attributes_values_history')
+                ->leftJoin('attributes_values', 'attributes_values.attributes_id', '=', 'product_attributes_values_history.attribute_id')
+                ->select('attributes_values.name','product_attributes_values_history.id')
+                ->where('attribute_id', $val->attributes_id)
+                ->groupBy('attributes_values.name')
+                ->pluck('name')
+                ->toArray();
+            $subcategoryNames = $atthistory;
+            $formatedData[] = [
+                'id'             => $val->id,
+                'name'           => ucfirst($val->name),
+                'value_history'  => $subcategoryNames,
             ];
         }
-        dd($formattedResults);
-     */
+        return response()->json(array_values($formatedData));
+        //dd($categoriess);
+    }
+    
 }
