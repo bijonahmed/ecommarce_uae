@@ -170,12 +170,12 @@ class ProductController extends Controller
         $categoriesData = $Attrdata; //Category::all(); // Assuming you have a Category model and table
         foreach ($categoriesData as $val) {
             $atthistory =  DB::table('product_attributes_values_history')
-                ->leftJoin('attributes_values', 'attributes_values.attributes_id', '=', 'product_attributes_values_history.attribute_id')
-                ->select('attributes_values.name','product_attributes_values_history.id')
-                ->where('attribute_id', $val->attributes_id)
-                ->groupBy('attributes_values.name')
-                ->pluck('name')
-                ->toArray();
+                            ->leftJoin('attributes_values', 'attributes_values.id', '=', 'product_attributes_values_history.product_att_value_id')
+                            ->select('attributes_values.name as attr_val_name','attributes_values.id','product_attributes_values_history.id as pro_att_val_his_id','product_attributes_values_history.product_attribute_id','product_att_value_id')
+                            ->where('product_attributes_values_history.attribute_id', $val->attributes_id)
+                            ->groupBy('attributes_values.name')
+                            //->pluck('attr_name')
+                            ->get();
             $subcategoryNames = $atthistory;
             $formatedData[] = [
                 'id'             => $val->id,

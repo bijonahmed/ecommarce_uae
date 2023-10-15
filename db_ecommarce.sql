@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 14, 2023 at 10:52 PM
+-- Generation Time: Oct 15, 2023 at 08:14 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -1516,7 +1516,8 @@ INSERT INTO `product` (`id`, `name`, `slug`, `description`, `meta_title`, `meta_
 (3, 'Butterfly Women\'s Higo Lady Shirt,', 'butterfly-women-s-higo-lady-shirt-', '<h2 style=\"margin-left:0px;\">About this item</h2><ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, women’s table tennis shirt with a triangle pattern</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players</span></li><li><span style=\"color:rgb(15,17,17);\">Offers short sleeves, a V-neck style collar and a women’s tapered cut</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester)</span></li></ul>', 'Butterfly Women\'s Higo Lady Shirt,', 'Butterfly Women\'s Higo Lady Shirt,', 'Butterfly Women\'s Higo Lady Shirt,', '', 0, 'SKU', 'http://localhost:3000/ecommarce/product-add', 2, 500.00000, 'KG', 1, 1, 7, 0, 'fgh', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/y7bCz9xCiFutYGC0Bh8m.jpg', 1, 1, NULL, NULL),
 (4, 'Women\'s Higo Lady Shirt,', 'women-s-higo-lady-shirt-', '<h2 style=\"margin-left:0px;\">About this item</h2><ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, women’s table tennis shirt with a triangle pattern</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players</span></li><li><span style=\"color:rgb(15,17,17);\">Offers short sleeves, a V-neck style collar and a women’s tapered cut</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester)</span></li></ul>', 'Women\'s Higo Lady Shirt,', '', 'Women\'s Higo Lady Shirt,', '', 0, '48778', '', 2, 6500.00000, 'KG', 1, 1, 0, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/2e0Yu34IU6YJDksixmcb.jpg', 1, 1, NULL, NULL),
 (5, 'ButterflyTable Tennis Shirt', 'butterflytable-tennis-shirt', '<ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, table tennis shirt for men</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players’ Timo Boll, Dimitrij Ovtcharov and Patrick Franziska</span></li><li><span style=\"color:rgb(15,17,17);\">A three button Henley style shirt with complementing pattern. Shirt allows room to move with slits on the side of the hem.</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester).</span></li></ul>', 'ButterflyTable Tennis Shirt', 'ButterflyTable Tennis Shirt', 'ButterflyTable Tennis Shirt', 'ButterflyTable, Tennis, Shirt', 0, 'SKU', '', 2, 500.00000, '156', 1, 1, 0, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/QIMz4358Zf7It78r4y2S.jpg', 1, 1, NULL, NULL),
-(6, 'Tennis Shirt', 'tennis-shirt', '<ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, table tennis shirt for men</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players’ Timo Boll, Dimitrij Ovtcharov and Patrick Franziska</span></li><li><span style=\"color:rgb(15,17,17);\">A three button Henley style shirt with complementing pattern. Shirt allows room to move with slits on the side of the hem.</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester).</span></li></ul>', 'Tennis Shirt', 'Tennis Shirt', 'Tennis Shirt', ', Tennis, Shirt', 223, '23', '', 2, 23.00000, 'KG', 1, 1, 0, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/MMKa0CB2lxnICqaL1OcB.jpg', 1, 1, NULL, NULL);
+(6, 'Tennis Shirt', 'tennis-shirt', '<ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, table tennis shirt for men</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players’ Timo Boll, Dimitrij Ovtcharov and Patrick Franziska</span></li><li><span style=\"color:rgb(15,17,17);\">A three button Henley style shirt with complementing pattern. Shirt allows room to move with slits on the side of the hem.</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester).</span></li></ul>', 'Tennis Shirt', 'Tennis Shirt', 'Tennis Shirt', ', Tennis, Shirt', 223, '23', '', 2, 23.00000, 'KG', 1, 1, 0, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/MMKa0CB2lxnICqaL1OcB.jpg', 1, 1, NULL, NULL),
+(7, 'Pents', 'pents', '<p>PentsPentsPentsPentsPents</p>', 'Pents', 'Pents', 'Pents', 'Pents, Pents, Pents', 5, '22', '', 2, 23.00000, 'KG', 1, 1, 7, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/RdDN3AZfvRauDh9SK45T.jpg', 1, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1537,9 +1538,13 @@ CREATE TABLE `product_attributes` (
 --
 
 INSERT INTO `product_attributes` (`id`, `product_id`, `attributes_id`, `created_at`, `updated_at`) VALUES
-(1, 6, 2, '2023-10-15 02:50:31', '2023-10-15 02:50:31'),
-(2, 6, 13, '2023-10-15 02:50:51', '2023-10-15 02:50:51'),
-(3, 6, 8, '2023-10-15 02:51:30', '2023-10-15 02:51:30');
+(1, 7, 8, '2023-10-15 14:52:34', '2023-10-15 14:52:34'),
+(9, 7, 9, '2023-10-15 14:52:34', '2023-10-15 14:52:34'),
+(11, 7, 10, '2023-10-15 22:36:40', '2023-10-15 22:36:40'),
+(12, 7, 14, '2023-10-15 22:36:53', '2023-10-15 22:36:53'),
+(13, 7, 1, '2023-10-15 23:05:05', '2023-10-15 23:05:05'),
+(14, 7, 4, '2023-10-15 23:08:13', '2023-10-15 23:08:13'),
+(15, 7, 5, '2023-10-15 23:08:24', '2023-10-15 23:08:24');
 
 -- --------------------------------------------------------
 
@@ -1562,24 +1567,21 @@ CREATE TABLE `product_attributes_values_history` (
 --
 
 INSERT INTO `product_attributes_values_history` (`id`, `product_id`, `attribute_id`, `product_attribute_id`, `product_att_value_id`, `created_at`, `updated_at`) VALUES
-(1, 6, 2, 1, 31, '2023-10-14 20:50:31', '2023-10-14 20:50:31'),
-(2, 6, 2, 1, 36, '2023-10-14 20:50:31', '2023-10-14 20:50:31'),
-(3, 6, 2, 1, 37, '2023-10-14 20:50:31', '2023-10-14 20:50:31'),
-(4, 6, 13, 2, 31, '2023-10-14 20:50:51', '2023-10-14 20:50:51'),
-(5, 6, 13, 2, 36, '2023-10-14 20:50:51', '2023-10-14 20:50:51'),
-(6, 6, 13, 2, 37, '2023-10-14 20:50:51', '2023-10-14 20:50:51'),
-(7, 6, 13, 2, 76, '2023-10-14 20:50:51', '2023-10-14 20:50:51'),
-(8, 6, 13, 2, 77, '2023-10-14 20:50:51', '2023-10-14 20:50:51'),
-(9, 6, 13, 2, 78, '2023-10-14 20:50:51', '2023-10-14 20:50:51'),
-(10, 6, 8, 3, 31, '2023-10-14 20:51:30', '2023-10-14 20:51:30'),
-(11, 6, 8, 3, 36, '2023-10-14 20:51:30', '2023-10-14 20:51:30'),
-(12, 6, 8, 3, 37, '2023-10-14 20:51:30', '2023-10-14 20:51:30'),
-(13, 6, 8, 3, 61, '2023-10-14 20:51:30', '2023-10-14 20:51:30'),
-(14, 6, 8, 3, 62, '2023-10-14 20:51:30', '2023-10-14 20:51:30'),
-(15, 6, 8, 3, 63, '2023-10-14 20:51:30', '2023-10-14 20:51:30'),
-(16, 6, 8, 3, 76, '2023-10-14 20:51:30', '2023-10-14 20:51:30'),
-(17, 6, 8, 3, 77, '2023-10-14 20:51:30', '2023-10-14 20:51:30'),
-(18, 6, 8, 3, 78, '2023-10-14 20:51:30', '2023-10-14 20:51:30');
+(1, 7, 8, 1, 61, '2023-10-15 08:52:34', '2023-10-15 08:52:34'),
+(2, 7, 8, 1, 62, '2023-10-15 08:52:34', '2023-10-15 08:52:34'),
+(3, 7, 8, 1, 63, '2023-10-15 08:52:34', '2023-10-15 08:52:34'),
+(20, 7, 9, 9, 64, '2023-10-15 13:03:19', '2023-10-15 13:03:19'),
+(21, 7, 9, 9, 65, '2023-10-15 13:03:19', '2023-10-15 13:03:19'),
+(22, 7, 10, 11, 67, '2023-10-15 16:36:40', '2023-10-15 16:36:40'),
+(23, 7, 10, 11, 68, '2023-10-15 16:36:40', '2023-10-15 16:36:40'),
+(24, 7, 14, 12, 79, '2023-10-15 16:36:53', '2023-10-15 16:36:53'),
+(25, 7, 1, 13, 1, '2023-10-15 17:05:05', '2023-10-15 17:05:05'),
+(26, 7, 1, 13, 2, '2023-10-15 17:05:06', '2023-10-15 17:05:06'),
+(27, 7, 1, 13, 29, '2023-10-15 17:05:06', '2023-10-15 17:05:06'),
+(28, 7, 1, 13, 30, '2023-10-15 17:05:06', '2023-10-15 17:05:06'),
+(29, 7, 4, 14, 49, '2023-10-15 17:08:13', '2023-10-15 17:08:13'),
+(30, 7, 4, 14, 50, '2023-10-15 17:08:13', '2023-10-15 17:08:13'),
+(31, 7, 5, 15, 52, '2023-10-15 17:08:24', '2023-10-15 17:08:24');
 
 -- --------------------------------------------------------
 
@@ -1612,7 +1614,10 @@ INSERT INTO `produc_categories` (`id`, `product_id`, `category_id`, `parent_id`)
 (11, 5, 72, '32,63,69,72'),
 (12, 5, 73, '32,63,69,72,73'),
 (13, 6, 71, '32,63,69,71'),
-(14, 6, 72, '32,63,69,72');
+(14, 6, 72, '32,63,69,72'),
+(15, 7, 72, '32,63,69,72'),
+(16, 7, 73, '32,63,69,72,73'),
+(17, 7, 74, '32,63,69,72,73,74');
 
 -- --------------------------------------------------------
 
@@ -1642,7 +1647,10 @@ INSERT INTO `produc_img_history` (`id`, `product_id`, `images`) VALUES
 (9, 4, '/backend/files/652acf6c1f15bproduct(7).jpg'),
 (10, 5, '/backend/files/652ad1023fe58product(6).jpg'),
 (11, 5, '/backend/files/652ad102407c1product(7).jpg'),
-(12, 6, '/backend/files/652ad222c8844product(1).jpg');
+(12, 6, '/backend/files/652ad222c8844product(1).jpg'),
+(13, 7, '/backend/files/652b751376f84phone1.jpg'),
+(14, 7, '/backend/files/652b75137d85dpower1.jpg'),
+(15, 7, '/backend/files/652b75137e033power2.jpg');
 
 -- --------------------------------------------------------
 
@@ -2257,31 +2265,31 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `product_attributes`
 --
 ALTER TABLE `product_attributes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `product_attributes_values_history`
 --
 ALTER TABLE `product_attributes_values_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `produc_categories`
 --
 ALTER TABLE `produc_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `produc_img_history`
 --
 ALTER TABLE `produc_img_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `projects`

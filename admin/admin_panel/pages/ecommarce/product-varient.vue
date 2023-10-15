@@ -28,35 +28,45 @@
                             <div class="border p-4 rounded">
                                 <div class="card">
                                     <!-- Start -->
-                                    <p>Attribue List</p>
+                                    <span>Choose Attribue</span>
                                     <div class="row">
-                                        <div class="col-md-4 bgattr">
-                                            <div v-for="(item, index) in attributeslist">
-                                                <input type="checkbox" v-model="selectedItem[item.id]" :value="item.id" class="checkbox-input" @click="showAttrVal(item.id)" />
-                                                {{ item.name }}
-                                                <!-- <button type="button" class="btn btn-dark px-5 w-100" @click="showAttrVal(item.id)">{{ item.name }}</button> -->
+                                        <div class="col-md-5">
+                                            <div class="row">
+                                                <div class="col-4 p-1 g-0" v-for="(item, index) in attributeslist" :key="item.id">
+                                                    <button type="button" class="btn btn-dark btn-sm w-100" @click="showAttrVal(item.id)">{{ item.name }}</button>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-8">
-                                            <!-- <form @submit.prevent="saveProductAttributeVal()" id="formrest" class="forms-sample" enctype="multipart/form-data"> -->
+                                        <div class="col-md-7">
                                             <input type="hidden" class="product_attribute_id" />
                                             <span v-for="(item, index) in attrValList" :key="item.id">
-                                                <input type="checkbox" v-model="arr_val[item.id]" :value="item.id" class="checkbox-input" />
+                                                <input type="checkbox" v-model="arr_val[item.id]" :value="item.id" />
                                                 {{ item.name }}
                                             </span>
                                             <span v-if="attrValList.length > 0">
-
-                                                <button @click="getSelectedValues" class="btn btn-primary btn-sm">Merge</button>
+                                                <hr />
+                                                <button @click="getSelectedValues" class="btn btn-primary w-100 btn-sm">Merge</button>
                                             </span>
-                                            <hr/>
-
-                                            <!-- </form> -->
-
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <!-- <button @click="attributHistory" type="text">Test</button> -->
+                                        <div class="col-md-2 g-1 p-1" v-for="item in pro_arr_val_history" :key="item.id" style="background-color: #d8dfdf;">
+                                            {{ item.name }}
+                                            <hr />
+                                            <span v-for="(data, index) in item.value_history" :key="data.id">
+                                                <!-- <input type="checkbox" v-model="arr_his_val[data.product_attribute_id]" :value="data.product_attribute_id" :name="'category_' + item.id" /> -->
+                                                <input type="radio" :value="data.id" v-model="arr_his_val[item.id]" />
+                                                {{ data.attr_val_name }} <br />
+                                            </span>
+
+                                        </div>
+                                        <button class="btn btn-success btn-sm w-100" type="button" @click="setHistoryValue" style="margin-top: 10px;">Add Varient</button>
+                                    </div>
+
                                 </div>
+
                                 <!-- END -->
-                                <hr />
                             </div>
                         </div>
                     </div>
@@ -65,8 +75,6 @@
         </div>
         <!--end row-->
     </div>
-</div>
-<!--end page wrapper -->
 </div>
 </template>
 
@@ -95,29 +103,34 @@ export default {
                 keyword: '',
                 status: 1,
             },
+            arr_his_val: [],
             selectedItem: [],
             arr_val: [],
             attributeslist: [],
             attrValList: [],
+            pro_arr_val_history: [],
             notifmsg: '',
             errors: {},
         }
     },
     async mounted() {
-        this.getData();
+        this.attributHistory();
         await this.fetchAttributeList();
     },
     methods: {
+        setHistoryValue() {
+            let selectedHistoryValues = Object.keys(this.arr_his_val).filter(
+                key => this.arr_his_val[key]
+            );
+            console.log(`Selected history ${selectedHistoryValues}`);
+        },
         getSelectedValues() {
-            //
-            const selectedValues = Object.keys(this.arr_val).filter(
+            let selectedValues = Object.keys(this.arr_val).filter(
                 key => this.arr_val[key]
             );
             const product_attribute_id = $(".product_attribute_id").val();
-            const AttrValues = selectedValues;
+            let AttrValues = selectedValues;
             const product_id = this.$route.query.parameter;
-
-            this.round_success_noti();
             console.log('attr:', product_attribute_id);
             console.log('Selected Items:', AttrValues);
             //console.log(`selected val ${this.arr_val}`);
@@ -125,20 +138,17 @@ export default {
                 params: {
                     product_attribute_id: product_attribute_id,
                     AttrValues: AttrValues,
-                    product_id:product_id
+                    product_id: product_id
                 }
             }).then(response => {
-
-
-
-                //this.attrValList = response.data.data;
+                this.round_success_noti();
+                this.attributHistory();
             });
-
+            this.arr_val = {};
         },
-        showAttrVal(id) {
-            // alert(id);
-            $(".product_attribute_id").val(id);
-            this.$axios.get(`/category/attributeValRows/${id}`).then(response => {
+        showAttrVal(attribue_id) {
+            $(".product_attribute_id").val(attribue_id);
+            this.$axios.get(`/category/attributeValRows/${attribue_id}`).then(response => {
                 this.attrValList = response.data.data;
             });
             //attrValList
@@ -174,20 +184,11 @@ export default {
                 }
             });
         },
-        getData() {
-            let id = this.$route.query.parameter;
-            // alert(id);
-            this.$axios.get(`/category/categoryRow/${id}`).then(response => {
-                this.insertdata.id = response.data.data.id;
-                this.insertdata.name = response.data.data.name;
-                this.insertdata.mobile_view_class = response.data.data.mobile_view_class;
-                this.insertdata.description = response.data.data.description ? response.data.data.description : "";
-                this.insertdata.meta_title = response.data.data.meta_title;
-                this.insertdata.meta_description = response.data.data.meta_description;
-                this.insertdata.meta_keyword = response.data.data.meta_keyword;
-                this.insertdata.parent_id = response.data.data.parent_id;
-                this.insertdata.status = response.data.data.status;
-                this.insertdata.keyword = response.data.data.keyword;
+        attributHistory() {
+            let product_id = this.$route.query.parameter;
+            this.$axios.get(`/product/getAttrHistory/${product_id}`).then(response => {
+                console.log(response.data);
+                this.pro_arr_val_history = response.data;
             });
         },
         async fetchAttributeList() {
@@ -232,9 +233,12 @@ export default {
 .checkbox-input {
   margin-right: 5px;
 }
-.bgattr{
-    background-color: gainsboro;
-border-radius: 5px;
-padding: 10px;
+.p-4 {
+padding: 1rem !important;
+}
+.btn-group-sm > .btn, .btn-sm {
+padding: .25rem .10rem;
+font-size: .750rem;
+border-radius: .1rem;
 }
 </style>
