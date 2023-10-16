@@ -46,4 +46,6 @@ class Product extends Authenticatable
         'images',
         'status'
     ];
+
+ 
 }

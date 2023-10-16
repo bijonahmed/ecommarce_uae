@@ -14,7 +14,8 @@
                             <li class="breadcrumb-item" aria-current="page">
                                 <router-link to="/ecommarce/product-list">Product List</router-link>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Add Attribue Varient</li>
+                            
+                            <li class="breadcrumb-item active" aria-current="page">Add Attribue Varient [product names]</li>
                         </ol>
                     </nav>
                 </div>
@@ -30,22 +31,25 @@
                                     <!-- Start -->
                                     <span>Choose Attribue</span>
                                     <div class="row">
-                                        <div class="col-md-5">
+                                        <div class="col-md-12">
                                             <div class="row">
-                                                <div class="col-4 p-1 g-0" v-for="(item, index) in attributeslist" :key="item.id">
+                                                <div class="col-2 p-1 g-0" v-for="(item, index) in attributeslist" :key="item.id">
                                                     <button type="button" class="btn btn-dark btn-sm w-100" @click="showAttrVal(item.id)">{{ item.name }}</button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-7">
+                                        <div class="col-md-12">
+                                            <hr />
                                             <input type="hidden" class="product_attribute_id" />
                                             <span v-for="(item, index) in attrValList" :key="item.id">
                                                 <input type="checkbox" v-model="arr_val[item.id]" :value="item.id" />
                                                 {{ item.name }}
                                             </span>
+                                           
                                             <span v-if="attrValList.length > 0">
                                                 <hr />
                                                 <button @click="getSelectedValues" class="btn btn-primary w-100 btn-sm">Merge</button>
+                                                <br/>
                                             </span>
                                         </div>
                                     </div>
@@ -55,17 +59,49 @@
                                             {{ item.name }}
                                             <hr />
                                             <span v-for="(data, index) in item.value_history" :key="data.id">
-                                                <!-- <input type="checkbox" v-model="arr_his_val[data.product_attribute_id]" :value="data.product_attribute_id" :name="'category_' + item.id" /> -->
                                                 <input type="radio" :value="data.id" v-model="arr_his_val[item.id]" />
                                                 {{ data.attr_val_name }} <br />
                                             </span>
-
                                         </div>
-                                        <button class="btn btn-success btn-sm w-100" type="button" @click="setHistoryValue" style="margin-top: 10px;">Add Varient</button>
+                                    </div>
+                                    <span v-if="pro_arr_val_history.length > 0">
+                                        <br/>
+                                        <button class="btn btn-success btn-sm w-100" type="button" @click="setHistoryValue" style="margin-left: -11px;">Add Varient</button>
+                                    </span>
+                                </div>
+                                <div class="row" v-if="historVarient.length > 0">
+                                    <hr />
+                                    <div class="alert-dark border-0 bg-dark alert-dismissible fade show">
+                                        <div class="text-white">Varient History</div>
                                     </div>
 
-                                </div>
+                                    <table class="table mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col"></th>
+                                                <th scope="col">SKU</th>
+                                                <th scope="col">Qty</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Image Upload</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="(data, index) in historVarient" :key="data.varient_id">
+                                                <th scope="row">{{ index + 1 }}.</th>
+                                                <td>{{ data.path }}</td>
+                                                <td><input type="text" placeholder="SKU" style="width: 50px;" /></td>
+                                                <td><input type="text" placeholder="Qty" style="width: 50px;" /></td>
+                                                <td><input type="text" placeholder="0.00" style="width: 50px;" /></td>
+                                                <td><input type="file" /></td>
+                                                <td><button type="button" @click="deleterow(data.varient_id)">DEL</button></td>
+                                            </tr>
 
+                                        </tbody>
+                                    </table>
+                                    <button class="btn btn-dark btn-sm w-100 btnsize" type="button">Submit</button>
+                                </div>
                                 <!-- END -->
                             </div>
                         </div>
@@ -105,6 +141,7 @@ export default {
             },
             arr_his_val: [],
             selectedItem: [],
+            historVarient: [],
             arr_val: [],
             attributeslist: [],
             attrValList: [],
@@ -115,14 +152,52 @@ export default {
     },
     async mounted() {
         this.attributHistory();
+        this.varientHistory();
+
         await this.fetchAttributeList();
     },
     methods: {
+
+        deleterow(id) {
+            this.$axios.get(`/product/deleteValrient`, {
+                params: {
+                    id: id
+                }
+            }).then(response => {
+                this.pos4_error_noti();
+                this.varientHistory();
+                //this.attributHistory();
+            });
+
+        },
         setHistoryValue() {
-            let selectedHistoryValues = Object.keys(this.arr_his_val).filter(
-                key => this.arr_his_val[key]
-            );
-            console.log(`Selected history ${selectedHistoryValues}`);
+            let product_id = this.$route.query.parameter;
+            console.log(`Selected history ${this.arr_his_val}`);
+            this.$axios.get(`/product/insertProductVarient`, {
+                params: {
+                    selectedHistoryValues: this.arr_his_val,
+                    product_id: product_id
+                }
+            }).then(response => {
+                this.round_success_noti();
+                this.varientHistory();
+                //this.attributHistory();
+            });
+        },
+
+        varientHistory() {
+            let product_id = this.$route.query.parameter;
+            this.$axios.get(`/product/getVarientHistory`, {
+                params: {
+                    product_id: product_id
+                }
+            }).then(response => {
+                console.log(`Varient History: ${response.data}`);
+                this.historVarient = response.data;
+                //this.round_success_noti();
+                //this.attributHistory();
+            });
+
         },
         getSelectedValues() {
             let selectedValues = Object.keys(this.arr_val).filter(
@@ -222,6 +297,18 @@ export default {
                 msg: 'Successfully merge attribue values...'
             });
         },
+        pos4_error_noti() {
+
+            Lobibox.notify('error', {
+                pauseDelayOnHover: true,
+                icon: 'bx bx-x-circle',
+                size: 'mini',
+                continueDelayOnInactiveTab: false,
+                position: 'bottom left',
+                msg: 'Successfully remove varient.'
+            });
+
+        }
     },
 }
 </script>
@@ -240,5 +327,19 @@ padding: 1rem !important;
 padding: .25rem .10rem;
 font-size: .750rem;
 border-radius: .1rem;
+}
+.alert {
+position: relative;
+padding: 0.5rem 0.5rem;
+margin-bottom: 1rem;
+background-color: #fff;
+border: 1px solid transparent;
+border-radius: .25rem;
+box-shadow: 0 .3rem .8rem rgba(0, 0, 0, .12);
+}
+.btnsize{
+margin-top: 10px;
+margin-left: -10px;
+margin-right: -10px;
 }
 </style>

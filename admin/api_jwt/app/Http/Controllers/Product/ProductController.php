@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers\Product;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
@@ -8,14 +10,18 @@ use Helper;
 use App\Models\Holiday;
 use App\Models\User;
 use App\Models\ProductAttributeValue;
+use App\Models\ProductVarrientHistory;
 use App\Models\Categorys;
 use App\Models\ProductAttributes;
 use App\Models\Product;
+use App\Models\ProductVarrient;
+use App\Models\AttributeValues;
 use Illuminate\Support\Str;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
 use Session;
 use DB;
+
 class ProductController extends Controller
 {
     protected $userid;
@@ -132,19 +138,52 @@ class ProductController extends Controller
         $data = Product::all();
         return response()->json($data);
     }
-    public function insertProductAttrAndValues(Request $request)
+    public function insertProductVarient(Request $request)
     {
+        //ProductVarrientHistory
+        //dd($request->selectedHistoryValues);
         $validator = Validator::make($request->all(), [
-            'product_attribute_id'       => 'required|integer',
+            'product_id'            => 'required|integer',
+            'selectedHistoryValues' => 'required',
         ]);
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
-        $data = array(
-            'product_id'                 => $request->product_id,
-            'attributes_id'              => $request->product_attribute_id,
-        );
-        $product_attribute_id = ProductAttributes::insertGetId($data);
+        $res     = $request->selectedHistoryValues;
+        array_shift($res);
+        $arr_val = implode(',', $res);
+       
+        $insertArr                        = new ProductVarrient();
+        $insertArr->pro_attr_val_his_id   = $arr_val;
+        $insertArr->product_id            = $request->product_id;
+        $insertArr->entry_by              = $this->userid;
+        $insertArr->save();
+        $pro_varient_id = $insertArr->id;
+        foreach ($res as $key => $val) {
+            $findrow = AttributeValues::where('id',$val)->select('name')->first();
+            // echo "$key=====$val.<br>";
+            $insertArr                        = new ProductVarrientHistory();
+            $insertArr->pro_attr_val_his_id   = $val;
+            $insertArr->varient_name          = $findrow->name;
+            $insertArr->pro_varient_id        = $pro_varient_id;
+            $insertArr->product_id            = $request->product_id;
+            $insertArr->save();
+        }
+        $res['msg']     = "Insert successfully";
+        return response()->json($res);
+    }
+    public function insertProductAttrAndValues(Request $request)
+    {
+        $chkPost = ProductAttributes::where('product_id', $request->product_id)->where('attributes_id', $request->product_attribute_id)->first();
+        if (empty($chkPost)) {
+            $data = array(
+                'product_id'                 => $request->product_id,
+                'attributes_id'              => $request->product_attribute_id,
+            );
+            $product_attribute_id = ProductAttributes::insertGetId($data);
+        } else {
+            $product_attribute_id = $chkPost->attributes_id;
+        }
         if (!empty($request->AttrValues)) {
             $arr_val = $request->AttrValues;
             foreach ($arr_val as $key => $v) {
@@ -164,18 +203,11 @@ class ProductController extends Controller
     public function getAttrHistory($id)
     {
         $product_id = (int) $id;
-        $Attrdata = DB::select("SELECT product_attributes.id,product_attributes.attributes_id,attributes.name FROM product_attributes 
-                 LEFT JOIN attributes ON (attributes.id=product_attributes.attributes_id) WHERE product_id = '$product_id'");
+        $Attrdata = ProductAttributes::checkingAttrube($product_id);
         $formatedData = [];
         $categoriesData = $Attrdata; //Category::all(); // Assuming you have a Category model and table
         foreach ($categoriesData as $val) {
-            $atthistory =  DB::table('product_attributes_values_history')
-                            ->leftJoin('attributes_values', 'attributes_values.id', '=', 'product_attributes_values_history.product_att_value_id')
-                            ->select('attributes_values.name as attr_val_name','attributes_values.id','product_attributes_values_history.id as pro_att_val_his_id','product_attributes_values_history.product_attribute_id','product_att_value_id')
-                            ->where('product_attributes_values_history.attribute_id', $val->attributes_id)
-                            ->groupBy('attributes_values.name')
-                            //->pluck('attr_name')
-                            ->get();
+            $atthistory =  ProductAttributes::attribueHistory($val->attributes_id);
             $subcategoryNames = $atthistory;
             $formatedData[] = [
                 'id'             => $val->id,
@@ -186,5 +218,27 @@ class ProductController extends Controller
         return response()->json(array_values($formatedData));
         //dd($categoriess);
     }
-    
+    public function getVarientHistory(Request $request)
+    {
+        $product_id = $request->product_id;
+        $arrData    = ProductVarrientHistory::getProductVarientHistory($product_id);
+        //dd($arrData);
+        foreach ($arrData as $Key => $value) {
+            $formatedData[] = [
+                'varient_id'       => $value->id,
+                'sku'              => $value->sku,
+                'qty'              => $value->qty,
+                'photo'            => $value->photo,
+                'product_id'       => $value->product_id,
+                'path'             => $value->varient_name,
+            ];
+        }
+        return response()->json($formatedData);
+    }
+    public function deleteValrient(Request $request)
+    {
+        $data = ProductVarrient::find($request->id);
+        $data->delete();
+        return response()->json("Delete Varient");
+    }
 }
