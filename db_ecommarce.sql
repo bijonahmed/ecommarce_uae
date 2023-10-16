@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2023 at 08:14 PM
+-- Generation Time: Oct 17, 2023 at 12:05 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -245,7 +245,11 @@ INSERT INTO `attributes_values` (`id`, `attributes_id`, `name`, `status`, `entry
 (100, 19, '4K', 1, 1, '2023-10-14 16:35:43', '2023-10-14 16:35:43'),
 (101, 20, '1 Year', 1, 1, '2023-10-14 16:35:58', '2023-10-14 16:35:58'),
 (102, 20, '2 Years', 1, 1, '2023-10-14 16:35:58', '2023-10-14 16:35:58'),
-(103, 20, 'Lifetime', 1, 1, '2023-10-14 16:35:58', '2023-10-14 16:35:58');
+(103, 20, 'Lifetime', 1, 1, '2023-10-14 16:35:58', '2023-10-14 16:35:58'),
+(104, 2, 'Black', 1, 1, '2023-10-16 09:29:17', '2023-10-16 09:29:17'),
+(105, 3, '128GB', 1, 1, '2023-10-16 09:30:41', '2023-10-16 09:30:41'),
+(106, 3, '512GB', 1, 1, '2023-10-16 09:30:51', '2023-10-16 09:30:51'),
+(107, 20, '6 Months', 1, 1, '2023-10-16 09:31:48', '2023-10-16 09:31:48');
 
 -- --------------------------------------------------------
 
@@ -1538,13 +1542,9 @@ CREATE TABLE `product_attributes` (
 --
 
 INSERT INTO `product_attributes` (`id`, `product_id`, `attributes_id`, `created_at`, `updated_at`) VALUES
-(1, 7, 8, '2023-10-15 14:52:34', '2023-10-15 14:52:34'),
-(9, 7, 9, '2023-10-15 14:52:34', '2023-10-15 14:52:34'),
-(11, 7, 10, '2023-10-15 22:36:40', '2023-10-15 22:36:40'),
-(12, 7, 14, '2023-10-15 22:36:53', '2023-10-15 22:36:53'),
-(13, 7, 1, '2023-10-15 23:05:05', '2023-10-15 23:05:05'),
-(14, 7, 4, '2023-10-15 23:08:13', '2023-10-15 23:08:13'),
-(15, 7, 5, '2023-10-15 23:08:24', '2023-10-15 23:08:24');
+(1, 7, 2, '2023-10-17 02:31:32', '2023-10-17 02:31:32'),
+(2, 7, 3, '2023-10-17 02:31:51', '2023-10-17 02:31:51'),
+(3, 7, 20, '2023-10-17 02:32:02', '2023-10-17 02:32:02');
 
 -- --------------------------------------------------------
 
@@ -1567,21 +1567,133 @@ CREATE TABLE `product_attributes_values_history` (
 --
 
 INSERT INTO `product_attributes_values_history` (`id`, `product_id`, `attribute_id`, `product_attribute_id`, `product_att_value_id`, `created_at`, `updated_at`) VALUES
-(1, 7, 8, 1, 61, '2023-10-15 08:52:34', '2023-10-15 08:52:34'),
-(2, 7, 8, 1, 62, '2023-10-15 08:52:34', '2023-10-15 08:52:34'),
-(3, 7, 8, 1, 63, '2023-10-15 08:52:34', '2023-10-15 08:52:34'),
-(20, 7, 9, 9, 64, '2023-10-15 13:03:19', '2023-10-15 13:03:19'),
-(21, 7, 9, 9, 65, '2023-10-15 13:03:19', '2023-10-15 13:03:19'),
-(22, 7, 10, 11, 67, '2023-10-15 16:36:40', '2023-10-15 16:36:40'),
-(23, 7, 10, 11, 68, '2023-10-15 16:36:40', '2023-10-15 16:36:40'),
-(24, 7, 14, 12, 79, '2023-10-15 16:36:53', '2023-10-15 16:36:53'),
-(25, 7, 1, 13, 1, '2023-10-15 17:05:05', '2023-10-15 17:05:05'),
-(26, 7, 1, 13, 2, '2023-10-15 17:05:06', '2023-10-15 17:05:06'),
-(27, 7, 1, 13, 29, '2023-10-15 17:05:06', '2023-10-15 17:05:06'),
-(28, 7, 1, 13, 30, '2023-10-15 17:05:06', '2023-10-15 17:05:06'),
-(29, 7, 4, 14, 49, '2023-10-15 17:08:13', '2023-10-15 17:08:13'),
-(30, 7, 4, 14, 50, '2023-10-15 17:08:13', '2023-10-15 17:08:13'),
-(31, 7, 5, 15, 52, '2023-10-15 17:08:24', '2023-10-15 17:08:24');
+(1, 7, 2, 1, 33, '2023-10-16 20:31:32', '2023-10-16 20:31:32'),
+(2, 7, 2, 1, 36, '2023-10-16 20:31:32', '2023-10-16 20:31:32'),
+(3, 7, 2, 1, 104, '2023-10-16 20:31:32', '2023-10-16 20:31:32'),
+(4, 7, 3, 2, 46, '2023-10-16 20:31:51', '2023-10-16 20:31:51'),
+(5, 7, 3, 2, 105, '2023-10-16 20:31:51', '2023-10-16 20:31:51'),
+(6, 7, 3, 2, 106, '2023-10-16 20:31:51', '2023-10-16 20:31:51'),
+(7, 7, 20, 3, 101, '2023-10-16 20:32:02', '2023-10-16 20:32:02'),
+(8, 7, 20, 3, 107, '2023-10-16 20:32:02', '2023-10-16 20:32:02');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_variants`
+--
+
+CREATE TABLE `product_variants` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `pro_attr_val_his_id` varchar(255) DEFAULT NULL,
+  `sku` varchar(255) DEFAULT NULL,
+  `qty` int(11) DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `entry_by` int(11) DEFAULT NULL,
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `product_variants`
+--
+
+INSERT INTO `product_variants` (`id`, `product_id`, `pro_attr_val_his_id`, `sku`, `qty`, `price`, `photo`, `entry_by`, `updated_at`, `created_at`) VALUES
+(1, 7, '104,105,101', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:48:33', '2023-10-16 21:48:33'),
+(2, 7, '104,46,101', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:48:46', '2023-10-16 21:48:46'),
+(3, 7, '104,106,101', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:48:48', '2023-10-16 21:48:48'),
+(4, 7, '104,105,107', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:53:30', '2023-10-16 21:53:30'),
+(5, 7, '104,46,107', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:53:31', '2023-10-16 21:53:31'),
+(6, 7, '104,106,107', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:53:33', '2023-10-16 21:53:33'),
+(7, 7, '36,105,107', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:53:52', '2023-10-16 21:53:52'),
+(8, 7, '36,46,107', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:53:53', '2023-10-16 21:53:53'),
+(9, 7, '36,106,107', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:53:55', '2023-10-16 21:53:55'),
+(10, 7, '36,105,101', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:53:58', '2023-10-16 21:53:58'),
+(11, 7, '36,46,101', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:54:00', '2023-10-16 21:54:00'),
+(12, 7, '36,106,101', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:54:01', '2023-10-16 21:54:01'),
+(13, 7, '33,105,107', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:54:07', '2023-10-16 21:54:07'),
+(14, 7, '33,46,107', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:54:08', '2023-10-16 21:54:08'),
+(15, 7, '33,106,107', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:54:10', '2023-10-16 21:54:10'),
+(16, 7, '33,105,101', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:54:13', '2023-10-16 21:54:13'),
+(17, 7, '33,46,101', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:54:14', '2023-10-16 21:54:14'),
+(18, 7, '33,106,101', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:54:16', '2023-10-16 21:54:16');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_variants_history`
+--
+
+CREATE TABLE `product_variants_history` (
+  `id` bigint(20) NOT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `pro_varient_id` int(11) NOT NULL,
+  `pro_attr_val_his_id` int(11) NOT NULL,
+  `varient_name` varchar(255) DEFAULT NULL,
+  `updated_at` datetime DEFAULT current_timestamp(),
+  `created_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `product_variants_history`
+--
+
+INSERT INTO `product_variants_history` (`id`, `product_id`, `pro_varient_id`, `pro_attr_val_his_id`, `varient_name`, `updated_at`, `created_at`) VALUES
+(1, 7, 1, 104, 'Black', '2023-10-16 21:48:33', '2023-10-16 21:48:33'),
+(2, 7, 1, 105, '128GB', '2023-10-16 21:48:33', '2023-10-16 21:48:33'),
+(3, 7, 1, 101, '1 Year', '2023-10-16 21:48:33', '2023-10-16 21:48:33'),
+(4, 7, 2, 104, 'Black', '2023-10-16 21:48:46', '2023-10-16 21:48:46'),
+(5, 7, 2, 46, '1TB', '2023-10-16 21:48:46', '2023-10-16 21:48:46'),
+(6, 7, 2, 101, '1 Year', '2023-10-16 21:48:46', '2023-10-16 21:48:46'),
+(7, 7, 3, 104, 'Black', '2023-10-16 21:48:48', '2023-10-16 21:48:48'),
+(8, 7, 3, 106, '512GB', '2023-10-16 21:48:48', '2023-10-16 21:48:48'),
+(9, 7, 3, 101, '1 Year', '2023-10-16 21:48:48', '2023-10-16 21:48:48'),
+(10, 7, 4, 104, 'Black', '2023-10-16 21:53:30', '2023-10-16 21:53:30'),
+(11, 7, 4, 105, '128GB', '2023-10-16 21:53:30', '2023-10-16 21:53:30'),
+(12, 7, 4, 107, '6 Months', '2023-10-16 21:53:30', '2023-10-16 21:53:30'),
+(13, 7, 5, 104, 'Black', '2023-10-16 21:53:31', '2023-10-16 21:53:31'),
+(14, 7, 5, 46, '1TB', '2023-10-16 21:53:31', '2023-10-16 21:53:31'),
+(15, 7, 5, 107, '6 Months', '2023-10-16 21:53:31', '2023-10-16 21:53:31'),
+(16, 7, 6, 104, 'Black', '2023-10-16 21:53:33', '2023-10-16 21:53:33'),
+(17, 7, 6, 106, '512GB', '2023-10-16 21:53:33', '2023-10-16 21:53:33'),
+(18, 7, 6, 107, '6 Months', '2023-10-16 21:53:33', '2023-10-16 21:53:33'),
+(19, 7, 7, 36, 'White', '2023-10-16 21:53:52', '2023-10-16 21:53:52'),
+(20, 7, 7, 105, '128GB', '2023-10-16 21:53:52', '2023-10-16 21:53:52'),
+(21, 7, 7, 107, '6 Months', '2023-10-16 21:53:52', '2023-10-16 21:53:52'),
+(22, 7, 8, 36, 'White', '2023-10-16 21:53:53', '2023-10-16 21:53:53'),
+(23, 7, 8, 46, '1TB', '2023-10-16 21:53:53', '2023-10-16 21:53:53'),
+(24, 7, 8, 107, '6 Months', '2023-10-16 21:53:53', '2023-10-16 21:53:53'),
+(25, 7, 9, 36, 'White', '2023-10-16 21:53:55', '2023-10-16 21:53:55'),
+(26, 7, 9, 106, '512GB', '2023-10-16 21:53:55', '2023-10-16 21:53:55'),
+(27, 7, 9, 107, '6 Months', '2023-10-16 21:53:55', '2023-10-16 21:53:55'),
+(28, 7, 10, 36, 'White', '2023-10-16 21:53:58', '2023-10-16 21:53:58'),
+(29, 7, 10, 105, '128GB', '2023-10-16 21:53:58', '2023-10-16 21:53:58'),
+(30, 7, 10, 101, '1 Year', '2023-10-16 21:53:58', '2023-10-16 21:53:58'),
+(31, 7, 11, 36, 'White', '2023-10-16 21:54:00', '2023-10-16 21:54:00'),
+(32, 7, 11, 46, '1TB', '2023-10-16 21:54:00', '2023-10-16 21:54:00'),
+(33, 7, 11, 101, '1 Year', '2023-10-16 21:54:00', '2023-10-16 21:54:00'),
+(34, 7, 12, 36, 'White', '2023-10-16 21:54:01', '2023-10-16 21:54:01'),
+(35, 7, 12, 106, '512GB', '2023-10-16 21:54:01', '2023-10-16 21:54:01'),
+(36, 7, 12, 101, '1 Year', '2023-10-16 21:54:01', '2023-10-16 21:54:01'),
+(37, 7, 13, 33, 'Yellow', '2023-10-16 21:54:07', '2023-10-16 21:54:07'),
+(38, 7, 13, 105, '128GB', '2023-10-16 21:54:07', '2023-10-16 21:54:07'),
+(39, 7, 13, 107, '6 Months', '2023-10-16 21:54:07', '2023-10-16 21:54:07'),
+(40, 7, 14, 33, 'Yellow', '2023-10-16 21:54:08', '2023-10-16 21:54:08'),
+(41, 7, 14, 46, '1TB', '2023-10-16 21:54:09', '2023-10-16 21:54:09'),
+(42, 7, 14, 107, '6 Months', '2023-10-16 21:54:09', '2023-10-16 21:54:09'),
+(43, 7, 15, 33, 'Yellow', '2023-10-16 21:54:10', '2023-10-16 21:54:10'),
+(44, 7, 15, 106, '512GB', '2023-10-16 21:54:10', '2023-10-16 21:54:10'),
+(45, 7, 15, 107, '6 Months', '2023-10-16 21:54:10', '2023-10-16 21:54:10'),
+(46, 7, 16, 33, 'Yellow', '2023-10-16 21:54:13', '2023-10-16 21:54:13'),
+(47, 7, 16, 105, '128GB', '2023-10-16 21:54:13', '2023-10-16 21:54:13'),
+(48, 7, 16, 101, '1 Year', '2023-10-16 21:54:13', '2023-10-16 21:54:13'),
+(49, 7, 17, 33, 'Yellow', '2023-10-16 21:54:14', '2023-10-16 21:54:14'),
+(50, 7, 17, 46, '1TB', '2023-10-16 21:54:14', '2023-10-16 21:54:14'),
+(51, 7, 17, 101, '1 Year', '2023-10-16 21:54:14', '2023-10-16 21:54:14'),
+(52, 7, 18, 33, 'Yellow', '2023-10-16 21:54:16', '2023-10-16 21:54:16'),
+(53, 7, 18, 106, '512GB', '2023-10-16 21:54:16', '2023-10-16 21:54:16'),
+(54, 7, 18, 101, '1 Year', '2023-10-16 21:54:16', '2023-10-16 21:54:16');
 
 -- --------------------------------------------------------
 
@@ -1803,20 +1915,6 @@ INSERT INTO `users` (`id`, `role_id`, `employee_id`, `name`, `email`, `image`, `
 (4, 2, 4, 'Employee-3', 'we2022@gmail.com', NULL, '343434', '', NULL, NULL, NULL, NULL, NULL, 'PasswordPassword', NULL, '$2y$10$oOca7klZbcO0xXV8glSx6ORQBIPsXOVNmZBdnex7JzeT7cjlyiLcm', NULL, 1, NULL, '2023-09-03 04:40:03', 1),
 (5, 2, 2, 'Md. JONS', 'Ibraheem@gmail.com', '/backend/files/mIpe6aKfR5Lw5NDWFHAF.jpg', '+8801915728982', 'Mirpur-1', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'http://localhost:3000/profile', '', '', '112233456', NULL, '$2y$10$j0HQIkxcqrnN5Dt7hlm3rOhLzq.TBOhrbtmQi9tkrnybICy91U5lS', NULL, 1, NULL, NULL, 1);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `variants`
---
-
-CREATE TABLE `variants` (
-  `id` int(11) NOT NULL,
-  `attribute_id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `created_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 --
 -- Indexes for dumped tables
 --
@@ -2030,6 +2128,18 @@ ALTER TABLE `product_attributes_values_history`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `product_variants`
+--
+ALTER TABLE `product_variants`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `product_variants_history`
+--
+ALTER TABLE `product_variants_history`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `produc_categories`
 --
 ALTER TABLE `produc_categories`
@@ -2072,12 +2182,6 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `variants`
---
-ALTER TABLE `variants`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -2103,7 +2207,7 @@ ALTER TABLE `attributes`
 -- AUTO_INCREMENT for table `attributes_values`
 --
 ALTER TABLE `attributes_values`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT for table `bank_master`
@@ -2271,13 +2375,25 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `product_attributes`
 --
 ALTER TABLE `product_attributes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `product_attributes_values_history`
 --
 ALTER TABLE `product_attributes_values_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `product_variants`
+--
+ALTER TABLE `product_variants`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `product_variants_history`
+--
+ALTER TABLE `product_variants_history`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `produc_categories`
@@ -2320,12 +2436,6 @@ ALTER TABLE `tasks`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `variants`
---
-ALTER TABLE `variants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
