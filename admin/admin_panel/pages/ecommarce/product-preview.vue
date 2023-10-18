@@ -14,7 +14,7 @@
                             <li class="breadcrumb-item" aria-current="page">
                                 <router-link to="/ecommarce/product-list">Product List</router-link>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Add Attribue Varient</li>
+                            <li class="breadcrumb-item active" aria-current="page">Preview</li>
                         </ol>
                     </nav>
                 </div>
@@ -29,80 +29,48 @@
                                 <div class="card">
                                     <!-- Start -->
                                     <span>Choose Attribue</span>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="row">
-                                                <div class="col-2 p-1 g-0" v-for="(item, index) in attributeslist" :key="item.id">
-                                                    <button type="button" class="btn btn-dark btn-sm w-100" @click="showAttrVal(item.id)">{{ item.name }}</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <hr />
-                                            <input type="hidden" class="product_attribute_id" />
-                                            <span v-for="(item, index) in attrValList" :key="item.id">
-                                                <input type="checkbox" v-model="arr_val[item.id]" :value="item.id" />
-                                                {{ item.name }}
-                                            </span>
-                                            <span v-if="attrValList.length > 0">
-                                                <hr />
-                                                <button @click="getSelectedValues" class="btn btn-primary w-100 btn-sm">Merge</button>
-                                                <br />
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <!-- <button @click="attributHistory" type="text">Test</button> -->
-                                        <div class="col-md-2 g-1 p-1" v-for="item in pro_arr_val_history" :key="item.id" style="background-color: #d8dfdf;">
-                                            {{ item.name }}
-                                            <hr />
-                                            <span v-for="(data, index) in item.value_history" :key="data.id">
-                                                <input type="radio" :value="data.id" v-model="arr_his_val[item.id]" />
-                                                {{ data.attr_val_name }} <br />
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <span v-if="pro_arr_val_history.length > 0">
-                                        <br />
-                                        <button class="btn btn-success btn-sm w-100" type="button" @click="setHistoryValue" style="margin-left: -11px;">Add Varient</button>
-                                    </span>
+
                                 </div>
-                                <form @submit.prevent="updateVarient()" id="formrest" enctype="multipart/form-data">
-                                    <div class="row" v-if="historVarient.length > 0">
-                                        <hr />
-                                        <div class="alert-dark border-0 bg-dark alert-dismissible fade show">
-                                            <div class="text-white">Varient History</div>
-                                        </div>
-                                        <table class="table mb-0">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col"></th>
-                                                    <th scope="col">SKU<span class="required">*</span></th>
-                                                    <th scope="col">Qty<span class="required">*</span></th>
-                                                    <th scope="col">Price<span class="required">*</span></th>
-                                                    <th scope="col">Image Upload<span class="required">*</span></th>
-                                                    <th scope="col">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr v-for="(data, index) in historVarient" :key="data.varient_id">
-                                                    <th scope="row">{{ index + 1 }}.</th>
-                                                    <td>{{ data.path }}</td>
-                                                    <td>
-                                                        <input type="hidden" v-model="data.varient_id" name="varient_id" style="width: 50px;" />
-                                                        <input type="text" placeholder="SKU" v-model="data.sku" :name="'data[' + index + '][sku]'" style="width: 50px;" /></td>
-                                                    <td><input type="text" placeholder="Qty" v-model="data.qty" :name="'data[' + index + '][qty]'" style="width: 50px;" /></td>
-                                                    <td><input type="text" placeholder="0.00" v-model="data.price" :name="'data[' + index + '][price]'" style="width: 50px;" /> </td>
-                                                    <td><input type="file" @change="onFileChange(index, $event)" accept="image/*" />
-                                                    </td>
-                                                    <td><button type="button" @click="deleteVarrientrow(data.varient_id)">DEL</button></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <button class="btn btn-dark btn-sm w-100 btnsize" type="submit">Submit</button>
+
+                                <div class="row" v-if="historVarient.length > 0">
+                                    <hr />
+
+
+
+
+
+                                    <div class="alert-dark border-0 bg-dark alert-dismissible fade show">
+                                        <div class="text-white">Varient History</div>
                                     </div>
-                                </form>
+                                    <table class="table mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col"></th>
+                                                <th scope="col">SKU</th>
+                                                <th scope="col">Qty</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Product Images</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="(data, index) in historVarient" :key="data.varient_id">
+                                                <th scope="row">{{ index + 1 }}.</th>
+                                                <td>{{ data.path }}</td>
+                                                <td>{{ data.sku }}</td>
+                                                <td>{{ data.qty }}</td>
+                                                <td>{{ data.price }}</td>
+                                               
+                                                <td><img :src="data.file" alt="N/A" style="height: 50px; width: 60px;" class="img-fluid max-width-100 img-thumbnail" />
+                                                </td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
                                 <!-- END -->
                             </div>
                         </div>
@@ -359,39 +327,39 @@ export default {
     },
 }
 </script>
-<style scoped>
-.required{
-    content: "\2605";
-    color: red;
-    margin-right: 4px;
-}
-.checkbox-label {
-  display: block;
-  margin-bottom: 5px;
-}
-.checkbox-input {
-  margin-right: 5px;
-}
-.p-4 {
-padding: 1rem !important;
-}
-.btn-group-sm > .btn, .btn-sm {
-padding: .25rem .10rem;
-font-size: .750rem;
-border-radius: .1rem;
-}
-.alert {
-position: relative;
-padding: 0.5rem 0.5rem;
-margin-bottom: 1rem;
-background-color: #fff;
-border: 1px solid transparent;
-border-radius: .25rem;
-box-shadow: 0 .3rem .8rem rgba(0, 0, 0, .12);
-}
-.btnsize{
-margin-top: 10px;
-margin-left: -10px;
-margin-right: -10px;
-}
-</style>
+    <style scoped>
+    .required{
+        content: "\2605";
+        color: red;
+        margin-right: 4px;
+    }
+    .checkbox-label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    .checkbox-input {
+      margin-right: 5px;
+    }
+    .p-4 {
+    padding: 1rem !important;
+    }
+    .btn-group-sm > .btn, .btn-sm {
+    padding: .25rem .10rem;
+    font-size: .750rem;
+    border-radius: .1rem;
+    }
+    .alert {
+    position: relative;
+    padding: 0.5rem 0.5rem;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    box-shadow: 0 .3rem .8rem rgba(0, 0, 0, .12);
+    }
+    .btnsize{
+    margin-top: 10px;
+    margin-left: -10px;
+    margin-right: -10px;
+    }
+    </style>
