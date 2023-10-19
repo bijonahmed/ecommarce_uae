@@ -110,7 +110,7 @@ class CategoryController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
         $data = array(
-           // 'attributes_id'              => $request->attributes_id,
+            // 'attributes_id'              => $request->attributes_id,
             'name'                       => $request->name,
             'status'                     => $request->status,
             'entry_by'                   => $this->userid
@@ -119,7 +119,7 @@ class CategoryController extends Controller
             AttributeValues::insertGetId($data);
         } else {
             $data = AttributeValues::find($request->id);
-           // $data->attributes_id     =  $request->input('attributes_id');
+            // $data->attributes_id     =  $request->input('attributes_id');
             $data->name              =  $request->input('name');
             $data->status            =  $request->input('status');
             $data->save();
@@ -224,7 +224,6 @@ class CategoryController extends Controller
     public function getAttributeList(Request $request)
     {
         $attribute = Attribute::orderBy('name', 'asc')->get();
-
         $collection = collect($attribute);
         $modifiedArr = $collection->map(function ($item) {
             return [
@@ -244,18 +243,15 @@ class CategoryController extends Controller
             ->where('attributes_values.name', 'like', '%' . $searchTerm . '%')
             ->orderBy('attributes.name', 'asc')
             ->get();
-
-            $collection = collect($attrWithsubAtt);
-            $modifiedArr = $collection->map(function ($item) {
-                return [
-                    'id'         => $item['id'],
-                    'att_name'   => ucfirst($item['att_name']),
-                    'name'       => ucfirst($item['name']),
-                    'status'     => $item['status'],
-                ];
-            });
-
-
+        $collection = collect($attrWithsubAtt);
+        $modifiedArr = $collection->map(function ($item) {
+            return [
+                'id'         => $item['id'],
+                'att_name'   => ucfirst($item['att_name']),
+                'name'       => ucfirst($item['name']),
+                'status'     => $item['status'],
+            ];
+        });
         return response()->json($modifiedArr, 200);
     }
     public function getCategoryListParent(Request $request)

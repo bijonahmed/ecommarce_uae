@@ -112,6 +112,7 @@ Route::group([
     'prefix' => 'product'
 ], function () {
     Route::post('save', [ProductController::class, 'save']);
+    Route::post('insertVarientGroup', [ProductController::class, 'insertVarientGroup']);
     Route::get('getProductList', [ProductController::class, 'getProductList']);
     Route::get('insertProductAttrAndValues', [ProductController::class, 'insertProductAttrAndValues']);
     Route::get('insertProductVarient', [ProductController::class, 'insertProductVarient']);

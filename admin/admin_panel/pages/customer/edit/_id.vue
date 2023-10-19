@@ -60,7 +60,6 @@
                                         </div>
                                     </div>
 
-                                    
                                     <div class="row mb-3">
                                         <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Address</label>
                                         <div class="col-sm-9">
@@ -109,7 +108,7 @@ export default {
                 id: '',
                 name: '',
                 phone: '',
-                email:'',
+                email: '',
                 addres: '',
                 status: '',
             },

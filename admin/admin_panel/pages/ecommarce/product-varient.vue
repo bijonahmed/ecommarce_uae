@@ -200,6 +200,7 @@ export default {
                 //this.attributHistory();
             });
             const product_id = this.$route.query.parameter;
+            //return false;
             this.$router.push({
                 path: '/ecommarce/product-preview',
                 query: {

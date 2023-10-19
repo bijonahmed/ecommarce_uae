@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2023 at 12:05 AM
+-- Generation Time: Oct 19, 2023 at 10:37 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -1521,7 +1521,8 @@ INSERT INTO `product` (`id`, `name`, `slug`, `description`, `meta_title`, `meta_
 (4, 'Women\'s Higo Lady Shirt,', 'women-s-higo-lady-shirt-', '<h2 style=\"margin-left:0px;\">About this item</h2><ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, women’s table tennis shirt with a triangle pattern</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players</span></li><li><span style=\"color:rgb(15,17,17);\">Offers short sleeves, a V-neck style collar and a women’s tapered cut</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester)</span></li></ul>', 'Women\'s Higo Lady Shirt,', '', 'Women\'s Higo Lady Shirt,', '', 0, '48778', '', 2, 6500.00000, 'KG', 1, 1, 0, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/2e0Yu34IU6YJDksixmcb.jpg', 1, 1, NULL, NULL),
 (5, 'ButterflyTable Tennis Shirt', 'butterflytable-tennis-shirt', '<ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, table tennis shirt for men</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players’ Timo Boll, Dimitrij Ovtcharov and Patrick Franziska</span></li><li><span style=\"color:rgb(15,17,17);\">A three button Henley style shirt with complementing pattern. Shirt allows room to move with slits on the side of the hem.</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester).</span></li></ul>', 'ButterflyTable Tennis Shirt', 'ButterflyTable Tennis Shirt', 'ButterflyTable Tennis Shirt', 'ButterflyTable, Tennis, Shirt', 0, 'SKU', '', 2, 500.00000, '156', 1, 1, 0, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/QIMz4358Zf7It78r4y2S.jpg', 1, 1, NULL, NULL),
 (6, 'Tennis Shirt', 'tennis-shirt', '<ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, table tennis shirt for men</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players’ Timo Boll, Dimitrij Ovtcharov and Patrick Franziska</span></li><li><span style=\"color:rgb(15,17,17);\">A three button Henley style shirt with complementing pattern. Shirt allows room to move with slits on the side of the hem.</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester).</span></li></ul>', 'Tennis Shirt', 'Tennis Shirt', 'Tennis Shirt', ', Tennis, Shirt', 223, '23', '', 2, 23.00000, 'KG', 1, 1, 0, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/MMKa0CB2lxnICqaL1OcB.jpg', 1, 1, NULL, NULL),
-(7, 'Pents', 'pents', '<p>PentsPentsPentsPentsPents</p>', 'Pents', 'Pents', 'Pents', 'Pents, Pents, Pents', 5, '22', '', 2, 23.00000, 'KG', 1, 1, 7, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/RdDN3AZfvRauDh9SK45T.jpg', 1, 1, NULL, NULL);
+(7, 'Pents', 'pents', '<p>PentsPentsPentsPentsPents</p>', 'Pents', 'Pents', 'Pents', 'Pents, Pents, Pents', 5, '22', '', 2, 23.00000, 'KG', 1, 1, 7, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/RdDN3AZfvRauDh9SK45T.jpg', 1, 1, NULL, NULL),
+(8, 'Computer', 'computer', '<p>ComputerComputerComputerComputerComputerComputer</p>', 'Computer', 'Computer', 'Computer', 'Computer, Computer, Computer', 0, '34', '33', 2, 500.00000, 'KG', 1, 1, 0, 23434, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/wmLnwk7fLLWtyLBOX5x6.jpg', 1, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1544,7 +1545,12 @@ CREATE TABLE `product_attributes` (
 INSERT INTO `product_attributes` (`id`, `product_id`, `attributes_id`, `created_at`, `updated_at`) VALUES
 (1, 7, 2, '2023-10-17 02:31:32', '2023-10-17 02:31:32'),
 (2, 7, 3, '2023-10-17 02:31:51', '2023-10-17 02:31:51'),
-(3, 7, 20, '2023-10-17 02:32:02', '2023-10-17 02:32:02');
+(3, 7, 20, '2023-10-17 02:32:02', '2023-10-17 02:32:02'),
+(4, 8, 8, '2023-10-19 10:39:50', '2023-10-19 10:39:50'),
+(5, 8, 2, '2023-10-19 10:39:59', '2023-10-19 10:39:59'),
+(6, 8, 5, '2023-10-19 10:40:05', '2023-10-19 10:40:05'),
+(7, 8, 14, '2023-10-19 10:40:13', '2023-10-19 10:40:13'),
+(8, 8, 3, '2023-10-19 10:40:26', '2023-10-19 10:40:26');
 
 -- --------------------------------------------------------
 
@@ -1574,7 +1580,22 @@ INSERT INTO `product_attributes_values_history` (`id`, `product_id`, `attribute_
 (5, 7, 3, 2, 105, '2023-10-16 20:31:51', '2023-10-16 20:31:51'),
 (6, 7, 3, 2, 106, '2023-10-16 20:31:51', '2023-10-16 20:31:51'),
 (7, 7, 20, 3, 101, '2023-10-16 20:32:02', '2023-10-16 20:32:02'),
-(8, 7, 20, 3, 107, '2023-10-16 20:32:02', '2023-10-16 20:32:02');
+(8, 7, 20, 3, 107, '2023-10-16 20:32:02', '2023-10-16 20:32:02'),
+(9, 8, 8, 4, 61, '2023-10-19 04:39:50', '2023-10-19 04:39:50'),
+(10, 8, 8, 4, 62, '2023-10-19 04:39:50', '2023-10-19 04:39:50'),
+(11, 8, 2, 5, 31, '2023-10-19 04:39:59', '2023-10-19 04:39:59'),
+(12, 8, 2, 5, 32, '2023-10-19 04:39:59', '2023-10-19 04:39:59'),
+(13, 8, 2, 5, 35, '2023-10-19 04:39:59', '2023-10-19 04:39:59'),
+(14, 8, 5, 6, 52, '2023-10-19 04:40:05', '2023-10-19 04:40:05'),
+(15, 8, 5, 6, 53, '2023-10-19 04:40:05', '2023-10-19 04:40:05'),
+(16, 8, 14, 7, 79, '2023-10-19 04:40:13', '2023-10-19 04:40:13'),
+(17, 8, 14, 7, 80, '2023-10-19 04:40:13', '2023-10-19 04:40:13'),
+(18, 8, 14, 7, 81, '2023-10-19 04:40:13', '2023-10-19 04:40:13'),
+(19, 8, 3, 8, 40, '2023-10-19 04:40:26', '2023-10-19 04:40:26'),
+(20, 8, 3, 8, 41, '2023-10-19 04:40:26', '2023-10-19 04:40:26'),
+(21, 8, 3, 8, 42, '2023-10-19 04:40:26', '2023-10-19 04:40:26'),
+(22, 8, 3, 8, 43, '2023-10-19 04:40:26', '2023-10-19 04:40:26'),
+(23, 8, 3, 8, 44, '2023-10-19 04:40:26', '2023-10-19 04:40:26');
 
 -- --------------------------------------------------------
 
@@ -1589,7 +1610,7 @@ CREATE TABLE `product_variants` (
   `sku` varchar(255) DEFAULT NULL,
   `qty` int(11) DEFAULT NULL,
   `price` decimal(10,2) DEFAULT NULL,
-  `photo` varchar(255) DEFAULT NULL,
+  `file` varchar(255) DEFAULT NULL,
   `entry_by` int(11) DEFAULT NULL,
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
@@ -1599,25 +1620,9 @@ CREATE TABLE `product_variants` (
 -- Dumping data for table `product_variants`
 --
 
-INSERT INTO `product_variants` (`id`, `product_id`, `pro_attr_val_his_id`, `sku`, `qty`, `price`, `photo`, `entry_by`, `updated_at`, `created_at`) VALUES
-(1, 7, '104,105,101', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:48:33', '2023-10-16 21:48:33'),
-(2, 7, '104,46,101', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:48:46', '2023-10-16 21:48:46'),
-(3, 7, '104,106,101', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:48:48', '2023-10-16 21:48:48'),
-(4, 7, '104,105,107', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:53:30', '2023-10-16 21:53:30'),
-(5, 7, '104,46,107', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:53:31', '2023-10-16 21:53:31'),
-(6, 7, '104,106,107', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:53:33', '2023-10-16 21:53:33'),
-(7, 7, '36,105,107', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:53:52', '2023-10-16 21:53:52'),
-(8, 7, '36,46,107', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:53:53', '2023-10-16 21:53:53'),
-(9, 7, '36,106,107', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:53:55', '2023-10-16 21:53:55'),
-(10, 7, '36,105,101', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:53:58', '2023-10-16 21:53:58'),
-(11, 7, '36,46,101', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:54:00', '2023-10-16 21:54:00'),
-(12, 7, '36,106,101', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:54:01', '2023-10-16 21:54:01'),
-(13, 7, '33,105,107', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:54:07', '2023-10-16 21:54:07'),
-(14, 7, '33,46,107', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:54:08', '2023-10-16 21:54:08'),
-(15, 7, '33,106,107', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:54:10', '2023-10-16 21:54:10'),
-(16, 7, '33,105,101', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:54:13', '2023-10-16 21:54:13'),
-(17, 7, '33,46,101', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:54:14', '2023-10-16 21:54:14'),
-(18, 7, '33,106,101', NULL, NULL, NULL, NULL, 1, '2023-10-16 21:54:16', '2023-10-16 21:54:16');
+INSERT INTO `product_variants` (`id`, `product_id`, `pro_attr_val_his_id`, `sku`, `qty`, `price`, `file`, `entry_by`, `updated_at`, `created_at`) VALUES
+(1, 8, '62,104,52,80,105', '10', 25, 4.00, '/backend/files/U1Yy0NGYiCK91N2F9suf9XpqAI2ezM5UYwiggHro.jpg.jpg', 1, '2023-10-19 08:35:03', '2023-10-19 08:32:37'),
+(2, 8, '62,104,52,80,40', '20', 50, 3.00, '/backend/files/UZqKGRBiri368legu4OBBk5PThkVAbRNtRjvArDC.jpg.jpg', 1, '2023-10-19 08:35:03', '2023-10-19 08:32:41');
 
 -- --------------------------------------------------------
 
@@ -1640,60 +1645,16 @@ CREATE TABLE `product_variants_history` (
 --
 
 INSERT INTO `product_variants_history` (`id`, `product_id`, `pro_varient_id`, `pro_attr_val_his_id`, `varient_name`, `updated_at`, `created_at`) VALUES
-(1, 7, 1, 104, 'Black', '2023-10-16 21:48:33', '2023-10-16 21:48:33'),
-(2, 7, 1, 105, '128GB', '2023-10-16 21:48:33', '2023-10-16 21:48:33'),
-(3, 7, 1, 101, '1 Year', '2023-10-16 21:48:33', '2023-10-16 21:48:33'),
-(4, 7, 2, 104, 'Black', '2023-10-16 21:48:46', '2023-10-16 21:48:46'),
-(5, 7, 2, 46, '1TB', '2023-10-16 21:48:46', '2023-10-16 21:48:46'),
-(6, 7, 2, 101, '1 Year', '2023-10-16 21:48:46', '2023-10-16 21:48:46'),
-(7, 7, 3, 104, 'Black', '2023-10-16 21:48:48', '2023-10-16 21:48:48'),
-(8, 7, 3, 106, '512GB', '2023-10-16 21:48:48', '2023-10-16 21:48:48'),
-(9, 7, 3, 101, '1 Year', '2023-10-16 21:48:48', '2023-10-16 21:48:48'),
-(10, 7, 4, 104, 'Black', '2023-10-16 21:53:30', '2023-10-16 21:53:30'),
-(11, 7, 4, 105, '128GB', '2023-10-16 21:53:30', '2023-10-16 21:53:30'),
-(12, 7, 4, 107, '6 Months', '2023-10-16 21:53:30', '2023-10-16 21:53:30'),
-(13, 7, 5, 104, 'Black', '2023-10-16 21:53:31', '2023-10-16 21:53:31'),
-(14, 7, 5, 46, '1TB', '2023-10-16 21:53:31', '2023-10-16 21:53:31'),
-(15, 7, 5, 107, '6 Months', '2023-10-16 21:53:31', '2023-10-16 21:53:31'),
-(16, 7, 6, 104, 'Black', '2023-10-16 21:53:33', '2023-10-16 21:53:33'),
-(17, 7, 6, 106, '512GB', '2023-10-16 21:53:33', '2023-10-16 21:53:33'),
-(18, 7, 6, 107, '6 Months', '2023-10-16 21:53:33', '2023-10-16 21:53:33'),
-(19, 7, 7, 36, 'White', '2023-10-16 21:53:52', '2023-10-16 21:53:52'),
-(20, 7, 7, 105, '128GB', '2023-10-16 21:53:52', '2023-10-16 21:53:52'),
-(21, 7, 7, 107, '6 Months', '2023-10-16 21:53:52', '2023-10-16 21:53:52'),
-(22, 7, 8, 36, 'White', '2023-10-16 21:53:53', '2023-10-16 21:53:53'),
-(23, 7, 8, 46, '1TB', '2023-10-16 21:53:53', '2023-10-16 21:53:53'),
-(24, 7, 8, 107, '6 Months', '2023-10-16 21:53:53', '2023-10-16 21:53:53'),
-(25, 7, 9, 36, 'White', '2023-10-16 21:53:55', '2023-10-16 21:53:55'),
-(26, 7, 9, 106, '512GB', '2023-10-16 21:53:55', '2023-10-16 21:53:55'),
-(27, 7, 9, 107, '6 Months', '2023-10-16 21:53:55', '2023-10-16 21:53:55'),
-(28, 7, 10, 36, 'White', '2023-10-16 21:53:58', '2023-10-16 21:53:58'),
-(29, 7, 10, 105, '128GB', '2023-10-16 21:53:58', '2023-10-16 21:53:58'),
-(30, 7, 10, 101, '1 Year', '2023-10-16 21:53:58', '2023-10-16 21:53:58'),
-(31, 7, 11, 36, 'White', '2023-10-16 21:54:00', '2023-10-16 21:54:00'),
-(32, 7, 11, 46, '1TB', '2023-10-16 21:54:00', '2023-10-16 21:54:00'),
-(33, 7, 11, 101, '1 Year', '2023-10-16 21:54:00', '2023-10-16 21:54:00'),
-(34, 7, 12, 36, 'White', '2023-10-16 21:54:01', '2023-10-16 21:54:01'),
-(35, 7, 12, 106, '512GB', '2023-10-16 21:54:01', '2023-10-16 21:54:01'),
-(36, 7, 12, 101, '1 Year', '2023-10-16 21:54:01', '2023-10-16 21:54:01'),
-(37, 7, 13, 33, 'Yellow', '2023-10-16 21:54:07', '2023-10-16 21:54:07'),
-(38, 7, 13, 105, '128GB', '2023-10-16 21:54:07', '2023-10-16 21:54:07'),
-(39, 7, 13, 107, '6 Months', '2023-10-16 21:54:07', '2023-10-16 21:54:07'),
-(40, 7, 14, 33, 'Yellow', '2023-10-16 21:54:08', '2023-10-16 21:54:08'),
-(41, 7, 14, 46, '1TB', '2023-10-16 21:54:09', '2023-10-16 21:54:09'),
-(42, 7, 14, 107, '6 Months', '2023-10-16 21:54:09', '2023-10-16 21:54:09'),
-(43, 7, 15, 33, 'Yellow', '2023-10-16 21:54:10', '2023-10-16 21:54:10'),
-(44, 7, 15, 106, '512GB', '2023-10-16 21:54:10', '2023-10-16 21:54:10'),
-(45, 7, 15, 107, '6 Months', '2023-10-16 21:54:10', '2023-10-16 21:54:10'),
-(46, 7, 16, 33, 'Yellow', '2023-10-16 21:54:13', '2023-10-16 21:54:13'),
-(47, 7, 16, 105, '128GB', '2023-10-16 21:54:13', '2023-10-16 21:54:13'),
-(48, 7, 16, 101, '1 Year', '2023-10-16 21:54:13', '2023-10-16 21:54:13'),
-(49, 7, 17, 33, 'Yellow', '2023-10-16 21:54:14', '2023-10-16 21:54:14'),
-(50, 7, 17, 46, '1TB', '2023-10-16 21:54:14', '2023-10-16 21:54:14'),
-(51, 7, 17, 101, '1 Year', '2023-10-16 21:54:14', '2023-10-16 21:54:14'),
-(52, 7, 18, 33, 'Yellow', '2023-10-16 21:54:16', '2023-10-16 21:54:16'),
-(53, 7, 18, 106, '512GB', '2023-10-16 21:54:16', '2023-10-16 21:54:16'),
-(54, 7, 18, 101, '1 Year', '2023-10-16 21:54:16', '2023-10-16 21:54:16');
+(1, 8, 1, 62, 'Apple', '2023-10-19 08:32:37', '2023-10-19 08:32:37'),
+(2, 8, 1, 104, 'Black', '2023-10-19 08:32:37', '2023-10-19 08:32:37'),
+(3, 8, 1, 52, 'Round Neck', '2023-10-19 08:32:37', '2023-10-19 08:32:37'),
+(4, 8, 1, 80, 'Pants', '2023-10-19 08:32:37', '2023-10-19 08:32:37'),
+(5, 8, 1, 105, '128GB', '2023-10-19 08:32:37', '2023-10-19 08:32:37'),
+(6, 8, 2, 62, 'Apple', '2023-10-19 08:32:41', '2023-10-19 08:32:41'),
+(7, 8, 2, 104, 'Black', '2023-10-19 08:32:41', '2023-10-19 08:32:41'),
+(8, 8, 2, 52, 'Round Neck', '2023-10-19 08:32:41', '2023-10-19 08:32:41'),
+(9, 8, 2, 80, 'Pants', '2023-10-19 08:32:41', '2023-10-19 08:32:41'),
+(10, 8, 2, 40, '1GB', '2023-10-19 08:32:41', '2023-10-19 08:32:41');
 
 -- --------------------------------------------------------
 
@@ -1729,7 +1690,11 @@ INSERT INTO `produc_categories` (`id`, `product_id`, `category_id`, `parent_id`)
 (14, 6, 72, '32,63,69,72'),
 (15, 7, 72, '32,63,69,72'),
 (16, 7, 73, '32,63,69,72,73'),
-(17, 7, 74, '32,63,69,72,73,74');
+(17, 7, 74, '32,63,69,72,73,74'),
+(18, 8, 70, '32,63,69,70'),
+(19, 8, 71, '32,63,69,71'),
+(20, 8, 72, '32,63,69,72'),
+(21, 8, 73, '32,63,69,72,73');
 
 -- --------------------------------------------------------
 
@@ -1762,7 +1727,10 @@ INSERT INTO `produc_img_history` (`id`, `product_id`, `images`) VALUES
 (12, 6, '/backend/files/652ad222c8844product(1).jpg'),
 (13, 7, '/backend/files/652b751376f84phone1.jpg'),
 (14, 7, '/backend/files/652b75137d85dpower1.jpg'),
-(15, 7, '/backend/files/652b75137e033power2.jpg');
+(15, 7, '/backend/files/652b75137e033power2.jpg'),
+(16, 8, '/backend/files/6530b3084a5aaproduct(4).jpg'),
+(17, 8, '/backend/files/6530b3084b17eproduct(5).jpg'),
+(18, 8, '/backend/files/6530b3084ba0dproduct(6).jpg');
 
 -- --------------------------------------------------------
 
@@ -1909,7 +1877,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `employee_id`, `name`, `email`, `image`, `phone_number`, `address`, `website`, `github`, `twitter`, `instagram`, `facebook`, `show_password`, `email_verified_at`, `password`, `remember_token`, `entry_by`, `created_at`, `updated_at`, `status`) VALUES
-(1, 1, 4, 'JONS', 'admin@gmail.com', '/backend/files/2LRy0wweiDi1mISlUSyv.jpg', '343434', 'Dhaka', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'admin', NULL, '$2a$12$KTM4o4shushdJtyHggJOEuoVzhTde88F2M2VZ1B89egoavVyQOycG', NULL, 1, '2023-06-22 03:20:43', '2023-07-14 04:47:21', 1),
+(1, 1, 4, 'JONS', 'admin@gmail.com', '/backend/files/z9JkfymRtyDBeRtgJnLx.jpg', '343434', 'Dhaka', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'admin', NULL, '$2a$12$KTM4o4shushdJtyHggJOEuoVzhTde88F2M2VZ1B89egoavVyQOycG', NULL, 1, '2023-06-22 03:20:43', '2023-07-14 04:47:21', 1),
 (2, 2, 6, 'Employee6 Six Emp', 'OnlinessSit2221@gmail.com', NULL, '324234', '', NULL, NULL, NULL, NULL, NULL, 'Employee6', NULL, '$2y$10$4kiOBSk.NaB6ufs2rjKbU.BprUAELnD8vKdxbe0kSTRD3c6p7AlO2', NULL, 1, NULL, NULL, 1),
 (3, 2, 5, 'Md. Gazi Giash Uddin Bijon', 'onlinesoft@gmail.com', '/backend/files/lPPEVF6wwxNYZVZKTUNH.jpg', '+8801915728982', 'Mirpur-1', 'null', 'null', 'null', 'null', 'null', 'Employee-4', NULL, '$2y$10$Dlo8W8qUsp./g0/KVKorr.eWVqATVLV4jyGjWApqsk6TFrl6adMhK', NULL, 1, NULL, NULL, 1),
 (4, 2, 4, 'Employee-3', 'we2022@gmail.com', NULL, '343434', '', NULL, NULL, NULL, NULL, NULL, 'PasswordPassword', NULL, '$2y$10$oOca7klZbcO0xXV8glSx6ORQBIPsXOVNmZBdnex7JzeT7cjlyiLcm', NULL, 1, NULL, '2023-09-03 04:40:03', 1),
@@ -2369,43 +2337,43 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `product_attributes`
 --
 ALTER TABLE `product_attributes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `product_attributes_values_history`
 --
 ALTER TABLE `product_attributes_values_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `product_variants`
 --
 ALTER TABLE `product_variants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `product_variants_history`
 --
 ALTER TABLE `product_variants_history`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `produc_categories`
 --
 ALTER TABLE `produc_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `produc_img_history`
 --
 ALTER TABLE `produc_img_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `projects`

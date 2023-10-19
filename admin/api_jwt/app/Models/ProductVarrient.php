@@ -23,7 +23,7 @@ class ProductVarrient extends Authenticatable
     'sku',
     'qty',
     'price',
-    'photo',
+    'file',
   ];
  
   public function subattribute()

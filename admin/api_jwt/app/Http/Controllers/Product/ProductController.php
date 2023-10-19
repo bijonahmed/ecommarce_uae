@@ -138,10 +138,54 @@ class ProductController extends Controller
         $data = Product::all();
         return response()->json($data);
     }
+
+    public function insertVarientGroup(Request $request)
+    {
+       
+        $varrients = $request->input('varrient');
+        //dd($request->all());     
+        
+        foreach ($varrients as $key => $varrientData) {
+            $v_id = $varrientData['varient_id'];
+            $find = ProductVarrient::where('id', $v_id)->first();
+            $vid = $find->id;
+            if (!empty($find)) {
+                $request->validate([
+                    "varrient.$key.sku" => 'required|string|max:255',
+                    "varrient.$key.qty" => 'required|integer|min:1',
+                    "varrient.$key.price" => 'required|min:0',
+                    "varrient.$key.file" => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust allowed file types and maximum size as needed
+                ]);
+
+                $v_data['sku']   = $varrientData['sku'];
+                $v_data['qty']   = $varrientData['qty'];
+                $v_data['price'] = $varrientData['price'];
+            
+            if ($request->hasFile("varrient.$key.file")) {
+                $file = $request->file("varrient.$key.file");
+                $uniqueFileName = Str::random(40) . '.' . $file->getClientOriginalExtension();
+                $ext = strtolower($file->getClientOriginalExtension());
+                $path = $uniqueFileName . '.' . $ext;
+                $uploadPath = '/backend/files/';
+                $upload_url = $uploadPath . $path;
+                $file->move(public_path('/backend/files/'), $upload_url);
+                $file_url = $uploadPath . $path;
+                //$data['image'] = $file_url;
+                //$file->storeAs('uploads', $uniqueFileName);
+                $v_data['file'] = $file_url;
+            }
+                
+               // echo '<pre>';
+               // print_r($v_data);
+
+                ProductVarrient::where('id', $vid)->update($v_data);
+            }
+        }
+
+        return response()->json(['message' => 'Data updated successfully'], 200);
+    }
     public function insertProductVarient(Request $request)
     {
-        //ProductVarrientHistory
-        //dd($request->selectedHistoryValues);
         $validator = Validator::make($request->all(), [
             'product_id'            => 'required|integer',
             'selectedHistoryValues' => 'required',
@@ -151,17 +195,23 @@ class ProductController extends Controller
         }
         $res     = $request->selectedHistoryValues;
         array_shift($res);
-        $arr_val = implode(',', $res);
-       
+
+        // Use array_filter to remove "undefined" values
+        $resultArray = array_filter($res, function ($value) {
+            return $value !== "undefined";
+        });
+        $arr_val = implode(',', $resultArray);
+        //dd($arr_val);
         $insertArr                        = new ProductVarrient();
         $insertArr->pro_attr_val_his_id   = $arr_val;
         $insertArr->product_id            = $request->product_id;
         $insertArr->entry_by              = $this->userid;
         $insertArr->save();
+
         $pro_varient_id = $insertArr->id;
-        foreach ($res as $key => $val) {
-            $findrow = AttributeValues::where('id',$val)->select('name')->first();
-            // echo "$key=====$val.<br>";
+        foreach ($resultArray as $key => $val) {
+            $findrow = AttributeValues::where('id', $val)->select('name')->first();
+            //echo "$key=====$val.<br>";
             $insertArr                        = new ProductVarrientHistory();
             $insertArr->pro_attr_val_his_id   = $val;
             $insertArr->varient_name          = $findrow->name;
@@ -223,12 +273,13 @@ class ProductController extends Controller
         $product_id = $request->product_id;
         $arrData    = ProductVarrientHistory::getProductVarientHistory($product_id);
         //dd($arrData);
+        $formatedData = [];
         foreach ($arrData as $Key => $value) {
             $formatedData[] = [
-                'varient_id'       => $value->id,
+                'varient_id'       => $value->pro_varient_id,
                 'sku'              => $value->sku,
                 'qty'              => $value->qty,
-                'photo'            => $value->photo,
+                'file'             => $value->file,
                 'product_id'       => $value->product_id,
                 'path'             => $value->varient_name,
             ];
@@ -237,8 +288,11 @@ class ProductController extends Controller
     }
     public function deleteValrient(Request $request)
     {
-        $data = ProductVarrient::find($request->id);
+        // dd($request->all());
+        $data = ProductVarrient::find($request->varient_id);
         $data->delete();
+
+        ProductVarrientHistory::where('pro_varient_id', $request->varient_id)->delete();
         return response()->json("Delete Varient");
     }
 }
