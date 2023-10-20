@@ -13,6 +13,7 @@ use App\Models\ProductAttributeValue;
 use App\Models\ProductVarrientHistory;
 use App\Models\Categorys;
 use App\Models\ProductAttributes;
+use App\Models\ProductCategory;
 use App\Models\Product;
 use App\Models\ProductVarrient;
 use App\Models\AttributeValues;
@@ -141,47 +142,57 @@ class ProductController extends Controller
 
     public function insertVarientGroup(Request $request)
     {
-       
+
         $varrients = $request->input('varrient');
         //dd($request->all());     
-        
+
         foreach ($varrients as $key => $varrientData) {
             $v_id = $varrientData['varient_id'];
             $find = ProductVarrient::where('id', $v_id)->first();
             $vid = $find->id;
             if (!empty($find)) {
-                $request->validate([
-                    "varrient.$key.sku" => 'required|string|max:255',
-                    "varrient.$key.qty" => 'required|integer|min:1',
-                    "varrient.$key.price" => 'required|min:0',
-                    "varrient.$key.file" => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust allowed file types and maximum size as needed
+                
+                //start validation
+
+                $validator = Validator::make($varrientData, [
+                    "sku" => 'required',
+                    "qty" => 'required|min:1',
+                    "price" => 'required|min:0',
+                    "file" => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust allowed file types and maximum size as needed
                 ]);
+            
+                if ($validator->fails()) {
+                    return response()->json(['errors' => $validator->errors()], 422);
+                }
+                //end validation 
+
+
 
                 $v_data['sku']   = $varrientData['sku'];
                 $v_data['qty']   = $varrientData['qty'];
                 $v_data['price'] = $varrientData['price'];
-            
-            if ($request->hasFile("varrient.$key.file")) {
-                $file = $request->file("varrient.$key.file");
-                $uniqueFileName = Str::random(40) . '.' . $file->getClientOriginalExtension();
-                $ext = strtolower($file->getClientOriginalExtension());
-                $path = $uniqueFileName . '.' . $ext;
-                $uploadPath = '/backend/files/';
-                $upload_url = $uploadPath . $path;
-                $file->move(public_path('/backend/files/'), $upload_url);
-                $file_url = $uploadPath . $path;
-                //$data['image'] = $file_url;
-                //$file->storeAs('uploads', $uniqueFileName);
-                $v_data['file'] = $file_url;
-            }
-                
-               // echo '<pre>';
-               // print_r($v_data);
+
+                if ($request->hasFile("varrient.$key.file")) {
+                    $file = $request->file("varrient.$key.file");
+                    $uniqueFileName = Str::random(40) . '.' . $file->getClientOriginalExtension();
+                    $ext = strtolower($file->getClientOriginalExtension());
+                    //$path = $uniqueFileName . '.' . $ext;
+                    $path = $uniqueFileName;
+                    $uploadPath = '/backend/files/';
+                    $upload_url = $uploadPath . $path;
+                    $file->move(public_path('/backend/files/'), $upload_url);
+                    $file_url = $uploadPath . $path;
+                    //$data['image'] = $file_url;
+                    //$file->storeAs('uploads', $uniqueFileName);
+                    $v_data['file'] = $file_url;
+                }
+
+                // echo '<pre>';
+                // print_r($v_data);
 
                 ProductVarrient::where('id', $vid)->update($v_data);
             }
         }
-
         return response()->json(['message' => 'Data updated successfully'], 200);
     }
     public function insertProductVarient(Request $request)
@@ -278,21 +289,50 @@ class ProductController extends Controller
             $formatedData[] = [
                 'varient_id'       => $value->pro_varient_id,
                 'sku'              => $value->sku,
+                'price'            => $value->price,
                 'qty'              => $value->qty,
                 'file'             => $value->file,
+                'showfile'         => !empty($value->file) ? url($value->file) : "",
                 'product_id'       => $value->product_id,
                 'path'             => $value->varient_name,
             ];
         }
+
+        //dd($formatedData);
         return response()->json($formatedData);
     }
     public function deleteValrient(Request $request)
     {
-        // dd($request->all());
+
         $data = ProductVarrient::find($request->varient_id);
         $data->delete();
 
         ProductVarrientHistory::where('pro_varient_id', $request->varient_id)->delete();
         return response()->json("Delete Varient");
+    }
+
+    public function productrow($id)
+    {
+
+        $produCategory = ProductCategory::where('product_id', $id)->get();
+        $prodImages = Product::find($id);
+        $returnData = [];
+        foreach ($produCategory as $key => $val) {
+            //echo "$val->parent_id<br>";
+            $returnData[] = DB::select("SELECT GROUP_CONCAT(name SEPARATOR ', ') AS name,id FROM categorys WHERE id IN ($val->parent_id)");
+        }
+        $concatenated_names = [];
+        foreach ($returnData as $inner_array) {
+            foreach ($inner_array as $obj) {
+                $concatenated_names[] = $obj->name;
+            }
+        }
+        $resulting_string = implode("<br/>", $concatenated_names);
+        //dd($resulting_string);
+        $responseData['productImg'] = !empty($prodImages) ? url($prodImages->thumnail_img) : "";
+        $responseData['product']    = Product::find($id);
+        $responseData['product_cat'] = $resulting_string;
+        // dd($responseData);
+        return response()->json($responseData);
     }
 }

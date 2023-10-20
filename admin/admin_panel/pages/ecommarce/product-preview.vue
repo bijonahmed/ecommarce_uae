@@ -32,80 +32,90 @@
                                         <tr>
                                             <td width="21%">Product Name</td>
                                             <td width="1%"><strong>:</strong></td>
-                                            <td width="78%">dd</td>
+                                            <td width="78%">{{ productData.name }}</td>
                                         </tr>
                                         <tr>
                                             <td>Meta Tag Title</td>
                                             <td><strong>:</strong></td>
-                                            <td>sdf</td>
+                                            <td>{{ productData.meta_title }}</td>
                                         </tr>
                                         <tr>
                                             <td>Meta Tag Description</td>
                                             <td><strong>:</strong></td>
-                                            <td>dsf</td>
+                                            <td>{{ productData.meta_description }}</td>
                                         </tr>
                                         <tr>
                                             <td>Meta Tag Keywords</td>
                                             <td><strong>:</strong></td>
-                                            <td>dsf</td>
+                                            <td>{{ productData.meta_keyword }}</td>
                                         </tr>
                                         <tr>
                                             <td>Product Tags</td>
                                             <td><strong>:</strong></td>
-                                            <td>4sdf</td>
+                                            <td>{{ productData.product_tag }}</td>
                                         </tr>
+
                                         <tr>
                                             <td colspan="3">&nbsp;</td>
                                         </tr>
                                         <tr>
                                             <td>Model</td>
                                             <td><strong>:</strong></td>
-                                            <td>sdf</td>
+                                            <td>{{ productData.model }}</td>
                                         </tr>
                                         <tr>
                                             <td>SKU</td>
                                             <td><strong>:</strong></td>
-                                            <td>sd</td>
+                                            <td>{{ productData.sku }}</td>
                                         </tr>
                                         <tr>
                                             <td>External Link</td>
                                             <td><strong>:</strong></td>
-                                            <td>sd</td>
+                                            <td>{{ productData.external_link }}</td>
                                         </tr>
                                         <tr>
                                             <td>Description</td>
                                             <td><strong>:</strong></td>
-                                            <td>sd</td>
+                                            <td>
+                                                <div class="pro_description marleft"></div>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Price</td>
                                             <td><strong>:</strong></td>
-                                            <td>s</td>
+                                            <td>{{ productData.price }}</td>
                                         </tr>
                                         <tr>
                                             <td>Unit</td>
                                             <td><strong>:</strong></td>
-                                            <td>s</td>
+                                            <td>{{ productData.unit }}</td>
                                         </tr>
                                         <tr>
                                             <td>Discount</td>
                                             <td><strong>:</strong></td>
-                                            <td>s</td>
+                                            <td>{{ productData.discount }}</td>
                                         </tr>
                                         <tr>
                                             <td>Quantity</td>
                                             <td><strong>:</strong></td>
-                                            <td>sadf</td>
+                                            <td>{{ productData.stock_qty }}</td>
                                         </tr>
                                         <tr>
-                                            <td>Minimum Quantity</td>
+                                            <td>Stock Minimum Quantity</td>
                                             <td><strong>:</strong></td>
-                                            <td>sdf</td>
+                                            <td>{{ productData.stock_mini_qty }}</td>
                                         </tr>
                                         <tr>
                                             <td>Out Of Stock Status</td>
                                             <td><strong>:</strong></td>
-                                            <td>sdf</td>
+                                            <td>
+                                                <span v-if="productData.stock_status === 1" class="marleft">2-3 Days</span>
+                                                <span v-if="productData.stock_status === 2" class="marleft">In Stock</span>
+                                                <span v-if="productData.stock_status === 3" class="marleft">Out Of Stock</span>
+                                                <span v-if="productData.stock_status === 4" class="marleft">Pre-Order</span>
+                                                <span v-if="productData.stock_status === 5" class="marleft">Others</span>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>&nbsp;</td>
@@ -115,27 +125,49 @@
                                         <tr>
                                             <td>Free Shipping</td>
                                             <td><strong>:</strong></td>
-                                            <td>sdfsdf</td>
+                                            <td>
+                                                <div v-if="productData.free_shopping === 0" class="marleft">No</div>
+                                                <div v-if="productData.free_shopping === 1" class="marleft">Yes</div>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Flat Rate</td>
                                             <td><strong>:</strong></td>
-                                            <td>sdfsdf</td>
+                                            <td>
+                                                <div v-if="productData.flat_rate_status === 0" class="marleft">No</div>
+                                                <div v-if="productData.flat_rate_status === 1" class="marleft">Yes</div>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Shipping Days</td>
                                             <td><strong>:</strong></td>
-                                            <td>sdf</td>
+                                            <td>{{ productData.shipping_days }}</td>
                                         </tr>
                                         <tr>
                                             <td>Vat</td>
                                             <td><strong>:</strong></td>
-                                            <td>sdf</td>
+                                            <td>{{ productData.vat }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Vat Status</td>
+                                            <td><strong>:</strong></td>
+                                            <td>
+                                                <div v-if="productData.vat_status === 0" class="marleft">No</div>
+                                                <div v-if="productData.vat_status === 1" class="marleft">Yes</div>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Tax</td>
                                             <td><strong>:</strong></td>
-                                            <td>sdf</td>
+                                            <td>{{ productData.tax }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tax Status</td>
+                                            <td><strong>:</strong></td>
+                                            <td>
+                                                <div v-if="productData.tax_status === 0" class="marleft">No</div>
+                                                <div v-if="productData.tax_status === 1" class="marleft">Yes</div>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>&nbsp;</td>
@@ -145,24 +177,46 @@
                                         <tr>
                                             <td>Status</td>
                                             <td><strong>:</strong></td>
-                                            <td>sdf</td>
+                                            <td>
+                                                <div v-if="productData.tax_status === 0" class="marleft">Draft</div>
+                                                <div v-if="productData.tax_status === 1" class="marleft">Publish</div>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Manufacturer</td>
                                             <td><strong>:</strong></td>
-                                            <td>sadfsdf</td>
+                                            <td>{{ productData.manufacturer }}</td>
                                         </tr>
                                         <tr>
                                             <td>Categories</td>
                                             <td><strong>:</strong></td>
-                                            <td>sdf</td>
+                                            <td>
+                                                <div class="output-container">
+                                                    <span class="show_categorys"></span>
+                                                </div>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Download Link</td>
                                             <td><strong>:</strong></td>
-                                            <td>sdf</td>
+                                            <td>{{ productData.download_link }}</td>
                                         </tr>
                                     </table>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-3">
+                                        <div class="alert alert-primary" role="alert">
+                                          Thumbnail Images<br/>
+                                          {{ productImg }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="alert alert-primary" role="alert">
+                                            Additional Images
+                                        </div>
+                                    </div>
 
                                 </div>
 
@@ -191,7 +245,7 @@
                                                 <td>{{ data.qty }}</td>
                                                 <td>{{ data.price }}</td>
 
-                                                <td><img :src="data.file" alt="N/A" style="height: 50px; width: 60px;" class="img-fluid max-width-100 img-thumbnail" />
+                                                <td><img :src="data.showfile" alt="N/A" style="height: 50px; width: 60px;" class="img-fluid max-width-100 img-thumbnail" />
                                                 </td>
 
                                             </tr>
@@ -212,12 +266,6 @@
 </div>
 </template>
 
-<style>
-.bg-dark {
-    background-color: #0d4b88 !important;
-}
-</style>
-
 <script>
 export default {
     head: {
@@ -225,18 +273,39 @@ export default {
     },
     data() {
         return {
-            insertdata: {
+            productData: {
                 id: '',
                 name: '',
                 description: '',
                 meta_title: '',
                 meta_description: '',
                 meta_keyword: '',
+                description: '',
                 parent_id: 0,
                 mobile_view_class: '',
-                keyword: '',
-                status: 1,
+                product_tag: '',
+                discount: '',
+                sku: '',
+                model: '',
+                external_link: '',
+                price: '',
+                unit: '',
+                stock_qty: '',
+                stock_mini_qty: '',
+                stock_status: '',
+                free_shopping: '',
+                flat_rate_status: '',
+                shipping_days: '',
+                vat: '',
+                vat_status: '',
+                tax: '',
+                tax_status: '',
+                status: '',
+                manufacturer: '',
+                download_link: '',
+
             },
+            product_cat: [],
             arr_his_val: [],
             selectedItem: [],
             historVarient: [{
@@ -244,22 +313,24 @@ export default {
                 sku: '',
                 qty: '',
                 price: '',
-                file: null
+                file: ''
             }],
             arr_val: [],
             attributeslist: [],
             attrValList: [],
             pro_arr_val_history: [],
+            productImg:"",
             notifmsg: '',
             errors: {},
         }
     },
     async mounted() {
-        this.attributHistory();
+        this.productDetails();
         this.varientHistory();
-        await this.fetchAttributeList();
+        // await this.fetchAttributeList();
     },
     methods: {
+
         varientHistory() {
             let product_id = this.$route.query.parameter;
             this.$axios.get(`/product/getVarientHistory`, {
@@ -267,93 +338,61 @@ export default {
                     product_id: product_id
                 }
             }).then(response => {
-                console.log(`Varient History: ${response.data}`);
+                //console.log(`Varient History: ${response.data}`);
                 this.historVarient = response.data;
-                //this.round_success_noti();
-                //this.attributHistory();
             });
         },
-        // getSelectedValues() {
-        //     let selectedValues = Object.keys(this.arr_val).filter(
-        //         key => this.arr_val[key]
-        //     );
-        //     const product_attribute_id = $(".product_attribute_id").val();
-        //     let AttrValues = selectedValues;
-        //     const product_id = this.$route.query.parameter;
-        //     console.log('attr:', product_attribute_id);
-        //     console.log('Selected Items:', AttrValues);
-        //     //console.log(`selected val ${this.arr_val}`);
-        //     this.$axios.get(`/product/insertProductAttrAndValues`, {
-        //         params: {
-        //             product_attribute_id: product_attribute_id,
-        //             AttrValues: AttrValues,
-        //             product_id: product_id
-        //         }
-        //     }).then(response => {
-        //         this.round_success_noti();
-        //         this.attributHistory();
-        //     });
-        //     this.arr_val = {};
-        // },
-        showAttrVal(attribue_id) {
-            $(".product_attribute_id").val(attribue_id);
-            this.$axios.get(`/category/attributeValRows/${attribue_id}`).then(response => {
-                this.attrValList = response.data.data;
-            });
-            //attrValList
-        },
-        // saveData() {
-        //     const formData = new FormData();
-        //     formData.append('file', this.file);
-        //     formData.append('id', this.insertdata.id);
-        //     formData.append('name', this.insertdata.name);
-        //     formData.append('mobile_view_class', this.insertdata.mobile_view_class);
-        //     //formData.append('description', desc);
-        //     formData.append('description', this.insertdata.description);
-        //     formData.append('meta_title', this.insertdata.meta_title);
-        //     formData.append('meta_description', this.insertdata.meta_description);
-        //     formData.append('meta_keyword', this.insertdata.meta_keyword);
-        //     formData.append('parent_id', this.insertdata.parent_id);
-        //     formData.append('status', this.insertdata.status);
-        //     formData.append('keyword', this.insertdata.keyword);
-        //     // formData.append('status', this.insertdata.status);
-        //     const headers = {
-        //         'Content-Type': 'multipart/form-data'
-        //     };
-        //     this.$axios.post('/category/save',
-        //         formData, {
-        //             headers
-        //         }).then((res) => {
-        //         $('#formrest')[0].reset();
-        //         this.success_noti();
-        //         this.$router.push('/ecommarce/category-list');
-        //     }).catch(error => {
-        //         if (error.response.status === 422) {
-        //             this.errors = error.response.data.errors;
-        //         }
-        //     });
-        // },
-        attributHistory() {
+
+        productDetails() {
             let product_id = this.$route.query.parameter;
-            this.$axios.get(`/product/getAttrHistory/${product_id}`).then(response => {
-                console.log(response.data);
-                this.pro_arr_val_history = response.data;
+            this.$axios.get(`/product/productrow/${product_id}`).then(response => {
+                //console.log("product row:" + response.data);
+                this.productData.name = response.data.product.name;
+                this.productData.description = response.data.product.description;
+                this.productData.meta_title = response.data.product.meta_title;
+                this.productData.meta_description = response.data.product.meta_description;
+                this.productData.meta_keyword = response.data.product.meta_keyword;
+                this.productData.product_tag = response.data.product.product_tag;
+                this.productData.keyword = response.data.product.keyword;
+                this.productData.model = response.data.product.model;
+                this.productData.sku = response.data.product.sku;
+                this.productData.external_link = response.data.product.external_link;
+                $(".pro_description").html(response.data.product.description);
+                this.productData.price = response.data.product.price;
+                this.productData.unit = response.data.product.unit;
+                this.productData.stock_qty = response.data.product.stock_qty;
+                this.productData.stock_mini_qty = response.data.product.stock_mini_qty;
+                this.productData.discount = response.data.product.discount;
+                this.productData.stock_status = response.data.product.stock_status;
+                this.productData.free_shopping = response.data.product.free_shopping;
+                this.productData.flat_rate_status = response.data.product.flat_rate_status;
+                this.productData.shipping_days = response.data.product.shipping_days;
+                this.productData.vat = response.data.product.vat;
+                this.productData.vat_status = response.data.product.vat_status;
+                this.productData.tax = response.data.product.tax;
+                this.productData.tax_status = response.data.product.tax_status;
+                this.productData.status = response.data.product.status;
+                this.productData.manufacturer = response.data.product.status;
+                this.productData.download_link = response.data.product.download_link;
+                this.productData.productImg = response.data.productImg.thumnail_img;
+                $(".show_categorys").html(response.data.product_cat)
+                // = response.data.product_cat;
+                console.log(`Product category ${response.data.product_cat}`);
+
             });
-        },
-        async fetchAttributeList() {
-            $(".customerSpinner").show();
-            try {
-                const response = await this.$axios.get(`/category/attributes-list`);
-                this.attributeslist = response.data;
-                $(".customerSpinner").hide();
-            } catch (error) {
-                console.error(error);
-            }
         },
 
     },
 }
 </script>
-    <style scoped>
 
-    </style>
+<style scoped>
+.marleft {
+    margin-left: -7px;
+}
+
+.output-container {
+    white-space: pre-line;
+    margin-left: -7px;
+}
+</style>

@@ -186,10 +186,11 @@
                                                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example" v-model="insertdata.stock_status">
                                                                         <option selected>Select</option>
                                                                         <!-- categories -->
-                                                                        <option value="6">2-3 Days</option>
-                                                                        <option value="7">In Stock</option>
-                                                                        <option value="5">Out Of Stock</option>
-                                                                        <option value="8">Pre-Order</option>
+                                                                        <option value="1">2-3 Days</option>
+                                                                        <option value="2">In Stock</option>
+                                                                        <option value="3">Out Of Stock</option>
+                                                                        <option value="4">Pre-Order</option>
+                                                                        <option value="5">Others</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -402,7 +403,7 @@ export default {
                 unit: '',
                 stock_qty: 1,
                 stock_mini_qty: 1,
-                stock_status: '',
+                stock_status: 1,
                 manufacturer: '',
                 download_link: '',
                 discount: 0,

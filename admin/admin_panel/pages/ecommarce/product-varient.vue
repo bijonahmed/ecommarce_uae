@@ -91,10 +91,12 @@
                                                     <td>{{ data.path }}</td>
                                                     <td>
                                                         <input type="hidden" v-model="data.varient_id" name="varient_id" style="width: 50px;" />
-                                                        <input type="text" placeholder="SKU" v-model="data.sku" :name="'data[' + index + '][sku]'" style="width: 50px;" /></td>
-                                                    <td><input type="text" placeholder="Qty" v-model="data.qty" :name="'data[' + index + '][qty]'" style="width: 50px;" /></td>
-                                                    <td><input type="text" placeholder="0.00" v-model="data.price" :name="'data[' + index + '][price]'" style="width: 50px;" /> </td>
-                                                    <td><input type="file" @change="onFileChange(index, $event)" accept="image/*" />
+                                                        <input type="text" placeholder="SKU" v-model="data.sku" :name="'data[' + index + '][sku]'" style="width: 50px;" required />
+                                                        <p class="error-message" v-if="errors.name">{{ errors.sku }}</p>
+                                                    </td>
+                                                    <td><input type="text" placeholder="Qty" v-model="data.qty" :name="'data[' + index + '][qty]'" style="width: 50px;" required /></td>
+                                                    <td><input type="text" placeholder="0.00" v-model="data.price" :name="'data[' + index + '][price]'" style="width: 50px;"  required /> </td>
+                                                    <td><input type="file" @change="onFileChange(index, $event)" accept="image/*" required />
                                                     </td>
                                                     <td><button type="button" @click="deleteVarrientrow(data.varient_id)">DEL</button></td>
                                                 </tr>
@@ -196,17 +198,22 @@ export default {
                     'Content-Type': 'multipart/form-data'
                 }
             }).then(response => {
+                const product_id = this.$route.query.parameter;
+                //return false;
+                this.$router.push({
+                    path: '/ecommarce/product-preview',
+                    query: {
+                        parameter: product_id
+                    }
+                })
                 console.log('Saved successfully:', response.data);
                 //this.attributHistory();
-            });
-            const product_id = this.$route.query.parameter;
-            //return false;
-            this.$router.push({
-                path: '/ecommarce/product-preview',
-                query: {
-                    parameter: product_id
+            }).catch(error => {
+                if (error.response.status === 422) {
+                    this.errors = error.response.data.errors;
                 }
-            })
+            });
+
             return false;
             //redirect 
 

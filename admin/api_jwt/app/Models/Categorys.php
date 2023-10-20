@@ -42,14 +42,6 @@ class Categorys extends Authenticatable
       return $this->belongsTo(Categorys::class, 'parent_id');
   }
 
-  // public function children()
-  // {
-  //   return $this->hasMany('App\Models\Categorys', 'parent_id');
-  // }
-
-  // public function parent()
-  // {
-  //   return $this->belongsTo('App\Models\Categorys', 'parent_id');
-  // }
+ 
  
 }

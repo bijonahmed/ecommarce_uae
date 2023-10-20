@@ -118,6 +118,7 @@ Route::group([
     Route::get('insertProductVarient', [ProductController::class, 'insertProductVarient']);
     Route::get('deleteValrient', [ProductController::class, 'deleteValrient']);
     Route::get('getAttrHistory/{id}', [ProductController::class, 'getAttrHistory']);
+    Route::get('productrow/{id}', [ProductController::class, 'productrow']);
     Route::get('getVarientHistory', [ProductController::class, 'getVarientHistory']);
 
   //  Route::get('categoryRow/{id}', [CategoryController::class, 'findCategoryRow']);

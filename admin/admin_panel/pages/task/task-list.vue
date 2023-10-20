@@ -45,7 +45,7 @@
                             <div class="input-group mb-3">
                                 <select name="department_id" class="form-select" v-model="searchQuery.project_id" @change="handleSearch">
                                     <option value="">Select</option>
-                                    <option v-for='data in pro' :value='data.id'>{{data.name}}</option>
+                                    <!-- <option v-for='data in pro' :value='data.id'>{{data.name}}</option> -->
                                 </select>
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                             <div class="input-group mb-3">
                                 <select name="department_id" v-model="searchQuery.emp_id" class="form-select">
                                     <option value="">Select</option>
-                                    <option v-for='data in emp' :value='data.id'>{{data.name}}</option>
+                                    <!-- <option v-for='data in emp' :value='data.id'>{{data.name}}</option> -->
                                 </select>
                             </div>
                         </div>
