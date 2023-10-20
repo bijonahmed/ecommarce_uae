@@ -95,7 +95,7 @@
                                                         <p class="error-message" v-if="errors.name">{{ errors.sku }}</p>
                                                     </td>
                                                     <td><input type="text" placeholder="Qty" v-model="data.qty" :name="'data[' + index + '][qty]'" style="width: 50px;" required /></td>
-                                                    <td><input type="text" placeholder="0.00" v-model="data.price" :name="'data[' + index + '][price]'" style="width: 50px;"  required /> </td>
+                                                    <td><input type="text" placeholder="0.00" v-model="data.price" :name="'data[' + index + '][price]'" style="width: 50px;" required /> </td>
                                                     <td><input type="file" @change="onFileChange(index, $event)" accept="image/*" required />
                                                     </td>
                                                     <td><button type="button" @click="deleteVarrientrow(data.varient_id)">DEL</button></td>

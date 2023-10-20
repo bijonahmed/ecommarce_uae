@@ -58,6 +58,7 @@
                         <table class="table table-hover table-sm">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Name</th>
                                     <th class="text-center">Status</th>
                                     <th class="text-center">Action</th>
@@ -65,6 +66,7 @@
                             </thead>
                             <tbody>
                                 <tr v-for="item in paginatedData" :key="item.id">
+                                    <td>{{ item.id }}</td>
                                     <td>{{ item.name }}</td>
                                     <td class="text-center">
                                         <span v-if="(item.status == 1)"> Active </span>
@@ -72,9 +74,8 @@
                                     </td>
                                     <td>
                                         <center>
-                                            <!-- <nuxt-link :to="{name: 'customer-edit-id', params: {id: item.id}}" variant="warning" size="sm"><i class="bx bx-edit"></i>EDIT
-                                                </nuxt-link> -->
-                                            <span @click="edit(item.id)"><i class="bx bx-edit"></i>Edit</span>
+                                            <span @click="edit(item.id)"><button type="button"><i class="bx bx-edit"></i></button></span>
+                                            <span @click="preview(item.id)"><button type="button"><i class="fadeIn animated bx bx-zoom-in"></i></button></span>
                                         </center>
                                     </td>
                                 </tr>
@@ -101,7 +102,6 @@
 </div>
 </template>
 
-    
 <script>
 import _ from 'lodash';
 export default {
@@ -154,30 +154,17 @@ export default {
         },
     },
     methods: {
-        saveData() {
-            const formData = new FormData();
-            formData.append('id', this.insertdata.id);
-            formData.append('name', this.insertdata.name);
-            formData.append('status', this.insertdata.status);
-            const headers = {
-                'Content-Type': 'multipart/form-data'
-            };
-            this.$axios.post('/project/saveProject',
-                formData, {
-                    headers
-                }).then((res) => {
-                $('#formrest')[0].reset();
-                this.success_noti();
-                this.fetchData();
-                $('#myModal').modal('show')
-                this.$router.push('/project/project-list');
 
-            }).catch(error => {
-                if (error.response.status === 422) {
-                    this.errors = error.response.data.errors;
+        preview(id) {
+            this.$router.push({
+                path: '/ecommarce/product-preview',
+                query: {
+                    parameter: id
                 }
-            });
+            })
+
         },
+
         async fetchData() {
             $(".customerSpinner").show();
             try {
@@ -198,30 +185,18 @@ export default {
             this.currentPage++;
         },
         edit(id) {
-            $('#myModal').modal('show')
-            this.$axios.get(`/project/checkProjectId/${id}`).then(response => {
-                console.log(response.data.data.name)
-                this.insertdata.id = response.data.data.id;
-                this.insertdata.name = response.data.data.name;
-                this.insertdata.status = response.data.data.status;
-            });
+            this.$router.push({
+                path: '/ecommarce/product-edit',
+                query: {
+                    parameter: id
+                }
+            })
         },
-        hideModal() {
-            $('#myModal').modal('hide')
-        },
-        success_noti() {
-            Lobibox.notify('success', {
-                pauseDelayOnHover: true,
-                continueDelayOnInactiveTab: false,
-                position: 'top right',
-                icon: 'bx bx-check-circle',
-                msg: 'Your data has been successfully update.'
-            });
-        },
+
     },
 };
 </script>
-    
+
 <style scoped>
 .pagenation {
     margin-top: 10px;

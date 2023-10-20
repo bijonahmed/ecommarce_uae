@@ -191,7 +191,7 @@ hr {
   background: #000;
     background-clip: border-box;
   background-clip: padding-box;
-  border-bottom: 1px solid #e4e4e4;
+  border-bottom: 1px solid #151515;
 }
 </style>
 <script>

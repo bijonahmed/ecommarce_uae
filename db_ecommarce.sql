@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 19, 2023 at 10:37 AM
+-- Generation Time: Oct 20, 2023 at 05:55 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -1515,14 +1515,14 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `slug`, `description`, `meta_title`, `meta_description`, `meta_keyword`, `product_tag`, `model`, `sku`, `external_link`, `cash_dev_status`, `price`, `unit`, `stock_qty`, `stock_mini_qty`, `stock_status`, `manufacturer`, `download_link`, `discount`, `discount_status`, `shipping_days`, `free_shopping`, `flat_rate_status`, `flat_rate_price`, `vat`, `vat_status`, `tax`, `tax_status`, `thumnail_img`, `status`, `entry_by`, `created_at`, `updated_at`) VALUES
-(1, 'Amazon Essentials Women\'s', 'Amazon-Essentials-Short-Sleeve-Crewneck-T-Shirt', '<p>sdsd</p>', 'tag', 'Product1', 'Product1', 'tesing, data, mesign,', 0, 'SKU', 'http://localhost:3000/ecommarce/product-add', 2, 10.00000, 'KG', 1, 1, 7, 0, 'fgh', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/BfaCxgEuEkpgQ4BETzAl.jpg', 1, 1, NULL, NULL),
-(2, 'Pretty Polly Women\'s Eco Active Wear Short Sleeve T-Shirt', 'pretty-polly-women-s-eco-active-wear-short-sleeve-t-shirt', '<h2 style=\"margin-left:0px;\">About this item</h2><ul><li><span style=\"color:rgb(15,17,17);\">94% Polyamide, 6% Elastane</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Pull On closure</span></li><li><span style=\"color:rgb(15,17,17);\">Machine Wash</span></li><li><span style=\"color:rgb(15,17,17);\">SUSTAINABLE: Pretty Polly’s new range of Active-Wear is another step towards a sustainable future. Uniquely made from predominately recycled yarns, the garments are seamless, soft and very comfortable to wear, specially made to move with you as you exercise.</span></li><li><span style=\"color:rgb(15,17,17);\">SHORT SLEEVE T-SHIRT: Pretty Polly Active-Wear Short Sleeve T-Shirt is a seamless top which features a patterned mesh panels detail on the sides for breathability. Fitted sleeves and full back.</span></li><li><span style=\"color:rgb(15,17,17);\">FEATURES: Garment has specially designed mesh panel to aid breathability. Stay cool when working out or doing other activities while wearing the Eco Active Wear.</span></li><li><span style=\"color:rgb(15,17,17);\">ACTIVITIES: The perfect apparel for yoga, pilates, and other non-vigorous workouts. Also great to wear when lounging or running errands.</span></li><li><span style=\"color:rgb(15,17,17);\">CARE INSTRUCTIONS: Machine Wash, Line Dry.</span></li></ul>', 'Pretty Polly Women\'s Eco Active Wear Short Sleeve T-Shirt', 'Pretty Polly Women\'s Eco Active Wear Short Sleeve T-Shirt', 'Pretty Polly Women\'s Eco Active Wear Short Sleeve T-Shirt', 'tat, ata', 0, 'SKU', 'http://localhost:3000/ecommarce/product-add', 2, 5000.00000, 'PC', 1, 1, 7, 0, 'Juices', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/OD4UvxeoKVR7RJbX6I6i.jpg', 1, 1, NULL, NULL),
-(3, 'Butterfly Women\'s Higo Lady Shirt,', 'butterfly-women-s-higo-lady-shirt-', '<h2 style=\"margin-left:0px;\">About this item</h2><ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, women’s table tennis shirt with a triangle pattern</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players</span></li><li><span style=\"color:rgb(15,17,17);\">Offers short sleeves, a V-neck style collar and a women’s tapered cut</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester)</span></li></ul>', 'Butterfly Women\'s Higo Lady Shirt,', 'Butterfly Women\'s Higo Lady Shirt,', 'Butterfly Women\'s Higo Lady Shirt,', '', 0, 'SKU', 'http://localhost:3000/ecommarce/product-add', 2, 500.00000, 'KG', 1, 1, 7, 0, 'fgh', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/y7bCz9xCiFutYGC0Bh8m.jpg', 1, 1, NULL, NULL),
-(4, 'Women\'s Higo Lady Shirt,', 'women-s-higo-lady-shirt-', '<h2 style=\"margin-left:0px;\">About this item</h2><ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, women’s table tennis shirt with a triangle pattern</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players</span></li><li><span style=\"color:rgb(15,17,17);\">Offers short sleeves, a V-neck style collar and a women’s tapered cut</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester)</span></li></ul>', 'Women\'s Higo Lady Shirt,', '', 'Women\'s Higo Lady Shirt,', '', 0, '48778', '', 2, 6500.00000, 'KG', 1, 1, 0, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/2e0Yu34IU6YJDksixmcb.jpg', 1, 1, NULL, NULL),
-(5, 'ButterflyTable Tennis Shirt', 'butterflytable-tennis-shirt', '<ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, table tennis shirt for men</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players’ Timo Boll, Dimitrij Ovtcharov and Patrick Franziska</span></li><li><span style=\"color:rgb(15,17,17);\">A three button Henley style shirt with complementing pattern. Shirt allows room to move with slits on the side of the hem.</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester).</span></li></ul>', 'ButterflyTable Tennis Shirt', 'ButterflyTable Tennis Shirt', 'ButterflyTable Tennis Shirt', 'ButterflyTable, Tennis, Shirt', 0, 'SKU', '', 2, 500.00000, '156', 1, 1, 0, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/QIMz4358Zf7It78r4y2S.jpg', 1, 1, NULL, NULL),
-(6, 'Tennis Shirt', 'tennis-shirt', '<ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, table tennis shirt for men</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players’ Timo Boll, Dimitrij Ovtcharov and Patrick Franziska</span></li><li><span style=\"color:rgb(15,17,17);\">A three button Henley style shirt with complementing pattern. Shirt allows room to move with slits on the side of the hem.</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester).</span></li></ul>', 'Tennis Shirt', 'Tennis Shirt', 'Tennis Shirt', ', Tennis, Shirt', 223, '23', '', 2, 23.00000, 'KG', 1, 1, 0, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/MMKa0CB2lxnICqaL1OcB.jpg', 1, 1, NULL, NULL),
-(7, 'Pents', 'pents', '<p>PentsPentsPentsPentsPents</p>', 'Pents', 'Pents', 'Pents', 'Pents, Pents, Pents', 5, '22', '', 2, 23.00000, 'KG', 1, 1, 7, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/RdDN3AZfvRauDh9SK45T.jpg', 1, 1, NULL, NULL),
-(8, 'Computer', 'computer', '<p>ComputerComputerComputerComputerComputerComputer</p>', 'Computer', 'Computer', 'Computer', 'Computer, Computer, Computer', 0, '34', '33', 2, 500.00000, 'KG', 1, 1, 0, 23434, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/wmLnwk7fLLWtyLBOX5x6.jpg', 1, 1, NULL, NULL);
+(1, 'Amazon Essentials Women\'s1111', 'amazon-essentials-women-s1111', '<h2 style=\"margin-left:0px;\">About this item</h2><ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, women’s table tennis shirt with a triangle pattern</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players</span></li><li><span style=\"color:rgb(15,17,17);\">Offers short sleeves, a V-neck style collar and a women’s tapered cut</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester)</span></li></ul>', 'tag1111', 'Product11111', 'Product11111', 'tesing,, data,, mesign,1111', 1111, 'SKU1111', 'http://localhost:3000/ecommarce/product-add1111', 1, 10555.00000, 'KG', 1111, 1111, 1, 1, 'fgh', 1111.00000, 0, 1111, 0, 0, 22.00000, '1111', 2, '1111', 2, '/backend/files/rNXqHtpCM2YaJRWoPtP6.jpg', 1, 1, NULL, '2023-10-20 15:48:44'),
+(2, 'Pretty Polly Women\'s Eco Active Wear Short Sleeve T-Shirt', 'pretty-polly-women-s-eco-active-wear-short-sleeve-t-shirt', '<h2 style=\"margin-left:0px;\">About this item</h2><ul><li><span style=\"color:rgb(15,17,17);\">94% Polyamide, 6% Elastane</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Pull On closure</span></li><li><span style=\"color:rgb(15,17,17);\">Machine Wash</span></li><li><span style=\"color:rgb(15,17,17);\">SUSTAINABLE: Pretty Polly’s new range of Active-Wear is another step towards a sustainable future. Uniquely made from predominately recycled yarns, the garments are seamless, soft and very comfortable to wear, specially made to move with you as you exercise.</span></li><li><span style=\"color:rgb(15,17,17);\">SHORT SLEEVE T-SHIRT: Pretty Polly Active-Wear Short Sleeve T-Shirt is a seamless top which features a patterned mesh panels detail on the sides for breathability. Fitted sleeves and full back.</span></li><li><span style=\"color:rgb(15,17,17);\">FEATURES: Garment has specially designed mesh panel to aid breathability. Stay cool when working out or doing other activities while wearing the Eco Active Wear.</span></li><li><span style=\"color:rgb(15,17,17);\">ACTIVITIES: The perfect apparel for yoga, pilates, and other non-vigorous workouts. Also great to wear when lounging or running errands.</span></li><li><span style=\"color:rgb(15,17,17);\">CARE INSTRUCTIONS: Machine Wash, Line Dry.</span></li></ul>', 'Pretty Polly Women\'s Eco Active Wear Short Sleeve T-Shirt', 'Pretty Polly Women\'s Eco Active Wear Short Sleeve T-Shirt', 'Pretty Polly Women\'s Eco Active Wear Short Sleeve T-Shirt', 'tat, ata', 0, 'SKU', 'http://localhost:3000/ecommarce/product-add', 2, 5000.00000, 'PC', 1, 1, 1, 1, 'Juices', 0.00000, 0, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/EeBw7H3bB2djFimK2TmS.jpg', 1, 1, NULL, '2023-10-20 15:50:53'),
+(3, 'Butterfly Women\'s Higo Lady Shirt,', 'butterfly-women-s-higo-lady-shirt-', '<h2 style=\"margin-left:0px;\">About this item</h2><ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, women’s table tennis shirt with a triangle pattern</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players</span></li><li><span style=\"color:rgb(15,17,17);\">Offers short sleeves, a V-neck style collar and a women’s tapered cut</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester)</span></li></ul>', 'Butterfly Women\'s Higo Lady Shirt,', 'Butterfly Women\'s Higo Lady Shirt,', 'Butterfly Women\'s Higo Lady Shirt,', '', 0, 'SKU', 'http://localhost:3000/ecommarce/product-add', 2, 500.00000, 'KG', 1, 1, 1, 0, 'fgh', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/y7bCz9xCiFutYGC0Bh8m.jpg', 1, 1, NULL, NULL),
+(4, 'Women\'s Higo Lady Shirt,', 'women-s-higo-lady-shirt-', '<h2 style=\"margin-left:0px;\">About this item</h2><ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, women’s table tennis shirt with a triangle pattern</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players</span></li><li><span style=\"color:rgb(15,17,17);\">Offers short sleeves, a V-neck style collar and a women’s tapered cut</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester)</span></li></ul>', 'Women\'s Higo Lady Shirt,', '', 'Women\'s Higo Lady Shirt,', '', 0, '48778', '', 2, 6500.00000, 'KG', 1, 1, 2, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/2e0Yu34IU6YJDksixmcb.jpg', 1, 1, NULL, NULL),
+(5, 'ButterflyTable Tennis Shirt', 'butterflytable-tennis-shirt', '<ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, table tennis shirt for men</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players’ Timo Boll, Dimitrij Ovtcharov and Patrick Franziska</span></li><li><span style=\"color:rgb(15,17,17);\">A three button Henley style shirt with complementing pattern. Shirt allows room to move with slits on the side of the hem.</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester).</span></li></ul>', 'ButterflyTable Tennis Shirt', 'ButterflyTable Tennis Shirt', 'ButterflyTable Tennis Shirt', 'ButterflyTable, Tennis, Shirt', 0, 'SKU', '', 2, 500.00000, '156', 1, 1, 2, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/QIMz4358Zf7It78r4y2S.jpg', 1, 1, NULL, NULL),
+(6, 'Tennis Shirt', 'tennis-shirt', '<ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, table tennis shirt for men</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players’ Timo Boll, Dimitrij Ovtcharov and Patrick Franziska</span></li><li><span style=\"color:rgb(15,17,17);\">A three button Henley style shirt with complementing pattern. Shirt allows room to move with slits on the side of the hem.</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester).</span></li></ul>', 'Tennis Shirt', 'Tennis Shirt', 'Tennis Shirt', ', Tennis, Shirt', 223, '23', '', 2, 23.00000, 'KG', 1, 1, 2, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/MMKa0CB2lxnICqaL1OcB.jpg', 1, 1, NULL, NULL),
+(7, 'Pents', 'pents', '<p>PentsPentsPentsPentsPents</p>', 'Pents', 'Pents', 'Pents', 'Pents, Pents, Pents', 5, '22', '', 2, 23.00000, 'KG', 1, 1, 2, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/RdDN3AZfvRauDh9SK45T.jpg', 1, 1, NULL, NULL),
+(8, 'Computer', 'computer', '<ul><li><span style=\"color:rgb(15,17,17);\"><strong>94% Polyamide, 6% Elastane</strong></span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Pull On closure</span></li><li><span style=\"color:rgb(15,17,17);\">Machine Wash</span></li><li><span style=\"color:rgb(15,17,17);\">SUSTAINABLE: Pretty Polly’s new range of Active-Wear is another step towards a sustainable future. Uniquely made from predominately recycled yarns, the garments are seamless, soft and very comfortable to wear, specially made to move with you as you exercise.</span></li><li><span style=\"color:rgb(15,17,17);\">SHORT SLEEVE T-SHIRT: Pretty Polly Active-Wear Short Sleeve T-Shirt is a seamless top which features a patterned mesh panels detail on the sides for breathability. Fitted sleeves and full back.</span></li><li><span style=\"color:rgb(15,17,17);\">FEATURES: Garment has specially designed mesh panel to aid breathability. Stay cool when working out or doing other activities while wearing the Eco Active Wear.</span></li><li><span style=\"color:rgb(15,17,17);\">ACTIVITIES: The perfect apparel for yoga, pilates, and other non-vigorous workouts. Also great to wear when lounging or running errands.</span></li><li><span style=\"color:rgb(15,17,17);\">CARE INSTRUCTIONS: Machine Wash, Line Dry.</span></li></ul>', 'Computer', 'meta description', 'Meta keyword', 'Tag 1, Tag 2, Tag 3', 123, '34', 'http://localhost:3000/ecommarce/product-add', 2, 500.00000, 'KG', 1, 1, 3, 23434, 'http://localhost:3000/ecommarce/product-add', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, 'backend/files/8bt4Rh03jHSiWQnE3aqiSO0Ga0dWklN4Ulc5Y9J8.jpg', 1, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1550,7 +1550,12 @@ INSERT INTO `product_attributes` (`id`, `product_id`, `attributes_id`, `created_
 (5, 8, 2, '2023-10-19 10:39:59', '2023-10-19 10:39:59'),
 (6, 8, 5, '2023-10-19 10:40:05', '2023-10-19 10:40:05'),
 (7, 8, 14, '2023-10-19 10:40:13', '2023-10-19 10:40:13'),
-(8, 8, 3, '2023-10-19 10:40:26', '2023-10-19 10:40:26');
+(8, 8, 3, '2023-10-19 10:40:26', '2023-10-19 10:40:26'),
+(9, 1, 8, '2023-10-20 21:40:03', '2023-10-20 21:40:03'),
+(10, 1, 3, '2023-10-20 21:40:09', '2023-10-20 21:40:09'),
+(11, 1, 1, '2023-10-20 21:40:16', '2023-10-20 21:40:16'),
+(12, 2, 5, '2023-10-20 21:51:01', '2023-10-20 21:51:01'),
+(13, 2, 9, '2023-10-20 21:51:06', '2023-10-20 21:51:06');
 
 -- --------------------------------------------------------
 
@@ -1595,7 +1600,21 @@ INSERT INTO `product_attributes_values_history` (`id`, `product_id`, `attribute_
 (20, 8, 3, 8, 41, '2023-10-19 04:40:26', '2023-10-19 04:40:26'),
 (21, 8, 3, 8, 42, '2023-10-19 04:40:26', '2023-10-19 04:40:26'),
 (22, 8, 3, 8, 43, '2023-10-19 04:40:26', '2023-10-19 04:40:26'),
-(23, 8, 3, 8, 44, '2023-10-19 04:40:26', '2023-10-19 04:40:26');
+(23, 8, 3, 8, 44, '2023-10-19 04:40:26', '2023-10-19 04:40:26'),
+(24, 1, 8, 9, 61, '2023-10-20 15:40:03', '2023-10-20 15:40:03'),
+(25, 1, 8, 9, 62, '2023-10-20 15:40:03', '2023-10-20 15:40:03'),
+(26, 1, 8, 9, 63, '2023-10-20 15:40:03', '2023-10-20 15:40:03'),
+(27, 1, 3, 10, 40, '2023-10-20 15:40:09', '2023-10-20 15:40:09'),
+(28, 1, 3, 10, 41, '2023-10-20 15:40:09', '2023-10-20 15:40:09'),
+(29, 1, 3, 10, 42, '2023-10-20 15:40:09', '2023-10-20 15:40:09'),
+(30, 1, 1, 11, 7, '2023-10-20 15:40:16', '2023-10-20 15:40:16'),
+(31, 1, 1, 11, 8, '2023-10-20 15:40:16', '2023-10-20 15:40:16'),
+(32, 1, 1, 11, 9, '2023-10-20 15:40:16', '2023-10-20 15:40:16'),
+(33, 1, 1, 11, 10, '2023-10-20 15:40:16', '2023-10-20 15:40:16'),
+(34, 2, 5, 12, 52, '2023-10-20 15:51:01', '2023-10-20 15:51:01'),
+(35, 2, 5, 12, 53, '2023-10-20 15:51:01', '2023-10-20 15:51:01'),
+(36, 2, 9, 13, 65, '2023-10-20 15:51:06', '2023-10-20 15:51:06'),
+(37, 2, 9, 13, 66, '2023-10-20 15:51:06', '2023-10-20 15:51:06');
 
 -- --------------------------------------------------------
 
@@ -1621,8 +1640,14 @@ CREATE TABLE `product_variants` (
 --
 
 INSERT INTO `product_variants` (`id`, `product_id`, `pro_attr_val_his_id`, `sku`, `qty`, `price`, `file`, `entry_by`, `updated_at`, `created_at`) VALUES
-(1, 8, '62,104,52,80,105', '10', 25, 4.00, '/backend/files/U1Yy0NGYiCK91N2F9suf9XpqAI2ezM5UYwiggHro.jpg.jpg', 1, '2023-10-19 08:35:03', '2023-10-19 08:32:37'),
-(2, 8, '62,104,52,80,40', '20', 50, 3.00, '/backend/files/UZqKGRBiri368legu4OBBk5PThkVAbRNtRjvArDC.jpg.jpg', 1, '2023-10-19 08:35:03', '2023-10-19 08:32:41');
+(1, 8, '62,104,52,80,105', '10', 25, 4.00, '/backend/files/wRWVJNcHt50jLeRd4JpYZlEcvmhDF9WnLcSWXmH9.jpg', 1, '2023-10-20 05:01:00', '2023-10-19 08:32:37'),
+(2, 8, '62,104,52,80,40', '20', 50, 3.00, '/backend/files/IGW9wzBePC9Y4dc0ptHKC5kU0RjnPHFw3Jw3AtR6.jpg', 1, '2023-10-20 05:01:00', '2023-10-19 08:32:41'),
+(3, 8, '62,36,53,106', '10', 25, 20.00, '/backend/files/8bt4Rh03jHSiWQnE3aqiSO0Ga0dWklN4Ulc5Y9J8.jpg', 1, '2023-10-20 05:01:00', '2023-10-20 04:54:38'),
+(4, 1, '62,105,8', '10', 25, 200.00, '/backend/files/WBFmFnoNfcW8nSsGSvcqEQej5GNJ6Hh8rip7WXCt.jpg', 1, '2023-10-20 15:50:25', '2023-10-20 15:40:22'),
+(5, 1, '62,105,9', '25', 25, 300.00, '/backend/files/evwIAwOZmhmlDSwuYTAObcvbaKjAGfbhNIO16nw7.jpg', 1, '2023-10-20 15:50:25', '2023-10-20 15:40:26'),
+(6, 1, '62,105,10', '45', 20, 36.00, '/backend/files/L0mlOW70v9zBARbqprq3Ndfg1hdUavr17y7q9Snf.jpg', 1, '2023-10-20 15:50:25', '2023-10-20 15:40:29'),
+(7, 2, '52,66', '10', 25, 200.00, '/backend/files/ALjP0Exn9U5RyqCtuqeGBfGb5GOJQryi9EwT81G8.jpg', 1, '2023-10-20 15:51:25', '2023-10-20 15:51:09'),
+(8, 2, '52,65', '30', 25, 255.00, '/backend/files/tyG98iH5fiU0ecFzLDQVzx1VAlfLk09xpz4yyUXx.jpg', 1, '2023-10-20 15:51:25', '2023-10-20 15:51:11');
 
 -- --------------------------------------------------------
 
@@ -1654,7 +1679,24 @@ INSERT INTO `product_variants_history` (`id`, `product_id`, `pro_varient_id`, `p
 (7, 8, 2, 104, 'Black', '2023-10-19 08:32:41', '2023-10-19 08:32:41'),
 (8, 8, 2, 52, 'Round Neck', '2023-10-19 08:32:41', '2023-10-19 08:32:41'),
 (9, 8, 2, 80, 'Pants', '2023-10-19 08:32:41', '2023-10-19 08:32:41'),
-(10, 8, 2, 40, '1GB', '2023-10-19 08:32:41', '2023-10-19 08:32:41');
+(10, 8, 2, 40, '1GB', '2023-10-19 08:32:41', '2023-10-19 08:32:41'),
+(11, 8, 3, 62, 'Apple', '2023-10-20 04:54:39', '2023-10-20 04:54:39'),
+(12, 8, 3, 36, 'White', '2023-10-20 04:54:39', '2023-10-20 04:54:39'),
+(13, 8, 3, 53, 'V-neck', '2023-10-20 04:54:39', '2023-10-20 04:54:39'),
+(14, 8, 3, 106, '512GB', '2023-10-20 04:54:39', '2023-10-20 04:54:39'),
+(15, 1, 4, 62, 'Apple', '2023-10-20 15:40:22', '2023-10-20 15:40:22'),
+(16, 1, 4, 105, '128GB', '2023-10-20 15:40:22', '2023-10-20 15:40:22'),
+(17, 1, 4, 8, '1', '2023-10-20 15:40:22', '2023-10-20 15:40:22'),
+(18, 1, 5, 62, 'Apple', '2023-10-20 15:40:26', '2023-10-20 15:40:26'),
+(19, 1, 5, 105, '128GB', '2023-10-20 15:40:26', '2023-10-20 15:40:26'),
+(20, 1, 5, 9, '2', '2023-10-20 15:40:26', '2023-10-20 15:40:26'),
+(21, 1, 6, 62, 'Apple', '2023-10-20 15:40:29', '2023-10-20 15:40:29'),
+(22, 1, 6, 105, '128GB', '2023-10-20 15:40:29', '2023-10-20 15:40:29'),
+(23, 1, 6, 10, '3', '2023-10-20 15:40:29', '2023-10-20 15:40:29'),
+(24, 2, 7, 52, 'Round Neck', '2023-10-20 15:51:09', '2023-10-20 15:51:09'),
+(25, 2, 7, 66, 'Heavy', '2023-10-20 15:51:09', '2023-10-20 15:51:09'),
+(26, 2, 8, 52, 'Round Neck', '2023-10-20 15:51:11', '2023-10-20 15:51:11'),
+(27, 2, 8, 65, 'Medium', '2023-10-20 15:51:11', '2023-10-20 15:51:11');
 
 -- --------------------------------------------------------
 
@@ -1674,27 +1716,21 @@ CREATE TABLE `produc_categories` (
 --
 
 INSERT INTO `produc_categories` (`id`, `product_id`, `category_id`, `parent_id`) VALUES
-(1, 1, 69, '32,63,69'),
 (2, 1, 71, '32,63,69,71'),
 (3, 1, 72, '32,63,69,72'),
-(4, 1, 73, '32,63,69,72,73'),
-(5, 1, 74, '32,63,69,72,73,74'),
 (6, 2, 71, '32,63,69,71'),
 (7, 2, 72, '32,63,69,72'),
 (8, 3, 71, '32,63,69,71'),
 (9, 3, 72, '32,63,69,72'),
 (10, 4, 71, '32,63,69,71'),
 (11, 5, 72, '32,63,69,72'),
-(12, 5, 73, '32,63,69,72,73'),
 (13, 6, 71, '32,63,69,71'),
 (14, 6, 72, '32,63,69,72'),
 (15, 7, 72, '32,63,69,72'),
-(16, 7, 73, '32,63,69,72,73'),
-(17, 7, 74, '32,63,69,72,73,74'),
 (18, 8, 70, '32,63,69,70'),
 (19, 8, 71, '32,63,69,71'),
 (20, 8, 72, '32,63,69,72'),
-(21, 8, 73, '32,63,69,72,73');
+(23, 1, 74, '32,63,69,72,73,74');
 
 -- --------------------------------------------------------
 
@@ -1713,10 +1749,6 @@ CREATE TABLE `produc_img_history` (
 --
 
 INSERT INTO `produc_img_history` (`id`, `product_id`, `images`) VALUES
-(1, 1, '/backend/files/652ac7a06d651product(5).jpg'),
-(2, 1, '/backend/files/652ac7a06e3f6product(6).jpg'),
-(3, 1, '/backend/files/652ac7a06ee00product(7).jpg'),
-(4, 1, '/backend/files/652ac7a06fa9cproduct(8).jpg'),
 (5, 2, '/backend/files/652ac897f229dproduct(2).jpg'),
 (6, 2, '/backend/files/652ac897f32ddproduct(3).jpg'),
 (7, 2, '/backend/files/652ac897f41ecproduct(4).jpg'),
@@ -1728,9 +1760,15 @@ INSERT INTO `produc_img_history` (`id`, `product_id`, `images`) VALUES
 (13, 7, '/backend/files/652b751376f84phone1.jpg'),
 (14, 7, '/backend/files/652b75137d85dpower1.jpg'),
 (15, 7, '/backend/files/652b75137e033power2.jpg'),
-(16, 8, '/backend/files/6530b3084a5aaproduct(4).jpg'),
-(17, 8, '/backend/files/6530b3084b17eproduct(5).jpg'),
-(18, 8, '/backend/files/6530b3084ba0dproduct(6).jpg');
+(16, 8, '/backend/files/8bt4Rh03jHSiWQnE3aqiSO0Ga0dWklN4Ulc5Y9J8.jpg'),
+(17, 8, '/backend/files/wRWVJNcHt50jLeRd4JpYZlEcvmhDF9WnLcSWXmH9.jpg'),
+(18, 8, '/backend/files/IGW9wzBePC9Y4dc0ptHKC5kU0RjnPHFw3Jw3AtR6.jpg'),
+(19, 1, '/backend/files/65327686ca679product(4).jpg'),
+(20, 1, '/backend/files/65327686cb0f3product(5).jpg'),
+(21, 2, '/backend/files/6532a1ddbacc3product(4).jpg'),
+(22, 2, '/backend/files/6532a1ddbb557product(5).jpg'),
+(23, 2, '/backend/files/6532a1ddbc0e8product(6).jpg'),
+(24, 2, '/backend/files/6532a1ddbc95aproduct(7).jpg');
 
 -- --------------------------------------------------------
 
@@ -1877,7 +1915,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `employee_id`, `name`, `email`, `image`, `phone_number`, `address`, `website`, `github`, `twitter`, `instagram`, `facebook`, `show_password`, `email_verified_at`, `password`, `remember_token`, `entry_by`, `created_at`, `updated_at`, `status`) VALUES
-(1, 1, 4, 'JONS', 'admin@gmail.com', '/backend/files/z9JkfymRtyDBeRtgJnLx.jpg', '343434', 'Dhaka', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'admin', NULL, '$2a$12$KTM4o4shushdJtyHggJOEuoVzhTde88F2M2VZ1B89egoavVyQOycG', NULL, 1, '2023-06-22 03:20:43', '2023-07-14 04:47:21', 1),
+(1, 1, 4, 'JONS', 'admin@gmail.com', '/backend/files/Gj1CClu5li9lnBa8bqxx.jpg', '343434', 'Dhaka', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'admin', NULL, '$2a$12$KTM4o4shushdJtyHggJOEuoVzhTde88F2M2VZ1B89egoavVyQOycG', NULL, 1, '2023-06-22 03:20:43', '2023-07-14 04:47:21', 1),
 (2, 2, 6, 'Employee6 Six Emp', 'OnlinessSit2221@gmail.com', NULL, '324234', '', NULL, NULL, NULL, NULL, NULL, 'Employee6', NULL, '$2y$10$4kiOBSk.NaB6ufs2rjKbU.BprUAELnD8vKdxbe0kSTRD3c6p7AlO2', NULL, 1, NULL, NULL, 1),
 (3, 2, 5, 'Md. Gazi Giash Uddin Bijon', 'onlinesoft@gmail.com', '/backend/files/lPPEVF6wwxNYZVZKTUNH.jpg', '+8801915728982', 'Mirpur-1', 'null', 'null', 'null', 'null', 'null', 'Employee-4', NULL, '$2y$10$Dlo8W8qUsp./g0/KVKorr.eWVqATVLV4jyGjWApqsk6TFrl6adMhK', NULL, 1, NULL, NULL, 1),
 (4, 2, 4, 'Employee-3', 'we2022@gmail.com', NULL, '343434', '', NULL, NULL, NULL, NULL, NULL, 'PasswordPassword', NULL, '$2y$10$oOca7klZbcO0xXV8glSx6ORQBIPsXOVNmZBdnex7JzeT7cjlyiLcm', NULL, 1, NULL, '2023-09-03 04:40:03', 1),
@@ -2343,37 +2381,37 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `product_attributes`
 --
 ALTER TABLE `product_attributes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `product_attributes_values_history`
 --
 ALTER TABLE `product_attributes_values_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `product_variants`
 --
 ALTER TABLE `product_variants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `product_variants_history`
 --
 ALTER TABLE `product_variants_history`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `produc_categories`
 --
 ALTER TABLE `produc_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `produc_img_history`
 --
 ALTER TABLE `produc_img_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `projects`

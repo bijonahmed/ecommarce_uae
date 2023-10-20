@@ -208,13 +208,22 @@
 
                                     <div class="col-md-3">
                                         <div class="alert alert-primary" role="alert">
-                                          Thumbnail Images<br/>
-                                          {{ productImg }}
+                                            <center><small>Thumbnail Images</small></center>
+                                            <hr />
+                                            <img :src="productImg" alt="N/A" class="img-fluid max-width-100 img-thumbnail" />
                                         </div>
                                     </div>
                                     <div class="col-md-9">
                                         <div class="alert alert-primary" role="alert">
                                             Additional Images
+                                            <hr />
+                                            <!-- productAddImgs -->
+                                            <div class="row">
+                                                <div class="col-md-2" v-for="(data, index) in productAddImgs" :key="index">
+                                                    <img :src="data.images" alt="N/A" class="img-fluid max-width-100 img-thumbnail" />
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
 
@@ -319,7 +328,8 @@ export default {
             attributeslist: [],
             attrValList: [],
             pro_arr_val_history: [],
-            productImg:"",
+            productImg: "",
+            productAddImgs: [],
             notifmsg: '',
             errors: {},
         }
@@ -374,7 +384,8 @@ export default {
                 this.productData.status = response.data.product.status;
                 this.productData.manufacturer = response.data.product.status;
                 this.productData.download_link = response.data.product.download_link;
-                this.productData.productImg = response.data.productImg.thumnail_img;
+                this.productImg = response.data.productImg;
+                this.productAddImgs = response.data.product_imgs;
                 $(".show_categorys").html(response.data.product_cat)
                 // = response.data.product_cat;
                 console.log(`Product category ${response.data.product_cat}`);

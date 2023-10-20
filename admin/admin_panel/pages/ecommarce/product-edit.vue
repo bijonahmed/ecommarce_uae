@@ -75,7 +75,7 @@
                                                         <label for="input-name-1" class="col-sm-2 col-form-label required-label">Product Name</label>
                                                         <div class="col-sm-10">
                                                             <input type="text" name="name" placeholder="Product Name" v-model="insertdata.name" class="form-control" />
-                                                            <input type="hidden" name="id" id="id" class="form-control" />
+                                                            <input type="hidden" name="id" id="id" class="form-control" v-model="insertdata.id" />
                                                             <span class="text-danger" v-if="errors.name">{{ errors.name[0] }}</span>
                                                         </div>
                                                     </div>
@@ -293,6 +293,16 @@
                                                                         <div v-else>
                                                                             <!-- <small>No results found.</small> -->
                                                                         </div>
+                                                                        <hr />
+                                                                        Selected Categorys:
+
+                                                                        <!-- <span v-for="(data, index) in showProCategories" :key="index">{{ data }}</span> -->
+                                                                        <ul>
+                                                                            <li v-for="(item, index) in showProCategories" :key="index">
+                                                                                <span v-html="item">{{ item }}</span> <button type="button" @click="removeCategory(item)"><i class="lni lni-circle-minus"></i></button>
+                                                                            </li>
+                                                                        </ul>
+
                                                                         <span class="text-danger" v-if="errors.category">{{ errors.category[0] }}</span>
                                                                         <span class="d-none">
                                                                             <textarea v-model="multi_categories" placeholder="Selected Value" class="w-100"></textarea>
@@ -323,13 +333,22 @@
                                                         <label for="input-meta-description-1" class="col-sm-2 col-form-label">Thumbnail Image</label>
                                                         <div class="col-sm-10">
                                                             <input type="file" value class="form-control" accept="image/png,image/jpeg" ref="files" @change="previewImage" />
+                                                            <img :src="productImg" alt="N/A" class="img-fluid max-width-100 img-thumbnail" />
                                                             <img v-if="previewUrl" :src="previewUrl" alt="Preview" class="img-fluids" />
                                                         </div>
                                                     </div>
                                                     <div class="row mb-3">
                                                         <label for="input-meta-description-1" class="col-sm-2 col-form-label">Additional Image</label>
                                                         <div class="col-sm-10">
+
                                                             <input type="file" multiple class="form-control" accept="image/png,image/jpeg" @change="handleImageUpload" ref="images" />
+                                                            <div class="row">
+                                                                <div class="col-md-2" v-for="(data, index) in productAddImgs" :key="index">
+                                                                    <img :src="data.images" alt="N/A" class="img-fluid max-width-100 img-thumbnail" />
+                                                                    <center> <button type="button" @click="removeImages(data.id)"><i class="fadeIn animated bx bx-trash-alt"></i></button></center>
+                                                                </div>
+                                                            </div>
+
                                                             <div class="row mt-3">
                                                                 <div class="col-md-3" v-for="(image, index) in images" :key="index">
                                                                     <div class="card">
@@ -373,7 +392,7 @@ export default {
         },
     },
     head: {
-        title: 'Product Add',
+        title: 'Product Edit',
     },
     data() {
         return {
@@ -393,38 +412,53 @@ export default {
                 meta_title: '',
                 meta_description: '',
                 meta_keyword: '',
+                description: '',
+                parent_id: 0,
+                mobile_view_class: '',
+                flat_rate_price: '',
+                cash_dev_status: '',
                 product_tag: '',
-                ptag: '',
-                model: '',
+                discount: '',
                 sku: '',
+                model: '',
                 external_link: '',
-                cash_dev_status: 2,
                 price: '',
                 unit: '',
-                stock_qty: 1,
-                stock_mini_qty: 1,
-                stock_status: 1,
+                stock_qty: '',
+                stock_mini_qty: '',
+                stock_status: '',
+                free_shopping: '',
+                flat_rate_status: '',
+                shipping_days: '',
+                ptag: '',
+                vat: '',
+                vat_status: '',
+                tax: '',
+                tax_status: '',
+                status: '',
                 manufacturer: '',
                 download_link: '',
-                discount: 0,
-                discount_status: 1,
-                shipping_days: 1,
-                free_shopping: 0,
-                flat_rate_status: 0,
-                flat_rate_price: 0,
-                vat: 0,
-                vat_status: 1,
-                tax: 0,
-                tax_status: 1,
-                //Attribute 
-                // sku: [],
-                // qty: [],
-                // price: [],
-                //END  Attribute
-                //files: '',
-                images: '',
-                status: 1,
+
             },
+            product_cat: [],
+            arr_his_val: [],
+            selectedItem: [],
+            historVarient: [{
+                varient_id: '',
+                sku: '',
+                qty: '',
+                price: '',
+                file: ''
+            }],
+            arr_val: [],
+            attributeslist: [],
+            attrValList: [],
+            pro_arr_val_history: [],
+            productImg: "",
+            productAddImgs: [],
+            notifmsg: '',
+            errors: {},
+            //from product-add
             inputValue: '',
             previewUrl: null,
             // addPreviewUrls: [],
@@ -436,28 +470,118 @@ export default {
             categories: '',
             searchResults: [],
             parentAttributes: [],
+            showProCategories: [],
             attrVals: [],
             product_tag_msg: '',
-            //this for attribue select
-            // options: [],
-            // showDropdown: false,
-            // selectedOptions: [],
-            // selectAll: false,
-            // storedValues: [],
-            //end
-            notifmsg: '',
+            //end 
             file: '',
             files: '',
-            errors: {},
         }
     },
     async mounted() {
+        this.productDetails();
+        this.varientHistory();
         await this.loadCKEditor();
+
         CKEDITOR.replace('editor');
     },
-
     methods: {
 
+        removeCategory(item) {
+            let product_id = this.$route.query.parameter;
+            this.$axios.get(`/product/deleteCategory`, {
+                params: {
+                    item: item,
+                    product_id: product_id,
+                }
+            }).then(response => {
+                //console.log(`Varient History: ${response.data}`);
+                this.productDetails();
+            });
+
+        },
+        removeImages(id) {
+            this.$axios.get(`/product/additionaIMagesDelete`, {
+                params: {
+                    images_id: id
+                }
+            }).then(response => {
+                //console.log(`Varient History: ${response.data}`);
+                this.productDetails();
+            });
+        },
+        saveData() {
+            const formData = new FormData();
+            const input = this.$refs.images;
+            for (let i = 0; i < input.files.length; i++) {
+                formData.append('images[]', input.files[i]);
+            }
+            formData.append('id', this.insertdata.id);
+            formData.append('files', this.files);
+            // formData.append('images', this.images); //multiple
+            formData.append('category', this.multi_categories);
+            formData.append('name', this.insertdata.name);
+            formData.append('description', this.insertdata.description);
+            formData.append('meta_title', this.insertdata.meta_title);
+            formData.append('meta_description', this.insertdata.meta_description);
+            formData.append('meta_keyword', this.insertdata.meta_keyword);
+            formData.append('product_tag', this.insertdata.product_tag);
+            formData.append('model', this.insertdata.model);
+            formData.append('sku', this.insertdata.sku);
+            formData.append('external_link', this.insertdata.external_link);
+            formData.append('price', this.insertdata.price);
+            formData.append('stock_qty', this.insertdata.stock_qty);
+            formData.append('stock_mini_qty', this.insertdata.stock_mini_qty);
+            formData.append('stock_status', this.insertdata.stock_status);
+            formData.append('manufacturer', this.insertdata.manufacturer);
+            formData.append('download_link', this.insertdata.download_link);
+            formData.append('status', this.insertdata.status);
+            formData.append('keyword', this.insertdata.keyword);
+            //new
+            formData.append('unit', this.insertdata.unit);
+            formData.append('discount', this.insertdata.discount);
+            formData.append('discount_status', this.insertdata.discount_status);
+            formData.append('free_shopping', this.insertdata.free_shopping);
+            formData.append('flat_rate_status', this.insertdata.flat_rate_status);
+            formData.append('flat_rate_price', this.insertdata.flat_rate_price);
+            formData.append('vat', this.insertdata.vat);
+            formData.append('vat_status', this.insertdata.vat_status);
+            formData.append('tax', this.insertdata.tax);
+            formData.append('tax_status', this.insertdata.tax_status);
+            formData.append('cash_dev_status', this.insertdata.cash_dev_status);
+            formData.append('shipping_days', this.insertdata.shipping_days);
+            // formData.append('status', this.insertdata.status);
+            const headers = {
+                'Content-Type': 'multipart/form-data'
+            };
+            this.$axios.post('/product/product-update',
+                formData, {
+                    headers
+                }).then((res) => {
+                $('#formrest')[0].reset();
+                this.success_noti();
+                const product_id = res.data.product_id;
+                //alert(product_id);
+                // return false; 
+                this.$router.push({
+                    path: '/ecommarce/product-varient',
+                    query: {
+                        parameter: product_id
+                    }
+                })
+                return false;
+                //this.$router.push('/ecommarce/product-list');
+            });
+        },
+        success_noti() {
+            Lobibox.notify('success', {
+                pauseDelayOnHover: true,
+                continueDelayOnInactiveTab: false,
+                position: 'top right',
+                icon: 'bx bx-check-circle',
+                msg: 'Your data has been successfully inserted.'
+            });
+        },
         validateInput() {
             if (!/^[+-]?\d*\.?\d*$/.test(this.insertdata.price)) {
                 this.insertdata.price = this.insertdata.price.slice(0, -1);
@@ -592,154 +716,74 @@ export default {
                 }
             });
         },
-        saveData() {
-            const formData = new FormData();
-            const input = this.$refs.images;
-            for (let i = 0; i < input.files.length; i++) {
-                formData.append('images[]', input.files[i]);
-            }
-            formData.append('id', this.insertdata.id);
-            formData.append('files', this.files);
-            // formData.append('images', this.images); //multiple
-            formData.append('category', this.multi_categories);
-            formData.append('name', this.insertdata.name);
-            formData.append('description', this.insertdata.description);
-            formData.append('meta_title', this.insertdata.meta_title);
-            formData.append('meta_description', this.insertdata.meta_description);
-            formData.append('meta_keyword', this.insertdata.meta_keyword);
-            formData.append('product_tag', this.insertdata.product_tag);
-            formData.append('model', this.insertdata.model);
-            formData.append('sku', this.insertdata.sku);
-            formData.append('external_link', this.insertdata.external_link);
-            formData.append('price', this.insertdata.price);
-            formData.append('stock_qty', this.insertdata.stock_qty);
-            formData.append('stock_mini_qty', this.insertdata.stock_mini_qty);
-            formData.append('stock_status', this.insertdata.stock_status);
-            formData.append('manufacturer', this.insertdata.manufacturer);
-            formData.append('download_link', this.insertdata.download_link);
-            formData.append('status', this.insertdata.status);
-            formData.append('keyword', this.insertdata.keyword);
-            //new
-            formData.append('unit', this.insertdata.unit);
-            formData.append('discount', this.insertdata.discount);
-            formData.append('discount_status', this.insertdata.discount_status);
-            formData.append('free_shopping', this.insertdata.free_shopping);
-            formData.append('flat_rate_status', this.insertdata.flat_rate_status);
-            formData.append('flat_rate_price', this.insertdata.flat_rate_price);
-            formData.append('vat', this.insertdata.vat);
-            formData.append('vat_status', this.insertdata.vat_status);
-            formData.append('tax', this.insertdata.tax);
-            formData.append('tax_status', this.insertdata.tax_status);
-            formData.append('cash_dev_status', this.insertdata.cash_dev_status);
-            formData.append('shipping_days', this.insertdata.shipping_days);
-            // formData.append('status', this.insertdata.status);
-            const headers = {
-                'Content-Type': 'multipart/form-data'
-            };
-            this.$axios.post('/product/save',
-                formData, {
-                    headers
-                }).then((res) => {
-                $('#formrest')[0].reset();
-                this.success_noti();
-                const product_id = res.data.product_id;
-                this.$router.push({
-                    path: '/ecommarce/product-varient',
-                    query: {
-                        parameter: product_id
-                    }
-                })
-                return false;
-                //this.$router.push('/ecommarce/product-list');
-            }).catch(error => {
-                if (error.response.status === 422) {
-                    this.errors = error.response.data.errors;
+        varientHistory() {
+            let product_id = this.$route.query.parameter;
+            this.$axios.get(`/product/getVarientHistory`, {
+                params: {
+                    product_id: product_id
                 }
+            }).then(response => {
+                //console.log(`Varient History: ${response.data}`);
+                this.historVarient = response.data;
             });
         },
-        success_noti() {
-            Lobibox.notify('success', {
-                pauseDelayOnHover: true,
-                continueDelayOnInactiveTab: false,
-                position: 'top right',
-                icon: 'bx bx-check-circle',
-                msg: 'Your data has been successfully inserted.'
+
+        productDetails() {
+            let product_id = this.$route.query.parameter;
+            //  alert(product_id);
+            this.$axios.get(`/product/productrow/${product_id}`).then(response => {
+                //console.log("product row:" + response.data);
+                this.insertdata.id = response.data.product.id;
+                this.insertdata.name = response.data.product.name;
+                this.insertdata.description = response.data.product.description;
+                this.insertdata.meta_title = response.data.product.meta_title;
+                this.insertdata.meta_description = response.data.product.meta_description;
+                this.insertdata.meta_keyword = response.data.product.meta_keyword;
+                this.insertdata.product_tag = response.data.product.product_tag;
+                this.insertdata.ptag = response.data.product.product_tag;
+                this.insertdata.keyword = response.data.product.keyword;
+                this.insertdata.model = response.data.product.model;
+                this.insertdata.sku = response.data.product.sku;
+                this.insertdata.external_link = response.data.product.external_link;
+                $(".pro_description").html(response.data.product.description);
+                this.insertdata.price = response.data.product.price;
+                this.insertdata.unit = response.data.product.unit;
+                this.insertdata.stock_qty = response.data.product.stock_qty;
+                this.insertdata.stock_mini_qty = response.data.product.stock_mini_qty;
+                this.insertdata.discount = response.data.product.discount;
+                this.insertdata.stock_status = response.data.product.stock_status;
+                this.insertdata.free_shopping = response.data.product.free_shopping;
+                this.insertdata.flat_rate_price = response.data.product.flat_rate_price;
+                this.insertdata.flat_rate_status = response.data.product.flat_rate_status;
+                this.insertdata.shipping_days = response.data.product.shipping_days;
+                this.insertdata.vat = response.data.product.vat;
+                this.insertdata.vat_status = response.data.product.vat_status;
+                this.insertdata.tax = response.data.product.tax;
+                this.insertdata.tax_status = response.data.product.tax_status;
+                this.insertdata.cash_dev_status = response.data.product.cash_dev_status;
+                this.insertdata.status = response.data.product.status;
+                this.insertdata.manufacturer = response.data.product.status;
+                this.insertdata.download_link = response.data.product.download_link;
+
+                this.productImg = response.data.productImg;
+                this.productAddImgs = response.data.product_imgs;
+                this.showProCategories = response.data.product_edit_cat;
+                // = response.data.product_cat;
+
             });
         },
+
     },
 }
 </script>
 
 <style scoped>
-.required-label::after {
-    content: "\2605";
-    color: red;
-    margin-right: 4px;
+.marleft {
+    margin-left: -7px;
 }
 
-/* CSS */
-ol,
-ul {
-    padding-left: 0rem;
-}
-
-ul {
-    list-style: none;
-}
-
-.bgColor {
-    background-color: #c8c8c8;
-    padding: 1px;
-    border-radius: 2px;
-}
-
-.img-fluid {
-    width: 300px;
-    height: 150px;
-}
-
-.img-fluids {
-    margin-top: 10px;
-    width: 300px;
-    height: 300px;
-}
-
-/* for checkbox */
-.multiselect {
-    position: relative;
-    font-family: Arial, sans-serif;
-    width: 100%;
-}
-
-.select-box {
-    border: 1px solid #ccc;
-    padding: 8px;
-    cursor: pointer;
-    background-color: #fff;
-}
-
-.dropdown {
-    border: 1px solid #ccc;
-    border-top: none;
-    max-height: 400px;
-    overflow-y: auto;
-    position: absolute;
-    top: 100%;
-    width: 100%;
-    background-color: #fff;
-    z-index: 1;
-}
-
-label {
-    display: block;
-    padding: 5px;
-}
-
-input[type="checkbox"] {
-    margin-right: 8px;
-}
-
-.widthtxtbox {
-    width: 50px;
+.output-container {
+    white-space: pre-line;
+    margin-left: -7px;
 }
 </style>

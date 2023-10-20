@@ -15,6 +15,7 @@ use App\Models\Categorys;
 use App\Models\ProductAttributes;
 use App\Models\ProductCategory;
 use App\Models\Product;
+use App\Models\ProductAdditionalImg;
 use App\Models\ProductVarrient;
 use App\Models\AttributeValues;
 use Illuminate\Support\Str;
@@ -33,13 +34,114 @@ class ProductController extends Controller
         $user = User::find($id->id);
         $this->userid = $user->id;
     }
+
+    public function productUpdate(Request $request)
+    {
+
+        // dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'name'           => 'required',
+            //  'category'       => 'required',
+            'price'          => 'required',
+            'stock_qty'      => 'required|integer',
+            'stock_mini_qty' => 'required|integer',
+            'shipping_days'  => 'required',
+            'status'         => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+        $product_id =  (int)$request->id;
+        $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $request->input('name'))));
+        $data = array(
+            'name'                       => $request->name,
+            'slug'                       => $slug,
+            'description'                => !empty($request->description) ? $request->description : "",
+            'meta_title'                 => !empty($request->meta_title) ? $request->meta_title : "",
+            'meta_description'           => !empty($request->meta_description) ? $request->meta_description : "",
+            'meta_keyword'               => !empty($request->meta_keyword) ? $request->meta_keyword : "",
+            'product_tag'                => !empty($request->product_tag) ? $request->product_tag : "",
+            'model'                      => !empty($request->model) ? $request->model : "",
+            'sku'                        => !empty($request->sku) ? $request->sku : "",
+            'external_link'              => !empty($request->external_link) ? $request->external_link : "",
+            'cash_dev_status'            => !empty($request->cash_dev_status) ? $request->cash_dev_status : "",
+            'price'                      => !empty($request->price) ? $request->price : 0,
+            'unit'                       => !empty($request->unit) ? $request->unit : "",
+            'stock_qty'                  => !empty($request->stock_qty) ? $request->stock_qty : "",
+            'stock_mini_qty'             => !empty($request->stock_mini_qty) ? $request->stock_mini_qty : 0,
+            'stock_status'               => !empty($request->stock_status) ? $request->stock_status : "",
+            'manufacturer'               => !empty($request->manufacturer) ? $request->manufacturer : "",
+            'manufacturer'               => !empty($request->manufacturer) ? $request->manufacturer : "",
+            'download_link'              => !empty($request->download_link) ? $request->download_link : "",
+            'discount'                   => !empty($request->discount) ? $request->discount : "",
+            'discount_status'            => !empty($request->discount_status) ? $request->discount_status : "",
+            'shipping_days'              => !empty($request->shipping_days) ? $request->shipping_days : "",
+            'free_shopping'              => !empty($request->free_shopping) ? $request->free_shopping : "",
+            'flat_rate_status'           => !empty($request->flat_rate_status) ? $request->flat_rate_status : "",
+            'flat_rate_price'            => !empty($request->flat_rate_price) ? $request->flat_rate_price : "",
+            'vat'                        => !empty($request->vat) ? $request->vat : 0,
+            'vat_status'                 => !empty($request->vat_status) ? $request->vat_status : "",
+            'tax'                        => !empty($request->tax) ? $request->tax : 0,
+            'tax_status'                 => !empty($request->tax_status) ? $request->tax_status : "",
+            'status'                     => !empty($request->status) ? $request->status : "",
+            'entry_by'                   => $this->userid
+        );
+        if (!empty($request->file('files'))) {
+            $files = $request->file('files');
+            $fileName = Str::random(20);
+            $ext = strtolower($files->getClientOriginalExtension());
+            $path = $fileName . '.' . $ext;
+            $uploadPath = '/backend/files/';
+            $upload_url = $uploadPath . $path;
+            $files->move(public_path('/backend/files/'), $upload_url);
+            $file_url = $uploadPath . $path;
+            $data['thumnail_img'] = $file_url;
+        }
+        Product::where('id', $product_id)->update($data);
+        // echo "update====$product_id";
+        if (!empty($request->file('images'))) {
+            foreach ($request->file('images') as $file) {
+                $name = $file->getClientOriginalName();
+                $dic_name = uniqid() . $name;
+                $uploadPath = '/backend/files/';
+                $file->move(public_path() . '/backend/files/', $dic_name);
+                // $docs[] = $name;  
+                $img_data['images']       = $uploadPath . $dic_name;
+                $img_data['product_id']   = $product_id;
+                DB::table('produc_img_history')->insert($img_data);
+            }
+        }
+        //INSERT MULTIPLE CATEGORY
+        $category     = $request->category;
+        $dynamicArray = explode(',', $category); // Convert the string to an array
+        $results      = Categorys::whereIn('id', $dynamicArray)->get();
+        $formattedResults = [];
+        foreach ($results as $result) {
+            $path = [];
+            $category = $result;
+            while ($category) {
+                array_unshift($path, $category->id);
+                $category = $category->parent;
+            }
+            $formattedResults[] = [
+                'product_id'   => $product_id,
+                'category_id'  => $result->id,
+                'parent_id'    => implode(',', $path)
+            ];
+        }
+        DB::table('produc_categories')->insert($formattedResults);
+        $resdata['product_id'] = $product_id;
+        return response()->json($resdata);
+        ///return response()->json(['message' => 'Product updated successfully'], 200);
+    }
+
     public function save(Request $request)
     {
         //dd($request->all());
         $validator = Validator::make($request->all(), [
             'name'           => 'required',
             'category'       => 'required',
-            'price'          => 'required|integer',
+            'price'          => 'required',
             'stock_qty'      => 'required|integer',
             'stock_mini_qty' => 'required|integer',
             'shipping_days'  => 'required',
@@ -49,6 +151,7 @@ class ProductController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
         $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $request->input('name'))));
+
         $data = array(
             'name'                       => $request->name,
             'slug'                       => $slug,
@@ -151,22 +254,17 @@ class ProductController extends Controller
             $find = ProductVarrient::where('id', $v_id)->first();
             $vid = $find->id;
             if (!empty($find)) {
-                
                 //start validation
-
                 $validator = Validator::make($varrientData, [
                     "sku" => 'required',
                     "qty" => 'required|min:1',
                     "price" => 'required|min:0',
-                    "file" => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust allowed file types and maximum size as needed
+                    //"file" => 'required|image|mimes:jpeg,png,jpg,gif', // Adjust allowed file types and maximum size as needed
                 ]);
-            
                 if ($validator->fails()) {
                     return response()->json(['errors' => $validator->errors()], 422);
                 }
                 //end validation 
-
-
 
                 $v_data['sku']   = $varrientData['sku'];
                 $v_data['qty']   = $varrientData['qty'];
@@ -311,14 +409,43 @@ class ProductController extends Controller
         return response()->json("Delete Varient");
     }
 
+    public function additionaIMagesDelete(Request $request)
+    {
+        $images_id =  $request->images_id;
+        ProductAdditionalImg::where('id', $images_id)->delete();
+        return response()->json("Delete Images");
+    }
+
+    public function deleteCategory(Request $request)
+    {
+
+        // dd($request->all());
+        $dynamicArray = explode(',', $request->item); // Convert the string to an array
+        $lastElement  = trim(end($dynamicArray));
+        $category_id  = Categorys::where('name', $lastElement)->select('id')->first();
+        $row          = ProductCategory::where('category_id', $category_id->id)->where('product_id', $request->product_id)->first();
+
+        if (!empty($row->category_id)) {
+            ProductCategory::where('category_id', $row->category_id)->delete();
+        }
+        return response()->json("Delete Category Category ID: $row->category_id ");
+    }
+
     public function productrow($id)
     {
 
         $produCategory = ProductCategory::where('product_id', $id)->get();
-        $prodImages = Product::find($id);
+        $prodimages    = ProductAdditionalImg::where('product_id', $id)->select('images', 'id')->get();
+        $prodImages    = Product::find($id);
+        $addiImg = [];
+        foreach ($prodimages as $v) {
+            $addiImg[] = [
+                'images'       => url($v->images),
+                'id'           => $v->id,
+            ];
+        }
         $returnData = [];
         foreach ($produCategory as $key => $val) {
-            //echo "$val->parent_id<br>";
             $returnData[] = DB::select("SELECT GROUP_CONCAT(name SEPARATOR ', ') AS name,id FROM categorys WHERE id IN ($val->parent_id)");
         }
         $concatenated_names = [];
@@ -328,10 +455,13 @@ class ProductController extends Controller
             }
         }
         $resulting_string = implode("<br/>", $concatenated_names);
+        $show_edit_cat = $concatenated_names; //implode("<br/>", $concatenated_names);
         //dd($resulting_string);
-        $responseData['productImg'] = !empty($prodImages) ? url($prodImages->thumnail_img) : "";
-        $responseData['product']    = Product::find($id);
-        $responseData['product_cat'] = $resulting_string;
+        $responseData['productImg']        = !empty($prodImages) ? url($prodImages->thumnail_img) : "";
+        $responseData['product']           = Product::find($id);
+        $responseData['product_cat']       = $resulting_string;
+        $responseData['product_edit_cat']  = $show_edit_cat;
+        $responseData['product_imgs']      = $addiImg;
         // dd($responseData);
         return response()->json($responseData);
     }

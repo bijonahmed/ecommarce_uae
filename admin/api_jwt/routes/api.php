@@ -112,6 +112,7 @@ Route::group([
     'prefix' => 'product'
 ], function () {
     Route::post('save', [ProductController::class, 'save']);
+    Route::post('product-update', [ProductController::class, 'productUpdate']);
     Route::post('insertVarientGroup', [ProductController::class, 'insertVarientGroup']);
     Route::get('getProductList', [ProductController::class, 'getProductList']);
     Route::get('insertProductAttrAndValues', [ProductController::class, 'insertProductAttrAndValues']);
@@ -119,6 +120,8 @@ Route::group([
     Route::get('deleteValrient', [ProductController::class, 'deleteValrient']);
     Route::get('getAttrHistory/{id}', [ProductController::class, 'getAttrHistory']);
     Route::get('productrow/{id}', [ProductController::class, 'productrow']);
+    Route::get('additionaIMagesDelete', [ProductController::class, 'additionaIMagesDelete']);
+    Route::get('deleteCategory', [ProductController::class, 'deleteCategory']);
     Route::get('getVarientHistory', [ProductController::class, 'getVarientHistory']);
 
   //  Route::get('categoryRow/{id}', [CategoryController::class, 'findCategoryRow']);
