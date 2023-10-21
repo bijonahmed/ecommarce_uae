@@ -114,7 +114,7 @@
                                                             <div class="row mb-3 required">
                                                                 <label for="input-meta-title-1" class="col-sm-2 col-form-label">Model</label>
                                                                 <div class="col-sm-10">
-                                                                    <input type="text" placeholder="Model" id="model" v-model="insertdata.model" class="form-control" />
+                                                                    <input type="text" placeholder="Search Model..." id="model" v-model="insertdata.model" class="form-control" />
                                                                 </div>
                                                             </div>
                                                             <div class="row mb-3 required">

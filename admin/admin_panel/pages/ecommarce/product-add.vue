@@ -114,7 +114,10 @@
                                                             <div class="row mb-3 required">
                                                                 <label for="input-meta-title-1" class="col-sm-2 col-form-label">Model</label>
                                                                 <div class="col-sm-10">
-                                                                    <input type="text" placeholder="Model" id="model" v-model="insertdata.model" class="form-control" />
+                                                                    <input type="text" placeholder="Search Model..." @input="searchModels" id="model" v-model="insertdata.model" class="form-control" />
+                                                                    <ul v-if="modelresults.length">
+                                                                        <li v-for="result in modelresults" :key="result">{{ result }}</li>
+                                                                    </ul>
                                                                 </div>
                                                             </div>
                                                             <div class="row mb-3 required">
@@ -438,6 +441,7 @@ export default {
             parentAttributes: [],
             attrVals: [],
             product_tag_msg: '',
+            modelresults: [],
             //this for attribue select
             // options: [],
             // showDropdown: false,
@@ -457,7 +461,21 @@ export default {
     },
 
     methods: {
-
+        //searchmodel 
+        searchModels() {
+            console.log(this.insertdata.model);
+            if (this.insertdata.model.length > 2) {
+                this.$axios.get(`/models/searchmodels?query=${this.insertdata.model}`)
+                    .then(response => {
+                        this.modelresults = response.data;
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            } else {
+                this.modelresults = [];
+            }
+        },
         validateInput() {
             if (!/^[+-]?\d*\.?\d*$/.test(this.insertdata.price)) {
                 this.insertdata.price = this.insertdata.price.slice(0, -1);

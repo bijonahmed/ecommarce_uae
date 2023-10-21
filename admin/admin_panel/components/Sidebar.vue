@@ -44,6 +44,12 @@
                     <li>
                         <Nuxt-link to="/ecommarce/attributes-list"><i class="bx bx-right-arrow-alt"></i>Attributes</Nuxt-link>
                     </li>
+                    <li>
+                        <Nuxt-link to="/manufacturer/manufacturers-list"><i class="bx bx-right-arrow-alt"></i>Manufacturers</Nuxt-link>
+                    </li>
+                    <li>
+                        <Nuxt-link to="/models/models-list"><i class="bx bx-right-arrow-alt"></i>Models</Nuxt-link>
+                    </li>
                 </ul>
             </li>
             <li>

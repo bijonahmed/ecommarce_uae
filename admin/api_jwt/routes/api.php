@@ -13,7 +13,8 @@ use App\Http\Controllers\Organogram\OrganogramController;
 use App\Http\Controllers\Setting\SettingController;
 use App\Http\Controllers\UnauthenticatedController;
 use App\Http\Controllers\Leave\LeaveController;
-use App\Http\Controllers\Rota\RotaController;
+use App\Http\Controllers\Manufacturer\ManufacturesController;
+use App\Http\Controllers\Models\ModelsController;
 use App\Http\Controllers\Product\ProductController;
 /*
 |--------------------------------------------------------------------------
@@ -123,17 +124,28 @@ Route::group([
     Route::get('additionaIMagesDelete', [ProductController::class, 'additionaIMagesDelete']);
     Route::get('deleteCategory', [ProductController::class, 'deleteCategory']);
     Route::get('getVarientHistory', [ProductController::class, 'getVarientHistory']);
-
-  //  Route::get('categoryRow/{id}', [CategoryController::class, 'findCategoryRow']);
-   // Route::get('getSubCategoryChild/{id}', [CategoryController::class, 'getSubCategoryChild']);
-   // Route::get('search', [CategoryController::class, 'searchCategory']);
 });
 
 
+Route::group([
+    //'middleware' => 'api',
+    'prefix' => 'manufacturers'
+], function () {
+    Route::post('save', [ManufacturesController::class, 'save']);
+    Route::get('allmanufacturers', [ManufacturesController::class, 'allmanufacturers']);
+    Route::get('manufacturersrow/{id}', [ManufacturesController::class, 'manufacturersrow']);
+});
 
 
-
-
+Route::group([
+    //'middleware' => 'api',
+    'prefix' => 'models'
+], function () {
+    Route::post('save', [ModelsController::class, 'save']);
+    Route::get('allmodelslist', [ModelsController::class, 'allmodelslist']);
+    Route::get('modelsrow/{id}', [ModelsController::class, 'modelsrow']);
+    Route::get('searchmodels', [ModelsController::class, 'searchmodels']);
+});
 
 
 Route::group([
@@ -168,50 +180,7 @@ Route::group([
     Route::get('checkPublishRow/{id}', [UnauthenticatedController::class, 'checkPublishRow']);
     Route::post('visitorRegistration', [UnauthenticatedController::class, 'visitorRegistration']);
 });
-// Route::group([
-//     'middleware' => 'api',
-//     'prefix' => 'recruitment'
-// ], function () {
-//     Route::post('saveJoblist', [RecruitmentController::class, 'saveJoblist']);
-//     Route::get('getAllJoblist', [RecruitmentController::class, 'getAllJoblist']);
-//     Route::get('checkRow/{id}', [RecruitmentController::class, 'editId']);
-//     //Job Posting
-//     Route::post('saveJobPosting', [RecruitmentController::class, 'saveJobPosting']);
-//     Route::get('getAllJobPost', [RecruitmentController::class, 'getAllJobPost']);
-//     Route::get('checkjobpostRow/{id}', [RecruitmentController::class, 'checkjobpostRow']);
-//     //Job Publish
-//     Route::post('saveJobPublish', [RecruitmentController::class, 'saveJobPublish']);
-//     Route::get('getAllJobPublish', [RecruitmentController::class, 'getAllJobPublish']);
-//     Route::get('checkPublishRow/{id}', [RecruitmentController::class, 'checkPublishRow']);
-//     //sending message
-//     Route::post('send-message', [RecruitmentController::class, 'sendMessage']);
-//     Route::get('getAllemailSending', [RecruitmentController::class, 'getAllemailSending']);
-//     //applied job
-//     Route::get('getallAppliedJob', [RecruitmentController::class, 'getallAppliedJob']);
-//     Route::get('getallShortListedJob', [RecruitmentController::class, 'getallShortListedJob']);
-//     Route::get('getallInterviewListedJob', [RecruitmentController::class, 'getallInterviewListedJob']);
-//     Route::get('getallHiredList', [RecruitmentController::class, 'getallHiredList']);
-//     Route::get('getRejectList', [RecruitmentController::class, 'getRejectList']);
-//     Route::get('checkapplyjobrow/{id}', [RecruitmentController::class, 'checkapplyjobrow']);
-//     Route::get('getjobStatus', [RecruitmentController::class, 'getjobStatus']);
-//     Route::post('updateAppliedJob', [RecruitmentController::class, 'updateAppliedJob']);
-//     Route::post('generatedOfferLetter', [RecruitmentController::class, 'generatedOfferLetter']);
-//     Route::get('offerletterlist', [RecruitmentController::class, 'offerletterlist']);
-//     Route::get('checkgeneOfferLetterRow/{id}', [RecruitmentController::class, 'checkgeneOfferLetterRow']);
-//     Route::get('getreportRecuitment', [RecruitmentController::class, 'getreportRecuitment']);
-// });
-// Route::group([
-//     'middleware' => 'api',
-//     'prefix' => 'organogram'
-// ], function () {
-//     Route::post('saveLevel', [OrganogramController::class, 'saveLevel']);
-//     Route::post('updateLevel', [OrganogramController::class, 'updateLevel']);
-//     Route::post('saveHierarchy', [OrganogramController::class, 'saveHierarchy']);
-//     Route::get('getLevelList', [OrganogramController::class, 'getLevelList']);
-//     Route::get('getOrganisationHierarchyList', [OrganogramController::class, 'getOrganisationHierarchyList']);
-//     Route::get('levelCheck/{id}', [OrganogramController::class, 'editId']);
-//     Route::get('hierarchy-row/{id}', [OrganogramController::class, 'hierarchyRow']);
-// });
+
 Route::group([
     'middleware' => 'api',
     'prefix' => 'setting'
@@ -289,32 +258,4 @@ Route::group([
 
     
 });
-// Route::group([
-//     'middleware' => 'api',
-//     'prefix' => 'rota'
-// ], function () {
-//     Route::post('createEditShift', [RotaController::class, 'createEditShift']);
-//     Route::get('allShiftInfo', [RotaController::class, 'allShiftInfo']);
-//     Route::get('getshiftManageRow/{id}', [RotaController::class, 'getshiftManageRow']);
-//     //Late Policy
-//     Route::post('createEditLatePolicy', [RotaController::class, 'createEditLatePolicy']);
-//     Route::get('getAllLatePolicy', [RotaController::class, 'getAllLatePolicy']);
-//     Route::get('getLatePolicyRow/{id}', [RotaController::class, 'getLatePolicyRow']);
-//     //Grace Period
-//     Route::post('createEditGracePeriod', [RotaController::class, 'createEditGracePeriod']);
-//     Route::get('getAllGracePeriod', [RotaController::class, 'getAllGracePeriod']);
-//     Route::get('getLateGracePolicyRow/{id}', [RotaController::class, 'getLateGracePolicyRow']);
-//     //Duty Roster
-//     Route::post('createEditDutyRoster', [RotaController::class, 'createEditDutyRoster']);
-//     Route::get('getAllDutyRoster', [RotaController::class, 'getAllDutyRoster']);
-//     Route::get('getDutyRosterRow/{id}', [RotaController::class, 'getDutyRosterRow']);
-//     Route::get('getAllVisitorRegister', [RotaController::class, 'getAllVisitorRegister']);
-// });
-// Route::group([
-//     'middleware' => 'api',
-//     'prefix' => 'attendance'
-// ], function () {
-//     Route::post('uploadDocuments', [AttendanceController::class, 'uploadDocuments']);
-//     Route::get('getUploadAttendance', [AttendanceController::class, 'getUploadAttendance']);
-//     //  Route::get('getshiftManageRow/{id}', [RotaController::class, 'getshiftManageRow']);
-// });
+

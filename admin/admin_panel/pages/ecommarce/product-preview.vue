@@ -174,14 +174,7 @@
                                             <td>&nbsp;</td>
                                             <td>&nbsp;</td>
                                         </tr>
-                                        <tr>
-                                            <td>Status</td>
-                                            <td><strong>:</strong></td>
-                                            <td>
-                                                <div v-if="productData.tax_status === 0" class="marleft">Draft</div>
-                                                <div v-if="productData.tax_status === 1" class="marleft">Publish</div>
-                                            </td>
-                                        </tr>
+                                      
                                         <tr>
                                             <td>Manufacturer</td>
                                             <td><strong>:</strong></td>
@@ -200,6 +193,14 @@
                                             <td>Download Link</td>
                                             <td><strong>:</strong></td>
                                             <td>{{ productData.download_link }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Status</td>
+                                            <td><strong>:</strong></td>
+                                            <td>
+                                                <div v-if="productData.status === 0" class="marleft">Draft</div>
+                                                <div v-if="productData.status === 1" class="marleft">Publish</div>
+                                            </td>
                                         </tr>
                                     </table>
                                 </div>
