@@ -9,11 +9,15 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxt/http": "^0.6.4",
+    "@nuxtjs/axios": "^5.13.6",
+    "axios": "^0.21.1",
     "core-js": "^3.25.3",
     "jquery": "^3.7.1",
     "nuxt": "^2.15.8",
     "owl.carousel": "^2.3.4",
     "vue": "^2.7.10",
+    "vue-axios": "^3.5.2",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.10"
   }

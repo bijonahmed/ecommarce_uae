@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 20, 2023 at 05:55 PM
+-- Generation Time: Oct 22, 2023 at 08:57 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -302,6 +302,39 @@ INSERT INTO `bank_short_code` (`id`, `bank_id`, `name`, `status`, `entry_by`) VA
 (1, 9, '56854', 1, 1),
 (2, 2, '11545', 1, 1),
 (3, 2, '165586', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `brands`
+--
+
+CREATE TABLE `brands` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `slug` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `brands`
+--
+
+INSERT INTO `brands` (`id`, `name`, `slug`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'TechGad', 'techgad', 1, '2023-10-21 12:39:16', '2023-10-22 18:15:23'),
+(2, 'Glamourify', 'glamourify', 1, '2023-10-21 12:39:16', '2023-10-22 18:15:30'),
+(3, 'UrbanTrend', 'urbantrend', 1, '2023-10-21 12:39:16', '2023-10-22 18:15:37'),
+(4, 'LuxeVista', 'luxevista', 1, '2023-10-21 12:39:16', '2023-10-22 18:15:44'),
+(5, 'PixelHub', 'pixelhub', 1, '2023-10-21 12:39:16', '2023-10-22 18:15:51'),
+(6, 'SportElite', 'sportelite', 1, '2023-10-21 12:39:16', '2023-10-22 18:15:58'),
+(7, 'BloomVibes', 'bloomvibes', 1, '2023-10-21 12:39:16', '2023-10-22 18:16:07'),
+(8, 'StyleSphere', 'stylesphere', 1, '2023-10-21 12:39:16', '2023-10-22 18:16:14'),
+(9, 'AquaGlo', 'aquaglo', 1, '2023-10-21 12:39:16', '2023-10-22 18:16:21'),
+(10, 'GourmetGoods', 'gourmetgoods', 1, '2023-10-21 12:39:16', '2023-10-22 18:16:28'),
+(11, 'NovaTech', 'novatech', 1, '2023-10-21 12:39:16', '2023-10-22 18:16:37'),
+(12, 'NatureBlend', 'natureblend', 1, '2023-10-23 00:12:17', '2023-10-22 18:16:44');
 
 -- --------------------------------------------------------
 
@@ -1310,6 +1343,76 @@ INSERT INTO `leave_type` (`id`, `name`, `code`, `status`, `created_at`, `updated
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `manufacturers`
+--
+
+CREATE TABLE `manufacturers` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `slug` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `manufacturers`
+--
+
+INSERT INTO `manufacturers` (`id`, `name`, `slug`, `status`, `created_at`, `updated_at`) VALUES
+(2, 'Apparel and Fashion', 'apparel-and-fashion', 1, '0000-00-00 00:00:00', '2023-10-21 06:18:04'),
+(3, 'Beauty and Personal Care Product', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(4, 'Home and Furniture', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(5, 'Health and Wellness Product', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(6, 'Food and Beverage', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(7, 'Automotive Parts and Accessories ', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(8, 'Jewelry', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(9, 'Sports and Outdoor Equipment', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(10, 'Toy and Game', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(11, 'Craft and Art Supplies', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(12, 'Industrial and Manufacturing Equipment ', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(13, 'Pharmaceutical and Medical Equipment ', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(14, 'Chemical and Specialty Material', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(15, 'Packaging and Printing', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(16, 'Construction and Building Materials', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(17, 'Agricultural and Farming Equipment', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(18, 'Renewable Energy Equipment', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(19, 'HVAC and Climate Control Equipment', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(20, 'Plastics and Rubber Product', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(21, 'Metal and Metalworking', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(22, 'Textile and Fabric', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(23, 'Paper and Paper Product', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(24, 'Leather and Leather Goods', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(25, 'Glass and Glassware', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(26, 'Ceramics and Pottery', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(27, 'Audio and Musical Instrument', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(28, 'Furniture Hardware and Fittings', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(29, 'Lighting and Electrical Fixture', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(30, 'Office Supplies and Stationery', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(31, 'Chemical Processing Equipment', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(32, 'Aerospace and Defense Equipment', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(33, 'Marine and Shipbuilding', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(34, 'Mining and Quarrying Equipment', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(35, 'Environmental and Water Treatment Equipment', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(36, 'Electronic Components', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(37, 'Power Generation and Distribution Equipment', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(38, 'Telecommunications Equipment', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(39, 'Medical Device', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(40, 'Safety and Security Equipment', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(41, 'Laboratory and Scientific Equipment', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(42, 'Precision and Optical Instrument', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(43, 'Transportation Equipment', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(44, 'Hospitality and Catering Equipment', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(45, 'Furniture Upholstery and Cushion', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(46, 'Building and Construction Tools', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(47, 'Power Tools and Equipment', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(48, 'Gardening and Landscaping Equipment', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(49, 'Cleaning and Janitorial Supplies', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(50, 'Pet Products and Accessories', NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -1482,11 +1585,11 @@ CREATE TABLE `product` (
   `meta_description` text DEFAULT NULL,
   `meta_keyword` varchar(255) DEFAULT NULL,
   `product_tag` varchar(255) DEFAULT NULL,
-  `model` int(11) DEFAULT NULL,
+  `brand` int(11) DEFAULT NULL,
   `sku` varchar(255) DEFAULT NULL,
   `external_link` varchar(255) DEFAULT NULL,
   `cash_dev_status` int(11) DEFAULT NULL,
-  `price` double(10,5) DEFAULT NULL,
+  `price` double(10,2) DEFAULT NULL,
   `unit` varchar(255) DEFAULT NULL,
   `stock_qty` int(11) DEFAULT NULL,
   `stock_mini_qty` int(11) DEFAULT NULL,
@@ -1514,15 +1617,21 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `name`, `slug`, `description`, `meta_title`, `meta_description`, `meta_keyword`, `product_tag`, `model`, `sku`, `external_link`, `cash_dev_status`, `price`, `unit`, `stock_qty`, `stock_mini_qty`, `stock_status`, `manufacturer`, `download_link`, `discount`, `discount_status`, `shipping_days`, `free_shopping`, `flat_rate_status`, `flat_rate_price`, `vat`, `vat_status`, `tax`, `tax_status`, `thumnail_img`, `status`, `entry_by`, `created_at`, `updated_at`) VALUES
-(1, 'Amazon Essentials Women\'s1111', 'amazon-essentials-women-s1111', '<h2 style=\"margin-left:0px;\">About this item</h2><ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, women’s table tennis shirt with a triangle pattern</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players</span></li><li><span style=\"color:rgb(15,17,17);\">Offers short sleeves, a V-neck style collar and a women’s tapered cut</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester)</span></li></ul>', 'tag1111', 'Product11111', 'Product11111', 'tesing,, data,, mesign,1111', 1111, 'SKU1111', 'http://localhost:3000/ecommarce/product-add1111', 1, 10555.00000, 'KG', 1111, 1111, 1, 1, 'fgh', 1111.00000, 0, 1111, 0, 0, 22.00000, '1111', 2, '1111', 2, '/backend/files/rNXqHtpCM2YaJRWoPtP6.jpg', 1, 1, NULL, '2023-10-20 15:48:44'),
-(2, 'Pretty Polly Women\'s Eco Active Wear Short Sleeve T-Shirt', 'pretty-polly-women-s-eco-active-wear-short-sleeve-t-shirt', '<h2 style=\"margin-left:0px;\">About this item</h2><ul><li><span style=\"color:rgb(15,17,17);\">94% Polyamide, 6% Elastane</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Pull On closure</span></li><li><span style=\"color:rgb(15,17,17);\">Machine Wash</span></li><li><span style=\"color:rgb(15,17,17);\">SUSTAINABLE: Pretty Polly’s new range of Active-Wear is another step towards a sustainable future. Uniquely made from predominately recycled yarns, the garments are seamless, soft and very comfortable to wear, specially made to move with you as you exercise.</span></li><li><span style=\"color:rgb(15,17,17);\">SHORT SLEEVE T-SHIRT: Pretty Polly Active-Wear Short Sleeve T-Shirt is a seamless top which features a patterned mesh panels detail on the sides for breathability. Fitted sleeves and full back.</span></li><li><span style=\"color:rgb(15,17,17);\">FEATURES: Garment has specially designed mesh panel to aid breathability. Stay cool when working out or doing other activities while wearing the Eco Active Wear.</span></li><li><span style=\"color:rgb(15,17,17);\">ACTIVITIES: The perfect apparel for yoga, pilates, and other non-vigorous workouts. Also great to wear when lounging or running errands.</span></li><li><span style=\"color:rgb(15,17,17);\">CARE INSTRUCTIONS: Machine Wash, Line Dry.</span></li></ul>', 'Pretty Polly Women\'s Eco Active Wear Short Sleeve T-Shirt', 'Pretty Polly Women\'s Eco Active Wear Short Sleeve T-Shirt', 'Pretty Polly Women\'s Eco Active Wear Short Sleeve T-Shirt', 'tat, ata', 0, 'SKU', 'http://localhost:3000/ecommarce/product-add', 2, 5000.00000, 'PC', 1, 1, 1, 1, 'Juices', 0.00000, 0, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/EeBw7H3bB2djFimK2TmS.jpg', 1, 1, NULL, '2023-10-20 15:50:53'),
-(3, 'Butterfly Women\'s Higo Lady Shirt,', 'butterfly-women-s-higo-lady-shirt-', '<h2 style=\"margin-left:0px;\">About this item</h2><ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, women’s table tennis shirt with a triangle pattern</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players</span></li><li><span style=\"color:rgb(15,17,17);\">Offers short sleeves, a V-neck style collar and a women’s tapered cut</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester)</span></li></ul>', 'Butterfly Women\'s Higo Lady Shirt,', 'Butterfly Women\'s Higo Lady Shirt,', 'Butterfly Women\'s Higo Lady Shirt,', '', 0, 'SKU', 'http://localhost:3000/ecommarce/product-add', 2, 500.00000, 'KG', 1, 1, 1, 0, 'fgh', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/y7bCz9xCiFutYGC0Bh8m.jpg', 1, 1, NULL, NULL),
-(4, 'Women\'s Higo Lady Shirt,', 'women-s-higo-lady-shirt-', '<h2 style=\"margin-left:0px;\">About this item</h2><ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, women’s table tennis shirt with a triangle pattern</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players</span></li><li><span style=\"color:rgb(15,17,17);\">Offers short sleeves, a V-neck style collar and a women’s tapered cut</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester)</span></li></ul>', 'Women\'s Higo Lady Shirt,', '', 'Women\'s Higo Lady Shirt,', '', 0, '48778', '', 2, 6500.00000, 'KG', 1, 1, 2, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/2e0Yu34IU6YJDksixmcb.jpg', 1, 1, NULL, NULL),
-(5, 'ButterflyTable Tennis Shirt', 'butterflytable-tennis-shirt', '<ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, table tennis shirt for men</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players’ Timo Boll, Dimitrij Ovtcharov and Patrick Franziska</span></li><li><span style=\"color:rgb(15,17,17);\">A three button Henley style shirt with complementing pattern. Shirt allows room to move with slits on the side of the hem.</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester).</span></li></ul>', 'ButterflyTable Tennis Shirt', 'ButterflyTable Tennis Shirt', 'ButterflyTable Tennis Shirt', 'ButterflyTable, Tennis, Shirt', 0, 'SKU', '', 2, 500.00000, '156', 1, 1, 2, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/QIMz4358Zf7It78r4y2S.jpg', 1, 1, NULL, NULL),
-(6, 'Tennis Shirt', 'tennis-shirt', '<ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, table tennis shirt for men</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players’ Timo Boll, Dimitrij Ovtcharov and Patrick Franziska</span></li><li><span style=\"color:rgb(15,17,17);\">A three button Henley style shirt with complementing pattern. Shirt allows room to move with slits on the side of the hem.</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester).</span></li></ul>', 'Tennis Shirt', 'Tennis Shirt', 'Tennis Shirt', ', Tennis, Shirt', 223, '23', '', 2, 23.00000, 'KG', 1, 1, 2, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/MMKa0CB2lxnICqaL1OcB.jpg', 1, 1, NULL, NULL),
-(7, 'Pents', 'pents', '<p>PentsPentsPentsPentsPents</p>', 'Pents', 'Pents', 'Pents', 'Pents, Pents, Pents', 5, '22', '', 2, 23.00000, 'KG', 1, 1, 2, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/RdDN3AZfvRauDh9SK45T.jpg', 1, 1, NULL, NULL),
-(8, 'Computer', 'computer', '<ul><li><span style=\"color:rgb(15,17,17);\"><strong>94% Polyamide, 6% Elastane</strong></span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Pull On closure</span></li><li><span style=\"color:rgb(15,17,17);\">Machine Wash</span></li><li><span style=\"color:rgb(15,17,17);\">SUSTAINABLE: Pretty Polly’s new range of Active-Wear is another step towards a sustainable future. Uniquely made from predominately recycled yarns, the garments are seamless, soft and very comfortable to wear, specially made to move with you as you exercise.</span></li><li><span style=\"color:rgb(15,17,17);\">SHORT SLEEVE T-SHIRT: Pretty Polly Active-Wear Short Sleeve T-Shirt is a seamless top which features a patterned mesh panels detail on the sides for breathability. Fitted sleeves and full back.</span></li><li><span style=\"color:rgb(15,17,17);\">FEATURES: Garment has specially designed mesh panel to aid breathability. Stay cool when working out or doing other activities while wearing the Eco Active Wear.</span></li><li><span style=\"color:rgb(15,17,17);\">ACTIVITIES: The perfect apparel for yoga, pilates, and other non-vigorous workouts. Also great to wear when lounging or running errands.</span></li><li><span style=\"color:rgb(15,17,17);\">CARE INSTRUCTIONS: Machine Wash, Line Dry.</span></li></ul>', 'Computer', 'meta description', 'Meta keyword', 'Tag 1, Tag 2, Tag 3', 123, '34', 'http://localhost:3000/ecommarce/product-add', 2, 500.00000, 'KG', 1, 1, 3, 23434, 'http://localhost:3000/ecommarce/product-add', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, 'backend/files/8bt4Rh03jHSiWQnE3aqiSO0Ga0dWklN4Ulc5Y9J8.jpg', 1, 1, NULL, NULL);
+INSERT INTO `product` (`id`, `name`, `slug`, `description`, `meta_title`, `meta_description`, `meta_keyword`, `product_tag`, `brand`, `sku`, `external_link`, `cash_dev_status`, `price`, `unit`, `stock_qty`, `stock_mini_qty`, `stock_status`, `manufacturer`, `download_link`, `discount`, `discount_status`, `shipping_days`, `free_shopping`, `flat_rate_status`, `flat_rate_price`, `vat`, `vat_status`, `tax`, `tax_status`, `thumnail_img`, `status`, `entry_by`, `created_at`, `updated_at`) VALUES
+(1, 'Amazon Essentials Women\'s1111', 'amazon-essentials-women-s1111', '<h2 style=\"margin-left:0px;\">About this item</h2><ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, women’s table tennis shirt with a triangle pattern</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players</span></li><li><span style=\"color:rgb(15,17,17);\">Offers short sleeves, a V-neck style collar and a women’s tapered cut</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester)</span></li></ul>', 'tag1111', 'Product11111', 'Product11111', 'tesing,, data,, mesign,1111', 5, 'SKU1111', 'http://localhost:3000/ecommarce/product-add1111', 1, 10555.00, 'KG', 1111, 1111, 1, 6, 'fgh', 1111.00000, 0, 1111, 0, 0, 22.00000, '1111', 2, '1111', 2, '/backend/files/rNXqHtpCM2YaJRWoPtP6.jpg', 1, 1, NULL, '2023-10-22 17:18:54'),
+(2, 'Pretty Polly Women\'s Eco Active Wear Short Sleeve T-Shirt', 'pretty-polly-women-s-eco-active-wear-short-sleeve-t-shirt', '<h2 style=\"margin-left:0px;\">About this item</h2><ul><li><span style=\"color:rgb(15,17,17);\">94% Polyamide, 6% Elastane</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Pull On closure</span></li><li><span style=\"color:rgb(15,17,17);\">Machine Wash</span></li><li><span style=\"color:rgb(15,17,17);\">SUSTAINABLE: Pretty Polly’s new range of Active-Wear is another step towards a sustainable future. Uniquely made from predominately recycled yarns, the garments are seamless, soft and very comfortable to wear, specially made to move with you as you exercise.</span></li><li><span style=\"color:rgb(15,17,17);\">SHORT SLEEVE T-SHIRT: Pretty Polly Active-Wear Short Sleeve T-Shirt is a seamless top which features a patterned mesh panels detail on the sides for breathability. Fitted sleeves and full back.</span></li><li><span style=\"color:rgb(15,17,17);\">FEATURES: Garment has specially designed mesh panel to aid breathability. Stay cool when working out or doing other activities while wearing the Eco Active Wear.</span></li><li><span style=\"color:rgb(15,17,17);\">ACTIVITIES: The perfect apparel for yoga, pilates, and other non-vigorous workouts. Also great to wear when lounging or running errands.</span></li><li><span style=\"color:rgb(15,17,17);\">CARE INSTRUCTIONS: Machine Wash, Line Dry.</span></li></ul>', 'Pretty Polly Women\'s Eco Active Wear Short Sleeve T-Shirt', 'Pretty Polly Women\'s Eco Active Wear Short Sleeve T-Shirt', 'Pretty Polly Women\'s Eco Active Wear Short Sleeve T-Shirt', 'tat, ata', 0, 'SKU', 'http://localhost:3000/ecommarce/product-add', 2, 5000.00, 'PC', 1, 1, 1, 1, 'Juices', 0.00000, 0, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/EeBw7H3bB2djFimK2TmS.jpg', 1, 1, NULL, '2023-10-20 15:50:53'),
+(3, 'Butterfly Women\'s Higo Lady Shirt,', 'butterfly-women-s-higo-lady-shirt-', '<h2 style=\"margin-left:0px;\">About this item</h2><ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, women’s table tennis shirt with a triangle pattern</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players</span></li><li><span style=\"color:rgb(15,17,17);\">Offers short sleeves, a V-neck style collar and a women’s tapered cut</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester)</span></li></ul>', 'Butterfly Women\'s Higo Lady Shirt,', 'Butterfly Women\'s Higo Lady Shirt,', 'Butterfly Women\'s Higo Lady Shirt,', '', 0, 'SKU', 'http://localhost:3000/ecommarce/product-add', 2, 500.00, 'KG', 1, 1, 1, 0, 'fgh', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/y7bCz9xCiFutYGC0Bh8m.jpg', 1, 1, NULL, NULL),
+(4, 'Women\'s Higo Lady Shirt,', 'women-s-higo-lady-shirt-', '<h2 style=\"margin-left:0px;\">About this item</h2><ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, women’s table tennis shirt with a triangle pattern</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players</span></li><li><span style=\"color:rgb(15,17,17);\">Offers short sleeves, a V-neck style collar and a women’s tapered cut</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester)</span></li></ul>', 'Women\'s Higo Lady Shirt,', '', 'Women\'s Higo Lady Shirt,', '', 0, '48778', '', 2, 6500.00, 'KG', 1, 1, 2, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/2e0Yu34IU6YJDksixmcb.jpg', 1, 1, NULL, NULL),
+(5, 'ButterflyTable Tennis Shirt', 'butterflytable-tennis-shirt', '<ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, table tennis shirt for men</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players’ Timo Boll, Dimitrij Ovtcharov and Patrick Franziska</span></li><li><span style=\"color:rgb(15,17,17);\">A three button Henley style shirt with complementing pattern. Shirt allows room to move with slits on the side of the hem.</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester).</span></li></ul>', 'ButterflyTable Tennis Shirt', 'ButterflyTable Tennis Shirt', 'ButterflyTable Tennis Shirt', 'ButterflyTable, Tennis, Shirt', 0, 'SKU', '', 2, 500.00, '156', 1, 1, 2, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/QIMz4358Zf7It78r4y2S.jpg', 1, 1, NULL, NULL),
+(6, 'Tennis Shirt', 'tennis-shirt', '<ul><li><span style=\"color:rgb(15,17,17);\">100% Polyester</span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Sporty, modern, table tennis shirt for men</span></li><li><span style=\"color:rgb(15,17,17);\">Developed in close collaboration with professional players’ Timo Boll, Dimitrij Ovtcharov and Patrick Franziska</span></li><li><span style=\"color:rgb(15,17,17);\">A three button Henley style shirt with complementing pattern. Shirt allows room to move with slits on the side of the hem.</span></li><li><span style=\"color:rgb(15,17,17);\">Features the Butterfly “Wings” logo on the left chest and the word “PRO” on the back of the collar.</span></li><li><span style=\"color:rgb(15,17,17);\">Material: Lycra Mix 140gsm 90/10 (100% polyester).</span></li></ul>', 'Tennis Shirt', 'Tennis Shirt', 'Tennis Shirt', ', Tennis, Shirt', 223, '23', '', 2, 23.00, 'KG', 1, 1, 2, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/MMKa0CB2lxnICqaL1OcB.jpg', 1, 1, NULL, NULL),
+(7, 'Pents', 'pents', '<p>PentsPentsPentsPentsPents</p>', 'Pents', 'Pents', 'Pents', 'Pents, Pents, Pents', 5, '22', '', 2, 23.00, 'KG', 1, 1, 2, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/RdDN3AZfvRauDh9SK45T.jpg', 1, 1, NULL, NULL),
+(8, 'Computer', 'computer', '<ul><li><span style=\"color:rgb(15,17,17);\"><strong>94% Polyamide, 6% Elastane</strong></span></li><li><span style=\"color:rgb(15,17,17);\">Imported</span></li><li><span style=\"color:rgb(15,17,17);\">Pull On closure</span></li><li><span style=\"color:rgb(15,17,17);\">Machine Wash</span></li><li><span style=\"color:rgb(15,17,17);\">SUSTAINABLE: Pretty Polly’s new range of Active-Wear is another step towards a sustainable future. Uniquely made from predominately recycled yarns, the garments are seamless, soft and very comfortable to wear, specially made to move with you as you exercise.</span></li><li><span style=\"color:rgb(15,17,17);\">SHORT SLEEVE T-SHIRT: Pretty Polly Active-Wear Short Sleeve T-Shirt is a seamless top which features a patterned mesh panels detail on the sides for breathability. Fitted sleeves and full back.</span></li><li><span style=\"color:rgb(15,17,17);\">FEATURES: Garment has specially designed mesh panel to aid breathability. Stay cool when working out or doing other activities while wearing the Eco Active Wear.</span></li><li><span style=\"color:rgb(15,17,17);\">ACTIVITIES: The perfect apparel for yoga, pilates, and other non-vigorous workouts. Also great to wear when lounging or running errands.</span></li><li><span style=\"color:rgb(15,17,17);\">CARE INSTRUCTIONS: Machine Wash, Line Dry.</span></li></ul>', 'Computer', 'meta description', 'Meta keyword', 'Tag 1, Tag 2, Tag 3', 123, '34', 'http://localhost:3000/ecommarce/product-add', 2, 500.00, 'KG', 1, 1, 3, 1, 'http://localhost:3000/ecommarce/product-add', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, 'backend/files/8bt4Rh03jHSiWQnE3aqiSO0Ga0dWklN4Ulc5Y9J8.jpg', 1, 1, NULL, NULL),
+(9, 'test', 'test', '<p>DescriptionDescriptionDescriptionDescription</p>', 'dd', 'dd', 'sdfsdf', 'sdf, sdfsdf, dsff,', 5, '3dfdf', 'dfdf', 2, 45552.00, '255', 1, 1, 1, 2, 'http://localhost:3000/ecommarce/product-add', 0.00000, 2, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/BuZRRGuBvLJJ8GRJVLHW.jpg', 1, 1, NULL, NULL),
+(10, 'microphone', 'microphone', '<p>sdf</p>', 'microphone', 'microphone', 'microphone', 'microphone, microphone, microphone', 5, 'sdf', 'sdf', 2, 23.00, '23', 1, 1, 1, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/MAMYCKYCNJfjW4MMzmcv.jpg', 1, 1, NULL, NULL),
+(11, 'water', 'water', '<p>ad</p>', 'sdf', 'sdf', 'sdf', 'sdf, sdfs, sd', 4, 'assd', 'ad', 2, 22.00, '222', 1, 1, 1, 0, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/fpQ1h0MS6frJH982EB7x.jpg', 1, 1, NULL, NULL),
+(12, 'dfsf', 'dfsf', '<p>dgdg</p>', 'sdf', '', '', '', 6, 'sdf', 'sdf', 2, 22.00, '23', 1, 1, 1, 24, 'sdf', 0.00000, 0, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/kxj9r7Od5DVHBKOprCSm.jpg', 1, 1, NULL, '2023-10-21 14:27:16'),
+(13, 'fgdg', 'fgdg', '', '', '', '', '', 4, 'd', 'df', 2, 23.00, '22', 1, 1, 1, 6, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/XBn8SyBho8CxWvHdMDlV.jpg', 1, 1, NULL, NULL),
+(14, 'ItemChart', 'itemchart', '<p>dsf</p>', 'd', 'dd', 'sd', 'sdf', 4, '25', 'sdf', 2, 253.00, '1', 1, 1, 1, 5, '', 0.00000, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/2SiPof37l80WvUungkWs.jpg', 1, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1534,6 +1643,7 @@ CREATE TABLE `product_attributes` (
   `id` int(11) NOT NULL,
   `product_id` int(11) DEFAULT NULL,
   `attributes_id` int(11) NOT NULL,
+  `attr_status` int(11) NOT NULL COMMENT '0=delete action off\r\n1=delete action on \r\nwhen matching product_variants table then action working',
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -1542,20 +1652,18 @@ CREATE TABLE `product_attributes` (
 -- Dumping data for table `product_attributes`
 --
 
-INSERT INTO `product_attributes` (`id`, `product_id`, `attributes_id`, `created_at`, `updated_at`) VALUES
-(1, 7, 2, '2023-10-17 02:31:32', '2023-10-17 02:31:32'),
-(2, 7, 3, '2023-10-17 02:31:51', '2023-10-17 02:31:51'),
-(3, 7, 20, '2023-10-17 02:32:02', '2023-10-17 02:32:02'),
-(4, 8, 8, '2023-10-19 10:39:50', '2023-10-19 10:39:50'),
-(5, 8, 2, '2023-10-19 10:39:59', '2023-10-19 10:39:59'),
-(6, 8, 5, '2023-10-19 10:40:05', '2023-10-19 10:40:05'),
-(7, 8, 14, '2023-10-19 10:40:13', '2023-10-19 10:40:13'),
-(8, 8, 3, '2023-10-19 10:40:26', '2023-10-19 10:40:26'),
-(9, 1, 8, '2023-10-20 21:40:03', '2023-10-20 21:40:03'),
-(10, 1, 3, '2023-10-20 21:40:09', '2023-10-20 21:40:09'),
-(11, 1, 1, '2023-10-20 21:40:16', '2023-10-20 21:40:16'),
-(12, 2, 5, '2023-10-20 21:51:01', '2023-10-20 21:51:01'),
-(13, 2, 9, '2023-10-20 21:51:06', '2023-10-20 21:51:06');
+INSERT INTO `product_attributes` (`id`, `product_id`, `attributes_id`, `attr_status`, `created_at`, `updated_at`) VALUES
+(1, 1, 8, 0, '2023-10-22 20:30:57', '2023-10-22 20:30:57'),
+(2, 1, 20, 0, '2023-10-22 20:38:34', '2023-10-22 20:38:34'),
+(3, 1, 7, 0, '2023-10-22 20:40:20', '2023-10-22 20:40:20'),
+(4, 1, 19, 0, '2023-10-22 20:40:27', '2023-10-22 20:40:27'),
+(5, 1, 14, 0, '2023-10-22 20:40:31', '2023-10-22 20:40:31'),
+(6, 1, 3, 0, '2023-10-22 20:40:37', '2023-10-22 20:40:37'),
+(8, 13, 8, 0, '2023-10-22 22:30:45', '2023-10-22 22:30:45'),
+(9, 13, 6, 0, '2023-10-22 22:30:49', '2023-10-22 22:30:49'),
+(10, 13, 20, 0, '2023-10-22 22:30:53', '2023-10-22 22:30:53'),
+(11, 14, 8, 0, '2023-10-23 00:53:27', '2023-10-23 00:53:27'),
+(12, 14, 3, 0, '2023-10-23 00:53:30', '2023-10-23 00:53:30');
 
 -- --------------------------------------------------------
 
@@ -1578,43 +1686,63 @@ CREATE TABLE `product_attributes_values_history` (
 --
 
 INSERT INTO `product_attributes_values_history` (`id`, `product_id`, `attribute_id`, `product_attribute_id`, `product_att_value_id`, `created_at`, `updated_at`) VALUES
-(1, 7, 2, 1, 33, '2023-10-16 20:31:32', '2023-10-16 20:31:32'),
-(2, 7, 2, 1, 36, '2023-10-16 20:31:32', '2023-10-16 20:31:32'),
-(3, 7, 2, 1, 104, '2023-10-16 20:31:32', '2023-10-16 20:31:32'),
-(4, 7, 3, 2, 46, '2023-10-16 20:31:51', '2023-10-16 20:31:51'),
-(5, 7, 3, 2, 105, '2023-10-16 20:31:51', '2023-10-16 20:31:51'),
-(6, 7, 3, 2, 106, '2023-10-16 20:31:51', '2023-10-16 20:31:51'),
-(7, 7, 20, 3, 101, '2023-10-16 20:32:02', '2023-10-16 20:32:02'),
-(8, 7, 20, 3, 107, '2023-10-16 20:32:02', '2023-10-16 20:32:02'),
-(9, 8, 8, 4, 61, '2023-10-19 04:39:50', '2023-10-19 04:39:50'),
-(10, 8, 8, 4, 62, '2023-10-19 04:39:50', '2023-10-19 04:39:50'),
-(11, 8, 2, 5, 31, '2023-10-19 04:39:59', '2023-10-19 04:39:59'),
-(12, 8, 2, 5, 32, '2023-10-19 04:39:59', '2023-10-19 04:39:59'),
-(13, 8, 2, 5, 35, '2023-10-19 04:39:59', '2023-10-19 04:39:59'),
-(14, 8, 5, 6, 52, '2023-10-19 04:40:05', '2023-10-19 04:40:05'),
-(15, 8, 5, 6, 53, '2023-10-19 04:40:05', '2023-10-19 04:40:05'),
-(16, 8, 14, 7, 79, '2023-10-19 04:40:13', '2023-10-19 04:40:13'),
-(17, 8, 14, 7, 80, '2023-10-19 04:40:13', '2023-10-19 04:40:13'),
-(18, 8, 14, 7, 81, '2023-10-19 04:40:13', '2023-10-19 04:40:13'),
-(19, 8, 3, 8, 40, '2023-10-19 04:40:26', '2023-10-19 04:40:26'),
-(20, 8, 3, 8, 41, '2023-10-19 04:40:26', '2023-10-19 04:40:26'),
-(21, 8, 3, 8, 42, '2023-10-19 04:40:26', '2023-10-19 04:40:26'),
-(22, 8, 3, 8, 43, '2023-10-19 04:40:26', '2023-10-19 04:40:26'),
-(23, 8, 3, 8, 44, '2023-10-19 04:40:26', '2023-10-19 04:40:26'),
-(24, 1, 8, 9, 61, '2023-10-20 15:40:03', '2023-10-20 15:40:03'),
-(25, 1, 8, 9, 62, '2023-10-20 15:40:03', '2023-10-20 15:40:03'),
-(26, 1, 8, 9, 63, '2023-10-20 15:40:03', '2023-10-20 15:40:03'),
-(27, 1, 3, 10, 40, '2023-10-20 15:40:09', '2023-10-20 15:40:09'),
-(28, 1, 3, 10, 41, '2023-10-20 15:40:09', '2023-10-20 15:40:09'),
-(29, 1, 3, 10, 42, '2023-10-20 15:40:09', '2023-10-20 15:40:09'),
-(30, 1, 1, 11, 7, '2023-10-20 15:40:16', '2023-10-20 15:40:16'),
-(31, 1, 1, 11, 8, '2023-10-20 15:40:16', '2023-10-20 15:40:16'),
-(32, 1, 1, 11, 9, '2023-10-20 15:40:16', '2023-10-20 15:40:16'),
-(33, 1, 1, 11, 10, '2023-10-20 15:40:16', '2023-10-20 15:40:16'),
-(34, 2, 5, 12, 52, '2023-10-20 15:51:01', '2023-10-20 15:51:01'),
-(35, 2, 5, 12, 53, '2023-10-20 15:51:01', '2023-10-20 15:51:01'),
-(36, 2, 9, 13, 65, '2023-10-20 15:51:06', '2023-10-20 15:51:06'),
-(37, 2, 9, 13, 66, '2023-10-20 15:51:06', '2023-10-20 15:51:06');
+(13, 1, 20, 2, 101, '2023-10-22 20:38:34', '2023-10-22 20:38:34'),
+(14, 1, 20, 2, 102, '2023-10-22 20:38:34', '2023-10-22 20:38:34'),
+(15, 1, 20, 2, 103, '2023-10-22 20:38:34', '2023-10-22 20:38:34'),
+(16, 1, 20, 2, 107, '2023-10-22 20:38:34', '2023-10-22 20:38:34'),
+(17, 1, 7, 3, 58, '2023-10-22 20:40:20', '2023-10-22 20:40:20'),
+(18, 1, 7, 3, 59, '2023-10-22 20:40:20', '2023-10-22 20:40:20'),
+(19, 1, 7, 3, 60, '2023-10-22 20:40:20', '2023-10-22 20:40:20'),
+(20, 1, 8, 1, 61, '2023-10-22 20:40:24', '2023-10-22 20:40:24'),
+(21, 1, 8, 1, 62, '2023-10-22 20:40:24', '2023-10-22 20:40:24'),
+(22, 1, 8, 1, 63, '2023-10-22 20:40:25', '2023-10-22 20:40:25'),
+(23, 1, 19, 4, 98, '2023-10-22 20:40:27', '2023-10-22 20:40:27'),
+(24, 1, 19, 4, 99, '2023-10-22 20:40:27', '2023-10-22 20:40:27'),
+(25, 1, 19, 4, 100, '2023-10-22 20:40:27', '2023-10-22 20:40:27'),
+(26, 1, 14, 5, 79, '2023-10-22 20:40:31', '2023-10-22 20:40:31'),
+(27, 1, 14, 5, 80, '2023-10-22 20:40:31', '2023-10-22 20:40:31'),
+(28, 1, 14, 5, 81, '2023-10-22 20:40:31', '2023-10-22 20:40:31'),
+(29, 1, 3, 6, 40, '2023-10-22 20:40:37', '2023-10-22 20:40:37'),
+(30, 1, 3, 6, 41, '2023-10-22 20:40:37', '2023-10-22 20:40:37'),
+(31, 1, 3, 6, 42, '2023-10-22 20:40:37', '2023-10-22 20:40:37'),
+(32, 1, 3, 6, 43, '2023-10-22 20:40:37', '2023-10-22 20:40:37'),
+(33, 1, 3, 6, 44, '2023-10-22 20:40:37', '2023-10-22 20:40:37'),
+(34, 1, 3, 6, 45, '2023-10-22 20:40:37', '2023-10-22 20:40:37'),
+(35, 1, 3, 6, 46, '2023-10-22 20:40:37', '2023-10-22 20:40:37'),
+(36, 1, 3, 6, 47, '2023-10-22 20:40:37', '2023-10-22 20:40:37'),
+(37, 1, 3, 6, 48, '2023-10-22 20:40:37', '2023-10-22 20:40:37'),
+(38, 1, 3, 6, 95, '2023-10-22 20:40:37', '2023-10-22 20:40:37'),
+(39, 1, 3, 6, 96, '2023-10-22 20:40:37', '2023-10-22 20:40:37'),
+(40, 1, 3, 6, 97, '2023-10-22 20:40:37', '2023-10-22 20:40:37'),
+(41, 1, 3, 6, 105, '2023-10-22 20:40:37', '2023-10-22 20:40:37'),
+(42, 1, 3, 6, 106, '2023-10-22 20:40:37', '2023-10-22 20:40:37'),
+(73, 13, 8, 8, 61, '2023-10-22 22:30:46', '2023-10-22 22:30:46'),
+(74, 13, 8, 8, 62, '2023-10-22 22:30:46', '2023-10-22 22:30:46'),
+(75, 13, 8, 8, 63, '2023-10-22 22:30:46', '2023-10-22 22:30:46'),
+(76, 13, 6, 9, 55, '2023-10-22 22:30:49', '2023-10-22 22:30:49'),
+(77, 13, 6, 9, 56, '2023-10-22 22:30:49', '2023-10-22 22:30:49'),
+(78, 13, 6, 9, 57, '2023-10-22 22:30:49', '2023-10-22 22:30:49'),
+(79, 13, 20, 10, 101, '2023-10-22 22:30:53', '2023-10-22 22:30:53'),
+(80, 13, 20, 10, 102, '2023-10-22 22:30:53', '2023-10-22 22:30:53'),
+(81, 13, 20, 10, 103, '2023-10-22 22:30:53', '2023-10-22 22:30:53'),
+(82, 13, 20, 10, 107, '2023-10-22 22:30:53', '2023-10-22 22:30:53'),
+(83, 14, 8, 11, 61, '2023-10-23 00:53:27', '2023-10-23 00:53:27'),
+(84, 14, 8, 11, 62, '2023-10-23 00:53:27', '2023-10-23 00:53:27'),
+(85, 14, 8, 11, 63, '2023-10-23 00:53:27', '2023-10-23 00:53:27'),
+(86, 14, 3, 12, 40, '2023-10-23 00:53:30', '2023-10-23 00:53:30'),
+(87, 14, 3, 12, 41, '2023-10-23 00:53:30', '2023-10-23 00:53:30'),
+(88, 14, 3, 12, 42, '2023-10-23 00:53:30', '2023-10-23 00:53:30'),
+(89, 14, 3, 12, 43, '2023-10-23 00:53:30', '2023-10-23 00:53:30'),
+(90, 14, 3, 12, 44, '2023-10-23 00:53:30', '2023-10-23 00:53:30'),
+(91, 14, 3, 12, 45, '2023-10-23 00:53:30', '2023-10-23 00:53:30'),
+(92, 14, 3, 12, 46, '2023-10-23 00:53:30', '2023-10-23 00:53:30'),
+(93, 14, 3, 12, 47, '2023-10-23 00:53:30', '2023-10-23 00:53:30'),
+(94, 14, 3, 12, 48, '2023-10-23 00:53:30', '2023-10-23 00:53:30'),
+(95, 14, 3, 12, 95, '2023-10-23 00:53:30', '2023-10-23 00:53:30'),
+(96, 14, 3, 12, 96, '2023-10-23 00:53:30', '2023-10-23 00:53:30'),
+(97, 14, 3, 12, 97, '2023-10-23 00:53:30', '2023-10-23 00:53:30'),
+(98, 14, 3, 12, 105, '2023-10-23 00:53:30', '2023-10-23 00:53:30'),
+(99, 14, 3, 12, 106, '2023-10-23 00:53:30', '2023-10-23 00:53:30');
 
 -- --------------------------------------------------------
 
@@ -1640,14 +1768,19 @@ CREATE TABLE `product_variants` (
 --
 
 INSERT INTO `product_variants` (`id`, `product_id`, `pro_attr_val_his_id`, `sku`, `qty`, `price`, `file`, `entry_by`, `updated_at`, `created_at`) VALUES
-(1, 8, '62,104,52,80,105', '10', 25, 4.00, '/backend/files/wRWVJNcHt50jLeRd4JpYZlEcvmhDF9WnLcSWXmH9.jpg', 1, '2023-10-20 05:01:00', '2023-10-19 08:32:37'),
-(2, 8, '62,104,52,80,40', '20', 50, 3.00, '/backend/files/IGW9wzBePC9Y4dc0ptHKC5kU0RjnPHFw3Jw3AtR6.jpg', 1, '2023-10-20 05:01:00', '2023-10-19 08:32:41'),
-(3, 8, '62,36,53,106', '10', 25, 20.00, '/backend/files/8bt4Rh03jHSiWQnE3aqiSO0Ga0dWklN4Ulc5Y9J8.jpg', 1, '2023-10-20 05:01:00', '2023-10-20 04:54:38'),
-(4, 1, '62,105,8', '10', 25, 200.00, '/backend/files/WBFmFnoNfcW8nSsGSvcqEQej5GNJ6Hh8rip7WXCt.jpg', 1, '2023-10-20 15:50:25', '2023-10-20 15:40:22'),
-(5, 1, '62,105,9', '25', 25, 300.00, '/backend/files/evwIAwOZmhmlDSwuYTAObcvbaKjAGfbhNIO16nw7.jpg', 1, '2023-10-20 15:50:25', '2023-10-20 15:40:26'),
-(6, 1, '62,105,10', '45', 20, 36.00, '/backend/files/L0mlOW70v9zBARbqprq3Ndfg1hdUavr17y7q9Snf.jpg', 1, '2023-10-20 15:50:25', '2023-10-20 15:40:29'),
-(7, 2, '52,66', '10', 25, 200.00, '/backend/files/ALjP0Exn9U5RyqCtuqeGBfGb5GOJQryi9EwT81G8.jpg', 1, '2023-10-20 15:51:25', '2023-10-20 15:51:09'),
-(8, 2, '52,65', '30', 25, 255.00, '/backend/files/tyG98iH5fiU0ecFzLDQVzx1VAlfLk09xpz4yyUXx.jpg', 1, '2023-10-20 15:51:25', '2023-10-20 15:51:11');
+(2, 1, '62,101,58,99,80,105', NULL, NULL, NULL, NULL, 1, '2023-10-22 14:51:18', '2023-10-22 14:51:18'),
+(3, 1, '62,101,58,99,80,95', NULL, NULL, NULL, NULL, 1, '2023-10-22 14:51:22', '2023-10-22 14:51:22'),
+(4, 1, '62,101,58,99,80,40', NULL, NULL, NULL, NULL, 1, '2023-10-22 14:51:26', '2023-10-22 14:51:26'),
+(5, 1, '62,101,58,99,80,45', NULL, NULL, NULL, NULL, 1, '2023-10-22 14:54:56', '2023-10-22 14:54:56'),
+(8, 13, '62,56,107', '648113', 1, 10.00, NULL, 1, '2023-10-22 16:47:32', '2023-10-22 16:42:24'),
+(9, 13, '62,56,103', '806113', 1, 10.00, NULL, 1, '2023-10-22 16:47:32', '2023-10-22 16:42:56'),
+(10, 13, '62,56,101', '697813', 1, 10.00, NULL, 1, '2023-10-22 16:47:32', '2023-10-22 16:43:10'),
+(11, 13, '62,56,102', '763413', 1, 10.00, NULL, 1, '2023-10-22 16:47:32', '2023-10-22 16:43:13'),
+(12, 13, '62,56,107', '056113', 1, 23.00, NULL, 1, '2023-10-22 16:47:32', '2023-10-22 16:46:10'),
+(13, 13, '62,56,103', '255113', 1, 23.00, NULL, 1, '2023-10-22 16:47:32', '2023-10-22 16:46:17'),
+(14, 14, '62,105', '532614', 1, 253.00, '/backend/files/odX265HtW0Ukl5SlV4d2nWhClvXgISF3m2ZCu4fh.jpg', 1, '2023-10-22 18:53:52', '2023-10-22 18:53:34'),
+(15, 14, '62,95', '057914', 12, 253.00, '/backend/files/Tu593YfuQ5lGpnY27Z8VmSl0OLgPWjH7cImGSync.jpg', 1, '2023-10-22 18:53:52', '2023-10-22 18:53:36'),
+(16, 14, '62,40', '238814', 1, 253.00, '/backend/files/Nv6o3hkPyfx8G9w5F1g5abbe8iEYm31AMArJUPiN.jpg', 1, '2023-10-22 18:53:52', '2023-10-22 18:53:39');
 
 -- --------------------------------------------------------
 
@@ -1670,33 +1803,54 @@ CREATE TABLE `product_variants_history` (
 --
 
 INSERT INTO `product_variants_history` (`id`, `product_id`, `pro_varient_id`, `pro_attr_val_his_id`, `varient_name`, `updated_at`, `created_at`) VALUES
-(1, 8, 1, 62, 'Apple', '2023-10-19 08:32:37', '2023-10-19 08:32:37'),
-(2, 8, 1, 104, 'Black', '2023-10-19 08:32:37', '2023-10-19 08:32:37'),
-(3, 8, 1, 52, 'Round Neck', '2023-10-19 08:32:37', '2023-10-19 08:32:37'),
-(4, 8, 1, 80, 'Pants', '2023-10-19 08:32:37', '2023-10-19 08:32:37'),
-(5, 8, 1, 105, '128GB', '2023-10-19 08:32:37', '2023-10-19 08:32:37'),
-(6, 8, 2, 62, 'Apple', '2023-10-19 08:32:41', '2023-10-19 08:32:41'),
-(7, 8, 2, 104, 'Black', '2023-10-19 08:32:41', '2023-10-19 08:32:41'),
-(8, 8, 2, 52, 'Round Neck', '2023-10-19 08:32:41', '2023-10-19 08:32:41'),
-(9, 8, 2, 80, 'Pants', '2023-10-19 08:32:41', '2023-10-19 08:32:41'),
-(10, 8, 2, 40, '1GB', '2023-10-19 08:32:41', '2023-10-19 08:32:41'),
-(11, 8, 3, 62, 'Apple', '2023-10-20 04:54:39', '2023-10-20 04:54:39'),
-(12, 8, 3, 36, 'White', '2023-10-20 04:54:39', '2023-10-20 04:54:39'),
-(13, 8, 3, 53, 'V-neck', '2023-10-20 04:54:39', '2023-10-20 04:54:39'),
-(14, 8, 3, 106, '512GB', '2023-10-20 04:54:39', '2023-10-20 04:54:39'),
-(15, 1, 4, 62, 'Apple', '2023-10-20 15:40:22', '2023-10-20 15:40:22'),
-(16, 1, 4, 105, '128GB', '2023-10-20 15:40:22', '2023-10-20 15:40:22'),
-(17, 1, 4, 8, '1', '2023-10-20 15:40:22', '2023-10-20 15:40:22'),
-(18, 1, 5, 62, 'Apple', '2023-10-20 15:40:26', '2023-10-20 15:40:26'),
-(19, 1, 5, 105, '128GB', '2023-10-20 15:40:26', '2023-10-20 15:40:26'),
-(20, 1, 5, 9, '2', '2023-10-20 15:40:26', '2023-10-20 15:40:26'),
-(21, 1, 6, 62, 'Apple', '2023-10-20 15:40:29', '2023-10-20 15:40:29'),
-(22, 1, 6, 105, '128GB', '2023-10-20 15:40:29', '2023-10-20 15:40:29'),
-(23, 1, 6, 10, '3', '2023-10-20 15:40:29', '2023-10-20 15:40:29'),
-(24, 2, 7, 52, 'Round Neck', '2023-10-20 15:51:09', '2023-10-20 15:51:09'),
-(25, 2, 7, 66, 'Heavy', '2023-10-20 15:51:09', '2023-10-20 15:51:09'),
-(26, 2, 8, 52, 'Round Neck', '2023-10-20 15:51:11', '2023-10-20 15:51:11'),
-(27, 2, 8, 65, 'Medium', '2023-10-20 15:51:11', '2023-10-20 15:51:11');
+(2, 1, 2, 62, 'Apple', '2023-10-22 14:51:18', '2023-10-22 14:51:18'),
+(3, 1, 2, 101, '1 Year', '2023-10-22 14:51:18', '2023-10-22 14:51:18'),
+(4, 1, 2, 58, 'Cotton', '2023-10-22 14:51:18', '2023-10-22 14:51:18'),
+(5, 1, 2, 99, '1080p', '2023-10-22 14:51:18', '2023-10-22 14:51:18'),
+(6, 1, 2, 80, 'Pants', '2023-10-22 14:51:18', '2023-10-22 14:51:18'),
+(7, 1, 2, 105, '128GB', '2023-10-22 14:51:18', '2023-10-22 14:51:18'),
+(8, 1, 3, 62, 'Apple', '2023-10-22 14:51:22', '2023-10-22 14:51:22'),
+(9, 1, 3, 101, '1 Year', '2023-10-22 14:51:22', '2023-10-22 14:51:22'),
+(10, 1, 3, 58, 'Cotton', '2023-10-22 14:51:22', '2023-10-22 14:51:22'),
+(11, 1, 3, 99, '1080p', '2023-10-22 14:51:22', '2023-10-22 14:51:22'),
+(12, 1, 3, 80, 'Pants', '2023-10-22 14:51:22', '2023-10-22 14:51:22'),
+(13, 1, 3, 95, '16GB', '2023-10-22 14:51:22', '2023-10-22 14:51:22'),
+(14, 1, 4, 62, 'Apple', '2023-10-22 14:51:26', '2023-10-22 14:51:26'),
+(15, 1, 4, 101, '1 Year', '2023-10-22 14:51:26', '2023-10-22 14:51:26'),
+(16, 1, 4, 58, 'Cotton', '2023-10-22 14:51:26', '2023-10-22 14:51:26'),
+(17, 1, 4, 99, '1080p', '2023-10-22 14:51:26', '2023-10-22 14:51:26'),
+(18, 1, 4, 80, 'Pants', '2023-10-22 14:51:26', '2023-10-22 14:51:26'),
+(19, 1, 4, 40, '1GB', '2023-10-22 14:51:26', '2023-10-22 14:51:26'),
+(20, 1, 5, 62, 'Apple', '2023-10-22 14:54:56', '2023-10-22 14:54:56'),
+(21, 1, 5, 101, '1 Year', '2023-10-22 14:54:56', '2023-10-22 14:54:56'),
+(22, 1, 5, 58, 'Cotton', '2023-10-22 14:54:56', '2023-10-22 14:54:56'),
+(23, 1, 5, 99, '1080p', '2023-10-22 14:54:56', '2023-10-22 14:54:56'),
+(24, 1, 5, 80, 'Pants', '2023-10-22 14:54:56', '2023-10-22 14:54:56'),
+(25, 1, 5, 45, '7GB', '2023-10-22 14:54:56', '2023-10-22 14:54:56'),
+(32, 13, 8, 62, 'Apple', '2023-10-22 16:42:24', '2023-10-22 16:42:24'),
+(33, 13, 8, 56, 'Button', '2023-10-22 16:42:24', '2023-10-22 16:42:24'),
+(34, 13, 8, 107, '6 Months', '2023-10-22 16:42:24', '2023-10-22 16:42:24'),
+(35, 13, 9, 62, 'Apple', '2023-10-22 16:42:56', '2023-10-22 16:42:56'),
+(36, 13, 9, 56, 'Button', '2023-10-22 16:42:56', '2023-10-22 16:42:56'),
+(37, 13, 9, 103, 'Lifetime', '2023-10-22 16:42:56', '2023-10-22 16:42:56'),
+(38, 13, 10, 62, 'Apple', '2023-10-22 16:43:10', '2023-10-22 16:43:10'),
+(39, 13, 10, 56, 'Button', '2023-10-22 16:43:10', '2023-10-22 16:43:10'),
+(40, 13, 10, 101, '1 Year', '2023-10-22 16:43:10', '2023-10-22 16:43:10'),
+(41, 13, 11, 62, 'Apple', '2023-10-22 16:43:13', '2023-10-22 16:43:13'),
+(42, 13, 11, 56, 'Button', '2023-10-22 16:43:13', '2023-10-22 16:43:13'),
+(43, 13, 11, 102, '2 Years', '2023-10-22 16:43:13', '2023-10-22 16:43:13'),
+(44, 13, 12, 62, 'Apple', '2023-10-22 16:46:10', '2023-10-22 16:46:10'),
+(45, 13, 12, 56, 'Button', '2023-10-22 16:46:10', '2023-10-22 16:46:10'),
+(46, 13, 12, 107, '6 Months', '2023-10-22 16:46:10', '2023-10-22 16:46:10'),
+(47, 13, 13, 62, 'Apple', '2023-10-22 16:46:17', '2023-10-22 16:46:17'),
+(48, 13, 13, 56, 'Button', '2023-10-22 16:46:17', '2023-10-22 16:46:17'),
+(49, 13, 13, 103, 'Lifetime', '2023-10-22 16:46:17', '2023-10-22 16:46:17'),
+(50, 14, 14, 62, 'Apple', '2023-10-22 18:53:34', '2023-10-22 18:53:34'),
+(51, 14, 14, 105, '128GB', '2023-10-22 18:53:34', '2023-10-22 18:53:34'),
+(52, 14, 15, 62, 'Apple', '2023-10-22 18:53:36', '2023-10-22 18:53:36'),
+(53, 14, 15, 95, '16GB', '2023-10-22 18:53:36', '2023-10-22 18:53:36'),
+(54, 14, 16, 62, 'Apple', '2023-10-22 18:53:39', '2023-10-22 18:53:39'),
+(55, 14, 16, 40, '1GB', '2023-10-22 18:53:39', '2023-10-22 18:53:39');
 
 -- --------------------------------------------------------
 
@@ -1730,7 +1884,19 @@ INSERT INTO `produc_categories` (`id`, `product_id`, `category_id`, `parent_id`)
 (18, 8, 70, '32,63,69,70'),
 (19, 8, 71, '32,63,69,71'),
 (20, 8, 72, '32,63,69,72'),
-(23, 1, 74, '32,63,69,72,73,74');
+(23, 1, 74, '32,63,69,72,73,74'),
+(24, 9, 70, '32,63,69,70'),
+(25, 9, 71, '32,63,69,71'),
+(26, 9, 72, '32,63,69,72'),
+(27, 10, 2, '1,2'),
+(28, 10, 36, '1,2,36'),
+(29, 11, 69, '32,63,69'),
+(30, 12, 71, '32,63,69,71'),
+(31, 13, 71, '32,63,69,71'),
+(32, 13, 72, '32,63,69,72'),
+(33, 13, 73, '32,63,69,72,73'),
+(34, 14, 69, '32,63,69'),
+(35, 14, 70, '32,63,69,70');
 
 -- --------------------------------------------------------
 
@@ -1768,7 +1934,15 @@ INSERT INTO `produc_img_history` (`id`, `product_id`, `images`) VALUES
 (21, 2, '/backend/files/6532a1ddbacc3product(4).jpg'),
 (22, 2, '/backend/files/6532a1ddbb557product(5).jpg'),
 (23, 2, '/backend/files/6532a1ddbc0e8product(6).jpg'),
-(24, 2, '/backend/files/6532a1ddbc95aproduct(7).jpg');
+(24, 2, '/backend/files/6532a1ddbc95aproduct(7).jpg'),
+(25, 9, '/backend/files/6533d7dcdae8cproduct(3).jpg'),
+(26, 9, '/backend/files/6533d7dcdc0b7product(4).jpg'),
+(27, 9, '/backend/files/6533d7dcdc7ccproduct(5).jpg'),
+(28, 10, '/backend/files/6533db939459fproduct(4).jpg'),
+(29, 10, '/backend/files/6533db9395013product(5).jpg'),
+(30, 10, '/backend/files/6533db9395839product(6).jpg'),
+(31, 11, '/backend/files/6533dc2c14b2dproduct(5).jpg'),
+(32, 12, '/backend/files/6533de124cd17product(6).jpg');
 
 -- --------------------------------------------------------
 
@@ -1962,6 +2136,12 @@ ALTER TABLE `bank_short_code`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `brands`
+--
+ALTER TABLE `brands`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `categorys`
 --
 ALTER TABLE `categorys`
@@ -2069,6 +2249,12 @@ ALTER TABLE `leave_rule`
 -- Indexes for table `leave_type`
 --
 ALTER TABLE `leave_type`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `manufacturers`
+--
+ALTER TABLE `manufacturers`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2228,6 +2414,12 @@ ALTER TABLE `bank_short_code`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `brands`
+--
+ALTER TABLE `brands`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT for table `categorys`
 --
 ALTER TABLE `categorys`
@@ -2336,6 +2528,12 @@ ALTER TABLE `leave_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `manufacturers`
+--
+ALTER TABLE `manufacturers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -2375,43 +2573,43 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `product_attributes`
 --
 ALTER TABLE `product_attributes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `product_attributes_values_history`
 --
 ALTER TABLE `product_attributes_values_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT for table `product_variants`
 --
 ALTER TABLE `product_variants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `product_variants_history`
 --
 ALTER TABLE `product_variants_history`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `produc_categories`
 --
 ALTER TABLE `produc_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `produc_img_history`
 --
 ALTER TABLE `produc_img_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `projects`

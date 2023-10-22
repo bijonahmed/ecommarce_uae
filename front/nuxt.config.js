@@ -54,10 +54,14 @@ export default {
   buildModules: [
   ],
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-  ],
+  modules: ["@nuxtjs/axios"],
+   // Axios module configuration: https://go.nuxtjs.dev/config-axios
+   axios: {
+      baseURL: "http://127.0.0.1:8000/api",
+     // baseURL: "http://ad-ecom.futuregenit.com/api",
+    },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    vendor: ['jquery'],
+    transpile: ["defu"],vendor: ['jquery'],
   }
 }

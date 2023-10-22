@@ -91,12 +91,12 @@
                                                     <td>{{ data.path }}</td>
                                                     <td>
                                                         <input type="hidden" v-model="data.varient_id" name="varient_id" style="width: 50px;" />
-                                                        <input type="text" placeholder="SKU" v-model="data.sku" :name="'data[' + index + '][sku]'" style="width: 50px;" required />
+                                                        <input type="text" placeholder="SKU" v-model="data.sku" :name="'data[' + index + '][sku]'" style="width: 80px;" required />
                                                         <p class="error-message" v-if="errors.name">{{ errors.sku }}</p>
                                                     </td>
                                                     <td><input type="text" placeholder="Qty" v-model="data.qty" :name="'data[' + index + '][qty]'" style="width: 50px;" required /></td>
                                                     <td><input type="text" placeholder="0.00" v-model="data.price" :name="'data[' + index + '][price]'" style="width: 50px;" required /> </td>
-                                                    <td><input type="file" @change="onFileChange(index, $event)" accept="image/*" required />
+                                                    <td><input type="file" @change="onFileChange(index, $event)" accept="image/*" />
                                                     </td>
                                                     <td><button type="button" @click="deleteVarrientrow(data.varient_id)">DEL</button></td>
                                                 </tr>
@@ -147,7 +147,7 @@ export default {
             historVarient: [{
                 varient_id: '',
                 sku: '',
-                qty: '',
+                qty: 1,
                 price: '',
                 file: null
             }],
@@ -280,10 +280,17 @@ export default {
         },
         showAttrVal(attribue_id) {
             $(".product_attribute_id").val(attribue_id);
-            this.$axios.get(`/category/attributeValRows/${attribue_id}`).then(response => {
-                this.attrValList = response.data.data;
+            const product_id = this.$route.query.parameter;
+            this.$axios.get(`/category/attributeValRows/`, {
+                params: {
+                    product_attribute_id: attribue_id,
+                    product_id: product_id
+                }
+            }).then(response => {
+                // this.attrValList = response.data.data; // this method no need now already tell me mamun bhai 
+                this.round_success_noti();
+                this.attributHistory();
             });
-            //attrValList
         },
         saveData() {
             const formData = new FormData();

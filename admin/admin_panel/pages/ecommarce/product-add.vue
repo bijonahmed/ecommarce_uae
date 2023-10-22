@@ -112,18 +112,19 @@
                                                     <div class="card">
                                                         <div class="card-body">
                                                             <div class="row mb-3 required">
-                                                                <label for="input-meta-title-1" class="col-sm-2 col-form-label">Model</label>
+                                                                <label for="input-meta-title-1" class="col-sm-2 col-form-label">Brands</label>
                                                                 <div class="col-sm-10">
-                                                                    <input type="text" placeholder="Search Model..." @input="searchModels" id="model" v-model="insertdata.model" class="form-control" />
-                                                                    <ul v-if="modelresults.length">
-                                                                        <li v-for="result in modelresults" :key="result">{{ result }}</li>
-                                                                    </ul>
+                                                                    <select v-model="insertdata.brand" class="form-select model">
+                                                                        <option value="" selected>Select Brand</option>
+                                                                        <option v-for='data in modelresults' :value='data.id'>{{data.name}}</option>
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                             <div class="row mb-3 required">
-                                                                <label for="input-meta-title-1" class="col-sm-2 col-form-label">SKU</label>
+                                                                <label for="input-meta-title-1" class="col-sm-2 col-form-label required-label">SKU</label>
                                                                 <div class="col-sm-10">
                                                                     <input type="text" placeholder="SKU" v-model="insertdata.sku" class="form-control" />
+                                                                    <span class="text-danger" v-if="errors.sku">{{ errors.sku[0] }}</span>
                                                                     <small>Stock Keeping Unit</small>
                                                                 </div>
                                                             </div>
@@ -280,7 +281,11 @@
                                                             <div class="row mb-3">
                                                                 <label for="input-meta-description-1" class="col-sm-2 col-form-label">Manufacturer</label>
                                                                 <div class="col-sm-10">
-                                                                    <input type="text" placeholder="Manufacturer" v-model="insertdata.manufacturer" class="form-control" />
+                                                                   
+                                                                    <select v-model="insertdata.manufacturer" class="form-select manufacturer">
+                                                                        <option value="" selected>Select</option>
+                                                                        <option v-for='data in manufrresults' :value='data.id'>{{data.name}}</option>
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                             <div class="row mb-3">
@@ -322,10 +327,11 @@
 
                                                 <div class="tab-pane fade" id="image" role="tabpanel">
                                                     <div class="alert alert-info" bis_skin_checked="1"><i class="fas fa-info-circle"></i> Must Upload Products Images 300x300px</div>
-                                                    <div class="row mb-3">
-                                                        <label for="input-meta-description-1" class="col-sm-2 col-form-label">Thumbnail Image</label>
+                                                    <div class="row mb-3 required">
+                                                        <label for="input-meta-description-1" class="col-sm-2 col-form-label required-label">Thumbnail Image</label>
                                                         <div class="col-sm-10">
                                                             <input type="file" value class="form-control" accept="image/png,image/jpeg" ref="files" @change="previewImage" />
+                                                            <span class="text-danger" v-if="errors.files">{{ errors.files[0] }}</span>
                                                             <img v-if="previewUrl" :src="previewUrl" alt="Preview" class="img-fluids" />
                                                         </div>
                                                     </div>
@@ -398,7 +404,7 @@ export default {
                 meta_keyword: '',
                 product_tag: '',
                 ptag: '',
-                model: '',
+                brand: '',
                 sku: '',
                 external_link: '',
                 cash_dev_status: 2,
@@ -442,6 +448,7 @@ export default {
             attrVals: [],
             product_tag_msg: '',
             modelresults: [],
+            manufrresults: [],
             //this for attribue select
             // options: [],
             // showDropdown: false,
@@ -457,24 +464,31 @@ export default {
     },
     async mounted() {
         await this.loadCKEditor();
+        this.searchModels();
+        this.searchmanuf();
         CKEDITOR.replace('editor');
     },
 
     methods: {
-        //searchmodel 
-        searchModels() {
-            console.log(this.insertdata.model);
-            if (this.insertdata.model.length > 2) {
-                this.$axios.get(`/models/searchmodels?query=${this.insertdata.model}`)
-                    .then(response => {
-                        this.modelresults = response.data;
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
-            } else {
-                this.modelresults = [];
+        async searchModels() {
+            try {
+                const response = await this.$axios.get(`/brands/allbrandlist`);
+                this.modelresults = response.data.data;
+                $(".customerSpinner").hide();
+            } catch (error) {
+                console.error(error);
             }
+
+        },
+        async searchmanuf() {
+            try {
+                const response = await this.$axios.get(`/manufacturers/allmanufacturers`);
+                this.manufrresults = response.data.data;
+                $(".customerSpinner").hide();
+            } catch (error) {
+                console.error(error);
+            }
+
         },
         validateInput() {
             if (!/^[+-]?\d*\.?\d*$/.test(this.insertdata.price)) {
@@ -611,6 +625,9 @@ export default {
             });
         },
         saveData() {
+
+            //console.log(this.insertdata.manufacturer);
+           // return false; 
             const formData = new FormData();
             const input = this.$refs.images;
             for (let i = 0; i < input.files.length; i++) {
@@ -626,7 +643,7 @@ export default {
             formData.append('meta_description', this.insertdata.meta_description);
             formData.append('meta_keyword', this.insertdata.meta_keyword);
             formData.append('product_tag', this.insertdata.product_tag);
-            formData.append('model', this.insertdata.model);
+            formData.append('brand', this.insertdata.brand);
             formData.append('sku', this.insertdata.sku);
             formData.append('external_link', this.insertdata.external_link);
             formData.append('price', this.insertdata.price);

@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -14,7 +15,7 @@ use App\Http\Controllers\Setting\SettingController;
 use App\Http\Controllers\UnauthenticatedController;
 use App\Http\Controllers\Leave\LeaveController;
 use App\Http\Controllers\Manufacturer\ManufacturesController;
-use App\Http\Controllers\Models\ModelsController;
+use App\Http\Controllers\Brands\BrandsController;
 use App\Http\Controllers\Product\ProductController;
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,7 @@ use App\Http\Controllers\Product\ProductController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
 Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'
@@ -100,12 +102,11 @@ Route::group([
     Route::get('getSubCategoryChild/{id}', [CategoryController::class, 'getSubCategoryChild']);
     Route::get('attributeRow/{id}', [CategoryController::class, 'attributeRow']);
     Route::get('attributeValRow/{id}', [CategoryController::class, 'attributeValRow']);
-    Route::get('attributeValRows/{id}', [CategoryController::class, 'attributeValRows']);
+    Route::get('attributeValRows/', [CategoryController::class, 'attributeValRows']);
     Route::get('search', [CategoryController::class, 'searchCategory']);
     Route::get('attributes', [CategoryController::class, 'getAttribute']);
     Route::get('attributes-list', [CategoryController::class, 'getAttributeList']);
     Route::get('attributes-val-list', [CategoryController::class, 'getAttributeValList']);
-
 });
 
 Route::group([
@@ -126,7 +127,6 @@ Route::group([
     Route::get('getVarientHistory', [ProductController::class, 'getVarientHistory']);
 });
 
-
 Route::group([
     //'middleware' => 'api',
     'prefix' => 'manufacturers'
@@ -136,17 +136,15 @@ Route::group([
     Route::get('manufacturersrow/{id}', [ManufacturesController::class, 'manufacturersrow']);
 });
 
-
 Route::group([
     //'middleware' => 'api',
-    'prefix' => 'models'
+    'prefix' => 'brands'
 ], function () {
-    Route::post('save', [ModelsController::class, 'save']);
-    Route::get('allmodelslist', [ModelsController::class, 'allmodelslist']);
-    Route::get('modelsrow/{id}', [ModelsController::class, 'modelsrow']);
-    Route::get('searchmodels', [ModelsController::class, 'searchmodels']);
+    Route::post('save', [BrandsController::class, 'save']);
+    Route::get('allbrandlist', [BrandsController::class, 'allbrandlist']);
+    Route::get('brandrow/{id}', [BrandsController::class, 'brandrow']);
+   // Route::get('searchmodels', [BrandsController::class, 'searchmodels']);
 });
-
 
 Route::group([
     'middleware' => 'api',
@@ -171,14 +169,8 @@ Route::group([
     //'middleware' => 'api',
     'prefix' => 'unauthenticate'
 ], function () {
-	//post
-	Route::get('deletePost/{id}', [UnauthenticatedController::class, 'deletePost']);
-	Route::get('listPost', [UnauthenticatedController::class, 'listPost']);
-	Route::post('createPost', [UnauthenticatedController::class, 'createPost']);
-    //Job Publish
-    Route::post('applyJob', [UnauthenticatedController::class, 'applyJob']);
-    Route::get('checkPublishRow/{id}', [UnauthenticatedController::class, 'checkPublishRow']);
-    Route::post('visitorRegistration', [UnauthenticatedController::class, 'visitorRegistration']);
+    //post
+    Route::get('getCategoryList', [UnauthenticatedController::class, 'allCategory']);
 });
 
 Route::group([
@@ -255,7 +247,4 @@ Route::group([
     Route::get('getleaveApprovalList', [LeaveController::class, 'getleaveApprovalList']);
     Route::post('createEditLeaveRequest', [LeaveController::class, 'createEditLeaveRequest']);
     Route::get('leaveApprovalRequestRow/{id}', [LeaveController::class, 'leaveApprovalRequestRow']);
-
-    
 });
-

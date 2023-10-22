@@ -48,7 +48,7 @@
                         <Nuxt-link to="/manufacturer/manufacturers-list"><i class="bx bx-right-arrow-alt"></i>Manufacturers</Nuxt-link>
                     </li>
                     <li>
-                        <Nuxt-link to="/models/models-list"><i class="bx bx-right-arrow-alt"></i>Models</Nuxt-link>
+                        <Nuxt-link to="/brands/brands-list"><i class="bx bx-right-arrow-alt"></i>Brands</Nuxt-link>
                     </li>
                 </ul>
             </li>

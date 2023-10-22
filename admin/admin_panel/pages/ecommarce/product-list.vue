@@ -26,9 +26,15 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-7">
+                        <div class="col-md-5">
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control name" placeholder="Name" v-model="searchQuery.name" @input="handleSearch">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control sku" placeholder="SKU" v-model="searchQuery.sku" @input="handleSearch">
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -58,16 +64,32 @@
                         <table class="table table-hover table-sm">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
+                                    <th>SL#</th>
+                                    <th>Title</th>
+                                    <th>Qty</th>
+                                    <th class="text-center">Total Sell</th>
+                                    <th class="text-center">Balance Qty</th>
+                                    <th class="text-center">Type</th>
                                     <th class="text-center">Status</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="item in paginatedData" :key="item.id">
-                                    <td>{{ item.id }}</td>
+                                <tr v-for="(item, index) in paginatedData" :key="item.id">
+                                    <td>
+                                        {{ (currentPage - 1) * perPage + index + 1 }}
+                                    </td>
                                     <td>{{ item.name }}</td>
+                                    <td>{{ item.stock_qty }}</td>
+                                    <td>
+                                        <center>0</center>
+                                    </td>
+                                    <td>
+                                        <center>0</center>
+                                    </td>
+                                    <td>
+                                        <center>-</center>
+                                    </td>
                                     <td class="text-center">
                                         <span v-if="(item.status == 1)"> Active </span>
                                         <span v-else> Inactive </span>
@@ -120,6 +142,7 @@ export default {
             data: [],
             searchQuery: {
                 name: '',
+                sku: '',
                 status: 1
             },
             searchQueryPhone: '',
@@ -131,6 +154,7 @@ export default {
         await this.fetchData();
     },
     computed: {
+
         totalPages() {
             return Math.ceil(this.filteredData.length / this.perPage);
         },
@@ -141,6 +165,13 @@ export default {
                     item.name.toLowerCase().includes(this.searchQuery.name.toLowerCase())
                 );
             }
+
+            if (this.searchQuery.sku) {
+                result = result.filter(item =>
+                    item.sku.toLowerCase().includes(this.searchQuery.sku.toLowerCase())
+                );
+            }
+
             if (this.searchQuery.status) {
                 result = result.filter(item =>
                     item.status == this.searchQuery.status
@@ -151,7 +182,9 @@ export default {
         paginatedData() {
             const startIndex = (this.currentPage - 1) * this.perPage;
             return _.slice(this.filteredData, startIndex, startIndex + this.perPage);
+
         },
+
     },
     methods: {
 

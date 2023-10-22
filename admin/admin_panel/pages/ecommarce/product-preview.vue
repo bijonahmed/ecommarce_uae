@@ -59,9 +59,9 @@
                                             <td colspan="3">&nbsp;</td>
                                         </tr>
                                         <tr>
-                                            <td>Model</td>
+                                            <td>Brand</td>
                                             <td><strong>:</strong></td>
-                                            <td>{{ productData.model }}</td>
+                                            <td>{{ productData.brand_name }}</td>
                                         </tr>
                                         <tr>
                                             <td>SKU</td>
@@ -174,7 +174,7 @@
                                             <td>&nbsp;</td>
                                             <td>&nbsp;</td>
                                         </tr>
-                                      
+
                                         <tr>
                                             <td>Manufacturer</td>
                                             <td><strong>:</strong></td>
@@ -296,7 +296,7 @@ export default {
                 product_tag: '',
                 discount: '',
                 sku: '',
-                model: '',
+                brand_name: '',
                 external_link: '',
                 price: '',
                 unit: '',
@@ -365,7 +365,7 @@ export default {
                 this.productData.meta_keyword = response.data.product.meta_keyword;
                 this.productData.product_tag = response.data.product.product_tag;
                 this.productData.keyword = response.data.product.keyword;
-                this.productData.model = response.data.product.model;
+                this.productData.brand_name = response.data.product.brand_name;
                 this.productData.sku = response.data.product.sku;
                 this.productData.external_link = response.data.product.external_link;
                 $(".pro_description").html(response.data.product.description);
@@ -383,7 +383,7 @@ export default {
                 this.productData.tax = response.data.product.tax;
                 this.productData.tax_status = response.data.product.tax_status;
                 this.productData.status = response.data.product.status;
-                this.productData.manufacturer = response.data.product.status;
+                this.productData.manufacturer = response.data.product.manufac_name;
                 this.productData.download_link = response.data.product.download_link;
                 this.productImg = response.data.productImg;
                 this.productAddImgs = response.data.product_imgs;

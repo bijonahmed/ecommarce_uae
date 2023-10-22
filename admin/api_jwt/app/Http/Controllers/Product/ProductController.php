@@ -47,6 +47,8 @@ class ProductController extends Controller
             'stock_mini_qty' => 'required|integer',
             'shipping_days'  => 'required',
             'status'         => 'required',
+            'sku'            => 'required',
+           // 'files' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // max:2048 is the maximum file size in kilobytes (2MB)
         ]);
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
@@ -61,7 +63,7 @@ class ProductController extends Controller
             'meta_description'           => !empty($request->meta_description) ? $request->meta_description : "",
             'meta_keyword'               => !empty($request->meta_keyword) ? $request->meta_keyword : "",
             'product_tag'                => !empty($request->product_tag) ? $request->product_tag : "",
-            'model'                      => !empty($request->model) ? $request->model : "",
+            'brand'                      => !empty($request->brand) ? $request->brand : "",
             'sku'                        => !empty($request->sku) ? $request->sku : "",
             'external_link'              => !empty($request->external_link) ? $request->external_link : "",
             'cash_dev_status'            => !empty($request->cash_dev_status) ? $request->cash_dev_status : "",
@@ -142,10 +144,12 @@ class ProductController extends Controller
             'name'           => 'required',
             'category'       => 'required',
             'price'          => 'required',
+            'sku'            => 'required',
             'stock_qty'      => 'required|integer',
             'stock_mini_qty' => 'required|integer',
             'shipping_days'  => 'required',
             'status'         => 'required',
+            'files' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // max:2048 is the maximum file size in kilobytes (2MB)
         ]);
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
@@ -160,7 +164,7 @@ class ProductController extends Controller
             'meta_description'           => !empty($request->meta_description) ? $request->meta_description : "",
             'meta_keyword'               => !empty($request->meta_keyword) ? $request->meta_keyword : "",
             'product_tag'                => !empty($request->product_tag) ? $request->product_tag : "",
-            'model'                      => !empty($request->model) ? $request->model : "",
+            'brand'                      => !empty($request->brand) ? $request->brand : "",
             'sku'                        => !empty($request->sku) ? $request->sku : "",
             'external_link'              => !empty($request->external_link) ? $request->external_link : "",
             'cash_dev_status'            => !empty($request->cash_dev_status) ? $request->cash_dev_status : "",
@@ -169,8 +173,7 @@ class ProductController extends Controller
             'stock_qty'                  => !empty($request->stock_qty) ? $request->stock_qty : "",
             'stock_mini_qty'             => !empty($request->stock_mini_qty) ? $request->stock_mini_qty : 0,
             'stock_status'               => !empty($request->stock_status) ? $request->stock_status : "",
-            'manufacturer'               => !empty($request->manufacturer) ? $request->manufacturer : "",
-            'manufacturer'               => !empty($request->manufacturer) ? $request->manufacturer : "",
+            'manufacturer'               => !empty($request->manufacturer) ? (int) $request->manufacturer : "",
             'download_link'              => !empty($request->download_link) ? $request->download_link : "",
             'discount'                   => !empty($request->discount) ? $request->discount : "",
             'discount_status'            => !empty($request->discount_status) ? $request->discount_status : "",
@@ -185,6 +188,7 @@ class ProductController extends Controller
             'status'                     => !empty($request->status) ? $request->status : "",
             'entry_by'                   => $this->userid
         );
+        // dd($data);
         if (!empty($request->file('files'))) {
             $files = $request->file('files');
             $fileName = Str::random(20);
@@ -239,7 +243,7 @@ class ProductController extends Controller
     }
     public function getProductList()
     {
-        $data = Product::all();
+        $data = Product::orderBy('id', 'desc')->get();;
         return response()->json($data);
     }
 
@@ -248,7 +252,6 @@ class ProductController extends Controller
 
         $varrients = $request->input('varrient');
         //dd($request->all());     
-
         foreach ($varrients as $key => $varrientData) {
             $v_id = $varrientData['varient_id'];
             $find = ProductVarrient::where('id', $v_id)->first();
@@ -269,7 +272,6 @@ class ProductController extends Controller
                 $v_data['sku']   = $varrientData['sku'];
                 $v_data['qty']   = $varrientData['qty'];
                 $v_data['price'] = $varrientData['price'];
-
                 if ($request->hasFile("varrient.$key.file")) {
                     $file = $request->file("varrient.$key.file");
                     $uniqueFileName = Str::random(40) . '.' . $file->getClientOriginalExtension();
@@ -284,15 +286,23 @@ class ProductController extends Controller
                     //$file->storeAs('uploads', $uniqueFileName);
                     $v_data['file'] = $file_url;
                 }
-
                 // echo '<pre>';
                 // print_r($v_data);
-
                 ProductVarrient::where('id', $vid)->update($v_data);
             }
         }
         return response()->json(['message' => 'Data updated successfully'], 200);
     }
+
+    function generateUnique4DigitNumber($existingNumbers = [])
+    {
+        do {
+            $uniqueNumber = str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
+        } while (in_array($uniqueNumber, $existingNumbers));
+
+        return $uniqueNumber;
+    }
+
     public function insertProductVarient(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -304,16 +314,27 @@ class ProductController extends Controller
         }
         $res     = $request->selectedHistoryValues;
         array_shift($res);
-
         // Use array_filter to remove "undefined" values
         $resultArray = array_filter($res, function ($value) {
             return $value !== "undefined";
         });
         $arr_val = implode(',', $resultArray);
         //dd($arr_val);
+
+        // unique number:
+        $numbers = []; // An array to store existing numbers to check against
+        $uniqueNumber      = $this->generateUnique4DigitNumber($numbers);
+        $existingNumbers[] = $uniqueNumber . $request->product_id; // Add the generated number to the list
+        $uniqueNum         = $existingNumbers[0];
+        //find product for price
+        $product = Product::find($request->product_id);
+
         $insertArr                        = new ProductVarrient();
         $insertArr->pro_attr_val_his_id   = $arr_val;
         $insertArr->product_id            = $request->product_id;
+        $insertArr->sku                   = $uniqueNum;
+        $insertArr->qty                   = 1;
+        $insertArr->price                 = !empty($product->price) ? $product->price : 0;
         $insertArr->entry_by              = $this->userid;
         $insertArr->save();
 
@@ -333,6 +354,7 @@ class ProductController extends Controller
     }
     public function insertProductAttrAndValues(Request $request)
     {
+        // this merge button action
         $chkPost = ProductAttributes::where('product_id', $request->product_id)->where('attributes_id', $request->product_attribute_id)->first();
         if (empty($chkPost)) {
             $data = array(
@@ -458,7 +480,11 @@ class ProductController extends Controller
         $show_edit_cat = $concatenated_names; //implode("<br/>", $concatenated_names);
         //dd($resulting_string);
         $responseData['productImg']        = !empty($prodImages) ? url($prodImages->thumnail_img) : "";
-        $responseData['product']           = Product::find($id);
+        $responseData['product']           = Product::leftjoin('brands', 'brands.id', '=', 'product.brand')
+            ->leftjoin('manufacturers', 'manufacturers.id', '=', 'product.manufacturer')
+            ->select('product.*', 'brands.name as brand_name', 'manufacturers.name as manufac_name')
+            ->where('product.id', $id)->first();
+        //dd($responseData['product']);
         $responseData['product_cat']       = $resulting_string;
         $responseData['product_edit_cat']  = $show_edit_cat;
         $responseData['product_imgs']      = $addiImg;

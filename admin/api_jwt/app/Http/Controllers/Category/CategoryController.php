@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers\Category;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
@@ -11,13 +13,14 @@ use App\Category;
 use App\Models\AttributeValues;
 use App\Models\Attribute;
 use App\Models\SubAttribute;
-use App\Models\Variant;
+use App\Models\ProductAttributes;
 use App\Models\ProductAttributeValue;
 use App\Models\Product;
 use Illuminate\Support\Str;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
 use DB;
+
 class CategoryController extends Controller
 {
     protected $userid;
@@ -287,11 +290,42 @@ class CategoryController extends Controller
         ];
         return response()->json($response, 200);
     }
-    public function attributeValRows($id)
+    public function attributeValRows(Request $request)
     {
-        $data = AttributeValues::where('attributes_id', $id)->get();
+        //when click save attrbu and value
+        $product_attribute_id = $request->product_attribute_id;
+        $product_id = $request->product_id;
+        //dd($request->all());
+        $dataArr = AttributeValues::where('attributes_id', $request->product_attribute_id)->select('id', 'attributes_id', 'name')->get();
+        $chkPost = ProductAttributes::where('product_id', $request->product_id)->where('attributes_id', $request->product_attribute_id)->first();
+        if (empty($chkPost)) {
+            $data = array(
+                'product_id'                 => $request->product_id,
+                'attributes_id'              => $request->product_attribute_id,
+            );
+            $product_attribute_id = ProductAttributes::insertGetId($data);
+        } else {
+            $product_attribute_id = $chkPost->id;
+        }
+
+        // dd($dataArr);
+        $ar = [];
+        foreach ($dataArr as $v) {
+            $pro_id               = (int)$product_id;
+            $attributes_id        = (int)$v->attributes_id;
+            $product_attribute_id = empty($chkPost) ? $product_attribute_id : $chkPost->id; //(int)$product_attribute_id;
+            $product_att_value_id = (int)$v->id;
+            ProductAttributeValue::where('product_id', $pro_id)->where('attribute_id', $attributes_id)->where('product_attribute_id', $product_attribute_id)->where('product_att_value_id', $product_att_value_id)->delete();
+            $ar = array(
+                'product_id'         => $pro_id,
+                'attribute_id'         => $attributes_id,
+                'product_attribute_id' => $product_attribute_id,
+                'product_att_value_id' => $product_att_value_id,
+            );
+            ProductAttributeValue::insert($ar);
+        }
+
         $response = [
-            'data' => $data,
             'message' => 'success'
         ];
         return response()->json($response, 200);

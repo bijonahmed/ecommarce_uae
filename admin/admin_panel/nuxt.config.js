@@ -93,7 +93,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     baseURL: "http://127.0.0.1:8000/api",
-   // baseURL: "https://hr.api.onlinesoft.co.uk/api",
+  //  baseURL: "http://ad-ecom.futuregenit.com/api",
   },
   // router: {
   //   middleware: ['auth']
