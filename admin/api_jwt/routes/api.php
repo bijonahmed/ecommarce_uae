@@ -170,8 +170,9 @@ Route::group([
     //'middleware' => 'api',
     'prefix' => 'unauthenticate'
 ], function () {
-    //post
+    
     Route::get('getCategoryList', [UnauthenticatedController::class, 'allCategory']);
+    Route::get('findCategorySlug', [UnauthenticatedController::class, 'findCategorySlug']);
 });
 
 Route::group([

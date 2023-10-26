@@ -27,4 +27,11 @@ class UnauthenticatedController extends Controller
         $categories = Categorys::with('children.children.children.children.children')->where('parent_id', 0)->get();
         return response()->json($categories);
     }
+
+    public function findCategorySlug(Request $request){
+
+        dd($request->all());
+
+
+    }
 }

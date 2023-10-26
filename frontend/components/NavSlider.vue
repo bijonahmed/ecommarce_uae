@@ -6,15 +6,15 @@
                 <nav>
                     <ul v-for="category in categories" :key="category">
                         <li :key="category.id">
-                            <a href="#" class="d-flex justify-content-between align-items-center">
+                            <a href="#" class="d-flex justify-content-between align-items-center" @click="redirectCategory(category.slug)">
                                 <div class="d-flex align-items-center"><img src="images/cat_svg/icons8-apple-100.png" alt="">{{ category.name }}</div> <i class="fa-solid fa-angle-right"></i>
                             </a>
                             <div class="sub_menu">
                                 <div class="row" v-if="category.children && category.children.length > 0">
                                     <div class="col-4" v-for="childCategory in category.children" :key="childCategory.id">
-                                        <h6><a href="#">{{ childCategory.name }}</a></h6>
+                                        <h6><a href="#" @click="redirectCategory(childCategory.slug)"> {{ childCategory.name }}</a></h6>
                                         <ul v-if="childCategory.children && childCategory.children.length > 0">
-                                            <li v-for="inSubCategory in childCategory.children" :key="inSubCategory.id"><a href="#">{{ inSubCategory.name }}</a></li>
+                                            <li v-for="inSubCategory in childCategory.children" :key="inSubCategory.id"><a href="#" @click="redirectCategory(inSubCategory.slug)">{{ inSubCategory.name }}</a></li>
 
                                         </ul>
                                     </div>
@@ -80,10 +80,12 @@ export default {
         await this.fetchData();
     },
     methods: {
+        redirectCategory(slug) {
+            this.$router.push({ path: '/category/category-list', query: { slug: slug } })
+        },
         async fetchData() {
             const response = await this.$axios.get(`/unauthenticate/getCategoryList`);
             this.categories = response.data;
-            //console.log("====" + response.data);
         },
 
     },

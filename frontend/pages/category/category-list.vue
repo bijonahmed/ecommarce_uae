@@ -48,12 +48,12 @@
     <!-- Main section start here  -->
     <section class="main_content">
         <div class="container">
-            <PhoneTables />
+            <!-- <PhoneTables />
             <LimitedStokDetails />
             <PhoneDeals />
-            <TopDeals />
-            <CategoryMultipleProduct />
-            <ExtraDiscount />
+            <TopDeals /> -->
+            <!-- <CategoryMultipleProduct /> -->
+            <!-- <ExtraDiscount /> -->
             <CategoryProductFilter />
             <CategoryRecentView />
         </div>
@@ -84,10 +84,18 @@ export default {
         ExtraDiscount,
         CategoryMultipleProduct
     },
+    data() {
+        return {
+            categories: [],
+        };
+    },
     head: {
         title: 'Category List',
     },
     mounted() {
+       const paramSlug =   this.$route.query.slug;
+       this.fetchData(paramSlug);
+       alert(paramNames);
         if (process.client) {
             $(document).ready(function () {
                 $(".filter_btn").on('click', function () {
@@ -99,6 +107,19 @@ export default {
             })
             // Now you can work with myElement
         }
-    }
+    },
+    methods: {
+         
+        async fetchData(slug) {
+            const response = await this.$axios.get(`/unauthenticate/getCategoryList`, 
+                query: { slug: slug } }
+                );
+            this.categories = response.data;
+            //console.log("====" + response.data);
+        },
+
+    },
+
+
 }
 </script>
