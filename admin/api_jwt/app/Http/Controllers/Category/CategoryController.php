@@ -135,6 +135,7 @@ class CategoryController extends Controller
     public function save(Request $request)
     {
         //dd($request->all());
+        ///exit; 
         if (empty($request->id)) {
             $validator = Validator::make(
                 $request->all(),
@@ -216,9 +217,25 @@ class CategoryController extends Controller
     }
     public function allCategory(Request $request)
     {
-        $categories = Categorys::with('children.children.children.children.children')->where('parent_id', 0)->get();
-        return response()->json($categories);
+        try {
+            $categories = Categorys::with('children.children.children.children.children')->where('parent_id', 0)->get();
+            // dd($categories);
+            return response()->json($categories);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
+
+    public function allInacCategory(Request $request)
+    {
+        try {
+            $categories = Categorys::where('status', 0)->get();
+            return response()->json($categories);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
     public function getAttribute(Request $request)
     {
         $attribute = Attribute::where('status', 1)->get();
@@ -290,18 +307,19 @@ class CategoryController extends Controller
         ];
         return response()->json($response, 200);
     }
-    public function attributeValRows(Request $request)
+    public function attributeValRows($product_id, $request_product_attribute_id)
     {
+
         //when click save attrbu and value
-        $product_attribute_id = $request->product_attribute_id;
-        $product_id = $request->product_id;
+        //$request_product_attribute_id = $request->product_attribute_id;
+        //$product_id = $request->product_id;
         //dd($request->all());
-        $dataArr = AttributeValues::where('attributes_id', $request->product_attribute_id)->select('id', 'attributes_id', 'name')->get();
-        $chkPost = ProductAttributes::where('product_id', $request->product_id)->where('attributes_id', $request->product_attribute_id)->first();
+        $dataArr = AttributeValues::where('attributes_id', $request_product_attribute_id)->select('id', 'attributes_id', 'name')->get();
+        $chkPost = ProductAttributes::where('product_id', $product_id)->where('attributes_id', $request_product_attribute_id)->first();
         if (empty($chkPost)) {
             $data = array(
-                'product_id'                 => $request->product_id,
-                'attributes_id'              => $request->product_attribute_id,
+                'product_id'                 => $product_id,
+                'attributes_id'              => $request_product_attribute_id,
             );
             $product_attribute_id = ProductAttributes::insertGetId($data);
         } else {
@@ -359,7 +377,9 @@ class CategoryController extends Controller
     {
         $term = $request->input('term');
         $results = Categorys::where('name', 'like', '%' . $term . '%')
+                ->where('status', 1)
             // ->orWhere('category', 'like', '%' . $term . '%')
+
             ->get();
         $formattedResults = [];
         foreach ($results as $result) {

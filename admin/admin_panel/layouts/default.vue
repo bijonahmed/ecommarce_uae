@@ -10,9 +10,9 @@
         <footer class="page-footer">
             <p class="mb-0">Copyright © 2023. All right reserved.</p>
         </footer>
-       
+
     </div>
-    
+
 </div>
 </template>
 
@@ -26,7 +26,7 @@ export default {
     components: {
         Sidebar,
         NavBar
-  },
+    },
 
     methods: {
         async logout() {

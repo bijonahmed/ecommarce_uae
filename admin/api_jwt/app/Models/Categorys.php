@@ -34,12 +34,12 @@ class Categorys extends Authenticatable
 
   public function children()
   {
-      return $this->hasMany(Categorys::class, 'parent_id');
+      return $this->hasMany(Categorys::class, 'parent_id')->where('status', 1);
   }
 
   public function parent()
   {
-      return $this->belongsTo(Categorys::class, 'parent_id');
+      return $this->belongsTo(Categorys::class, 'parent_id')->where('status', 1);
   }
 
  

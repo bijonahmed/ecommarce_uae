@@ -280,13 +280,9 @@ export default {
         },
         showAttrVal(attribue_id) {
             $(".product_attribute_id").val(attribue_id);
-            const product_id = this.$route.query.parameter;
-            this.$axios.get(`/category/attributeValRows/`, {
-                params: {
-                    product_attribute_id: attribue_id,
-                    product_id: product_id
-                }
-            }).then(response => {
+            const product_id           = this.$route.query.parameter;
+            const product_attribute_id = attribue_id;
+            this.$axios.get(`/category/attributeValRows/${product_id}/${product_attribute_id}`).then(response => {
                 // this.attrValList = response.data.data; // this method no need now already tell me mamun bhai 
                 this.round_success_noti();
                 this.attributHistory();

@@ -62,7 +62,7 @@
                                                 <div class="tab-pane fade show active" id="primary-pills-home" role="tabpanel">
                                                     <!-- General  -->
                                                     <div class="row mb-3 required">
-                                                        <label for="input-name-1" class="col-sm-2 col-form-label">Category Name</label>
+                                                        <label for="input-name-1" class="col-sm-2 col-form-label required-label">Category Name</label>
                                                         <div class="col-sm-10">
                                                             <input type="text" name="name" placeholder="Category Name" v-model="insertdata.name" class="form-control" />
                                                             <input type="hidden" name="id" id="id" class="form-control" />
@@ -70,7 +70,7 @@
 
                                                         </div>
                                                     </div>
-                                                    <div class="row mb-3">
+                                                    <div class="row mb-3 d-none">
                                                         <label for="input-description-1" class="col-sm-2 col-form-label">Description</label>
                                                         <div class="col-sm-10">
 
@@ -96,7 +96,7 @@
                                                     <div class="row mb-3">
                                                         <label for="input-meta-description-1" class="col-sm-2 col-form-label">Meta Tag Keywords</label>
                                                         <div class="col-sm-10">
-                                                            <textarea name="meta_keyword" rows="5" placeholder="Meta Tag Keywords" id="meta_keyword" class="form-control" v-model="insertdata.meta_keyword"></textarea>
+                                                            <textarea name="meta_keyword" rows="5" id="meta_keyword" class="form-control" v-model="insertdata.meta_keyword" placeholder="fashion, women's clothing, men's clothing, accessories"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -108,7 +108,7 @@
                                                                 <label for="input-meta-description-1" class="col-sm-2 col-form-label">Parent</label>
                                                                 <div class="col-sm-10">
                                                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="parent_id" id="parent_id" v-model="insertdata.parent_id">
-                                                                        <option selected>Select</option>
+                                                                        <option selected value="">Select</option>
                                                                         <!-- categories -->
                                                                         <option v-for='data in categories' :value='data.id'>{{ data.name }}
                                                                         </option>
@@ -116,14 +116,14 @@
                                                                 </div>
                                                             </div>
                                                             <div class="row mb-3">
-                                                                <label for="input-meta-description-1" class="col-sm-2 col-form-label">For Desktop View</label>
+                                                                <label for="input-meta-description-1" class="col-sm-2 col-form-label">Icon (100x100)</label>
                                                                 <div class="col-sm-10">
                                                                     <input class="form-control form-control-sm" id="file" ref="file" @change="onFileSelected" type="file">
                                                                     <a href="https://icons8.com/" target="_blank">https://icons8.com/</a>
                                                                 </div>
                                                             </div>
 
-                                                            <div class="row mb-3">
+                                                            <div class="row mb-3 d-none">
                                                                 <label for="input-meta-description-1" class="col-sm-2 col-form-label">For Mobile View</label>
                                                                 <div class="col-sm-10">
                                                                     <input class="form-control form-control-sm" type="text" placeholder="Add fontawsone class" v-model="insertdata.mobile_view_class">
@@ -146,11 +146,10 @@
                                                     <!-- SEO -->
                                                     <div class="card">
                                                         <div class="card-body">
-                                                            <div class="alert alert-info" bis_skin_checked="1"><i class="fas fa-info-circle"></i> Do not use spaces, instead replace spaces with - and make sure the SEO URL is globally unique.</div>
                                                             <div class="row mb-3">
                                                                 <label for="input-meta-description-1" class="col-sm-2 col-form-label">Keyword</label>
                                                                 <div class="col-sm-10">
-                                                                    <input type="text" name="keyword" value placeholder="Keyword" id="keyword" class="form-control" />
+                                                                    <input type="text" name="keyword" value placeholder="Example: fashion, women's clothing, men's clothing, accessories" id="keyword" class="form-control" />
                                                                     <div id="error-name-1" class="invalid-feedback"></div>
                                                                 </div>
                                                             </div>
@@ -292,3 +291,11 @@ export default {
     },
 }
 </script>
+
+<style>
+.required-label::after {
+    content: "\2605";
+    color: red;
+    margin-right: 4px;
+}
+</style>

@@ -70,7 +70,7 @@
 
                                                         </div>
                                                     </div>
-                                                    <div class="row mb-3">
+                                                    <div class="row mb-3 d-none">
                                                         <label for="input-description-1" class="col-sm-2 col-form-label">Description</label>
                                                         <div class="col-sm-10">
 
@@ -109,20 +109,20 @@
                                                                 <div class="col-sm-10">
                                                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="parent_id" id="parent_id" v-model="insertdata.parent_id">
                                                                         <option value=""></option>
-                                                                        <option v-for='data in categories' :value='data.id'>{{ data.name }}
+                                                                        <option v-for='data in categories' :value='data.id' :key="data.id">{{ data.name }}
                                                                         </option>
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                             <div class="row mb-3">
-                                                                <label for="input-meta-description-1" class="col-sm-2 col-form-label">For Desktop View</label>
+                                                                <label for="input-meta-description-1" class="col-sm-2 col-form-label">Icon (100x100)</label>
                                                                 <div class="col-sm-10">
                                                                     <input class="form-control form-control-sm" id="file" ref="file" @change="onFileSelected" type="file">
                                                                     <a href="https://icons8.com/" target="_blank">https://icons8.com/</a>
                                                                 </div>
                                                             </div>
 
-                                                            <div class="row mb-3">
+                                                            <div class="row mb-3 d-none">
                                                                 <label for="input-meta-description-1" class="col-sm-2 col-form-label">For Mobile View</label>
                                                                 <div class="col-sm-10">
                                                                     <input class="form-control form-control-sm" type="text" placeholder="Add fontawsone class" v-model="insertdata.mobile_view_class">
@@ -132,7 +132,7 @@
                                                             <div class="row mb-3">
                                                                 <label for="input-meta-description-1" class="col-sm-2 col-form-label">Status</label>
                                                                 <div class="col-sm-10">
-                                                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="status" id="status">
+                                                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" v-model="insertdata.status" name="status" id="status">
                                                                         <option selected value="1">Active</option>
                                                                         <option value="0">Inactive</option>
                                                                     </select>
@@ -212,7 +212,7 @@ export default {
                 parent_id: 0,
                 mobile_view_class: '',
                 keyword: '',
-                status: 1,
+                status: '',
             },
             categories: [],
             notifmsg: '',

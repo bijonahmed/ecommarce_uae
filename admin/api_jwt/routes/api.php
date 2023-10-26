@@ -97,12 +97,13 @@ Route::group([
     Route::post('saveAttribute', [CategoryController::class, 'saveAttribute']);
     Route::post('saveAttributeVal', [CategoryController::class, 'saveAttributeVal']);
     Route::get('getCategoryList', [CategoryController::class, 'allCategory']);
+    Route::get('getInacCategoryList', [CategoryController::class, 'allInacCategory']);
     Route::get('categoryRow/{id}', [CategoryController::class, 'findCategoryRow']);
     Route::get('getCategoryListParent', [CategoryController::class, 'getCategoryListParent']);
     Route::get('getSubCategoryChild/{id}', [CategoryController::class, 'getSubCategoryChild']);
     Route::get('attributeRow/{id}', [CategoryController::class, 'attributeRow']);
     Route::get('attributeValRow/{id}', [CategoryController::class, 'attributeValRow']);
-    Route::get('attributeValRows/', [CategoryController::class, 'attributeValRows']);
+    Route::get('attributeValRows/{product_id}/{product_attribute_id}', [CategoryController::class, 'attributeValRows']);
     Route::get('search', [CategoryController::class, 'searchCategory']);
     Route::get('attributes', [CategoryController::class, 'getAttribute']);
     Route::get('attributes-list', [CategoryController::class, 'getAttributeList']);
