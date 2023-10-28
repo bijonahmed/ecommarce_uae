@@ -172,7 +172,7 @@ Route::group([
 ], function () {
     
     Route::get('getCategoryList', [UnauthenticatedController::class, 'allCategory']);
-    Route::get('findCategorySlug', [UnauthenticatedController::class, 'findCategorySlug']);
+    Route::get('findCategorys/{slug}', [UnauthenticatedController::class, 'findCategorys']);
 });
 
 Route::group([

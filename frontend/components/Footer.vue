@@ -9,7 +9,7 @@
                     <div class="f_option ">
                         <ul>
                             <li>
-                                <Nuxt-link to="/category/all-category">
+                                <Nuxt-link to="/category/all-categorys">
                                     <div class="circle"></div>
                                     <i class="fa-solid fa-table-cells-large"></i>
                                     <p>Category</p>
@@ -122,7 +122,7 @@
                                 <Nuxt-link to="/">Home</Nuxt-link>
                             </li>
                             <li>
-                                <Nuxt-link to="/category/all-category">All Category</Nuxt-link>
+                                <Nuxt-link to="/category/all-categorys">All Category</Nuxt-link>
                             </li>
                             <li>
                                 <Nuxt-link to="/category/category-list">Category List</Nuxt-link>

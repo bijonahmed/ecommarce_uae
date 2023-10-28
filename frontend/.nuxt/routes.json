@@ -84,13 +84,6 @@
     "_name": "_de8d5a14"
   },
   {
-    "name": "product-details",
-    "path": "/product-details",
-    "component": "F:\\\\Server\\\\htdocs\\\\ecommarce_uae\\\\frontend\\\\pages\\\\product-details.vue",
-    "chunkName": "pages/product-details",
-    "_name": "_6f7ca558"
-  },
-  {
     "name": "product-grid",
     "path": "/product-grid",
     "component": "F:\\\\Server\\\\htdocs\\\\ecommarce_uae\\\\frontend\\\\pages\\\\product-grid.vue",
@@ -182,11 +175,11 @@
     "_name": "_460ccaa8"
   },
   {
-    "name": "category-all-category",
-    "path": "/category/all-category",
-    "component": "F:\\\\Server\\\\htdocs\\\\ecommarce_uae\\\\frontend\\\\pages\\\\category\\\\all-category.vue",
-    "chunkName": "pages/category/all-category",
-    "_name": "_51e2e1e8"
+    "name": "category-all-categorys",
+    "path": "/category/all-categorys",
+    "component": "F:\\\\Server\\\\htdocs\\\\ecommarce_uae\\\\frontend\\\\pages\\\\category\\\\all-categorys.vue",
+    "chunkName": "pages/category/all-categorys",
+    "_name": "_23b6078a"
   },
   {
     "name": "category-category-grid",
@@ -292,5 +285,12 @@
     "component": "F:\\\\Server\\\\htdocs\\\\ecommarce_uae\\\\frontend\\\\pages\\\\index.vue",
     "chunkName": "pages/index",
     "_name": "_73e079c2"
+  },
+  {
+    "name": "product-details-id",
+    "path": "/product-details/:id?",
+    "component": "F:\\\\Server\\\\htdocs\\\\ecommarce_uae\\\\frontend\\\\pages\\\\product-details\\\\_id.vue",
+    "chunkName": "pages/product-details/_id",
+    "_name": "_d3add2d4"
   }
 ]

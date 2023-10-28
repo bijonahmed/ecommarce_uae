@@ -1,7 +1,14 @@
 <template>
 <div>
+
     <div class="row">
         <div class="col-12">
+            <div class="loading-indicator" v-if="loading">
+                <div class="loader-container">
+                    <center class="loader-text">Loading...</center>
+                        <img src="/loader/loader.gif" alt="Loader" />
+                </div>
+            </div>
             <div class="product_section">
                 <div class="row px-2">
                     <!-- sidebar fillter  -->
@@ -10,15 +17,10 @@
                             <div class="category_list">
                                 <h6>Category</h6>
                                 <ul>
-                                    <li>
-                                        <a href="#">Computing</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Electronics</a>
-                                    </li>
-
+                                    <li v-for="category in categories" :key="category.id"><a href="#" @click="fetchData(category.slug)">{{ category.name }}</a></li>
                                 </ul>
                             </div>
+
                             <div class="delivery_list">
                                 <h6>Express delivery</h6>
                                 <ul>
@@ -106,7 +108,7 @@
                         <div class="product_list">
                             <div class="title_product">
                                 <div>
-                                    <h6>Officail Store Deals</h6>
+                                    <h6>{{ categoryname }}</h6>
                                 </div>
                                 <div>
                                     <label for="">Short By:</label>
@@ -120,7 +122,7 @@
                             </div>
                             <div class="grid_list">
                                 <div>
-                                    <p>5,000 product found</p>
+                                    <p>{{ pro_count }} product found</p>
                                 </div>
                                 <div class="d-flex">
                                     <a type="button" class="filter_btn mobile_view"><i class="fa-solid fa-sliders"></i></a>
@@ -225,7 +227,7 @@
                                                             <li>
                                                                 <input type="checkbox"><label for="">Girls</label>
                                                             </li>
-                                                            
+
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -234,17 +236,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <Nuxt-link to="/product-details">
+                            <div class="row" v-for="item in prouducts" :key="item.id">
+                                <div class="col-12" v-if="prouducts.length > 0">
+                                    <nuxt-link :to="`/product-details/${item.pro_slug}`">
                                         <div class="products_list">
                                             <div class="col">
-                                                <img src="/images/product(1).jpg" class="img-fluid" alt="">
+                                                <img :src="item.thumnail_img" class="img-fluid">
                                                 <span>Free Delivery </span>
                                             </div>
                                             <div class="col pad_ding">
                                                 <strong>Official store </strong>
-                                                <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus tempora eos exercitationem molestias fugit, optio autem at quo perspiciatis!</h5>
+                                                <h5>{{ item.product_name }}</h5>
                                                 <div class="d-flex align-items-center">
                                                     <div class="ratings m-0">
                                                         <i class="fa fa-star checked"></i>
@@ -258,8 +260,8 @@
                                                 <p><i class="fa-brands fa-dhl"></i></p>
                                             </div>
                                             <div class="col pad_ding">
-                                                <h4>Tk 6,500</h4>
-                                                <h4 class="disabled"><strike>Tk 6,500</strike><span>-45%</span></h4>
+                                                <h4>${{ item.price }}</h4>
+                                                <h4 class="disabled" v-if="item.discount !==0"><strike>${{ item.discount }}</strike><span>-45%</span></h4>
                                                 <!-- <button type="button" class="btn_cart " style="display: block;visibility: unset;">Add to cart</button> -->
                                                 <button type="button" disabled class="btn_sold " style="display: block;visibility: unset;">Sold Out</button>
                                             </div>
@@ -268,6 +270,7 @@
                                 </div>
 
                             </div>
+
                             <!-- pagination -->
 
                         </div>
@@ -281,23 +284,98 @@
 
 <script>
 export default {
-    
-    mounted() {
 
-      
+    data() {
+        return {
+            loading: false,
+            prouducts: [],
+            categories: [],
+            pro_count: 0,
+            categoryname: '',
+        };
+    },
+    async mounted() {
+        const paramSlug = this.$route.query.slug;
+        this.fetchData(paramSlug);
+        await this.fetchDataCategory();
+
     },
     methods: {
-        // redirectCategory(slug) {
-        //     this.$router.push({ path: '/category/category-list', query: { slug: slug } })
-        // },
-        async fetchData() {
-            const response = await this.$axios.get(`/unauthenticate/getCategoryList`);
-            this.categories = response.data;
-            //console.log("====" + response.data);
+        redirectCategory(slug) {
+            this.$router.push({
+                path: '/category/category-list',
+                query: {
+                    slug: slug
+                }
+            })
+        },
+        async fetchData(slug) {
+            this.loading = true;
+            const response = await this.$axios.get(`/unauthenticate/findCategorys/${slug}`).then(response => {
+                    this.prouducts = response.data.result;
+                    this.pro_count = response.data.pro_count;
+                    this.categoryname = response.data.categoryname;
+
+                })
+                .catch(error => {
+                    // Handle error
+                })
+                .finally(() => {
+                    this.loading = false; // Hide loader after response
+                });;;
+
         },
 
-    },
+        async fetchDataCategory() {
+            this.loading = true;
+            await this.$axios.get(`/unauthenticate/getCategoryList`).then(response => {
+                    this.categories = response.data;
+                })
+                .catch(error => {
+                    // Handle error
+                })
+                .finally(() => {
+                    this.loading = false; // Hide loader after response
+                });;
 
+        }
+    },
 
 }
 </script>
+
+<style scoped>
+.loading-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+/* For Loader */
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+}
+
+.loader-text {
+  margin: 0; /* Remove default margin */
+}
+
+.loader-top {
+  top: 0;
+}
+
+.loader-bottom {
+  bottom: 0;
+}
+</style>

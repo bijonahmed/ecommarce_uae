@@ -84,18 +84,14 @@ export default {
         ExtraDiscount,
         CategoryMultipleProduct
     },
-    data() {
-        return {
-            categories: [],
-        };
-    },
+    
     head: {
         title: 'Category List',
     },
     mounted() {
-       const paramSlug =   this.$route.query.slug;
-       this.fetchData(paramSlug);
-       alert(paramNames);
+        const paramSlug = this.$route.query.slug;
+        this.fetchData(paramSlug);
+        // alert(paramSlug);
         if (process.client) {
             $(document).ready(function () {
                 $(".filter_btn").on('click', function () {
@@ -109,17 +105,13 @@ export default {
         }
     },
     methods: {
-         
         async fetchData(slug) {
-            const response = await this.$axios.get(`/unauthenticate/getCategoryList`, 
-                query: { slug: slug } }
-                );
-            this.categories = response.data;
+            const response = await this.$axios.get(`/unauthenticate/findCategorys/${slug}`);
+            //this.prouducts = response.data.data;
             //console.log("====" + response.data);
         },
 
     },
-
 
 }
 </script>

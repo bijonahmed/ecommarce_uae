@@ -16,7 +16,6 @@ const _266e3ec4 = () => interopDefault(import('..\\pages\\official-store-grid.vu
 const _e4461ec4 = () => interopDefault(import('..\\pages\\OfficialStoreFilter.vue' /* webpackChunkName: "pages/OfficialStoreFilter" */))
 const _88eb4bf8 = () => interopDefault(import('..\\pages\\OfficialStoreFilterGrid.vue' /* webpackChunkName: "pages/OfficialStoreFilterGrid" */))
 const _de8d5a14 = () => interopDefault(import('..\\pages\\payment.vue' /* webpackChunkName: "pages/payment" */))
-const _6f7ca558 = () => interopDefault(import('..\\pages\\product-details.vue' /* webpackChunkName: "pages/product-details" */))
 const _26e833a4 = () => interopDefault(import('..\\pages\\product-grid.vue' /* webpackChunkName: "pages/product-grid" */))
 const _6427ecfc = () => interopDefault(import('..\\pages\\product-list.vue' /* webpackChunkName: "pages/product-list" */))
 const _7849a9b8 = () => interopDefault(import('..\\pages\\refund.vue' /* webpackChunkName: "pages/refund" */))
@@ -30,7 +29,7 @@ const _66eacbb2 = () => interopDefault(import('..\\pages\\affiliate\\affiliate-d
 const _11fa9a1e = () => interopDefault(import('..\\pages\\affiliate\\affiliate-programe.vue' /* webpackChunkName: "pages/affiliate/affiliate-programe" */))
 const _082e2ba2 = () => interopDefault(import('..\\pages\\affiliate\\affiliate-programe-register.vue' /* webpackChunkName: "pages/affiliate/affiliate-programe-register" */))
 const _460ccaa8 = () => interopDefault(import('..\\pages\\affiliate\\affiliate-transfer.vue' /* webpackChunkName: "pages/affiliate/affiliate-transfer" */))
-const _51e2e1e8 = () => interopDefault(import('..\\pages\\category\\all-category.vue' /* webpackChunkName: "pages/category/all-category" */))
+const _23b6078a = () => interopDefault(import('..\\pages\\category\\all-categorys.vue' /* webpackChunkName: "pages/category/all-categorys" */))
 const _349ebae7 = () => interopDefault(import('..\\pages\\category\\category-grid.vue' /* webpackChunkName: "pages/category/category-grid" */))
 const _71de743f = () => interopDefault(import('..\\pages\\category\\category-list.vue' /* webpackChunkName: "pages/category/category-list" */))
 const _2b7a1421 = () => interopDefault(import('..\\pages\\seller\\seller-account-setting.vue' /* webpackChunkName: "pages/seller/seller-account-setting" */))
@@ -46,6 +45,7 @@ const _d1e18ca8 = () => interopDefault(import('..\\pages\\user\\user-orders.vue'
 const _7d2a121c = () => interopDefault(import('..\\pages\\user\\user-profile.vue' /* webpackChunkName: "pages/user/user-profile" */))
 const _b4681f78 = () => interopDefault(import('..\\pages\\user\\user-whichlist.vue' /* webpackChunkName: "pages/user/user-whichlist" */))
 const _73e079c2 = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages/index" */))
+const _d3add2d4 = () => interopDefault(import('..\\pages\\product-details\\_id.vue' /* webpackChunkName: "pages/product-details/_id" */))
 
 const emptyFn = () => {}
 
@@ -107,10 +107,6 @@ export const routerOptions = {
     component: _de8d5a14,
     name: "payment"
   }, {
-    path: "/product-details",
-    component: _6f7ca558,
-    name: "product-details"
-  }, {
     path: "/product-grid",
     component: _26e833a4,
     name: "product-grid"
@@ -163,9 +159,9 @@ export const routerOptions = {
     component: _460ccaa8,
     name: "affiliate-affiliate-transfer"
   }, {
-    path: "/category/all-category",
-    component: _51e2e1e8,
-    name: "category-all-category"
+    path: "/category/all-categorys",
+    component: _23b6078a,
+    name: "category-all-categorys"
   }, {
     path: "/category/category-grid",
     component: _349ebae7,
@@ -226,6 +222,10 @@ export const routerOptions = {
     path: "/",
     component: _73e079c2,
     name: "index"
+  }, {
+    path: "/product-details/:id?",
+    component: _d3add2d4,
+    name: "product-details-id"
   }],
 
   fallback: false
