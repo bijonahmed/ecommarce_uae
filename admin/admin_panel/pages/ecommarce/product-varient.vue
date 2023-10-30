@@ -231,10 +231,17 @@ export default {
         },
         setHistoryValue() {
             let product_id = this.$route.query.parameter;
-            console.log(`Selected history ${this.arr_his_val}`);
+            const inputString = this.arr_his_val;
+           // console.log(`Selected history ${this.arr_his_val}`);
+            const inputStringCopy = String(inputString);
+            const valuesArray = inputStringCopy.split(',');
+            const filteredArray = valuesArray.filter(value => value.trim() !== '');
+            const resultArrValue = filteredArray.join(',');
+            console.log(`Selected history ${resultArrValue}`);
+            //return false;
             this.$axios.get(`/product/insertProductVarient`, {
                 params: {
-                    selectedHistoryValues: this.arr_his_val,
+                    selectedHistoryValues: resultArrValue,
                     product_id: product_id
                 }
             }).then(response => {
@@ -280,7 +287,7 @@ export default {
         },
         showAttrVal(attribue_id) {
             $(".product_attribute_id").val(attribue_id);
-            const product_id           = this.$route.query.parameter;
+            const product_id = this.$route.query.parameter;
             const product_attribute_id = attribue_id;
             this.$axios.get(`/category/attributeValRows/${product_id}/${product_attribute_id}`).then(response => {
                 // this.attrValList = response.data.data; // this method no need now already tell me mamun bhai 

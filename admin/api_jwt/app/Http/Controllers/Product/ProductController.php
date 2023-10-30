@@ -48,7 +48,7 @@ class ProductController extends Controller
             'shipping_days'  => 'required',
             'status'         => 'required',
             'sku'            => 'required',
-           // 'files' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // max:2048 is the maximum file size in kilobytes (2MB)
+            // 'files' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // max:2048 is the maximum file size in kilobytes (2MB)
         ]);
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
@@ -305,6 +305,8 @@ class ProductController extends Controller
 
     public function insertProductVarient(Request $request)
     {
+
+
         $validator = Validator::make($request->all(), [
             'product_id'            => 'required|integer',
             'selectedHistoryValues' => 'required',
@@ -313,14 +315,15 @@ class ProductController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
         $res     = $request->selectedHistoryValues;
-        array_shift($res);
+        // dd($res);
+        //array_shift($res);
         // Use array_filter to remove "undefined" values
-        $resultArray = array_filter($res, function ($value) {
-            return $value !== "undefined";
-        });
-        $arr_val = implode(',', $resultArray);
-        //dd($arr_val);
-
+        //$resultArray = array_filter($res, function ($value) {
+        //return $value !== "undefined";
+        //});
+        $arr_val = $res; //implode(',', $resultArray);
+        $resultArray =  explode(',', $arr_val); // $arr_val;
+        //dd($resultArray);
         // unique number:
         $numbers = []; // An array to store existing numbers to check against
         $uniqueNumber      = $this->generateUnique4DigitNumber($numbers);
@@ -349,8 +352,8 @@ class ProductController extends Controller
             $insertArr->product_id            = $request->product_id;
             $insertArr->save();
         }
-        $res['msg']     = "Insert successfully";
-        return response()->json($res);
+        $msg['msg']     = "Insert successfully";
+        return response()->json($msg);
     }
     public function insertProductAttrAndValues(Request $request)
     {
