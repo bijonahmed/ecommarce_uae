@@ -126,6 +126,7 @@ Route::group([
     Route::get('additionaIMagesDelete', [ProductController::class, 'additionaIMagesDelete']);
     Route::get('deleteCategory', [ProductController::class, 'deleteCategory']);
     Route::get('getVarientHistory', [ProductController::class, 'getVarientHistory']);
+    Route::get('removeProducts/{id}', [ProductController::class, 'removeProducts']);
 });
 
 Route::group([

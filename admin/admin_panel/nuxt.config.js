@@ -46,6 +46,7 @@ export default {
       { src: "/plugins/notifications/js/lobibox.min.js" },
       { src: "/plugins/notifications/js/notifications.min.js" },
       { src: "/plugins/notifications/js/notification-custom-script.js" },
+      { src: "https://cdn.jsdelivr.net/npm/sweetalert2@11" },
       //end notification
       { src: "/js/pace.min.js" },
     ],
@@ -92,8 +93,8 @@ export default {
   },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-   //baseURL: "http://127.0.0.1:8000/api",
-   baseURL: "https://ad-ecom.futuregenit.com/api",
+   baseURL: "http://127.0.0.1:8000/api",
+   //baseURL: "https://ad-ecom.futuregenit.com/api",
   },
   // router: {
   //   middleware: ['auth']

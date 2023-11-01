@@ -97,6 +97,7 @@
                                     <td>
                                         <center>
                                             <span @click="edit(item.id)"><button type="button"><i class="bx bx-edit"></i></button></span>
+                                            <span @click="deleteProduct(item.id)"><button type="button"><i class="bx bx-trash"></i></button></span>
                                             <span @click="preview(item.id)"><button type="button"><i class="fadeIn animated bx bx-zoom-in"></i></button></span>
                                         </center>
                                     </td>
@@ -195,7 +196,6 @@ export default {
                     parameter: id
                 }
             })
-
         },
 
         async fetchData() {
@@ -208,6 +208,34 @@ export default {
                 console.error(error);
             }
         },
+
+        deleteProduct(id) {
+            //alert(id);
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.$axios.get(`/product/removeProducts/${id}`).then(response => {
+                        this.fetchData();
+                        this.pos4_error_noti();
+                    });
+                    Swal.fire(
+                        'Deleted!',
+                        'Your product has been deleted.',
+                        'success'
+                    )
+                }
+            })
+
+        },
+
         handleSearch() {
             this.currentPage = 1;
         },
@@ -225,6 +253,17 @@ export default {
                 }
             })
         },
+
+        pos4_error_noti() {
+            Lobibox.notify('error', {
+                pauseDelayOnHover: true,
+                icon: 'bx bx-x-circle',
+                size: 'mini',
+                continueDelayOnInactiveTab: false,
+                position: 'bottom left',
+                msg: 'Successfully delete product.'
+            });
+        }
 
     },
 };

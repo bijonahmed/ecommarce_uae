@@ -377,7 +377,7 @@ class CategoryController extends Controller
     {
         $term = $request->input('term');
         $results = Categorys::where('name', 'like', '%' . $term . '%')
-                ->where('status', 1)
+            ->where('status', 1)
             // ->orWhere('category', 'like', '%' . $term . '%')
 
             ->get();

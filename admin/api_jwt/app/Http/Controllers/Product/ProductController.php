@@ -241,11 +241,6 @@ class ProductController extends Controller
             //update
         }
     }
-    public function getProductList()
-    {
-        $data = Product::orderBy('id', 'desc')->get();;
-        return response()->json($data);
-    }
 
     public function insertVarientGroup(Request $request)
     {
@@ -305,7 +300,6 @@ class ProductController extends Controller
 
     public function insertProductVarient(Request $request)
     {
-
 
         $validator = Validator::make($request->all(), [
             'product_id'            => 'required|integer',
@@ -493,5 +487,39 @@ class ProductController extends Controller
         $responseData['product_imgs']      = $addiImg;
         // dd($responseData);
         return response()->json($responseData);
+    }
+
+    public function getProductList()
+    {
+        $data = Product::orderBy('id', 'desc')->get();
+
+
+        $collection = collect($data);
+        $modifiedCollection = $collection->map(function ($item) {
+            return [
+                'id'        => $item['id'],
+                'name'      => substr($item['name'], 0, 20),
+                'stock_qty' => $item['stock_qty'],
+                'status'    => $item['status'],
+
+            ];
+        });
+        //dd($modifiedCollection);
+        return response()->json($modifiedCollection, 200);
+    }
+
+    public function removeProducts($id)
+    {
+        //echo $id;exit; 
+        if(!empty($id)){
+            Product::where('id', $id)->delete();
+            ProductAttributes::where('product_id', $id)->delete();
+            ProductAttributeValue::where('product_id', $id)->delete();
+            ProductVarrient::where('product_id', $id)->delete();
+            ProductVarrientHistory::where('product_id', $id)->delete();
+            ProductCategory::where('product_id', $id)->delete();
+            ProductAdditionalImg::where('product_id', $id)->delete();
+        }
+        return response()->json("successfully delete product", 200);
     }
 }
