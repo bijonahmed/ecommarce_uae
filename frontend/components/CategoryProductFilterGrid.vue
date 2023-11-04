@@ -3,41 +3,27 @@
     <!-- product grid part start here  -->
     <div class="row">
         <div class="col-12">
+            <div class="loading-indicator" v-if="loading">
+                <div class="loader-container">
+                    <center class="loader-text">Loading...</center>
+                    <img src="/loader/loader.gif" alt="Loader" />
+                </div>
+            </div>
             <div class="product_section">
                 <div class="row px-2">
                     <!-- sidebar fillter  -->
                     <div class="col-md-4 desktop_view">
                         <div class="left_side_product">
                             <div class="category_list">
+
+                                <p>Query parameter 'slug': {{ $route.query.slug }}</p>
+                                <hr />
                                 <h6>Category</h6>
                                 <ul>
-                                    <li>
-                                        <a href="#">Computing</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Electronics</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Phone & tablates</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Fashion</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Home & office </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Grocery</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Health & beauty</a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">Baby Product</a>
-                                    </li>
+                                    <li v-for="category in categories" :key="category.id"><a href="#" @click="fetchData(category.slug)">{{ category.name }}</a></li>
                                 </ul>
                             </div>
+
                             <div class="delivery_list">
                                 <h6>Express delivery</h6>
                                 <ul>
@@ -50,10 +36,10 @@
                                 <h6>Shipped from </h6>
                                 <ul>
                                     <li>
-                                        <input type="radio" checked name="from" id="from"><label for="from">From Bangladesh </label>
+                                        <input type="checkbox"><label for="">From Bangladesh </label>
                                     </li>
                                     <li>
-                                        <input type="radio" name="from" id="from"><label for="from">From Bangladesh </label>
+                                        <input type="checkbox"><label for="">From Bangladesh </label>
                                     </li>
                                 </ul>
                             </div>
@@ -70,48 +56,7 @@
                                     <li>
                                         <input type="checkbox"><label for="">AGM </label>
                                     </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">Apple </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">Walton </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">Addidas </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">AGM </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">Apple </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">Walton </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">Addidas </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">AGM </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">Apple </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">Walton </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">Addidas </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">AGM </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">Apple </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">Walton </label>
-                                    </li>
+
                                 </ul>
                             </div>
                             <div class="price_range">
@@ -122,14 +67,11 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div id="slider-range" class="price-filter-range" name="rangeInput"></div>
-
                                         <div class="d-flex" style="margin:10px auto">
-                                            <input type="number" style="width: 45%;margin: 0px 3px;" min=0 max="9900" oninput="validity.valid||(value='0');" id="min_price" class="price-range-field" />
-                                            <input type="number" style="width: 45%;margin: 0px 3px" min=0 max="10000" oninput="validity.valid||(value='10000');" id="max_price" class="price-range-field" />
+                                            <input type="number" style="width: 45%;margin: 0px 3px;" min=0 max="9900" oninput="validity.valid||(value='0');" id="min_price" class="price-range-field form-control" />
+                                            <input type="number" style="width: 45%;margin: 0px 3px" min=0 max="10000" oninput="validity.valid||(value='10000');" id="max_price" class="price-range-field form-control" />
                                         </div>
-
                                         <!-- <button class="price-range-search" id="price-range-submit">Search</button>
-
                                         <div id="searchResults" class="search-results-block"></div> -->
                                     </div>
                                 </div>
@@ -147,41 +89,11 @@
                                     <li>
                                         <input type="checkbox"><label for="">S</label>
                                     </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">L</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">M </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">XL </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">XXL </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">XXL </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">0-2 Years</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">2-3 Years</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">3-5 Years</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">5-7 Years</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">7-10 Years</label>
-                                    </li>
+
                                 </ul>
                             </div>
                             <div class="brands_list">
                                 <h6>Gender</h6>
-
                                 <ul class="brand_scroll">
                                     <li>
                                         <input type="checkbox"><label for="">Boys</label>
@@ -189,21 +101,7 @@
                                     <li>
                                         <input type="checkbox"><label for="">Girls</label>
                                     </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">Man</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">Woman</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">Male</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">Female</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox"><label for="">Teen</label>
-                                    </li>
+
                                 </ul>
                             </div>
                         </div>
@@ -214,9 +112,9 @@
                         <div class="product_list">
                             <div class="title_product">
                                 <div>
-                                    <h6>Officail Store Deals</h6>
+                                    <h6>{{ categoryname }}</h6>
                                 </div>
-                                <div>
+                                <div class="d-none">
                                     <label for="">Short By:</label>
                                     <select name="" id="">
                                         <option value="">Popularity</option>
@@ -228,12 +126,12 @@
                             </div>
                             <div class="grid_list">
                                 <div>
-                                    <p>5,000 product found</p>
+                                    <p>{{ pro_count }} product found</p>
                                 </div>
                                 <div class="d-flex">
                                     <a type="button" class="filter_btn mobile_view"><i class="fa-solid fa-sliders"></i></a>
-                                    <Nuxt-Link to="/category/category-list"><i class="fa-solid fa-list"></i></Nuxt-Link>
-                                            <Nuxt-Link to="/category/category-grid" class="active"><i class="fa-solid fa-grip"></i></Nuxt-Link>
+                                    <a href="#" @click="categoryGrid"><i class="fa-solid fa-list"></i></a>
+                                    <Nuxt-Link to="#" class="active"><i class="fa-solid fa-grip"></i></Nuxt-Link>
                                 </div>
                                 <div class="filter_modal">
                                     <div class="row px-4">
@@ -247,31 +145,7 @@
                                                     <div class="category_list">
                                                         <h6>Category</h6>
                                                         <ul>
-                                                            <li>
-                                                                <a href="#">Computing</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">Electronics</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">Phone & tablates</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">Fashion</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">Home & office </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">Grocery</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">Health & beauty</a>
-                                                            </li>
-
-                                                            <li>
-                                                                <a href="#">Baby Product</a>
-                                                            </li>
+                                                            <li v-for="category in categories" :key="category.id"><a href="#" @click="fetchData(category.slug)">{{ category.name }}</a></li>
                                                         </ul>
                                                     </div>
                                                     <div class="delivery_list">
@@ -306,48 +180,7 @@
                                                             <li>
                                                                 <input type="checkbox"><label for="">AGM </label>
                                                             </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">Apple </label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">Walton </label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">Addidas </label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">AGM </label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">Apple </label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">Walton </label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">Addidas </label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">AGM </label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">Apple </label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">Walton </label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">Addidas </label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">AGM </label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">Apple </label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">Walton </label>
-                                                            </li>
+
                                                         </ul>
                                                     </div>
                                                     <div class="price_range">
@@ -383,36 +216,7 @@
                                                             <li>
                                                                 <input type="checkbox"><label for="">S</label>
                                                             </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">L</label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">M </label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">XL </label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">XXL </label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">XXL </label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">0-2 Years</label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">2-3 Years</label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">3-5 Years</label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">5-7 Years</label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">7-10 Years</label>
-                                                            </li>
+
                                                         </ul>
                                                     </div>
                                                     <div class="brands_list">
@@ -425,21 +229,7 @@
                                                             <li>
                                                                 <input type="checkbox"><label for="">Girls</label>
                                                             </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">Man</label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">Woman</label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">Male</label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">Female</label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox"><label for="">Teen</label>
-                                                            </li>
+
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -450,15 +240,15 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6">
-                                    <Nuxt-link to="/product-details">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6" v-for="item in prouducts" :key="item.id">
+                                    <nuxt-link :to="`/product-details/${item.pro_slug}`" v-if="prouducts.length > 0">
                                         <div class="product_grid">
-                                            <img src="/images/product(1).jpg" class="img-fluid" alt="">
+                                            <img :src="item.thumnail_img" class="img-fluid">
                                             <span>Free Delivery</span>
                                             <strong>Official Store </strong>
-                                            <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus, totam!</h1>
-                                            <p>TK 6,500</p>
-                                            <p><strike>TK 6,500</strike> <span>-5%</span></p>
+                                            <h1>{{ item.product_name }}</h1>
+                                            <p>${{ item.price }}</p>
+                                            <p v-if="item.discount !==0"><strike>${{ item.discount }}</strike> <span>-5%</span></p>
                                             <div class="d-flex align-items-center">
                                                 <div class="rating">
                                                     <i class="fa fa-star checked"></i>
@@ -474,222 +264,9 @@
                                         </div>
                                     </Nuxt-link>
                                 </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6">
-                                    <Nuxt-link to="/product-details">
-                                        <div class="product_grid">
-                                            <img src="/images/product(2).jpg" class="img-fluid" alt="">
-                                            <span>Free Delivery</span>
-                                            <strong>Official Store </strong>
-                                            <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus, totam!</h1>
-                                            <p>TK 6,500</p>
-                                            <p><strike>TK 6,500</strike> <span>-5%</span></p>
-                                            <div class="d-flex align-items-center">
-                                                <div class="rating">
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star "></i>
-                                                </div>
-                                                <h6>(200)</h6>
-                                            </div>
-                                            <button type="button" class="btn_cart">Add to cart </button>
-                                            <!-- <button type="button" class="btn_sold">SoldOut</button> -->
-                                        </div>
-                                    </Nuxt-link>
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6">
-                                    <Nuxt-link to="/product-details">
-                                        <div class="product_grid">
-                                            <img src="/images/product(3).jpg" class="img-fluid" alt="">
-                                            <span>Free Delivery</span>
-                                            <strong>Official Store </strong>
-                                            <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus, totam!</h1>
-                                            <p>TK 6,500</p>
-                                            <p><strike>TK 6,500</strike> <span>-5%</span></p>
-                                            <div class="d-flex align-items-center">
-                                                <div class="rating">
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star "></i>
-                                                </div>
-                                                <h6>(200)</h6>
-                                            </div>
-                                            <button type="button" class="btn_cart">Add to cart </button>
-                                            <!-- <button type="button" class="btn_sold">SoldOut</button> -->
-                                        </div>
-                                    </Nuxt-link>
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6">
-                                    <Nuxt-link to="/product-details">
-                                        <div class="product_grid">
-                                            <img src="/images/product(4).jpg" class="img-fluid" alt="">
-                                            <span>Free Delivery</span>
-                                            <strong>Official Store </strong>
-                                            <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus, totam!</h1>
-                                            <p>TK 6,500</p>
-                                            <p><strike>TK 6,500</strike> <span>-5%</span></p>
-                                            <div class="d-flex align-items-center">
-                                                <div class="rating">
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star "></i>
-                                                </div>
-                                                <h6>(200)</h6>
-                                            </div>
-                                            <button type="button" class="btn_cart">Add to cart </button>
-                                            <!-- <button type="button" class="btn_sold">SoldOut</button> -->
-                                        </div>
-                                    </Nuxt-link>
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6">
-                                    <Nuxt-link to="/product-details">
-                                        <div class="product_grid">
-                                            <img src="/images/product(5).jpg" class="img-fluid" alt="">
-                                            <span>Free Delivery</span>
-                                            <strong>Official Store </strong>
-                                            <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus, totam!</h1>
-                                            <p>TK 6,500</p>
-                                            <p><strike>TK 6,500</strike> <span>-5%</span></p>
-                                            <div class="d-flex align-items-center">
-                                                <div class="rating">
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star "></i>
-                                                </div>
-                                                <h6>(200)</h6>
-                                            </div>
-                                            <button type="button" class="btn_cart">Add to cart </button>
-                                            <!-- <button type="button" class="btn_sold">SoldOut</button> -->
-                                        </div>
-                                    </Nuxt-link>
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6">
-                                    <Nuxt-link to="/product-details">
-                                        <div class="product_grid">
-                                            <img src="/images/product(6).jpg" class="img-fluid" alt="">
-                                            <span>Free Delivery</span>
-                                            <strong>Official Store </strong>
-                                            <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus, totam!</h1>
-                                            <p>TK 6,500</p>
-                                            <p><strike>TK 6,500</strike> <span>-5%</span></p>
-                                            <div class="d-flex align-items-center">
-                                                <div class="rating">
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star "></i>
-                                                </div>
-                                                <h6>(200)</h6>
-                                            </div>
-                                            <button type="button" class="btn_cart">Add to cart </button>
-                                            <!-- <button type="button" class="btn_sold">SoldOut</button> -->
-                                        </div>
-                                    </Nuxt-link>
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6">
-                                    <Nuxt-link to="/product-details">
-                                        <div class="product_grid">
-                                            <img src="/images/product(7).jpg" class="img-fluid" alt="">
-                                            <span>Free Delivery</span>
-                                            <strong>Official Store </strong>
-                                            <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus, totam!</h1>
-                                            <p>TK 6,500</p>
-                                            <p><strike>TK 6,500</strike> <span>-5%</span></p>
-                                            <div class="d-flex align-items-center">
-                                                <div class="rating">
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star "></i>
-                                                </div>
-                                                <h6>(200)</h6>
-                                            </div>
-                                            <button type="button" class="btn_cart">Add to cart </button>
-                                            <!-- <button type="button" class="btn_sold">SoldOut</button> -->
-                                        </div>
-                                    </Nuxt-link>
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6">
-                                    <Nuxt-link to="/product-details">
-                                        <div class="product_grid">
-                                            <img src="/images/product(8).jpg" class="img-fluid" alt="">
-                                            <span>Free Delivery</span>
-                                            <strong>Official Store </strong>
-                                            <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus, totam!</h1>
-                                            <p>TK 6,500</p>
-                                            <p><strike>TK 6,500</strike> <span>-5%</span></p>
-                                            <div class="d-flex align-items-center">
-                                                <div class="rating">
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star "></i>
-                                                </div>
-                                                <h6>(200)</h6>
-                                            </div>
-                                            <button type="button" class="btn_cart">Add to cart </button>
-                                            <!-- <button type="button" class="btn_sold">SoldOut</button> -->
-                                        </div>
-                                    </Nuxt-link>
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6">
-                                    <Nuxt-link to="/product-details">
-                                        <div class="product_grid">
-                                            <img src="/images/product(9).jpg" class="img-fluid" alt="">
-                                            <span>Free Delivery</span>
-                                            <strong>Official Store </strong>
-                                            <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus, totam!</h1>
-                                            <p>TK 6,500</p>
-                                            <p><strike>TK 6,500</strike> <span>-5%</span></p>
-                                            <div class="d-flex align-items-center">
-                                                <div class="rating">
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star "></i>
-                                                </div>
-                                                <h6>(200)</h6>
-                                            </div>
-                                            <button type="button" class="btn_cart">Add to cart </button>
-                                            <!-- <button type="button" class="btn_sold">SoldOut</button> -->
-                                        </div>
-                                    </Nuxt-link>
-                                </div>
+
                             </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="pagination">
-                                        <ul>
-                                            <li>
-                                                <a href="#"> prv </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="active"> 1 </a>
-                                            </li>
-                                            <li>
-                                                <a href="#"> 2 </a>
-                                            </li>
-                                            <li>
-                                                <a href="#"> 3 </a>
-                                            </li>
-                                            <li>
-                                                <a href="#"> next </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -698,3 +275,117 @@
     </div>
 </div>
 </template>
+
+<script>
+export default {
+    props: {
+        receivedSlug: String,
+    },
+    data() {
+        return {
+            loading: false,
+            prouducts: [],
+            categories: [],
+            pro_count: 0,
+            categoryname: '',
+        };
+    },
+    async mounted() {
+        const paramSlug = this.$route.query.slug;
+        //alert(paramSlug);
+        this.fetchData(paramSlug);
+        await this.fetchDataCategory();
+
+    },
+    methods: {
+        categoryGrid() {
+            const slug = this.$route.query.slug;
+            //alert(paramSlug);
+            this.$router.push({
+                path: '/category/category-list',
+                query: {
+                    slug: slug
+                }
+            })
+
+        },
+        redirectCategory(slug) {
+            this.$router.push({
+                path: '/category/category-list',
+                query: {
+                    slug: slug
+                }
+            })
+        },
+        async fetchData(slug) {
+            this.loading = true;
+            const response = await this.$axios.get(`/unauthenticate/findCategorys/${slug}`).then(response => {
+                    this.prouducts = response.data.result;
+                    this.pro_count = response.data.pro_count;
+                    this.categoryname = response.data.categoryname;
+
+                })
+                .catch(error => {
+                    // Handle error
+                })
+                .finally(() => {
+                    this.loading = false; // Hide loader after response
+                });;;
+
+        },
+
+        async fetchDataCategory() {
+            this.loading = true;
+            await this.$axios.get(`/unauthenticate/filterCategorys`).then(response => {
+                    this.categories = response.data;
+                })
+                .catch(error => {
+                    // Handle error
+                })
+                .finally(() => {
+                    this.loading = false; // Hide loader after response
+                });;
+
+        }
+    },
+
+}
+</script>
+
+<style scoped>
+.loading-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* For Loader */
+.loader-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
+
+.loader-text {
+    margin: 0;
+    /* Remove default margin */
+}
+
+.loader-top {
+    top: 0;
+}
+
+.loader-bottom {
+    bottom: 0;
+}
+</style>

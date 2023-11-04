@@ -125,6 +125,9 @@
   "TopSellingItem": {
     "description": "Auto imported from components/TopSellingItem.vue"
   },
+  "TopSellingItemBackup": {
+    "description": "Auto imported from components/TopSellingItemBackup.vue"
+  },
   "Tutorial": {
     "description": "Auto imported from components/Tutorial.vue"
   }

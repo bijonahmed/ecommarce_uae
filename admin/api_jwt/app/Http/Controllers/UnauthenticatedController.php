@@ -30,6 +30,49 @@ class UnauthenticatedController extends Controller
         return response()->json($categories);
     }
 
+    public function limitedProducts(){
+
+        $data = Product::orderBy('id', 'desc')->select('id','name','thumnail_img','slug')->limit(12)->get();
+        //dd($data);
+        $collection = collect($data);
+        $modifiedCollection = $collection->map(function ($item) {
+            return [
+                'id'        => $item['id'],
+                'name'      => substr($item['name'], 0, 20),
+                'thumnail'  => !empty($item->thumnail_img) ? url($item->thumnail_img) : "",
+                'slug'        => $item['slug'],
+            ];
+        });
+        //dd($modifiedCollection);
+        return response()->json($modifiedCollection, 200);
+
+
+    }
+
+    public function topSellProducts(){
+        $data = Product::orderBy('id', 'desc')->select('id','name','thumnail_img','slug')->limit(12)->get();
+        foreach($data as $v){
+            $result[] = [
+                'id'   => $v->id,  
+                'name' => $v->name, 
+                'thumnail'  => !empty($v->thumnail_img) ? url($v->thumnail_img) : "",
+                'slug'     => $v->slug,
+            ];
+        }
+
+       // dd($result);
+        return response()->json($result, 200);
+
+    }
+    
+
+    public function filterCategory(Request $request)
+    {
+        $categories = Categorys::where('status', 1)->orderBy("name", "asc")->get();;
+        //dd($categories);
+        return response()->json($categories);
+    }
+
     public function findCategorys($slug)
     {
 

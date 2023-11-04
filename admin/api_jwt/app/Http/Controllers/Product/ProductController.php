@@ -492,8 +492,6 @@ class ProductController extends Controller
     public function getProductList()
     {
         $data = Product::orderBy('id', 'desc')->get();
-
-
         $collection = collect($data);
         $modifiedCollection = $collection->map(function ($item) {
             return [

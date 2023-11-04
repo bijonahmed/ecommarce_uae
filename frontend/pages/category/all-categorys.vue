@@ -65,7 +65,7 @@
                             <div class="col-3 " v-for="category in categories" :key="category.id">
                                 <h6>{{ category.name }}</h6>
                                 <ul v-for="childCategory in category.children" :key="childCategory.id">
-                                    <li><a href="#" @click="redirectCategory(category.slug)">{{ childCategory.name }}</a></li>
+                                    <li><a href="#" @click="redirectCategory(childCategory.slug)">{{ childCategory.name }}</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -119,7 +119,6 @@ export default {
 
     methods: {
         redirectCategory(slug) {
-           // alert(slug);
             this.$router.push({
                 path: '/category/category-list',
                 query: {

@@ -172,6 +172,9 @@ Route::group([
     'prefix' => 'unauthenticate'
 ], function () {
     
+    Route::get('topSellingProducts', [UnauthenticatedController::class, 'topSellProducts']);
+    Route::get('limitedProducts', [UnauthenticatedController::class, 'limitedProducts']);
+    Route::get('filterCategorys', [UnauthenticatedController::class, 'filterCategory']);
     Route::get('getCategoryList', [UnauthenticatedController::class, 'allCategory']);
     Route::get('findCategorys/{slug}', [UnauthenticatedController::class, 'findCategorys']);
 });

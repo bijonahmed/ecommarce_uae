@@ -6,7 +6,7 @@
             <div class="loading-indicator" v-if="loading">
                 <div class="loader-container">
                     <center class="loader-text">Loading...</center>
-                        <img src="/loader/loader.gif" alt="Loader" />
+                    <img src="/loader/loader.gif" alt="Loader" />
                 </div>
             </div>
             <div class="product_section">
@@ -110,7 +110,7 @@
                                 <div>
                                     <h6>{{ categoryname }}</h6>
                                 </div>
-                                <div>
+                                <div class="d-none">
                                     <label for="">Short By:</label>
                                     <select name="" id="">
                                         <option value="">Popularity</option>
@@ -125,9 +125,12 @@
                                     <p>{{ pro_count }} product found</p>
                                 </div>
                                 <div class="d-flex">
+                                    <!-- category_slug -->
                                     <a type="button" class="filter_btn mobile_view"><i class="fa-solid fa-sliders"></i></a>
                                     <Nuxt-Link to="/category/category-list" class="active"><i class="fa-solid fa-list"></i></Nuxt-Link>
-                                    <Nuxt-Link to="/category/category-grid"><i class="fa-solid fa-grip"></i></Nuxt-Link>
+                                    <!-- <Nuxt-Link to="/category/category-grid" :category_slug="343434"><i class="fa-solid fa-grip"></i></Nuxt-Link> -->
+                                    <a href="#" @click="categoryGrid"><i class="fa-solid fa-grip"></i></a>
+
                                 </div>
                                 <div class="filter_modal">
                                     <div class="row px-4">
@@ -284,7 +287,7 @@
 
 <script>
 export default {
-
+    props: ['category_slug'],
     data() {
         return {
             loading: false,
@@ -301,6 +304,18 @@ export default {
 
     },
     methods: {
+
+        categoryGrid(){
+            const slug = this.$route.query.slug;
+            //alert(paramSlug);
+            this.$router.push({
+                path: '/category/category-grid',
+                query: {
+                    slug: slug
+                }
+            })
+
+        },
         redirectCategory(slug) {
             this.$router.push({
                 path: '/category/category-list',
@@ -328,7 +343,7 @@ export default {
 
         async fetchDataCategory() {
             this.loading = true;
-            await this.$axios.get(`/unauthenticate/getCategoryList`).then(response => {
+            await this.$axios.get(`/unauthenticate/filterCategorys`).then(response => {
                     this.categories = response.data;
                 })
                 .catch(error => {
@@ -357,25 +372,27 @@ export default {
     align-items: center;
     z-index: 9999;
 }
+
 /* For Loader */
 .loader-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
 }
 
 .loader-text {
-  margin: 0; /* Remove default margin */
+    margin: 0;
+    /* Remove default margin */
 }
 
 .loader-top {
-  top: 0;
+    top: 0;
 }
 
 .loader-bottom {
-  bottom: 0;
+    bottom: 0;
 }
 </style>

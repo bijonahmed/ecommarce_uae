@@ -22,7 +22,7 @@ $(document).ready(function(){
     });
 
     
-    $(".product_slider").owlCarousel({
+    $("product_slider").owlCarousel({
       items: 6,
       loop: false,
       margin: 5,

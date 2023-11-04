@@ -84,9 +84,9 @@ export default {
         ExtraDiscount,
         CategoryMultipleProduct
     },
-    
+
     head: {
-        title: 'Category List',
+        title: 'Category List View',
     },
     mounted() {
         const paramSlug = this.$route.query.slug;
