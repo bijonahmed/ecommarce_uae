@@ -15,6 +15,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: "stylesheet",href: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"},
       { rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" },
+      { rel: "stylesheet", href: "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" },
 
  
       { rel: "stylesheet", href: "/css/styles.css" },
@@ -29,6 +30,7 @@ export default {
       { src: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" },
       { src: "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" },
       { src: "https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" },
+      { src: "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" },
  
       { src: "/js/priceRange.js" },
       { src: "/js/star-rating.js" },
@@ -36,7 +38,7 @@ export default {
       { src: "/js/login_popup.js" },
       { src: "/js/addActiveClass.js" },
       { src: "/js/owl.carousel.min.js" },
-    //  { src: "/js/owl_carousel_plugin.js" },
+      { src: "/js/owl_carousel_plugin.js" },
     ],
   },
   // Global CSS: https://go.nuxtjs.dev/config-css

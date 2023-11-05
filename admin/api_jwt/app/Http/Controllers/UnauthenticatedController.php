@@ -54,7 +54,7 @@ class UnauthenticatedController extends Controller
         foreach($data as $v){
             $result[] = [
                 'id'   => $v->id,  
-                'name' => $v->name, 
+                'name' => substr($v->name, 0, 12), 
                 'thumnail'  => !empty($v->thumnail_img) ? url($v->thumnail_img) : "",
                 'slug'     => $v->slug,
             ];

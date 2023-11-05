@@ -16,16 +16,17 @@
                         <img src="/loader/loader.gif" alt="Loader" />
                     </div>
                 </div>
-                <div class="slider">
+                <div class="slider-container">
+                    <div class="slider" ref="slider">
+                        <div class="slide" v-for="item in toproducts" :key="item.id">
+                            <img :src="item.thumnail" alt="" style="height: 150px;width: 150px;">
+                            <p class="text-center"><a href="#">{{ item.name }}</a></p>
+                        </div>
+                        <div class="prev-slide" @click="scrollLeft">&lsaquo;</div>
+                        <div class="next-slide" @click="scrollRight">&rsaquo;</div>
 
-                    <div class="slide" v-for="item in toproducts" :key="item.id">
-                        <img :src="item.thumnail" alt="" style="height: 150px;width: 150px;">
                     </div>
-                    <div class="prev-slide" @click="scrollLeft">&#10094;</div>
-                    <div class="next-slide" @click="scrollRight">&#10095;</div>
-
                 </div>
-
             </div>
         </div>
     </div>
@@ -37,23 +38,55 @@
 export default {
     data() {
         return {
+            currentSlide: 0, // Add this property to keep track of the current slide
+            autoplayInterval: null,
             loading: false,
             toproducts: [],
         };
     },
     async mounted() {
+        //  window.addEventListener('resize', this.handleResize); // Listen for window resize
+        //   this.handleResize(); // Call handleResize on component mount
+        // this.startAutoplay();
         await this.initOwlCarousel();
         await this.fetchDefaultProduct();
 
     },
+    beforeDestroy() {
+        //  window.removeEventListener('resize', this.handleResize); // Remove event listener on component destroy
+        //  this.stopAutoplay(); // Clear the interval when component is destroyed
+    },
     methods: {
         scrollLeft() {
-            const slidesContainer = this.$refs.slides;
-            slidesContainer.scrollLeft -= 100; // Adjust the scroll amount as needed
+            if (this.currentSlide > 0) {
+                this.currentSlide--;
+                this.scrollToCurrentSlide();
+            }
         },
         scrollRight() {
-            const slidesContainer = this.$refs.slides;
-            slidesContainer.scrollLeft += 100; // Adjust the scroll amount as needed
+            if (this.currentSlide < this.toproducts.length - 1) {
+                this.currentSlide++;
+                this.scrollToCurrentSlide();
+            }
+        },
+        scrollToCurrentSlide() {
+            const slidesContainer = this.$refs.slider;
+            slidesContainer.scrollLeft = this.currentSlide * (150 + 10); // Adjust for slide width and margin
+        },
+
+        // startAutoplay() {
+        //     this.autoplayInterval = setInterval(this.autoPlaySlider, 3000); // Adjust the interval as needed (in milliseconds)
+        // },
+        // stopAutoplay() {
+        //     clearInterval(this.autoplayInterval);
+        // },
+        // autoPlaySlider() {
+        //     this.currentSlide = (this.currentSlide + 1) % this.toproducts.length;
+        //     this.scrollToCurrentSlide();
+        // },
+        scrollToCurrentSlide() {
+            const slidesContainer = this.$el.querySelector('.slider');
+            slidesContainer.scrollLeft = this.currentSlide * slidesContainer.offsetWidth;
         },
         async fetchDefaultProduct() {
             this.loading = true;
@@ -68,7 +101,6 @@ export default {
                 });;
 
         },
-
         async initOwlCarousel() {
             const slider = this.$el.querySelector('.slider');
             let isDown = false;
@@ -116,45 +148,79 @@ export default {
     padding-inline: 1rem;
 }
 
-.slider::-webkit-scrollbar {
-    display: none;
-}
-
-.slide img {
-    inline-size: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    border-radius: .2rem;
-}
-
-@media (max-width: 440px) {
-    h2 {
-        font-size: 1.5rem;
-    }
-
-    .slider {
-        grid-auto-columns: 40%;
-    }
+.slider-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
 }
 
 .slider {
-    position: relative;
+    display: flex;
+    transition: transform 0.3s ease;
+    overflow-x: auto;
+    /* Enable horizontal scrolling */
+    scrollbar-width: none;
+    /* Hide the scrollbar */
+    -ms-overflow-style: none;
+    /* Hide scrollbar for Microsoft Edge */
+    padding: 5px 0px;
+    text-align: center;
 }
 
+.slide {
+    flex-shrink: 0;
+    width: 150px;
+    margin-right: 10px;
+    /* Add some spacing between slides */
+    box-shadow: 0 0 10px #cbc6c661;
+    padding: 10px;
+    border: 1px solid #80808059;
+    border-radius: 8px;
+    
+}
+.slider::-webkit-scrollbar{
+    display: none;
+}
+
+@media(min-width: 576px) {
+
+    .slide {
+        flex-shrink: 0;
+        width: 200px;
+        margin-right: 10px;
+        /* Add some spacing between slides */
+    }
+}
+
+.slide img{
+    text-align: center;
+    margin: auto;
+}
+/* Hide left and right buttons when at the edge of the slider */
 .prev-slide,
 .next-slide {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 30%;
     font-size: 2rem;
     cursor: pointer;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    z-index: 1;
 }
 
 .prev-slide {
     left: 0;
+    opacity: 0.5;
 }
 
 .next-slide {
     right: 0;
+    opacity: 0.5;
 }
+
+/* Show the buttons when hovering over the slider */
+/* .slider[data-overflowing="left"] .prev-slide,
+    .slider[data-overflowing="right"] .next-slide {
+        display: none;
+    } */
 </style>
