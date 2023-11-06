@@ -17,9 +17,11 @@
     "jquery": "^3.7.1",
     "nuxt": "^2.15.8",
     "owl.carousel": "^2.3.4",
+    "popper.js": "^1.16.1",
     "swiper": "^11.0.3",
     "vue": "^2.7.10",
     "vue-axios": "^3.5.2",
+    "vue-owl-carousel": "^2.0.3",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.10"
   }

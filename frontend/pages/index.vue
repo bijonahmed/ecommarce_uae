@@ -11,7 +11,7 @@
                 <NavSlider />
                 <CategoryPart />
                 <TopSellingItem />
-                <FlashSelling />
+                <!-- <FlashSelling /> -->
                 <DelasForYour />
                 <LimitedStock />
                 <OfficialStoreDeals />

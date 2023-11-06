@@ -43,7 +43,7 @@ export default {
 
         async fetchDefaultProduct() {
             this.loading = true;
-            await this.$axios.get(`/unauthenticate/limitedProducts`).then(response => {
+                await this.$axios.get(`/unauthenticate/limitedProducts`).then(response => {
                     this.prouducts = response.data;
                 })
                 .catch(error => {

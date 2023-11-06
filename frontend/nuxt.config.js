@@ -37,8 +37,8 @@ export default {
       { src: "/js/search_modal.js" },
       { src: "/js/login_popup.js" },
       { src: "/js/addActiveClass.js" },
-      { src: "/js/owl.carousel.min.js" },
-      { src: "/js/owl_carousel_plugin.js" },
+      //{ src: "/js/owl.carousel.min.js" },
+      //{ src: "/js/owl_carousel_plugin.js" },
     ],
   },
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -49,6 +49,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '~plugins/jquery.js', ssr: false }, // Import jQuery
+    { src: '~plugins/vue-owl-carousel.js', ssr: false }
   ],
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

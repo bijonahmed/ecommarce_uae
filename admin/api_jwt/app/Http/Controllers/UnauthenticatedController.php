@@ -9,6 +9,7 @@ use Auth;
 use Validator;
 use Helper;
 use App\Models\Product;
+use App\Models\Sliders;
 use App\Models\ProductCategory;
 use App\Models\Categorys;
 use Illuminate\Support\Str;
@@ -30,9 +31,10 @@ class UnauthenticatedController extends Controller
         return response()->json($categories);
     }
 
-    public function limitedProducts(){
+    public function limitedProducts()
+    {
 
-        $data = Product::orderBy('id', 'desc')->select('id','name','thumnail_img','slug')->limit(12)->get();
+        $data = Product::orderBy('id', 'desc')->select('id', 'name', 'thumnail_img', 'slug')->limit(12)->get();
         //dd($data);
         $collection = collect($data);
         $modifiedCollection = $collection->map(function ($item) {
@@ -45,27 +47,34 @@ class UnauthenticatedController extends Controller
         });
         //dd($modifiedCollection);
         return response()->json($modifiedCollection, 200);
-
-
     }
 
-    public function topSellProducts(){
-        $data = Product::orderBy('id', 'desc')->select('id','name','thumnail_img','slug')->limit(12)->get();
-        foreach($data as $v){
+    public function topSellProducts()
+    {
+        $data = Product::orderBy('id', 'desc')->select('id', 'name', 'thumnail_img', 'slug')->limit(12)->get();
+        foreach ($data as $v) {
             $result[] = [
-                'id'   => $v->id,  
-                'name' => substr($v->name, 0, 12), 
+                'id'   => $v->id,
+                'name' => substr($v->name, 0, 12) . '...',
                 'thumnail'  => !empty($v->thumnail_img) ? url($v->thumnail_img) : "",
                 'slug'     => $v->slug,
             ];
         }
 
-       // dd($result);
+        // dd($result);
         return response()->json($result, 200);
-
     }
-    
 
+
+    public function slidersImages()
+        {
+            $data = Sliders::where('status',1)->get();
+            // dd($result);
+            return response()->json($data, 200);
+        }
+
+
+    
     public function filterCategory(Request $request)
     {
         $categories = Categorys::where('status', 1)->orderBy("name", "asc")->get();;
@@ -76,23 +85,22 @@ class UnauthenticatedController extends Controller
     public function findCategorys($slug)
     {
 
-        $chkCategory   = Categorys::where('slug', $slug)->select('id','name')->first();
+        $chkCategory   = Categorys::where('slug', $slug)->select('id', 'name')->first();
         $proCategorys  = ProductCategory::where('category_id', $chkCategory->id)
-            ->select('product.discount','produc_categories.product_id', 'product.name as pro_name', 'produc_categories.category_id','description','price','thumnail_img','product.slug as pro_slug')
+            ->select('product.discount', 'produc_categories.product_id', 'product.name as pro_name', 'produc_categories.category_id', 'description', 'price', 'thumnail_img', 'product.slug as pro_slug')
             ->join('product', 'product.id', '=', 'produc_categories.product_id')->get();
 
-        
-        $result=[];
+        $result = [];
         foreach ($proCategorys as $key => $v) {
             $result[] = [
-                'product_id'   => $v->product_id,  
-                'product_name' => $v->pro_name, 
+                'product_id'   => $v->product_id,
+                'product_name' => $v->pro_name,
                 'category_id'  => $v->category_id,
                 'discount'     => $v->discount,
-                'price'        => number_format($v->price,2),
+                'price'        => number_format($v->price, 2),
                 'thumnail_img' => url($v->thumnail_img),
                 'pro_slug'     => $v->pro_slug,
-                
+
             ];
         }
 

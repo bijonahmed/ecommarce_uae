@@ -2,8 +2,13 @@
 <div>
     <div class="row my-2">
         <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12 mini_tab_hide">
+
             <div class="nav_menu">
-                <nav>
+
+                <div v-if="loading">
+                    <div class="loader" />
+                </div>
+                <nav v-if="categories.length > 0">
                     <ul v-for="(category, index) in categories" :key="category.id">
                         <li :key="category.id" v-if="index < limit">
                             <a href="#" class="d-flex justify-content-between align-items-center" @click="redirectCategory(category.slug)">
@@ -39,29 +44,29 @@
             </div>
         </div>
         <div class="col-xl-7 col-lg-9 col-md-12 col-sm-12">
-            <div class="owl-carousel slider_part">
-                <div class="slide_img">
-                    <a href="#">
-                        <img src="images/slider_add(1).jpg" class="img-fluid" alt="">
-                    </a>
+
+            <div id="carouselExample" class="carousel w-100" data-bs-ride="carousel" data-bs-interval="3000">
+                <div class="carousel-indicators">
+                    <button v-for="(item, index) in sliders" :key="index" type="button" data-bs-target="#carouselExample" :data-bs-slide-to="index" :class="{'active': index === currentIndex}"></button>
                 </div>
-                <div class="slide_img">
-                    <a href="#">
-                        <img src="images/slider_add(2).jpg" class="img-fluid" alt="">
-                    </a>
+                <div class="carousel-inner" v-if="sliders.length > 0">
+                    <div class="carousel-item" v-for="(item, index) in sliders" :key="item.id" :class="{ active: index === 0 }">
+                        <img class="d-block w-100" :src="item.images" :alt="'Slide ' + (index + 1)">
+                    </div>
+
                 </div>
-                <div class="slide_img">
-                    <a href="#">
-                        <img src="images/slider_add(3).png" class="img-fluid" alt="">
-                    </a>
-                </div>
-                <div class="slide_img">
-                    <a href="#">
-                        <img src="images/ads_size.png" class="img-fluid" alt="">
-                    </a>
-                </div>
+                <button class="carousel-control-prev" data-bs-target="#carouselExample" type="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" data-bs-target="#carouselExample" type="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
+
         </div>
+
         <div class="col-xl-3 col-lg-12  col-sm-12 tab_hide">
             <div class="row">
                 <div class="col-12">
@@ -80,17 +85,36 @@
 
 <script>
 import axios from 'axios';
+
 export default {
+
     data() {
         return {
+            loading: true,
             limit: 12,
             categories: [],
+            sliders: [],
+            currentIndex: 0
         };
+        // Set the initial index
     },
-    async mounted() {
-        await this.fetchData();
+
+    mounted() {
+
+        this.slidersImg();
+        this.fetchData();
     },
     methods: {
+        handleCarouselSlide(event) {
+            const carousel = event.target;
+            if (carousel.classList.contains('carousel')) {
+                // Check if the last slide is reached
+                if (carousel.querySelector('.carousel-inner .carousel-item:last-child').classList.contains('active')) {
+                    // Manually trigger a transition to the first slide
+                    carousel.querySelector('.carousel-control-next').click();
+                }
+            }
+        },
         redirectCategory(slug) {
             this.$router.push({
                 path: '/category/category-list',
@@ -101,9 +125,21 @@ export default {
         },
         async fetchData() {
             const response = await this.$axios.get(`/unauthenticate/getCategoryList`);
-            this.categories = response.data;
+            setTimeout(() => {
+                this.loading = false;
+                this.categories = response.data;
+            }, 2000); // Adjust the time as needed
         },
 
+        async slidersImg() {
+            console.log("slider images...");
+            const response = await this.$axios.get(`/unauthenticate/slidersImages`);
+            this.sliders = response.data;
+        },
     },
 };
 </script>
+
+<style scoped>
+
+</style>

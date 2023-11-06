@@ -171,7 +171,10 @@ Route::group([
     //'middleware' => 'api',
     'prefix' => 'unauthenticate'
 ], function () {
+
+
     
+    Route::get('slidersImages', [UnauthenticatedController::class, 'slidersImages']);
     Route::get('topSellingProducts', [UnauthenticatedController::class, 'topSellProducts']);
     Route::get('limitedProducts', [UnauthenticatedController::class, 'limitedProducts']);
     Route::get('filterCategorys', [UnauthenticatedController::class, 'filterCategory']);

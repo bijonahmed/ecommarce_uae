@@ -16,6 +16,7 @@ import { createStore } from './store.js'
 import nuxt_plugin_plugin_fd3e7b72 from 'nuxt_plugin_plugin_fd3e7b72' // Source: .\\components\\plugin.js (mode: 'all')
 import nuxt_plugin_axios_59a7ae2c from 'nuxt_plugin_axios_59a7ae2c' // Source: .\\axios.js (mode: 'all')
 import nuxt_plugin_jquery_b59486bc from 'nuxt_plugin_jquery_b59486bc' // Source: ..\\plugins\\jquery.js (mode: 'client')
+import nuxt_plugin_vueowlcarousel_4da6f850 from 'nuxt_plugin_vueowlcarousel_4da6f850' // Source: ..\\plugins\\vue-owl-carousel.js (mode: 'client')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -83,7 +84,7 @@ async function createApp(ssrContext, config = {}) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"title":"Welcome to Ecommarce","htmlAttrs":{"lang":"en"},"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":""},{"name":"format-detection","content":"telephone=no"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"stylesheet","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002Fbootstrap@5.3.0\u002Fdist\u002Fcss\u002Fbootstrap.min.css"},{"rel":"stylesheet","href":"https:\u002F\u002Fcdnjs.cloudflare.com\u002Fajax\u002Flibs\u002Ffont-awesome\u002F6.4.0\u002Fcss\u002Fall.min.css"},{"rel":"stylesheet","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002Fswiper@11\u002Fswiper-bundle.min.css"},{"rel":"stylesheet","href":"\u002Fcss\u002Fstyles.css"},{"rel":"stylesheet","href":"\u002Fcss\u002Fstorebtn.css"},{"rel":"stylesheet","href":"\u002Fcss\u002Fowl.carousel.min.css"},{"rel":"stylesheet","href":"\u002Fcss\u002Fowl.theme.default.min.css"}],"script":[{"src":"https:\u002F\u002Fcode.jquery.com\u002Fjquery-3.7.0.js"},{"src":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002Fbootstrap@5.3.0\u002Fdist\u002Fjs\u002Fbootstrap.bundle.min.js"},{"src":"https:\u002F\u002Fcdnjs.cloudflare.com\u002Fajax\u002Flibs\u002Fpopper.js\u002F1.14.3\u002Fumd\u002Fpopper.min.js"},{"src":"https:\u002F\u002Fcdnjs.cloudflare.com\u002Fajax\u002Flibs\u002Fjqueryui\u002F1.12.1\u002Fjquery-ui.min.js"},{"src":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002Fswiper@11\u002Fswiper-bundle.min.js"},{"src":"\u002Fjs\u002FpriceRange.js"},{"src":"\u002Fjs\u002Fstar-rating.js"},{"src":"\u002Fjs\u002Fsearch_modal.js"},{"src":"\u002Fjs\u002Flogin_popup.js"},{"src":"\u002Fjs\u002FaddActiveClass.js"},{"src":"\u002Fjs\u002Fowl.carousel.min.js"},{"src":"\u002Fjs\u002Fowl_carousel_plugin.js"}],"style":[]},
+    head: {"title":"Welcome to Ecommarce","htmlAttrs":{"lang":"en"},"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":""},{"name":"format-detection","content":"telephone=no"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"stylesheet","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002Fbootstrap@5.3.0\u002Fdist\u002Fcss\u002Fbootstrap.min.css"},{"rel":"stylesheet","href":"https:\u002F\u002Fcdnjs.cloudflare.com\u002Fajax\u002Flibs\u002Ffont-awesome\u002F6.4.0\u002Fcss\u002Fall.min.css"},{"rel":"stylesheet","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002Fswiper@11\u002Fswiper-bundle.min.css"},{"rel":"stylesheet","href":"\u002Fcss\u002Fstyles.css"},{"rel":"stylesheet","href":"\u002Fcss\u002Fstorebtn.css"},{"rel":"stylesheet","href":"\u002Fcss\u002Fowl.carousel.min.css"},{"rel":"stylesheet","href":"\u002Fcss\u002Fowl.theme.default.min.css"}],"script":[{"src":"https:\u002F\u002Fcode.jquery.com\u002Fjquery-3.7.0.js"},{"src":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002Fbootstrap@5.3.0\u002Fdist\u002Fjs\u002Fbootstrap.bundle.min.js"},{"src":"https:\u002F\u002Fcdnjs.cloudflare.com\u002Fajax\u002Flibs\u002Fpopper.js\u002F1.14.3\u002Fumd\u002Fpopper.min.js"},{"src":"https:\u002F\u002Fcdnjs.cloudflare.com\u002Fajax\u002Flibs\u002Fjqueryui\u002F1.12.1\u002Fjquery-ui.min.js"},{"src":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002Fswiper@11\u002Fswiper-bundle.min.js"},{"src":"\u002Fjs\u002FpriceRange.js"},{"src":"\u002Fjs\u002Fstar-rating.js"},{"src":"\u002Fjs\u002Fsearch_modal.js"},{"src":"\u002Fjs\u002Flogin_popup.js"},{"src":"\u002Fjs\u002FaddActiveClass.js"}],"style":[]},
 
     store,
     router,
@@ -223,6 +224,10 @@ async function createApp(ssrContext, config = {}) {
 
   if (process.client && typeof nuxt_plugin_jquery_b59486bc === 'function') {
     await nuxt_plugin_jquery_b59486bc(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_vueowlcarousel_4da6f850 === 'function') {
+    await nuxt_plugin_vueowlcarousel_4da6f850(app.context, inject)
   }
 
   // Lock enablePreview in context
