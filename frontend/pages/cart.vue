@@ -54,7 +54,7 @@
                         <div class="side_title">
                             <h5>Cart(2)</h5>
                         </div>
-                        <div class="card_porduct">
+                        <!-- <div class="card_porduct">
                             <ul>
                                 <li>
                                     <div class="row">
@@ -119,7 +119,16 @@
                                     </div>
                                 </li>
                             </ul>
-                        </div>
+                        </div> -->
+                        <h2>Shopping Cart</h2>
+                        <!-- <ul>
+                            <li v-for="item in cart" :key="item.id">
+                                {{ item.name }} - {{ item.price }}
+                                <button @click="removeFromCart(item.id)">Remove</button>
+                            </li>
+                        </ul>
+                        <button @click="clearCart">Clear Cart</button> -->
+
                     </div>
                     <!-- not included part start here  -->
                     <div class="cart not_included">
@@ -135,7 +144,9 @@
                                                 <img src="images/product(1).jpg" class="img-fluid" alt="">
                                                 <h3>Out of stock </h3>
                                                 <div>
-                                                    <h1><Nuxt-Link to="/product-details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum sapiente placeat, sint asperiores nihil illo tenetur consectetur eaque ad dolor.</Nuxt-Link></h1>
+                                                    <h1>
+                                                        <Nuxt-Link to="/product-details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum sapiente placeat, sint asperiores nihil illo tenetur consectetur eaque ad dolor.</Nuxt-Link>
+                                                    </h1>
                                                     <p>Seller: Ecommerce</p>
                                                     <span>Out of stock </span>
                                                 </div>
@@ -159,7 +170,9 @@
                                                 <img src="images/product(1).jpg" class="img-fluid" alt="">
                                                 <h3>Out of stock </h3>
                                                 <div>
-                                                    <h1><Nuxt-Link to="/product-details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum sapiente placeat, sint asperiores nihil illo tenetur consectetur eaque ad dolor.</Nuxt-Link></h1>
+                                                    <h1>
+                                                        <Nuxt-Link to="/product-details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum sapiente placeat, sint asperiores nihil illo tenetur consectetur eaque ad dolor.</Nuxt-Link>
+                                                    </h1>
                                                     <p>Seller: Ecommerce</p>
                                                     <span>Out of stock </span>
                                                 </div>
@@ -194,12 +207,13 @@
                     </div>
                     <div class="de_returns">
                         <h3>Returns are easy</h3>
-                        <p>Free return within 15 days for Official Store items and 7 days for other eligible items <Nuxt-link to="/refund">See more</Nuxt-link></p>
+                        <p>Free return within 15 days for Official Store items and 7 days for other eligible items <Nuxt-link to="/refund">See more</Nuxt-link>
+                        </p>
                     </div>
                 </div>
             </div>
             <!-- recent view part start here  -->
-             <RecentView/>
+            <RecentView />
             <!-- recent view part end here  -->
         </div>
     </section>
@@ -211,6 +225,7 @@
     <Footer />
 </div>
 </template>
+
 <script>
 import $ from 'jquery';
 import Common_MobileSidebar from '~/components/Common_MobileSidebar.vue';
@@ -228,6 +243,7 @@ export default {
         title: 'Cart',
     },
     mounted() {
+
         if (process.client) {
             $(document).ready(function () {
                 $(".filter_btn").on('click', function () {
@@ -239,6 +255,19 @@ export default {
             })
             // Now you can work with myElement
         }
-    }
+    },
+    computed: {
+        // cart() {
+        //     return this.$store.state.cart;
+        // },
+    },
+    methods: {
+        // removeFromCart(productId) {
+        //     this.$store.commit('removeFromCart', productId);
+        // },
+        // clearCart() {
+        //     this.$store.commit('clearCart');
+        // },
+    },
 }
 </script>

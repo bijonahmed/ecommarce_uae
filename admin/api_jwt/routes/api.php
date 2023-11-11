@@ -17,6 +17,7 @@ use App\Http\Controllers\Leave\LeaveController;
 use App\Http\Controllers\Manufacturer\ManufacturesController;
 use App\Http\Controllers\Brands\BrandsController;
 use App\Http\Controllers\Product\ProductController;
+use App\Http\Controllers\Cart\CartController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -114,6 +115,7 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'product'
 ], function () {
+ 
     Route::post('save', [ProductController::class, 'save']);
     Route::post('product-update', [ProductController::class, 'productUpdate']);
     Route::post('insertVarientGroup', [ProductController::class, 'insertVarientGroup']);
@@ -145,7 +147,7 @@ Route::group([
     Route::post('save', [BrandsController::class, 'save']);
     Route::get('allbrandlist', [BrandsController::class, 'allbrandlist']);
     Route::get('brandrow/{id}', [BrandsController::class, 'brandrow']);
-   // Route::get('searchmodels', [BrandsController::class, 'searchmodels']);
+    // Route::get('searchmodels', [BrandsController::class, 'searchmodels']);
 });
 
 Route::group([
@@ -171,9 +173,13 @@ Route::group([
     //'middleware' => 'api',
     'prefix' => 'unauthenticate'
 ], function () {
-
-
-    
+    //Add to cart 
+    Route::get('cart', [CartController::class, 'index']);
+    Route::get('getCartData', [CartController::class, 'getCartData']);
+    Route::post('addToCart', [CartController::class, 'addToCart']);
+    Route::get('searchProductCategory', [UnauthenticatedController::class, 'productCategory']);
+    Route::get('showCategoryTwo', [UnauthenticatedController::class, 'showCategoryTwo']);
+    Route::get('showCategoryThree', [UnauthenticatedController::class, 'showCategoryThree']);
     Route::get('slidersImages', [UnauthenticatedController::class, 'slidersImages']);
     Route::get('topSellingProducts', [UnauthenticatedController::class, 'topSellProducts']);
     Route::get('limitedProducts', [UnauthenticatedController::class, 'limitedProducts']);

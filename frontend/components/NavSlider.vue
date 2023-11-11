@@ -5,8 +5,11 @@
 
             <div class="nav_menu">
 
-                <div v-if="loading">
-                    <div class="loader" />
+                <div class="loading-indicator" v-if="loading" style="text-align: center;">
+                    <div class="loader-container">
+                        <center class="loader-text">Loading...</center>
+                        <img src="/loader/loader.gif" alt="Loader" />
+                    </div>
                 </div>
                 <nav v-if="categories.length > 0">
                     <ul v-for="(category, index) in categories" :key="category.id">
@@ -43,7 +46,7 @@
                 </nav>
             </div>
         </div>
-        <div class="col-xl-7 col-lg-9 col-md-12 col-sm-12">
+        <div class="col-xl-7 col-lg-9 col-md-12 col-sm-12" v-if="sliders.length > 0">
 
             <div id="carouselExample" class="carousel w-100" data-bs-ride="carousel" data-bs-interval="3000">
                 <div class="carousel-indicators">
@@ -67,7 +70,7 @@
 
         </div>
 
-        <div class="col-xl-3 col-lg-12  col-sm-12 tab_hide">
+        <div class="col-xl-3 col-lg-12  col-sm-12 tab_hide" v-if="sliders.length > 0">
             <div class="row">
                 <div class="col-12">
                     <img src="images/ads_mini(1).jpg" alt="">
@@ -108,9 +111,7 @@ export default {
         handleCarouselSlide(event) {
             const carousel = event.target;
             if (carousel.classList.contains('carousel')) {
-                // Check if the last slide is reached
                 if (carousel.querySelector('.carousel-inner .carousel-item:last-child').classList.contains('active')) {
-                    // Manually trigger a transition to the first slide
                     carousel.querySelector('.carousel-control-next').click();
                 }
             }

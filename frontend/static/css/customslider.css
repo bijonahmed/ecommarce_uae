@@ -1,0 +1,93 @@
+/* Style the slider container */
+.slider {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 22%;
+    gap: .3rem;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    cursor: grab;
+    margin-top: 0rem;
+    padding-inline: 1rem;
+}
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.3s ease;
+    overflow-x: auto;
+    /* Enable horizontal scrolling */
+    scrollbar-width: none;
+    /* Hide the scrollbar */
+    -ms-overflow-style: none;
+    /* Hide scrollbar for Microsoft Edge */
+    padding: 5px 0px;
+    text-align: center;
+}
+
+.slide {
+    flex-shrink: 0;
+    width: 150px;
+    margin-right: 10px;
+    /* Add some spacing between slides */
+    box-shadow: 0 0 10px #cbc6c661;
+    padding: 10px;
+    border: 1px solid #80808059;
+    border-radius: 8px;
+
+}
+
+.slider::-webkit-scrollbar {
+    display: none;
+}
+.slide img{
+    height: 150px;
+    width: 100% !important;
+    object-fit: contain;
+  
+}
+
+@media(min-width: 576px) {
+
+    .slide {
+        flex-shrink: 0;
+        width: 200px;
+        margin-right: 10px;
+        /* Add some spacing between slides */
+    }
+}
+
+.slide img {
+    text-align: center;
+    margin: auto;
+}
+
+/* Hide left and right buttons when at the edge of the slider */
+.prev-slide,
+.next-slide {
+    position: absolute;
+    top: 30%;
+    font-size: 2rem;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    z-index: 1;
+}
+
+.prev-slide {
+    left: 0;
+    opacity: 0.5;
+}
+
+.next-slide {
+    right: 0;
+    opacity: 0.5;
+}
+
+ 

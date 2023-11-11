@@ -241,28 +241,28 @@
 
                             <div class="row">
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6" v-for="item in prouducts" :key="item.id">
-                                    <nuxt-link :to="`/product-details/${item.pro_slug}`" v-if="prouducts.length > 0">
-                                        <div class="product_grid">
+                                    <div class="product_grid" v-if="prouducts.length > 0">
+                                        <nuxt-link :to="`/product-details/${item.pro_slug}`" v-if="prouducts.length > 0">
                                             <img :src="item.thumnail_img" class="img-fluid">
-                                            <span>Free Delivery</span>
-                                            <strong>Official Store </strong>
-                                            <h1>{{ item.product_name }}</h1>
-                                            <p>${{ item.price }}</p>
-                                            <p v-if="item.discount !==0"><strike>${{ item.discount }}</strike> <span>-5%</span></p>
-                                            <div class="d-flex align-items-center">
-                                                <div class="rating">
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star checked"></i>
-                                                    <i class="fa fa-star "></i>
-                                                </div>
-                                                <h6>(200)</h6>
+                                        </Nuxt-link>
+                                        <span>Free Delivery</span>
+                                        <strong>Official Store </strong>
+                                        <h1>{{ item.product_name }}</h1>
+                                        <p>${{ item.price }}</p>
+                                        <p v-if="item.discount !==0"><strike>${{ item.discount }}</strike> <span>-5%</span></p>
+                                        <div class="d-flex align-items-center">
+                                            <div class="rating">
+                                                <i class="fa fa-star checked"></i>
+                                                <i class="fa fa-star checked"></i>
+                                                <i class="fa fa-star checked"></i>
+                                                <i class="fa fa-star checked"></i>
+                                                <i class="fa fa-star "></i>
                                             </div>
-                                            <button type="button" class="btn_cart">Add to cart </button>
-                                            <!-- <button type="button" class="btn_sold">SoldOut</button> -->
+                                            <h6>(200)</h6>
                                         </div>
-                                    </Nuxt-link>
+                                        <button type="button" class="btn_cart" @click="addToCart(item.id)">Add to cart </button>
+                                        <!-- <button type="button" class="btn_sold">SoldOut</button> -->
+                                    </div>
                                 </div>
 
                             </div>
@@ -283,6 +283,7 @@ export default {
     },
     data() {
         return {
+            cart: [],
             loading: false,
             prouducts: [],
             categories: [],
@@ -291,6 +292,9 @@ export default {
         };
     },
     async mounted() {
+        this.calculateSubtotal();
+        this.loadCart();
+        this.cartItemCount();
         const paramSlug = this.$route.query.slug;
         //alert(paramSlug);
         this.fetchData(paramSlug);
@@ -298,6 +302,87 @@ export default {
 
     },
     methods: {
+        cartItemCount() {
+            let itemCount = 0;
+            this.cart.forEach((item) => {
+                itemCount += item.quantity;
+            });
+            this.itemCount = itemCount;
+            console.log('Emitting cartItemCountUpdated event with itemCount:', this.itemCount);
+            this.$eventBus.$emit('cartItemCountUpdated', this.itemCount);
+
+        },
+        updateQuantity(productId, newQuantity) {
+            const index = this.cart.findIndex((item) => item.product.id === productId);
+
+            if (index !== -1) {
+                this.cart[index].quantity = newQuantity;
+                this.saveCart();
+                this.calculateSubtotal(); // Optionally recalculate subtotal after updating quantity
+            }
+        },
+        addToCart(productId) {
+            const productToAdd = this.prouducts.find((product) => product.id === productId);
+            const existingItem = this.cart.find((item) => item.product.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                this.cart.push({
+                    product: productToAdd,
+                    quantity: 1
+                });
+            }
+
+            this.saveCart();
+            this.cartItemCount();
+            this.calculateSubtotal();
+        },
+
+        removeFromCart(product) {
+            const index = this.cart.findIndex((item) => item.product.id === product.id);
+
+            if (index !== -1) {
+                if (this.cart[index].quantity > 1) {
+                    this.cart[index].quantity -= 1;
+                } else {
+                    this.cart.splice(index, 1);
+                }
+
+                this.saveCart();
+                this.calculateSubtotal();
+                this.cartItemCount();
+            }
+        },
+        loadCart() {
+            const savedCart = localStorage.getItem('cart');
+
+            if (savedCart) {
+                this.cart = JSON.parse(savedCart);
+            }
+        },
+        saveCart() {
+            localStorage.setItem('cart', JSON.stringify(this.cart));
+
+        },
+
+        calculateSubtotal() {
+            let subtotal = 0;
+            this.cart.forEach((item) => {
+                const product = item.product;
+                console.log(`Quantity: ${item.quantity}, Price: ${product.price}`);
+                const priceAsNumber = parseFloat(product.price.replace(/[^\d.]/g, '')); //510;//product.price;
+                if (!isNaN(item.quantity) && !isNaN(priceAsNumber)) {
+                    subtotal += item.quantity * priceAsNumber;
+                } else {
+                    console.error('Invalid quantity or price:', item.quantity, product.price);
+                }
+                // console.log(`Intermediate Subtotal: ${subtotal}`);
+            });
+            //console.log(`Final Subtotal: ${subtotal}`);
+            return this.subtotal = subtotal;
+            //return subtotal;
+        },
         categoryGrid() {
             const slug = this.$route.query.slug;
             //alert(paramSlug);

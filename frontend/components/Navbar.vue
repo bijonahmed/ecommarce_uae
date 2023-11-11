@@ -160,7 +160,7 @@
                             </ul>
                         </div>
                         <!-- cart  -->
-                        <Nuxt-link to="/cart" class="cart_count"><i class="fas fa-cart-shopping"></i><span style="top: -16px;">9</span>Cart</Nuxt-link>
+                        <Nuxt-link to="/cart" class="cart_count"><i class="fas fa-cart-shopping"></i><span style="top: -16px;">{{ itemCount }}</span>Cart</Nuxt-link>
                     </div>
                 </div>
                 <!-- mobile view options  -->
@@ -256,13 +256,40 @@ export default {
     data() {
         return {
             limit: 12,
+            cart: [],
             categories: [],
+            itemCount: 0,
         };
     },
     async mounted() {
+        this.$eventBus.$on('cartItemCountUpdated', this.handleCartItemCountUpdated);
+        this.loadCart();
         await this.fetchData();
     },
+    computed: {
+
+    },
     methods: {
+
+        loadCart() {
+            const savedCart = localStorage.getItem('cart');
+
+            if (savedCart) {
+                this.cart = JSON.parse(savedCart);
+            }
+
+            let itemCount = 0;
+            this.cart.forEach((item) => {
+                itemCount += item.quantity;
+            });
+            this.itemCount = itemCount;
+        },
+        handleCartItemCountUpdated(itemCount) {
+            // This method will be called when the event is emitted from ComponentA
+            console.log('Received  DesktopViewOptions Com.:', itemCount);
+            // Update the local data property with the received itemCount
+            this.itemCount = itemCount;
+        },
         redirectCategory(slug) {
             this.$router.push({
                 path: '/category/category-list',

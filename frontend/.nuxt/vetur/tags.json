@@ -1,18 +1,21 @@
 {
-  "Appliances": {
-    "description": "Auto imported from components/Appliances.vue"
-  },
   "BestPrice": {
     "description": "Auto imported from components/BestPrice.vue"
-  },
-  "BigSavingGrocery": {
-    "description": "Auto imported from components/BigSavingGrocery.vue"
   },
   "BrandiOfficialStore": {
     "description": "Auto imported from components/BrandiOfficialStore.vue"
   },
+  "CategoryFive": {
+    "description": "Auto imported from components/CategoryFive.vue"
+  },
+  "CategoryFour": {
+    "description": "Auto imported from components/CategoryFour.vue"
+  },
   "CategoryMultipleProduct": {
     "description": "Auto imported from components/CategoryMultipleProduct.vue"
+  },
+  "CategoryOne": {
+    "description": "Auto imported from components/CategoryOne.vue"
   },
   "CategoryPart": {
     "description": "Auto imported from components/CategoryPart.vue"
@@ -25,6 +28,12 @@
   },
   "CategoryRecentView": {
     "description": "Auto imported from components/CategoryRecentView.vue"
+  },
+  "CategoryThree": {
+    "description": "Auto imported from components/CategoryThree.vue"
+  },
+  "CategoryTwo": {
+    "description": "Auto imported from components/CategoryTwo.vue"
   },
   "CommonMiniTabNavbar": {
     "description": "Auto imported from components/Common_MiniTabNavbar.vue"
@@ -52,15 +61,6 @@
   },
   "Footer": {
     "description": "Auto imported from components/Footer.vue"
-  },
-  "HealthandBeauty": {
-    "description": "Auto imported from components/HealthandBeauty.vue"
-  },
-  "LargeAppliance": {
-    "description": "Auto imported from components/LargeAppliance.vue"
-  },
-  "LimitedStock": {
-    "description": "Auto imported from components/LimitedStock.vue"
   },
   "LimitedStokDetails": {
     "description": "Auto imported from components/LimitedStokDetails.vue"
@@ -118,9 +118,6 @@
   },
   "TopDeals": {
     "description": "Auto imported from components/TopDeals.vue"
-  },
-  "TopPower": {
-    "description": "Auto imported from components/TopPower.vue"
   },
   "TopSellingItem": {
     "description": "Auto imported from components/TopSellingItem.vue"

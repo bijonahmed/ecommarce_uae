@@ -65,20 +65,50 @@ class UnauthenticatedController extends Controller
         return response()->json($result, 200);
     }
 
-
     public function slidersImages()
-        {
-            $data = Sliders::where('status',1)->get();
-            // dd($result);
-            return response()->json($data, 200);
+    {
+        $data = Sliders::where('status', 1)->get();
+
+        foreach ($data as $v) {
+            $result[] = [
+                'id'           => $v->id,
+                'images'       => !empty($v->images) ? url($v->images) : "",
+            ];
+        }
+       
+        return response()->json($result, 200);
+    }
+
+    public function productCategory(Request $request)
+    {
+
+        $category_id = $request->category_id;
+        $category    = Categorys::find($category_id);
+        $categorys   = ProductCategory::join('product', 'product.id', '=', 'produc_categories.product_id')
+            ->select('produc_categories.product_id', 'product.name', 'product.slug', 'product.thumnail_img')
+            ->where('produc_categories.category_id', $category_id)
+            ->orderByDesc('product.id')
+            ->limit(10)
+            ->get();
+
+        foreach ($categorys as $v) {
+            $result[] = [
+                'product_id'   => $v->product_id,
+                'name'         => substr($v->name, 0, 12) . '...',
+                'thumnail'     => !empty($v->thumnail_img) ? url($v->thumnail_img) : "",
+                'slug'         => $v->slug,
+            ];
         }
 
+        $data['result']  = !empty($result) ? $result : "";
+        $data['name']    = $category->name;
+        $data['catslug'] = $category->slug;
+        return response()->json($data, 200);
+    }
 
-    
     public function filterCategory(Request $request)
     {
         $categories = Categorys::where('status', 1)->orderBy("name", "asc")->get();;
-        //dd($categories);
         return response()->json($categories);
     }
 
@@ -87,12 +117,13 @@ class UnauthenticatedController extends Controller
 
         $chkCategory   = Categorys::where('slug', $slug)->select('id', 'name')->first();
         $proCategorys  = ProductCategory::where('category_id', $chkCategory->id)
-            ->select('product.discount', 'produc_categories.product_id', 'product.name as pro_name', 'produc_categories.category_id', 'description', 'price', 'thumnail_img', 'product.slug as pro_slug')
+            ->select('product.id', 'product.discount', 'produc_categories.product_id', 'product.name as pro_name', 'produc_categories.category_id', 'description', 'price', 'thumnail_img', 'product.slug as pro_slug')
             ->join('product', 'product.id', '=', 'produc_categories.product_id')->get();
 
         $result = [];
         foreach ($proCategorys as $key => $v) {
             $result[] = [
+                'id'           => $v->id,
                 'product_id'   => $v->product_id,
                 'product_name' => $v->pro_name,
                 'category_id'  => $v->category_id,

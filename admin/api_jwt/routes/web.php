@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Cart\CartController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('add-to-cart', [CartController::class, 'addToCart']);
+Route::post('/remove-from-cart', 'CartController@removeFromCart');
+Route::get('cart', [CartController::class, 'index']);
+Route::get('clearCart', [CartController::class, 'clearCart']);
+
 Route::get('/', function () {
     return view('welcome');
+   
 });

@@ -1,10 +1,10 @@
-import _Vue, { WatchOptions } from "vue";
+import { App, WatchOptions, InjectionKey } from "vue";
 
 // augment typings of Vue.js
 import "./vue";
 
 import { mapState, mapMutations, mapGetters, mapActions, createNamespacedHelpers } from "./helpers";
-import createLogger from "./logger";
+import { createLogger } from "./logger";
 
 export * from "./helpers";
 export * from "./logger";
@@ -14,6 +14,8 @@ export declare class Store<S> {
 
   readonly state: S;
   readonly getters: any;
+
+  install(app: App, injectKey?: InjectionKey<Store<any>> | string): void;
 
   replaceState(state: S): void;
 
@@ -41,7 +43,11 @@ export declare class Store<S> {
   }): void;
 }
 
-export declare function install(Vue: typeof _Vue): void;
+export const storeKey: string;
+
+export function createStore<S>(options: StoreOptions<S>): Store<S>;
+
+export function useStore<S = any>(injectKey?: InjectionKey<Store<S>> | string): Store<S>;
 
 export interface Dispatch {
   (type: string, payload?: any, options?: DispatchOptions): Promise<any>;
@@ -149,11 +155,8 @@ export interface ModuleTree<R> {
   [key: string]: Module<any, R>;
 }
 
-export { createLogger }
-
 declare const _default: {
   Store: typeof Store;
-  install: typeof install;
   mapState: typeof mapState,
   mapMutations: typeof mapMutations,
   mapGetters: typeof mapGetters,

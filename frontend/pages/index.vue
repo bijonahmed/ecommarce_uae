@@ -13,20 +13,13 @@
                 <TopSellingItem />
                 <!-- <FlashSelling /> -->
                 <DelasForYour />
-                <LimitedStock />
-                <OfficialStoreDeals />
-                <ShopFromOurCollection />
-                <LargeAppliance />
-                <PhoneSuperSales />
-                <MoreCollection />
-                <BestPrice />
-                <Appliances />
-                <TopAppliancesDeals />
-                <!-- <OfficalStore /> -->
-                <BrandiOfficialStore />
-                <TopPower />
-                <BigSavingGrocery />
-                <HealthandBeauty />
+                <CategoryOne />
+                <CategoryTwo />
+                <CategoryThree />
+                <CategoryFour />
+                <CategoryFive />
+                <!-- <OfficialStoreDeals /> -->
+
             </div>
         </section>
         <div class="back_top">
@@ -42,31 +35,31 @@
 
 <script>
 export default {
-  data() {
-    return {
-      
+    data() {
+        return {
+
+        }
+    },
+    mounted() {
+        this.$nextTick(() => {
+            this.initCarousel();
+        });
+    },
+    methods: {
+        initCarousel() {
+            $('.owl-carousel').owlCarousel({
+                items: 1,
+                loop: true,
+                margin: 10,
+                nav: true,
+                dots: true,
+                autoplay: true,
+                navText: ['', ''],
+                autoplayTimeout: 3000
+                // Add more options as needed
+            });
+        }
     }
-  },
-  mounted() {
-    this.$nextTick(() => {
-      this.initCarousel();
-    });
-  },
-  methods: {
-    initCarousel() {
-      $('.owl-carousel').owlCarousel({
-        items: 1,
-        loop: true,
-        margin: 10,
-        nav: true,
-        dots: true,
-        autoplay: true,
-        navText: ['',''],
-        autoplayTimeout: 3000
-        // Add more options as needed
-      });
-    }
-  }
 }
 </script>
 
@@ -81,5 +74,4 @@ export default {
     background-position: top center;
     background-repeat: no-repeat;
 }
- 
 </style>

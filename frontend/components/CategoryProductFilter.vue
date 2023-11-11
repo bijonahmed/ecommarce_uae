@@ -239,37 +239,58 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- cart details -->
+                            <h2>Shopping Cart</h2>
+                            <ul>
+                                <li v-for="item in cart" :key="item.product.id">
+                                    {{ item.product.product_name }} - ${{ item.product.price }} (Qty: {{ item.quantity }})-
+                                    <input v-model="item.updatedQuantity" type="number" />
+                                    <button @click="updateQuantity(item.product.id, item.updatedQuantity)">Update Quantity</button>
+
+                                    <button @click="removeFromCart(item.product)">Remove</button>
+                                    <hr />
+                                </li>
+                            </ul>
+                            <p>Subtotal: ${{ subtotal }}
+
+                            </p>
+                            <p>Items in Cart: {{ itemCount }}</p>
+
+                            <hr />
+
                             <div class="row" v-for="item in prouducts" :key="item.id">
-                                <div class="col-12" v-if="prouducts.length > 0">
-                                    <nuxt-link :to="`/product-details/${item.pro_slug}`">
-                                        <div class="products_list">
-                                            <div class="col">
-                                                <img :src="item.thumnail_img" class="img-fluid">
+                                <div class="col-12" v-if="prouducts.length > 0" :id="item.id">
+                                    <div class="products_list">
+                                        <div class="col">
+                                            <nuxt-link :to="`/product-details/${item.pro_slug}`">
+                                                <img :src="item.thumnail_img" class="img-fluid" alt="">
                                                 <span>Free Delivery </span>
-                                            </div>
-                                            <div class="col pad_ding">
-                                                <strong>Official store </strong>
-                                                <h5>{{ item.product_name }}</h5>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="ratings m-0">
-                                                        <i class="fa fa-star checked"></i>
-                                                        <i class="fa fa-star checked"></i>
-                                                        <i class="fa fa-star checked"></i>
-                                                        <i class="fa fa-star checked"></i>
-                                                        <i class="fa fa-star "></i>
-                                                    </div>
-                                                    <h6 class="m-0">(200)</h6>
-                                                </div>
-                                                <p><i class="fa-brands fa-dhl"></i></p>
-                                            </div>
-                                            <div class="col pad_ding">
-                                                <h4>${{ item.price }}</h4>
-                                                <h4 class="disabled" v-if="item.discount !==0"><strike>${{ item.discount }}</strike><span>-45%</span></h4>
-                                                <!-- <button type="button" class="btn_cart " style="display: block;visibility: unset;">Add to cart</button> -->
-                                                <button type="button" disabled class="btn_sold " style="display: block;visibility: unset;">Sold Out</button>
-                                            </div>
+                                            </Nuxt-link>
+
                                         </div>
-                                    </Nuxt-link>
+                                        <div class="col pad_ding">
+                                            <strong>Official store </strong>
+                                            <h5>{{ item.product_name }}</h5>
+                                            <div class="d-flex align-items-center">
+                                                <div class="ratings m-0">
+                                                    <i class="fa fa-star checked"></i>
+                                                    <i class="fa fa-star checked"></i>
+                                                    <i class="fa fa-star checked"></i>
+                                                    <i class="fa fa-star checked"></i>
+                                                    <i class="fa fa-star "></i>
+                                                </div>
+                                                <h6 class="m-0">(200)</h6>
+                                            </div>
+                                            <p><i class="fa-brands fa-dhl"></i></p>
+                                        </div>
+                                        <div class="col pad_ding">
+                                            <h4>${{ item.price }}</h4>
+                                            <h4 class="disabled" v-if="item.discount !==0"><strike>${{ item.discount }}</strike><span>-45%</span></h4>
+                                            <button type="button" class="btn_cart" style="display: block;visibility: unset;" @click="addToCart(item.id)">Add to cart</button>
+                                            <!-- <button type="button" disabled class="btn_sold " style="display: block;visibility: unset;">Sold Out</button> -->
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
@@ -286,26 +307,118 @@
 </template>
 
 <script>
+//import { mapActions } from 'vuex'
 export default {
+    //  props: ['cart'],
     props: ['category_slug'],
+    // props: ['product'],
     data() {
         return {
             loading: false,
+            cart: [],
+            updatedQuantity: 0,
             prouducts: [],
+            subtotal: 0,
             categories: [],
             pro_count: 0,
+            itemCount: 0,
+            quantity: 1,
             categoryname: '',
         };
     },
+
     async mounted() {
         const paramSlug = this.$route.query.slug;
+        this.calculateSubtotal();
+        this.loadCart();
+        this.cartItemCount();
         this.fetchData(paramSlug);
         await this.fetchDataCategory();
-
+        this.subtotal = this.calculateSubtotal(); // Calculate the subtotal and store it in a data property
     },
     methods: {
+        loadCart() {
+            const savedCart = localStorage.getItem('cart');
 
-        categoryGrid(){
+            if (savedCart) {
+                this.cart = JSON.parse(savedCart);
+            }
+        },
+        saveCart() {
+            localStorage.setItem('cart', JSON.stringify(this.cart));
+
+        },
+        cartItemCount() {
+            let itemCount = 0;
+            this.cart.forEach((item) => {
+                itemCount += item.quantity;
+            });
+            this.itemCount = itemCount;
+            console.log('Emitting cartItemCountUpdated event with itemCount:', this.itemCount);
+            this.$eventBus.$emit('cartItemCountUpdated', this.itemCount);
+
+        },
+        updateQuantity(productId, newQuantity) {
+            const index = this.cart.findIndex((item) => item.product.id === productId);
+
+            if (index !== -1) {
+                this.cart[index].quantity = newQuantity;
+                this.saveCart();
+                this.calculateSubtotal(); // Optionally recalculate subtotal after updating quantity
+            }
+        },
+        addToCart(productId) {
+            const productToAdd = this.prouducts.find((product) => product.id === productId);
+            const existingItem = this.cart.find((item) => item.product.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                this.cart.push({
+                    product: productToAdd,
+                    quantity: 1
+                });
+            }
+
+            this.saveCart();
+            this.cartItemCount();
+            this.calculateSubtotal();
+        },
+
+        removeFromCart(product) {
+            const index = this.cart.findIndex((item) => item.product.id === product.id);
+
+            if (index !== -1) {
+                if (this.cart[index].quantity > 1) {
+                    this.cart[index].quantity -= 1;
+                } else {
+                    this.cart.splice(index, 1);
+                }
+
+                this.saveCart();
+                this.calculateSubtotal();
+                this.cartItemCount();
+            }
+        },
+
+        calculateSubtotal() {
+            let subtotal = 0;
+            this.cart.forEach((item) => {
+                const product = item.product;
+                console.log(`Quantity: ${item.quantity}, Price: ${product.price}`);
+                const priceAsNumber = parseFloat(product.price.replace(/[^\d.]/g, '')); //510;//product.price;
+                if (!isNaN(item.quantity) && !isNaN(priceAsNumber)) {
+                    subtotal += item.quantity * priceAsNumber;
+                } else {
+                    console.error('Invalid quantity or price:', item.quantity, product.price);
+                }
+                // console.log(`Intermediate Subtotal: ${subtotal}`);
+            });
+            //console.log(`Final Subtotal: ${subtotal}`);
+            return this.subtotal = subtotal;
+            //return subtotal;
+        },
+        categoryGrid() {
             const slug = this.$route.query.slug;
             //alert(paramSlug);
             this.$router.push({
@@ -330,14 +443,13 @@ export default {
                     this.prouducts = response.data.result;
                     this.pro_count = response.data.pro_count;
                     this.categoryname = response.data.categoryname;
-
                 })
                 .catch(error => {
                     // Handle error
                 })
                 .finally(() => {
                     this.loading = false; // Hide loader after response
-                });;;
+                });
 
         },
 
