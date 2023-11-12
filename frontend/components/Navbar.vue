@@ -280,7 +280,7 @@ export default {
 
             let itemCount = 0;
             this.cart.forEach((item) => {
-                itemCount += item.quantity;
+                itemCount += parseInt(item.quantity);
             });
             this.itemCount = itemCount;
         },

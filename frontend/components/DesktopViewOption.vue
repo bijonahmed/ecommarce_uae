@@ -34,8 +34,8 @@ export default {
     data() {
         return {
             cart: [],
-            limit: 12,
             itemCount: 0,
+            limit: 12,
             categories: [],
         };
     },
@@ -58,7 +58,7 @@ export default {
 
             let itemCount = 0;
             this.cart.forEach((item) => {
-                itemCount += item.quantity;
+                itemCount += parseInt(item.quantity);
             });
             this.itemCount = itemCount;
         },
