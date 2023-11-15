@@ -287,10 +287,10 @@
     "_name": "_73e079c2"
   },
   {
-    "name": "product-details-id",
-    "path": "/product-details/:id?",
-    "component": "F:\\\\Server\\\\htdocs\\\\ecommarce_uae\\\\frontend\\\\pages\\\\product-details\\\\_id.vue",
-    "chunkName": "pages/product-details/_id",
-    "_name": "_d3add2d4"
+    "name": "product-details-slug",
+    "path": "/product-details/:slug?",
+    "component": "F:\\\\Server\\\\htdocs\\\\ecommarce_uae\\\\frontend\\\\pages\\\\product-details\\\\_slug.vue",
+    "chunkName": "pages/product-details/_slug",
+    "_name": "_431fc134"
   }
 ]

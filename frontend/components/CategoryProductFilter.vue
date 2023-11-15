@@ -241,23 +241,26 @@
                             </div>
 
                             <!-- cart details -->
-                            <h2>Shopping Cart</h2>
-                            <ul>
-                                <li v-for="item in cart" :key="item.product.id">
-                                    {{ item.product.product_name }} - ${{ item.product.price }} (Qty: {{ item.quantity }})-
-                                    <input v-model="item.updatedQuantity" type="number" />
-                                    <button @click="updateQuantity(item.product.id, item.updatedQuantity)">Update Quantity</button>
+                            <div class="d-none">
+                                this div specially for testing
+                                <h2>Shopping Cart</h2>
+                                <ul>
+                                    <li v-for="item in cart" :key="item.product.id">
+                                        {{ item.product.product_name }} - ${{ item.product.price }} (Qty: {{ item.quantity }})-
+                                        <input v-model="item.updatedQuantity" type="number" />
+                                        <button @click="updateQuantity(item.product.id, item.updatedQuantity)">Update Quantity</button>
 
-                                    <button @click="removeFromCart(item.product)">Remove</button>
-                                    <hr />
-                                </li>
-                            </ul>
-                            <p>Subtotal: ${{ subtotal }}
+                                        <button @click="removeFromCart(item.product)">Remove</button>
+                                        <hr />
+                                    </li>
+                                </ul>
+                                <p>Subtotal: ${{ subtotal }}
 
-                            </p>
-                            <p>Items in Cart: {{ itemCount }}</p>
+                                </p>
+                                <p>Items in Cart: {{ itemCount }}</p>
 
-                            <hr />
+                                <hr />
+                            </div>
 
                             <div class="row" v-for="item in prouducts" :key="item.id">
                                 <div class="col-12" v-if="prouducts.length > 0" :id="item.id">
@@ -345,13 +348,16 @@ export default {
             }
         },
         saveCart() {
+            this.loading = true;
             localStorage.setItem('cart', JSON.stringify(this.cart));
-
+            setTimeout(() => {
+                this.loading = false;
+            }, 2000);
         },
         cartItemCount() {
             let itemCount = 0;
             this.cart.forEach((item) => {
-                itemCount += item.quantity;
+                itemCount += parseInt(item.quantity);
             });
             this.itemCount = itemCount;
             console.log('Emitting cartItemCountUpdated event with itemCount:', this.itemCount);

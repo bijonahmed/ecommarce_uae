@@ -283,6 +283,7 @@ export default {
     },
     data() {
         return {
+            loading: false,
             cart: [],
             loading: false,
             prouducts: [],
@@ -362,7 +363,11 @@ export default {
             }
         },
         saveCart() {
+            this.loading = true;
             localStorage.setItem('cart', JSON.stringify(this.cart));
+            setTimeout(() => {
+                this.loading = false;
+            }, 2000);
 
         },
 

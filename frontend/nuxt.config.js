@@ -1,3 +1,4 @@
+import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -31,9 +32,9 @@ export default {
       { src: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" },
       { src: "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" },
       { src: "https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" },
-      // { src: "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" },
+     // { src: "https://code.jquery.com/jquery-3.1.1.slim.min.js" },
  
-      { src: "/js/priceRange.js" },
+      //{ src: "/js/priceRange.js" },
       { src: "/js/star-rating.js" },
       { src: "/js/search_modal.js" },
       { src: "/js/login_popup.js" },
@@ -76,6 +77,15 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: ["defu"],
-    vendor: ['jquery'],
+    //vendor: ['jquery'],
+    build: {
+      extend(config, { isDev, isClient }) {
+        if (isDev && isClient) {
+          // Add FriendlyErrorsWebpackPlugin
+          const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+          config.plugins.push(new FriendlyErrorsWebpackPlugin());
+        }
+      }
+    },
   }
 }

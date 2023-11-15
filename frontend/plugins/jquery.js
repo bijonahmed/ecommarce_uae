@@ -1,3 +1,6 @@
-import 'jquery'
-import 'owl.carousel/dist/assets/owl.carousel.css'
-import 'owl.carousel'
+// plugins/jquery.js
+
+import Vue from 'vue';
+import jQuery from 'jquery';
+
+Vue.prototype.$jQuery = jQuery;

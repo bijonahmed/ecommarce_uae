@@ -11,6 +11,7 @@ body{
 
 p{
   margin: 0;
+  text-align: start;
 }
 ul{
   padding: 0;
@@ -342,6 +343,11 @@ padding: 0px 3px;
   border-radius: 5px;
   transition: .4s all ease-in-out;
   margin: 5px 0px;
+  box-shadow: 0 0 10px #cbc6c661;
+  padding: 10px;
+  border: 1px solid #80808059;
+  border-radius: 8px;
+  text-align: center;
 }
 .cat_div img{
   border-radius: 5px;
@@ -350,6 +356,7 @@ padding: 0px 3px;
   font-size: 13px;
   padding: 5px 0px;
   color: #000;
+  text-align: center;
 }
 .cat_div:hover{
   /* animation: fadeIn 1s linear; */

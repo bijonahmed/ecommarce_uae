@@ -45,7 +45,7 @@ const _d1e18ca8 = () => interopDefault(import('..\\pages\\user\\user-orders.vue'
 const _7d2a121c = () => interopDefault(import('..\\pages\\user\\user-profile.vue' /* webpackChunkName: "pages/user/user-profile" */))
 const _b4681f78 = () => interopDefault(import('..\\pages\\user\\user-whichlist.vue' /* webpackChunkName: "pages/user/user-whichlist" */))
 const _73e079c2 = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages/index" */))
-const _d3add2d4 = () => interopDefault(import('..\\pages\\product-details\\_id.vue' /* webpackChunkName: "pages/product-details/_id" */))
+const _431fc134 = () => interopDefault(import('..\\pages\\product-details\\_slug.vue' /* webpackChunkName: "pages/product-details/_slug" */))
 
 const emptyFn = () => {}
 
@@ -223,9 +223,9 @@ export const routerOptions = {
     component: _73e079c2,
     name: "index"
   }, {
-    path: "/product-details/:id?",
-    component: _d3add2d4,
-    name: "product-details-id"
+    path: "/product-details/:slug?",
+    component: _431fc134,
+    name: "product-details-slug"
   }],
 
   fallback: false

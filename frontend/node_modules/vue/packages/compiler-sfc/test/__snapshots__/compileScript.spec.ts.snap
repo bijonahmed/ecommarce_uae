@@ -1,4 +1,4 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`SFC analyze <script> bindings > auto name inference > basic 1`] = `
 "export default {
@@ -212,7 +212,7 @@ export default {
   props: propsModel,
   setup(__props) {
 
-const props = __props
+const props = __props;
 
     
     
@@ -229,7 +229,7 @@ export default {
   props: {},
   setup(__props) {
 
-const props = __props
+const props = __props;
 
     
 return { props, x }
@@ -245,7 +245,7 @@ exports[`SFC compile <script setup> > defineProps() 1`] = `
 },
   setup(__props) {
 
-const props = __props
+const props = __props;
 
 
 const bar = 1
@@ -262,7 +262,7 @@ exports[`SFC compile <script setup> > defineProps/defineEmits in multi-variable 
   emits: ['a'],
   setup(__props, { emit }) {
 
-const props = __props
+const props = __props;
 
     
     
@@ -278,11 +278,27 @@ exports[`SFC compile <script setup> > defineProps/defineEmits in multi-variable 
   emits: ['a'],
   setup(__props, { emit }) {
 
-const props = __props
+const props = __props;
 
     const a = 1;
     
 return { props, a, emit }
+}
+
+}"
+`;
+
+exports[`SFC compile <script setup> > defineProps/defineEmits in multi-variable declaration fix #6757  1`] = `
+"export default {
+  props: ['item'],
+  emits: ['a'],
+  setup(__props, { emit }) {
+
+const props = __props;
+
+    const a = 1;
+    
+return { a, props, emit }
 }
 
 }"
@@ -564,6 +580,22 @@ return { emit }
 })"
 `;
 
+exports[`SFC compile <script setup> > with TypeScript > defineEmits w/ type (interface ts type) 1`] = `
+"import { defineComponent as _defineComponent } from 'vue'
+interface Emits { (e: 'foo'): void }
+      
+export default /*#__PURE__*/_defineComponent({
+  emits: ['foo'],
+  setup(__props, { emit }) {
+
+      
+      
+return { emit }
+}
+
+})"
+`;
+
 exports[`SFC compile <script setup> > with TypeScript > defineEmits w/ type (interface) 1`] = `
 "import { defineComponent as _defineComponent } from 'vue'
 interface Emits { (e: 'foo' | 'bar'): void }
@@ -803,7 +835,7 @@ export default /*#__PURE__*/_defineComponent({
   emits: ['a', 'b'],
   setup(__props, { emit }) {
 
-const props = __props
+const props = __props;
 
 
 
@@ -892,7 +924,7 @@ const props = __props as {
         foo?: string
         bar?: number
         baz: boolean
-      }
+      };
 
       
       
@@ -914,7 +946,7 @@ export default /*#__PURE__*/_defineComponent({
   },
   setup(__props: any) {
 
-const props = __props as { foo: string, bar?: number, baz: boolean, qux(): number }
+const props = __props as { foo: string, bar?: number, baz: boolean, qux(): number };
 
       
       

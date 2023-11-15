@@ -11,6 +11,7 @@ use Helper;
 use App\Models\Product;
 use App\Models\Sliders;
 use App\Models\ProductCategory;
+use App\Models\ProductAdditionalImg;
 use App\Models\Categorys;
 use Illuminate\Support\Str;
 use App\Rules\MatchOldPassword;
@@ -75,7 +76,7 @@ class UnauthenticatedController extends Controller
                 'images'       => !empty($v->images) ? url($v->images) : "",
             ];
         }
-       
+
         return response()->json($result, 200);
     }
 
@@ -110,6 +111,28 @@ class UnauthenticatedController extends Controller
     {
         $categories = Categorys::where('status', 1)->orderBy("name", "asc")->get();;
         return response()->json($categories);
+    }
+
+    public function findProductSlug($slug)
+    {
+
+        $data['pro_row']  = Product::where('product.slug', $slug)
+                           ->select('product.id', 'product.name', 'product.slug', 'product.thumnail_img','description','product.price','product.discount','product.stock_qty','product.stock_mini_qty')
+                           ->first();
+
+        $findproductrow   = $data['pro_row'];
+       // $firstImgrow      = !empty($findproductrow->thumnail_img) ? url($findproductrow->thumnail_img) : "";
+        $data['att_img']  = ProductAdditionalImg::where('produc_img_history.product_id', $findproductrow->id)->get();
+        foreach ($data['att_img'] as $v) {
+            $mul_slider_img[] = [
+                'product_id'   => $v->product_id,
+                'thumnail'     => !empty($v->images) ? url($v->images) : "",
+            ];
+ 
+        }
+        $data['slider_img']    = !empty($mul_slider_img) ? $mul_slider_img: "";
+        $data['featuredImage'] = url($findproductrow->thumnail_img);
+        return response()->json($data, 200);
     }
 
     public function findCategorys($slug)

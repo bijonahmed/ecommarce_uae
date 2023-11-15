@@ -52,11 +52,11 @@
                 <div class="col-xl-8 col-lg-8 col-md-12">
                     <div class="cart">
 
-                        <div class="side_title">
+                        <div class="side_title" v-if="itemCount !==0">
                             <h5>Cart({{ itemCount }})</h5>
                         </div>
                         <div class="loading-indicator" v-if="loading">
-                            <div class="loader-container">
+                            <div class="lodcontainer">
                                 <center class="loader-text">Loading...</center>
                                 <img src="/loader/loader.gif" alt="Loader" />
                             </div>
@@ -89,10 +89,9 @@
                                         </div>
                                         <div>
                                             <div class="number">
-                                                <span class="minus">-</span>
-                                                <!-- <input type="text" value="1" /> -->
-                                                <input v-model="item.updatedQuantity" type="number" />
-                                                <span class="plus">+</span>
+                                                <!-- <span class="minus" @click="decrement">-</span> -->
+                                                <input v-model="item.updatedQuantity" class="updatedQuantity" type="number" />
+                                                <!-- <span class="plus" @click="increment">+</span> -->
                                             </div>
                                             <Button class="btn_cart mt-2" style="visibility: unset; background-color: #0C356A;" @click="updateQuantity(item.product.id, item.updatedQuantity)">Update</Button>
                                         </div>
@@ -100,71 +99,17 @@
                                 </li>
 
                             </ul>
+
+                            <div v-if="itemCount !==0">
+
+                                <Button class="btn_cart mt-2" style="visibility: unset; background-color: #0C356A;" @click="clearCart()">Clear Cart</Button>
+                            </div>
+
                         </div>
 
                     </div>
                     <!-- not included part start here  -->
-                    <div class="cart not_included">
-                        <div class="side_title">
-                            <h5>Not included(2)</h5>
-                        </div>
-                        <div class="card_porduct">
-                            <ul>
-                                <li>
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <div class="img_title">
-                                                <img src="images/product(1).jpg" class="img-fluid" alt="">
-                                                <h3>Out of stock </h3>
-                                                <div>
-                                                    <h1>
-                                                        <Nuxt-Link to="/product-details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum sapiente placeat, sint asperiores nihil illo tenetur consectetur eaque ad dolor.</Nuxt-Link>
-                                                    </h1>
-                                                    <p>Seller: Ecommerce</p>
-                                                    <span>Out of stock </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="cart_price">
-                                                <strong>TK 2,000.00</strong>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-between">
-                                        <div><Button class="btn_cart" style="visibility: unset;"><i class="fa-solid fa-trash-can"></i>Remove</Button></div>
-                                        <div><Button class="btn_cart bg-secondary" disabled style="visibility: unset;">Sold Out</Button></div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <div class="img_title">
-                                                <img src="images/product(1).jpg" class="img-fluid" alt="">
-                                                <h3>Out of stock </h3>
-                                                <div>
-                                                    <h1>
-                                                        <Nuxt-Link to="/product-details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum sapiente placeat, sint asperiores nihil illo tenetur consectetur eaque ad dolor.</Nuxt-Link>
-                                                    </h1>
-                                                    <p>Seller: Ecommerce</p>
-                                                    <span>Out of stock </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="cart_price">
-                                                <strong>TK 2,000.00</strong>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-between">
-                                        <div><Button class="btn_cart" style="visibility: unset;"><i class="fa-solid fa-trash-can"></i>Remove</Button></div>
-                                        <div><Button class="btn_cart bg-secondary" disabled style="visibility: unset;">Sold Out</Button></div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+
                 </div>
                 <div class="col-xl-4 .col-lg-4 .col-md-12 " style="position: sticky;top: 60px;height: fit-content;">
                     <div class="cart_summary">
@@ -219,6 +164,7 @@ export default {
             itemCount: 0,
             subtotal: 0,
             updatedQuantity: 0,
+
         };
     },
     head: {
@@ -243,13 +189,21 @@ export default {
             // Now you can work with myElement
         }
     },
-    computed: {
-        // cart() {
-        //     return this.$store.state.cart;
-        // },
-    },
+
     methods: {
+
+        clearCart() {
+            this.loading = true;
+            localStorage.removeItem('cart');
+            this.cart = [];
+            this.cartItemCount();
+            setTimeout(() => {
+                this.loading = false;
+            }, 2000);
+
+        },
         updateQuantity(productId, newQuantity) {
+
             this.loading = true;
             const index = this.cart.findIndex((item) => item.product.id === productId);
             if (index !== -1) {
@@ -357,69 +311,7 @@ export default {
             return this.subtotal = subtotal;
             //return subtotal;
         },
-        /*
-        updateQuantity(productId, newQuantity) {
-            this.loading = true;
-            const index = this.cart.findIndex((item) => item.product.id === productId);
 
-            if (index !== -1) {
-                this.cart[index].quantity = newQuantity;
-                this.saveCart();
-                this.calculateSubtotal(); // Optionally recalculate subtotal after updating quantity
-            }
-        },
-        */
     },
 }
 </script>
-
-<style scoped>
-.img_title img {
-    width: 110px;
-    padding-right: 10px;
-}
-
-.img_title {
-    display: flex;
-    justify-content: left;
-    align-items: start;
-    margin-bottom: 10px;
-    position: relative;
-}
-
-.loading-indicator {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-
-/* For Loader */
-.loader-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    position: relative;
-}
-
-.loader-text {
-    margin: 0;
-    /* Remove default margin */
-}
-
-.loader-top {
-    top: 0;
-}
-
-.loader-bottom {
-    bottom: 0;
-}
-</style>

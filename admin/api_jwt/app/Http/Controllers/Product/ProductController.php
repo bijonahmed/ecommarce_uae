@@ -509,7 +509,7 @@ class ProductController extends Controller
     public function removeProducts($id)
     {
         //echo $id;exit; 
-        if(!empty($id)){
+        if (!empty($id)) {
             Product::where('id', $id)->delete();
             ProductAttributes::where('product_id', $id)->delete();
             ProductAttributeValue::where('product_id', $id)->delete();
