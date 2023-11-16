@@ -117,21 +117,37 @@ class UnauthenticatedController extends Controller
     {
 
         $data['pro_row']  = Product::where('product.slug', $slug)
-                           ->select('product.id', 'product.name', 'product.slug', 'product.thumnail_img','description','product.price','product.discount','product.stock_qty','product.stock_mini_qty')
+                           ->select('product.id', 'product.id as product_id', 'product.name', 'product.slug as pro_slug', 'product.thumnail_img','description','product.price','product.discount','product.stock_qty','product.stock_mini_qty')
                            ->first();
 
+
+        $product_chk       = Product::where('product.slug', $slug)
+                           ->select('product.id', 'product.id as product_id', 'product.name', 'product.slug as pro_slug', 'product.thumnail_img','description','product.price','product.discount','product.stock_qty','product.stock_mini_qty')
+                           ->get();
+        $products = [];
+        foreach ($product_chk as $key => $v) {
+            $products[] = [
+                'id'           => $v->id,
+                'product_id'   => $v->product_id,
+                'product_name' => $v->pro_name,
+                'discount'     => $v->discount,
+                'price'        => number_format($v->price, 2),
+                'thumnail_img' => url($v->thumnail_img),
+                'pro_slug'     => $v->pro_slug,
+
+            ];
+        }                   
         $findproductrow   = $data['pro_row'];
-       // $firstImgrow      = !empty($findproductrow->thumnail_img) ? url($findproductrow->thumnail_img) : "";
         $data['att_img']  = ProductAdditionalImg::where('produc_img_history.product_id', $findproductrow->id)->get();
         foreach ($data['att_img'] as $v) {
             $mul_slider_img[] = [
                 'product_id'   => $v->product_id,
                 'thumnail'     => !empty($v->images) ? url($v->images) : "",
             ];
- 
         }
         $data['slider_img']    = !empty($mul_slider_img) ? $mul_slider_img: "";
         $data['featuredImage'] = url($findproductrow->thumnail_img);
+        $data['product']      = $products;
         return response()->json($data, 200);
     }
 

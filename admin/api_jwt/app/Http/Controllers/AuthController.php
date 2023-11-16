@@ -20,6 +20,8 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
     }
+
+     
     public function login(Request $request)
     {
         $this->validateLogin($request);
@@ -35,16 +37,21 @@ class AuthController extends Controller
         }
         return $this->respondWithToken($token);
     }
+
+
+
     public function register(Request $request)
     {
+       // dd($request->all());
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|unique:users,email',
-            'password' => 'required|min:6'
+            'password' => 'required|min:2|confirmed', // Add the 'confirmed' rule
         ]);
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
+            'name'     => $request->name,
+            'email'    => $request->email,
+            'role_id'  => 2,
             'password' => bcrypt($request->password),
         ]);
         // Get the token

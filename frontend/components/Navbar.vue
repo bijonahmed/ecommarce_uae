@@ -132,7 +132,12 @@
                                 <i class="fas fa-user"></i> Account
                             </button>
                             <ul class="dropdown-menu">
-                                <button class="drop_btn login_popup_show" type="button">Sign In </button>
+                                <span v-if="loggedIn">
+                                    <button class="drop_btn" type="button" @click="logout">Sign Out</button>
+                                </span>
+                                <span v-else>
+                                    <button class="drop_btn login_popup_show" type="button">Sign In</button>
+                                </span>
                                 <li>
                                     <Nuxt-link class="dropdown-item" to="/user/user-profile">MY Account</Nuxt-link>
                                 </li>
@@ -257,11 +262,13 @@ export default {
         return {
             limit: 12,
             cart: [],
+            id: '',
             categories: [],
             itemCount: 0,
         };
     },
     async mounted() {
+        // this.fetchUserData();
         this.$eventBus.$on('cartItemCountUpdated', this.handleCartItemCountUpdated);
         this.loadCart();
         await this.fetchData();
@@ -270,7 +277,28 @@ export default {
 
     },
     methods: {
-
+        logout() {
+            localStorage.removeItem('jwtToken');
+            this.$router.push('/');
+        },
+        async fetchUserData() {
+            const token = localStorage.getItem('jwtToken');
+            if (!token) {
+                this.$router.push('/');
+                console.error('JWT token not found in local storage');
+                return;
+            }
+            try {
+                this.$axios.setToken(token, 'Bearer');
+                const response = await this.$axios.post('/auth/me');
+                //  console.log('User data:', response.data);
+                this.id = response.data.id;
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            } finally {
+                this.$axios.setToken(false);
+            }
+        },
         loadCart() {
             const savedCart = localStorage.getItem('cart');
 
@@ -302,7 +330,9 @@ export default {
             const response = await this.$axios.get(`/unauthenticate/getCategoryList`);
             this.categories = response.data;
         },
-
+        async logout() {
+            await this.$auth.logout()
+        }
     },
 };
 </script>

@@ -1,89 +1,36 @@
 // store/index.js
+import { createStore } from 'vuex';
 
-// State
-/*
-export const state = {
-    products: [],
-    cart: {}
-  }
-  
-  // Actions
-  export const actions = {
-    async nuxtServerInit({ dispatch }) {
-      await dispatch('getProducts')
+const store = createStore({
+  state: {
+    user: null,
+    // other state properties
+  },
+  mutations: {
+    setUser(state, user) {
+      state.user = user;
     },
-  
-    async getProducts({ commit }) {
-      const products = await Vue.prototype.$commerce.products.list()
-  
-      if (products) {
-        commit('setProducts', products.data)
-      }
+    // other mutations
+  },
+  actions: {
+    login({ commit }, user) {
+      // your login logic, API calls, etc.
+      commit('setUser', user);
     },
-  
-    async retrieveCart({ commit }) {
-      const cart = await Vue.prototype.$commerce.cart.retrieve()
-  
-      if (cart) {
-        commit('setCart', cart)
-      }
+    logout({ commit }) {
+      // your logout logic, API calls, etc.
+      commit('setUser', null);
     },
-  
-    async addProductToCart({ commit }, id, count) {
-      const addProduct = await Vue.prototype.$commerce.cart.add(id, count)
-  
-      if (addProduct) {
-        commit('setCart', addProduct.cart)
-      }
+    // other actions
+  },
+  getters: {
+    getUser(state) {
+      return state.user;
     },
-  
-    async removeProductFromCart({ commit }, payload) {
-      const removeProduct = await Vue.prototype.$commerce.cart.remove(payload)
-  
-      if (removeProduct) {
-        commit('setCart', removeProduct.cart)
-      }
-    },
-  
-    async clearCart({ commit }) {
-      const clear = await Vue.prototype.$commerce.cart.empty()
-  
-      if (clear) {
-        commit('clearCart')
-      }
-    }
-  }
-  
-  // Mutations
-  export const mutations = {
-    setProducts(state, payload) {
-      state.products = payload
-    },
-  
-    setCart(state, payload) {
-      state.cart = payload
-    },
-  
-    clearCart(state) {
-      state.cart = {}
-    }
-  }
-  
-  // Getters
-  export const getters = {
-    products(state) {
-      return state.products
-    },
-  
-    cart(state) {
-      return state.cart
-    },
-  
-    cartSubtotal(state) {
-      if (state.cart.subtotal) {
-        return state.cart.subtotal.formatted
-      }
-    }
-  }
+    // other getters
+  },
+});
 
-  */
+export default function () {
+  return store;
+}

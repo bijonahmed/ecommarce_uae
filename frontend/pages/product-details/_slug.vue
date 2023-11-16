@@ -58,10 +58,15 @@
                             <div class="col-md-5">
 
                                 <!-- {{ featuresimgs }} -->
-
+                                <div class="loading-indicator" v-if="loading" style="text-align: center;">
+                                    <div class="loader-container">
+                                        <center class="loader-text">Loading...</center>
+                                        <img src="/loader/loader.gif" alt="Loader" />
+                                    </div>
+                                </div>
                                 <section class="Slider">
                                     <div>
-                                        <img id="featuredImage" class="Slider-featuredImage sliderimg" :src="featuresimgs" alt="#">
+                                        <img id="featuredImage" class="Slider-featuredImage sliderimg" :src="featuresimgs">
                                     </div>
 
                                     <div class="Slider-thumbnails">
@@ -103,7 +108,9 @@
                                         <h6>Brand: <a href="#">Samsung</a>|<a href="#">Similer product from samsung </a></h6>
                                     </div>
                                     <div class="price_div">
-                                        <h5>Tk {{pro_row.price}} <p> <strike>TK {{pro_row.discount}}</strike></p> <span>-8%</span></h5>
+                                        <h5>Tk {{pro_row.price}}
+                                            <p> <strike>TK {{pro_row.discount}}</strike></p> <span>-8%</span>
+                                        </h5>
                                         <p>in stock</p>
                                     </div>
                                     <div class="ratings_pro">
@@ -152,39 +159,14 @@
                                                 </select>
                                             </div>
                                             <div class="number">
-                                                <span class="minus">-</span>
-                                                <input type="text" value="1" />
-                                                <span class="plus">+</span>
+                                                <span class="minus" @click="decrement">-</span>
+                                                <input v-model="updatedQuantity" type="number" @input="sanitizeInput" />
+                                                <span class="plus" @click="increment">+</span>
                                             </div>
                                         </div>
-                                        <button type="button" class="btn_cart" style="visibility: unset;"><i class="fa-solid fa-cart-shopping"></i>Add to Cart </button>
+                                        <button type="button" class="btn_cart" style="visibility: unset;" @click="addToCart(pro_row.id)"><i class="fa-solid fa-cart-shopping"></i>Add to Cart </button>
                                     </div>
-                                    <div class="also_buy">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <h6>You can also buy:</h6>
-                                            <a href="#">Details</a>
-                                        </div>
-                                        <div class="buy_sugg">
-                                            <div class="pro_insurance">
-                                                <div>
-                                                    <img src="/images/product(2).jpg" alt="">
-                                                </div>
-                                                <div>
-                                                    <h4>Ecommerce Protect - Device Insurance</h4>
-                                                    <p>+ TK 1,000</p>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div>
-                                                    <h3>total </h3>
-                                                    <span>3000</span>
-                                                </div>
-                                                <div>
-                                                    <button type="button" class="btn_cart" style="visibility: unset;">BUY BOTH</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                     <div class="promotion">
                                         <h4>Promotions</h4>
                                         <ul>
@@ -343,10 +325,8 @@
                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
                             <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0">
                                 <div class="product_details" id="details">
-                                   
-                                </div>
 
-                                 
+                                </div>
 
                                 <!-- customer recent views  -->
 
@@ -473,16 +453,18 @@
                                     <a class="list-group-item list-group-item-action" href="#spacification"><i class="fa-solid fa-list"></i>Specification</a>
                                     <a class="list-group-item list-group-item-action" href="#feedback"><i class="fa-regular fa-message"></i>Varified Customer Feedback</a>
                                 </div>
+
                                 <div class="pro_cart">
                                     <div class="d-flex">
-                                        <div><img src="/images/product(1).jpg" alt=""></div>
+                                        <div><img :src="featuresimgs" alt=""></div>
                                         <div>
-                                            <h3>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo iure harum praesentium temporibus unde mollitia voluptate obcaecati dignissimos rerum numquam.</h3>
-                                            <p>TK 2,000</p>
+                                            <p>TK {{ pro_row.price }}</p>
+                                            <p><strike>TK {{pro_row.discount}}</strike></p>
                                         </div>
                                     </div>
-                                    <button class="btn_cart" type="button"> <i class="fa-solid fa-cart-shopping"></i>Add to Cart </button>
+                                    <button class="btn_cart" type="button"> <i class="fa-solid fa-cart-shopping" @click="addToCart(pro_row.id)"></i>Add to Cart </button>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -537,6 +519,14 @@ export default {
     }) {
         const productSlug = params.slug;
         return {
+            //cart
+            loading: false,
+            cart: [],
+            itemCount: 0,
+            subtotal: 0,
+            updatedQuantity: 1,
+            product: [],
+            //end cart
             currentIndex: 0,
             featuresimgs: '',
             slider_img: [],
@@ -545,13 +535,83 @@ export default {
         };
     },
     mounted() {
-        //    this.initSlick();
+        this.loadCart();
+        this.cartItemCount();
         this.initLightSlider();
-
         this.fetchData();
     },
     methods: {
+        increment() {
+            // Increase the quantity value
+            this.updatedQuantity++;
+        },
+        decrement() {
+            // Decrease the quantity value, but ensure it doesn't go below 1
+            if (this.updatedQuantity > 1) {
+                this.updatedQuantity--;
+            }
+        },
+        sanitizeInput() {
+            // Remove non-numeric characters from the input
+            // Remove non-numeric characters from the input
+            this.updatedQuantity = this.updatedQuantity.replace(/\D/g, '');
 
+            // Ensure the value is not empty
+            if (this.updatedQuantity === '') {
+                this.updatedQuantity = 1;
+            }
+        },
+        //for cart
+        loadCart() {
+            const savedCart = localStorage.getItem('cart');
+
+            if (savedCart) {
+                this.cart = JSON.parse(savedCart);
+            }
+        },
+        saveCart() {
+            this.loading = true;
+            localStorage.setItem('cart', JSON.stringify(this.cart));
+            setTimeout(() => {
+                this.loading = false;
+            }, 2000);
+        },
+        cartItemCount() {
+            let itemCount = 0;
+            this.cart.forEach((item) => {
+                itemCount += parseInt(item.quantity);
+            });
+            this.itemCount = itemCount;
+            console.log('Emitting cartItemCountUpdated event with itemCount:', this.itemCount);
+            this.$eventBus.$emit('cartItemCountUpdated', this.itemCount);
+
+        },
+        updateQuantity(productId, newQuantity) {
+            const index = this.cart.findIndex((item) => item.product.id === productId);
+
+            if (index !== -1) {
+                this.cart[index].quantity = newQuantity;
+                this.saveCart();
+            }
+        },
+        addToCart(productId) {
+            const productToAdd = this.product.find((product) => product.id === productId);
+            const existingItem = this.cart.find((item) => item.product.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                this.cart.push({
+                    product: productToAdd,
+                    quantity: this.updatedQuantity,
+                });
+            }
+
+            this.saveCart();
+            this.cartItemCount();
+        },
+
+        //end cart
         initLightSlider() {
             let thumbnails = document.getElementsByClassName('Slider-thumbnail');
             let activeImages = document.getElementsByClassName('active');
@@ -576,12 +636,14 @@ export default {
         },
 
         async fetchData() {
-
+            this.loading = true;
             const slug = this.productSlug;
             const response = await this.$axios.get(`/unauthenticate/productSlug/${slug}`);
             this.featuresimgs = response.data.featuredImage;
             this.slider_img = response.data.slider_img;
             this.pro_row = response.data.pro_row;
+            this.product = response.data.product;
+            this.loading = false;
             $(".product_details").html(response.data.pro_row.description);
             //console.log("====" + response.data.slider_img);
         },

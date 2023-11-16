@@ -50,7 +50,11 @@
     <section class="main_content">
 
         <div class="container">
+            <p>
+                <center>You'r login : {{ email }}</center>
+            </p>
             <div class="row">
+
                 <div class="col-md-8">
                     <div class="delivery_addreess">
                         <h6>Delivery To : Jhone Due </h6>
@@ -239,14 +243,46 @@
 </div>
 </template>
 
-    
 <script>
 import $ from 'jquery';
-export default {
+import Common_MobileSidebar from '~/components/Common_MobileSidebar.vue';
+import Common_MiniTabNavbar from '~/components/Common_MiniTabNavbar.vue';
+import Common_MobileSearchProduct from '~/components/Common_MobileSearchProduct.vue';
+import RecentView from '~/components/RecentView.vue';
 
+export default {
+    components: {
+        Common_MobileSidebar,
+        Common_MiniTabNavbar,
+        Common_MobileSearchProduct,
+        RecentView
+    },
     head: {
         title: 'Checkout',
     },
-
-}
+    data() {
+        return {
+            email: '',
+        };
+    },
+    mounted() {
+        //this.checkLoginStatus();
+    },
+    computed: {
+        // isAuthenticated() {
+        //     return this.$auth.loggedIn;
+        // },
+    },
+    methods: {
+        checkLoginStatus() {
+            if (this.isAuthenticated) {
+                console.log('User is logged in.');
+                // You can perform actions for authenticated users here
+            } else {
+                console.log('User is not logged in.');
+                // You can handle actions for non-authenticated users here
+            }
+        },
+    },
+};
 </script>

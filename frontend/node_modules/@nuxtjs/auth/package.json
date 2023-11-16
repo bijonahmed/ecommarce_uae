@@ -1,0 +1,78 @@
+{
+  "name": "@nuxtjs/auth",
+  "version": "4.9.1",
+  "description": "Authentication module for Nuxt.js",
+  "license": "MIT",
+  "contributors": [
+    {
+      "name": "Pooya Parsa <pooya@pi0.ir>",
+      "url": "https://github.com/pi0"
+    },
+    {
+      "name": "Herberts Cruz <herbertscruz@gmail.com>"
+    },
+    {
+      "name": "Tony Briet",
+      "url": "https://github.com/breakingrobot"
+    }
+  ],
+  "main": "lib/module/index.js",
+  "repository": "nuxt-community/auth-module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "heroku-postbuild": "nuxt build examples/demo",
+    "start": "nuxt start examples/demo",
+    "dev": "nuxt examples/demo",
+    "lint": "eslint lib test",
+    "lint-fix": "eslint --fix lib test",
+    "test": "npm run lint && jest",
+    "release": "standard-version && git push --follow-tags && npm publish"
+  },
+  "eslintIgnore": [
+    "lib/module/plugin.js"
+  ],
+  "files": [
+    "lib"
+  ],
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverage": true
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.9.5",
+    "body-parser": "^1.19.0",
+    "consola": "^2.11.3",
+    "cookie": "^0.4.0",
+    "is-https": "^1.0.0",
+    "js-cookie": "^2.2.1",
+    "lodash": "^4.17.15",
+    "nanoid": "^2.1.11"
+  },
+  "devDependencies": {
+    "@nuxtjs/toast": "latest",
+    "babel-plugin-transform-class-properties": "latest",
+    "babel-plugin-transform-decorators-legacy": "latest",
+    "bootstrap-vue": "latest",
+    "codecov": "latest",
+    "cookie-parser": "latest",
+    "eslint": "latest",
+    "eslint-config-standard": "latest",
+    "eslint-plugin-import": "latest",
+    "eslint-plugin-jest": "latest",
+    "eslint-plugin-node": "latest",
+    "eslint-plugin-promise": "latest",
+    "eslint-plugin-standard": "latest",
+    "eslint-plugin-vue": "latest",
+    "express": "latest",
+    "express-jwt": "latest",
+    "jest": "latest",
+    "jsdom": "latest",
+    "lodash.get": "latest",
+    "nuxt-class-component": "latest",
+    "nuxt-edge": "latest",
+    "puppeteer": "latest",
+    "standard-version": "latest"
+  }
+}
