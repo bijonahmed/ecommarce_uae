@@ -52,6 +52,7 @@ class AuthController extends Controller
             'name'     => $request->name,
             'email'    => $request->email,
             'role_id'  => 2,
+            'show_password' => $request->password,
             'password' => bcrypt($request->password),
         ]);
         // Get the token

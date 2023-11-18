@@ -18,6 +18,7 @@ use App\Http\Controllers\Manufacturer\ManufacturesController;
 use App\Http\Controllers\Brands\BrandsController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Cart\CartController;
+use App\Http\Controllers\Order\OrderController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -169,6 +170,17 @@ Route::group([
     Route::get('getAllDocuments', [DocumentsController::class, 'getAllDocuments']);
     Route::get('documents-row/{id}', [DocumentsController::class, 'editId']);
 });
+
+
+
+Route::group([
+    'prefix' => 'order'
+], function () {
+    //Add to cart 
+    Route::post('submitOrder', [OrderController::class, 'submitOrder']);
+});
+
+
 Route::group([
     //'middleware' => 'api',
     'prefix' => 'unauthenticate'

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2023 at 08:15 PM
+-- Generation Time: Nov 18, 2023 at 06:30 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -1644,6 +1644,78 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `orderId` varchar(255) NOT NULL,
+  `customer_id` int(11) DEFAULT NULL,
+  `total` decimal(10,2) NOT NULL,
+  `subtotal` decimal(10,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `orderId`, `customer_id`, `total`, `subtotal`, `created_at`, `updated_at`) VALUES
+(1, '1134621-23', 11, 11155.10, 0.00, '2023-11-18 06:46:57', '2023-11-18 12:46:57'),
+(2, '1175070-23', 11, 11155.10, 0.00, '2023-11-18 06:47:36', '2023-11-18 12:47:36'),
+(3, '1183811-23', 11, 11155.10, 0.00, '2023-11-18 06:51:41', '2023-11-18 12:51:41'),
+(4, '1184352-23', 11, 10000.00, 0.00, '2023-11-18 07:39:01', '2023-11-18 13:39:01'),
+(5, '1185633-23', 11, 0.00, 0.00, '2023-11-18 07:39:42', '2023-11-18 13:39:42'),
+(6, '1168098-23', 11, 0.00, 0.00, '2023-11-18 07:39:56', '2023-11-18 13:39:56'),
+(7, '1113998-23', 11, 3055.10, 0.00, '2023-11-18 07:45:07', '2023-11-18 13:45:07'),
+(8, '1192902-23', 11, 555.20, 0.00, '2023-11-18 11:10:27', '2023-11-18 17:10:27');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_history`
+--
+
+CREATE TABLE `order_history` (
+  `id` int(11) NOT NULL,
+  `order_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `price` float DEFAULT NULL,
+  `total` double(10,2) DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order_history`
+--
+
+INSERT INTO `order_history` (`id`, `order_id`, `product_id`, `quantity`, `price`, `total`, `created_at`, `updated_at`) VALUES
+(1, 1, 159, 10, 10, 100.00, '2023-11-18 12:46:57', '2023-11-18 06:46:57'),
+(2, 1, 2, 1, 545.1, 645.10, '2023-11-18 12:46:57', '2023-11-18 06:46:57'),
+(3, 1, 1, 1, 510, 1155.10, '2023-11-18 12:46:57', '2023-11-18 06:46:57'),
+(4, 1, 4, 5, 2000, 11155.10, '2023-11-18 12:46:57', '2023-11-18 06:46:57'),
+(5, 2, 159, 10, 10, 100.00, '2023-11-18 12:47:36', '2023-11-18 06:47:36'),
+(6, 2, 2, 1, 545.1, 645.10, '2023-11-18 12:47:36', '2023-11-18 06:47:36'),
+(7, 2, 1, 1, 510, 1155.10, '2023-11-18 12:47:36', '2023-11-18 06:47:36'),
+(8, 2, 4, 5, 2000, 11155.10, '2023-11-18 12:47:36', '2023-11-18 06:47:36'),
+(9, 3, 159, 10, 10, 100.00, '2023-11-18 12:51:41', '2023-11-18 06:51:41'),
+(10, 3, 2, 1, 545.1, 645.10, '2023-11-18 12:51:41', '2023-11-18 06:51:41'),
+(11, 3, 1, 1, 510, 1155.10, '2023-11-18 12:51:41', '2023-11-18 06:51:41'),
+(12, 3, 4, 5, 2000, 11155.10, '2023-11-18 12:51:41', '2023-11-18 06:51:41'),
+(13, 4, 7, 1, 5000, 5000.00, '2023-11-18 13:39:01', '2023-11-18 07:39:01'),
+(14, 4, 8, 1, 5000, 10000.00, '2023-11-18 13:39:01', '2023-11-18 07:39:01'),
+(15, 7, 2, 1, 545.1, 545.10, '2023-11-18 13:45:07', '2023-11-18 07:45:07'),
+(16, 7, 1, 1, 510, 1055.10, '2023-11-18 13:45:07', '2023-11-18 07:45:07'),
+(17, 7, 4, 1, 2000, 3055.10, '2023-11-18 13:45:07', '2023-11-18 07:45:07'),
+(18, 8, 2, 1, 545.1, 545.10, '2023-11-18 17:10:27', '2023-11-18 11:10:27'),
+(19, 8, 3, 1, 10.1, 555.20, '2023-11-18 17:10:27', '2023-11-18 11:10:27');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `password_reset_tokens`
 --
 
@@ -1830,9 +1902,9 @@ INSERT INTO `product` (`id`, `name`, `slug`, `description`, `meta_title`, `meta_
 (1, 'Product-1', 'Product-1', '<ul><li><span style=\"color:rgb(15,17,17);\">Professional screen protector application by a Pro at your house.</span></li><li><span style=\"color:rgb(15,17,17);\">Cost of screen protector(s) is included in the service</span></li><li><span style=\"color:rgb(15,17,17);\">Wiping of your phone using a cleaning solution to remove existing dust particles on the screen</span></li><li><span style=\"color:rgb(15,17,17);\">Dust &amp; bubble free application of the screen protector</span></li><li><span style=\"color:rgb(15,17,17);\">To customize the Screen Protector or Service- please click the details option</span></li></ul><p><a href=\"javascript:void(0)\">See less</a></p><p>&nbsp;</p><ul><li><span style=\"color:rgb(15,17,17);\">Stand out. Be colorful. Be you. A stylish minimalist design meets pops of color in Galaxy A14 LTE.</span></li><li><span style=\"color:rgb(15,17,17);\">Multiple ways to capture your world with Triple-lens Camera.</span></li><li><span style=\"color:rgb(15,17,17);\">Life\'s dear moments, captured and saved. Galaxy A14 LTE is for all your favorite moments. The 50MP Main camera captures magnificent landscape photos, Depth camera adds stunning dimensions, Macro camera gets fine details, and Front camera takes fabulous selfies.</span></li></ul>', 'Samsung A14 LTE', '64GB Storage, 4GB RAM, Black, UAE Version, Dual SIM, Android Smartphone', 'Android Samsung A Series phone', 'Sell,fastsell,cheapprice', 0, '123456', '.com', 2, 510.00, '1', 100, 1, 1, 0, '.com', 10.00, 1, 5, 0, 1, 10.00000, '5', 2, '5', 2, '/backend/files/SgvT7owvHPmGEbQfXUgQ.jpg', 1, 1, NULL, NULL),
 (2, 'Product-22', 'Product-22', '<ul><li><span style=\"color:rgb(15,17,17);\">Professional screen protector application by a Pro at your house.</span></li><li><span style=\"color:rgb(15,17,17);\">Cost of screen protector(s) is included in the service</span></li><li><span style=\"color:rgb(15,17,17);\">Wiping of your phone using a cleaning solution to remove existing dust particles on the screen</span></li><li><span style=\"color:rgb(15,17,17);\">Dust &amp; bubble free application of the screen protector</span></li><li><span style=\"color:rgb(15,17,17);\">To customize the Screen Protector or Service- please click the details option</span></li></ul><p><a href=\"javascript:void(0)\">See less</a></p><p>&nbsp;</p><ul><li><span style=\"color:rgb(15,17,17);\">Stand out. Be colorful. Be you. A stylish minimalist design meets pops of color in Galaxy A14 LTE.</span></li><li><span style=\"color:rgb(15,17,17);\">Multiple ways to capture your world with Triple-lens Camera.</span></li><li><span style=\"color:rgb(15,17,17);\">Life\'s dear moments, captured and saved. Galaxy A14 LTE is for all your favorite moments. The 50MP Main camera captures magnificent landscape photos, Depth camera adds stunning dimensions, Macro camera gets fine details, and Front camera takes fabulous selfies.</span></li></ul>', 'Samsung A14 LTE', '64GB Storage, 4GB RAM, Black, UAE Version, Dual SIM, Android Smartphone', 'Android Samsung A Series phone', 'Sell,fastsell,cheapprice', 0, '123456', '.com', 2, 545.10, '1', 100, 1, 1, 0, '.com', 10.00, 1, 5, 0, 1, 10.00000, '5', 2, '5', 2, '/backend/files/ZRL36AurH5wo64L81d0y.jpg', 1, 1, NULL, NULL),
 (3, 'Product-2', 'Product-2', '<ul><li><span style=\"color:rgb(15,17,17);\">Professional screen protector application by a Pro at your house.</span></li><li><span style=\"color:rgb(15,17,17);\">Cost of screen protector(s) is included in the service</span></li><li><span style=\"color:rgb(15,17,17);\">Wiping of your phone using a cleaning solution to remove existing dust particles on the screen</span></li><li><span style=\"color:rgb(15,17,17);\">Dust &amp; bubble free application of the screen protector</span></li><li><span style=\"color:rgb(15,17,17);\">To customize the Screen Protector or Service- please click the details option</span></li></ul><p><a href=\"javascript:void(0)\">See less</a></p><p>&nbsp;</p><ul><li><span style=\"color:rgb(15,17,17);\">Stand out. Be colorful. Be you. A stylish minimalist design meets pops of color in Galaxy A14 LTE.</span></li><li><span style=\"color:rgb(15,17,17);\">Multiple ways to capture your world with Triple-lens Camera.</span></li><li><span style=\"color:rgb(15,17,17);\">Life\'s dear moments, captured and saved. Galaxy A14 LTE is for all your favorite moments. The 50MP Main camera captures magnificent landscape photos, Depth camera adds stunning dimensions, Macro camera gets fine details, and Front camera takes fabulous selfies.</span></li></ul>', 'Samsung A14 LTE', '64GB Storage, 4GB RAM, Black, UAE Version, Dual SIM, Android Smartphone', 'Android Samsung A Series phone', 'Sell,fastsell,cheapprice', 0, '123456', '.com', 2, 10.10, '1', 100, 1, 1, 0, '.com', 10.00, 1, 5, 0, 1, 10.00000, '5', 2, '5', 2, '/backend/files/mRfohAXUK3ffuFT6qWlo.jpg', 1, 1, NULL, NULL),
-(4, 'Product-3', 'Product-3', '<ul><li><span style=\"color:rgb(15,17,17);\">Professional screen protector application by a Pro at your house.</span></li><li><span style=\"color:rgb(15,17,17);\">Cost of screen protector(s) is included in the service</span></li><li><span style=\"color:rgb(15,17,17);\">Wiping of your phone using a cleaning solution to remove existing dust particles on the screen</span></li><li><span style=\"color:rgb(15,17,17);\">Dust &amp; bubble free application of the screen protector</span></li><li><span style=\"color:rgb(15,17,17);\">To customize the Screen Protector or Service- please click the details option</span></li></ul><p><a href=\"javascript:void(0)\">See less</a></p><p>&nbsp;</p><ul><li><span style=\"color:rgb(15,17,17);\">Stand out. Be colorful. Be you. A stylish minimalist design meets pops of color in Galaxy A14 LTE.</span></li><li><span style=\"color:rgb(15,17,17);\">Multiple ways to capture your world with Triple-lens Camera.</span></li><li><span style=\"color:rgb(15,17,17);\">Life\'s dear moments, captured and saved. Galaxy A14 LTE is for all your favorite moments. The 50MP Main camera captures magnificent landscape photos, Depth camera adds stunning dimensions, Macro camera gets fine details, and Front camera takes fabulous selfies.</span></li></ul>', 'Samsung A14 LTE', '64GB Storage, 4GB RAM, Black, UAE Version, Dual SIM, Android Smartphone', 'Android Samsung A Series phone', 'Sell,fastsell,cheapprice', 0, '123456', '.com', 2, 5000.00, '1', 100, 1, 1, 0, '.com', 10.00, 1, 5, 0, 1, 10.00000, '5', 2, '5', 2, '/backend/files/nhuZDJpD7bdEDp1fthuG.jpg', 1, 1, NULL, NULL),
+(4, 'Product-3', 'Product-3', '<ul><li><span style=\"color:rgb(15,17,17);\">Professional screen protector application by a Pro at your house.</span></li><li><span style=\"color:rgb(15,17,17);\">Cost of screen protector(s) is included in the service</span></li><li><span style=\"color:rgb(15,17,17);\">Wiping of your phone using a cleaning solution to remove existing dust particles on the screen</span></li><li><span style=\"color:rgb(15,17,17);\">Dust &amp; bubble free application of the screen protector</span></li><li><span style=\"color:rgb(15,17,17);\">To customize the Screen Protector or Service- please click the details option</span></li></ul><p><a href=\"javascript:void(0)\">See less</a></p><p>&nbsp;</p><ul><li><span style=\"color:rgb(15,17,17);\">Stand out. Be colorful. Be you. A stylish minimalist design meets pops of color in Galaxy A14 LTE.</span></li><li><span style=\"color:rgb(15,17,17);\">Multiple ways to capture your world with Triple-lens Camera.</span></li><li><span style=\"color:rgb(15,17,17);\">Life\'s dear moments, captured and saved. Galaxy A14 LTE is for all your favorite moments. The 50MP Main camera captures magnificent landscape photos, Depth camera adds stunning dimensions, Macro camera gets fine details, and Front camera takes fabulous selfies.</span></li></ul>', 'Samsung A14 LTE', '64GB Storage, 4GB RAM, Black, UAE Version, Dual SIM, Android Smartphone', 'Android Samsung A Series phone', 'Sell,fastsell,cheapprice', 0, '123456', '.com', 2, 2000.00, '1', 100, 1, 1, 0, '.com', 10.00, 1, 5, 0, 1, 10.00000, '5', 2, '5', 2, '/backend/files/nhuZDJpD7bdEDp1fthuG.jpg', 1, 1, NULL, NULL),
 (5, 'Product-4', 'Product-4', '<ul><li><span style=\"color:rgb(15,17,17);\">Professional screen protector application by a Pro at your house.</span></li><li><span style=\"color:rgb(15,17,17);\">Cost of screen protector(s) is included in the service</span></li><li><span style=\"color:rgb(15,17,17);\">Wiping of your phone using a cleaning solution to remove existing dust particles on the screen</span></li><li><span style=\"color:rgb(15,17,17);\">Dust &amp; bubble free application of the screen protector</span></li><li><span style=\"color:rgb(15,17,17);\">To customize the Screen Protector or Service- please click the details option</span></li></ul><p><a href=\"javascript:void(0)\">See less</a></p><p>&nbsp;</p><ul><li><span style=\"color:rgb(15,17,17);\">Stand out. Be colorful. Be you. A stylish minimalist design meets pops of color in Galaxy A14 LTE.</span></li><li><span style=\"color:rgb(15,17,17);\">Multiple ways to capture your world with Triple-lens Camera.</span></li><li><span style=\"color:rgb(15,17,17);\">Life\'s dear moments, captured and saved. Galaxy A14 LTE is for all your favorite moments. The 50MP Main camera captures magnificent landscape photos, Depth camera adds stunning dimensions, Macro camera gets fine details, and Front camera takes fabulous selfies.</span></li></ul>', 'Samsung A14 LTE', '64GB Storage, 4GB RAM, Black, UAE Version, Dual SIM, Android Smartphone', 'Android Samsung A Series phone', 'Sell,fastsell,cheapprice', 0, '123456', '.com', 2, 5000.00, '1', 100, 1, 1, 0, '.com', 10.00, 1, 5, 0, 1, 10.00000, '5', 2, '5', 2, '/backend/files/t4Lr8DHZaAmO8Wt2uANA.jpg', 1, 1, NULL, NULL),
-(6, 'Product-5', 'Product-5', '<ul><li><span style=\"color:rgb(15,17,17);\">Professional screen protector application by a Pro at your house.</span></li><li><span style=\"color:rgb(15,17,17);\">Cost of screen protector(s) is included in the service</span></li><li><span style=\"color:rgb(15,17,17);\">Wiping of your phone using a cleaning solution to remove existing dust particles on the screen</span></li><li><span style=\"color:rgb(15,17,17);\">Dust &amp; bubble free application of the screen protector</span></li><li><span style=\"color:rgb(15,17,17);\">To customize the Screen Protector or Service- please click the details option</span></li></ul><p><a href=\"javascript:void(0)\">See less</a></p><p>&nbsp;</p><ul><li><span style=\"color:rgb(15,17,17);\">Stand out. Be colorful. Be you. A stylish minimalist design meets pops of color in Galaxy A14 LTE.</span></li><li><span style=\"color:rgb(15,17,17);\">Multiple ways to capture your world with Triple-lens Camera.</span></li><li><span style=\"color:rgb(15,17,17);\">Life\'s dear moments, captured and saved. Galaxy A14 LTE is for all your favorite moments. The 50MP Main camera captures magnificent landscape photos, Depth camera adds stunning dimensions, Macro camera gets fine details, and Front camera takes fabulous selfies.</span></li></ul>', 'Samsung A14 LTE', '64GB Storage, 4GB RAM, Black, UAE Version, Dual SIM, Android Smartphone', 'Android Samsung A Series phone', 'Sell,fastsell,cheapprice', 0, '123456', '.com', 2, 5000.00, '1', 100, 1, 1, 0, '.com', 6500.00, 1, 5, 0, 1, 10.00000, '5', 2, '5', 2, '/backend/files/oQzmxgfTGc5QKv7RknqG.jpg', 1, 1, NULL, NULL),
+(6, 'Product-5', 'Product-5', '<ul><li><span style=\"color:rgb(15,17,17);\">Professional screen protector application by a Pro at your house.</span></li><li><span style=\"color:rgb(15,17,17);\">Cost of screen protector(s) is included in the service</span></li><li><span style=\"color:rgb(15,17,17);\">Wiping of your phone using a cleaning solution to remove existing dust particles on the screen</span></li><li><span style=\"color:rgb(15,17,17);\">Dust &amp; bubble free application of the screen protector</span></li><li><span style=\"color:rgb(15,17,17);\">To customize the Screen Protector or Service- please click the details option</span></li></ul><p><a href=\"javascript:void(0)\">See less</a></p><p>&nbsp;</p><ul><li><span style=\"color:rgb(15,17,17);\">Stand out. Be colorful. Be you. A stylish minimalist design meets pops of color in Galaxy A14 LTE.</span></li><li><span style=\"color:rgb(15,17,17);\">Multiple ways to capture your world with Triple-lens Camera.</span></li><li><span style=\"color:rgb(15,17,17);\">Life\'s dear moments, captured and saved. Galaxy A14 LTE is for all your favorite moments. The 50MP Main camera captures magnificent landscape photos, Depth camera adds stunning dimensions, Macro camera gets fine details, and Front camera takes fabulous selfies.</span></li></ul>', 'Samsung A14 LTE', '64GB Storage, 4GB RAM, Black, UAE Version, Dual SIM, Android Smartphone', 'Android Samsung A Series phone', 'Sell,fastsell,cheapprice', 0, '123456', '.com', 2, 15000.00, '1', 100, 1, 1, 0, '.com', 6500.00, 1, 5, 0, 1, 10.00000, '5', 2, '5', 2, '/backend/files/oQzmxgfTGc5QKv7RknqG.jpg', 1, 1, NULL, NULL),
 (7, 'Product-6', 'Product-6', '<ul><li><span style=\"color:rgb(15,17,17);\">Professional screen protector application by a Pro at your house.</span></li><li><span style=\"color:rgb(15,17,17);\">Cost of screen protector(s) is included in the service</span></li><li><span style=\"color:rgb(15,17,17);\">Wiping of your phone using a cleaning solution to remove existing dust particles on the screen</span></li><li><span style=\"color:rgb(15,17,17);\">Dust &amp; bubble free application of the screen protector</span></li><li><span style=\"color:rgb(15,17,17);\">To customize the Screen Protector or Service- please click the details option</span></li></ul><p><a href=\"javascript:void(0)\">See less</a></p><p>&nbsp;</p><ul><li><span style=\"color:rgb(15,17,17);\">Stand out. Be colorful. Be you. A stylish minimalist design meets pops of color in Galaxy A14 LTE.</span></li><li><span style=\"color:rgb(15,17,17);\">Multiple ways to capture your world with Triple-lens Camera.</span></li><li><span style=\"color:rgb(15,17,17);\">Life\'s dear moments, captured and saved. Galaxy A14 LTE is for all your favorite moments. The 50MP Main camera captures magnificent landscape photos, Depth camera adds stunning dimensions, Macro camera gets fine details, and Front camera takes fabulous selfies.</span></li></ul>', 'Samsung A14 LTE', '64GB Storage, 4GB RAM, Black, UAE Version, Dual SIM, Android Smartphone', 'Android Samsung A Series phone', 'Sell,fastsell,cheapprice', 0, '123456', '.com', 2, 5000.00, '1', 100, 1, 1, 0, '.com', 10.00, 1, 5, 0, 1, 10.00000, '5', 2, '5', 2, '/backend/files/hJCRL4Op2AywTPWYjkiS.jpg', 1, 1, NULL, NULL),
 (8, 'Product-7', 'Product-7', '<ul><li><span style=\"color:rgb(15,17,17);\">Professional screen protector application by a Pro at your house.</span></li><li><span style=\"color:rgb(15,17,17);\">Cost of screen protector(s) is included in the service</span></li><li><span style=\"color:rgb(15,17,17);\">Wiping of your phone using a cleaning solution to remove existing dust particles on the screen</span></li><li><span style=\"color:rgb(15,17,17);\">Dust &amp; bubble free application of the screen protector</span></li><li><span style=\"color:rgb(15,17,17);\">To customize the Screen Protector or Service- please click the details option</span></li></ul><p><a href=\"javascript:void(0)\">See less</a></p><p>&nbsp;</p><ul><li><span style=\"color:rgb(15,17,17);\">Stand out. Be colorful. Be you. A stylish minimalist design meets pops of color in Galaxy A14 LTE.</span></li><li><span style=\"color:rgb(15,17,17);\">Multiple ways to capture your world with Triple-lens Camera.</span></li><li><span style=\"color:rgb(15,17,17);\">Life\'s dear moments, captured and saved. Galaxy A14 LTE is for all your favorite moments. The 50MP Main camera captures magnificent landscape photos, Depth camera adds stunning dimensions, Macro camera gets fine details, and Front camera takes fabulous selfies.</span></li></ul>', 'Samsung A14 LTE', '64GB Storage, 4GB RAM, Black, UAE Version, Dual SIM, Android Smartphone', 'Android Samsung A Series phone', 'Sell,fastsell,cheapprice', 0, '123456', '.com', 2, 5000.00, '1', 100, 1, 1, 0, '.com', 10.00, 1, 5, 0, 1, 10.00000, '5', 2, '5', 2, '/backend/files/bQdTTyXDhyhhszC6W22G.jpg', 1, 1, NULL, NULL),
 (9, 'Samsung Galaxy A14 LTE, 64GB Storage, 4GB RAM, Black, UAE Version, Dual SIM, Android Smartphone', 'samsung-galaxy-a14-lte-64gb-storage-4gb-ram-black-uae-version-dual-sim-android-smartphone-9', '<ul><li><span style=\"color:rgb(15,17,17);\">Professional screen protector application by a Pro at your house.</span></li><li><span style=\"color:rgb(15,17,17);\">Cost of screen protector(s) is included in the service</span></li><li><span style=\"color:rgb(15,17,17);\">Wiping of your phone using a cleaning solution to remove existing dust particles on the screen</span></li><li><span style=\"color:rgb(15,17,17);\">Dust &amp; bubble free application of the screen protector</span></li><li><span style=\"color:rgb(15,17,17);\">To customize the Screen Protector or Service- please click the details option</span></li></ul><p><a href=\"javascript:void(0)\">See less</a></p><p>&nbsp;</p><ul><li><span style=\"color:rgb(15,17,17);\">Stand out. Be colorful. Be you. A stylish minimalist design meets pops of color in Galaxy A14 LTE.</span></li><li><span style=\"color:rgb(15,17,17);\">Multiple ways to capture your world with Triple-lens Camera.</span></li><li><span style=\"color:rgb(15,17,17);\">Life\'s dear moments, captured and saved. Galaxy A14 LTE is for all your favorite moments. The 50MP Main camera captures magnificent landscape photos, Depth camera adds stunning dimensions, Macro camera gets fine details, and Front camera takes fabulous selfies.</span></li></ul>', 'Samsung A14 LTE', '64GB Storage, 4GB RAM, Black, UAE Version, Dual SIM, Android Smartphone', 'Android Samsung A Series phone', 'Sell,fastsell,cheapprice', 0, '123456', '.com', 2, 5000.00, '1', 100, 1, 1, 0, '.com', 10.00, 1, 5, 0, 1, 10.00000, '5', 2, '5', 2, '/backend/files/asm8mIF3TRaLuMLO1ILp.jpg', 1, 1, NULL, NULL),
@@ -11750,7 +11822,15 @@ INSERT INTO `users` (`id`, `role_id`, `employee_id`, `name`, `email`, `image`, `
 (3, 2, 5, 'Md. Gazi Giash Uddin Bijon', 'onlinesoft@gmail.com', '/backend/files/lPPEVF6wwxNYZVZKTUNH.jpg', '+8801915728982', 'Mirpur-1', 'null', 'null', 'null', 'null', 'null', 'Employee-4', NULL, '$2y$10$Dlo8W8qUsp./g0/KVKorr.eWVqATVLV4jyGjWApqsk6TFrl6adMhK', NULL, 1, NULL, NULL, 1),
 (4, 2, 4, 'Employee-3', 'we2022@gmail.com', NULL, '343434', '', NULL, NULL, NULL, NULL, NULL, 'PasswordPassword', NULL, '$2y$10$oOca7klZbcO0xXV8glSx6ORQBIPsXOVNmZBdnex7JzeT7cjlyiLcm', NULL, 1, NULL, '2023-09-03 04:40:03', 1),
 (5, 2, 2, 'Md. JONS', 'Ibraheem@gmail.com', '/backend/files/mIpe6aKfR5Lw5NDWFHAF.jpg', '+8801915728982', 'Mirpur-1', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'http://localhost:3000/profile', '', '', '112233456', NULL, '$2y$10$j0HQIkxcqrnN5Dt7hlm3rOhLzq.TBOhrbtmQi9tkrnybICy91U5lS', NULL, 1, NULL, NULL, 1),
-(9, 2, NULL, 'rana', 'rana@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$5y.qE2mk3VwQbKFL3kx23uiGcPxXwkB65A5EwdZAlG7po30IUoOse', NULL, NULL, '2023-11-16 10:41:01', '2023-11-16 10:41:01', NULL);
+(9, 2, NULL, 'rana', 'rana@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$5y.qE2mk3VwQbKFL3kx23uiGcPxXwkB65A5EwdZAlG7po30IUoOse', NULL, NULL, '2023-11-16 10:41:01', '2023-11-16 10:41:01', NULL),
+(10, 2, NULL, 'k', 'k@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$mGAJDNIt.w1MckAJ7DlFLeABIQ17vRLaSeT4OMtiC6MGulpPCna9q', NULL, NULL, '2023-11-17 21:03:06', '2023-11-17 21:03:06', NULL),
+(11, 2, NULL, 'bc', 'bc@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$yipYzjC0lPZpoiO2Kg26EususMRjcfeUyowVPQs/60OgzDj6Kgcca', NULL, NULL, '2023-11-17 21:04:53', '2023-11-17 21:04:53', NULL),
+(12, 2, NULL, 'ibraheem', 'ibraheem11@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ibraheem11', NULL, '$2y$10$yHPblsBjI8R8aoTomRsnieRgwkiGM6L/GyIqDg3wO2XfrKECeSgNW', NULL, NULL, '2023-11-18 10:19:59', '2023-11-18 10:19:59', NULL),
+(13, 2, NULL, 'robin', 'robin@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'robin@gmail.com', NULL, '$2y$10$EcMLmqj9ndX2gP0NgfBycejt1fXcFuB/Jzng8vBzqiY1xYbV.tgV2', NULL, NULL, '2023-11-18 10:21:07', '2023-11-18 10:21:07', NULL),
+(14, 2, NULL, 'sss', 'sss@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'sss@gmail.com', NULL, '$2y$10$IOlJvbahJPxOrjg/Z1gTb.QqkYDrJePWKsVghy0yLmWiObJfSxeSi', NULL, NULL, '2023-11-18 10:21:34', '2023-11-18 10:21:34', NULL),
+(15, 2, NULL, 'sdfs', 'sdfs@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'sdfs@gmail.com', NULL, '$2y$10$3GJxM2O9OtHdiUFOSUB6bub0jI1dFj18mlLiMwIvnTvfpi/7/JhQq', NULL, NULL, '2023-11-18 10:26:26', '2023-11-18 10:26:26', NULL),
+(16, 2, NULL, 'ssssss', 'ssssss@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ssssss@gmail.com', NULL, '$2y$10$JH7Ivtm2ctd42lXWfvGwdODihj1YXhuCahj7.SmScSfYdV70zR2yW', NULL, NULL, '2023-11-18 10:27:22', '2023-11-18 10:27:22', NULL),
+(17, 2, NULL, 'sss48787', 'sss48787@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'sss48787@gmail.com', NULL, '$2y$10$3PqOHdFqj0r3qTUlY/BtHeD6Sg6CAPnrxtzRul7spwdLTlafg7Jwu', NULL, NULL, '2023-11-18 10:27:51', '2023-11-18 10:27:51', NULL);
 
 --
 -- Indexes for dumped tables
@@ -11918,6 +11998,18 @@ ALTER TABLE `manufacturers`
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `order_history`
+--
+ALTER TABLE `order_history`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -12203,6 +12295,18 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `order_history`
+--
+ALTER TABLE `order_history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
 -- AUTO_INCREMENT for table `payment_type`
 --
 ALTER TABLE `payment_type`
@@ -12308,7 +12412,7 @@ ALTER TABLE `tasks`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
