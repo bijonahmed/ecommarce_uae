@@ -90,7 +90,7 @@
                                         <div>
                                             <div class="number">
                                                 <!-- <span class="minus" @click="decrement">-</span> -->
-                                                <input v-model="item.updatedQuantity" class="updatedQuantity" type="number" @input="sanitizeInput" />
+                                                <input v-model="item.updatedQuantity" class="updatedQuantity" type="number" @keypress="allowOnlyNumbers" />
                                                 <!-- <span class="plus" @click="increment">+</span> -->
                                             </div>
                                             <Button class="btn_cart mt-2" style="visibility: unset; background-color: #0C356A;" @click="updateQuantity(item.product.id, item.updatedQuantity)">Update</Button>
@@ -121,7 +121,14 @@
                             <h2>${{ subtotal }}</h2>
                         </div>
                         <p>Delivery fees not included yet.</p>
-                        <a class="btn_cart login_popup_show" style="visibility: unset;width: 100%; display: block;text-align: center;">CheckOut (${{ subtotal }})</a>
+
+                        <span v-if="loggedIn">
+                            <a class="btn_cart" style="visibility: unset;width: 100%; display: block;text-align: center;" @click="gotoCheckOut">CheckOut (${{ subtotal }})</a>
+                        </span>
+                        <span v-else>
+                            <a class="btn_cart" style="visibility: unset;width: 100%; display: block;text-align: center;" @click="openLoginModal">CheckOut (${{ subtotal }})</a>
+                        </span>
+
                     </div>
                     <div class="de_returns">
                         <h3>Returns are easy</h3>
@@ -154,47 +161,39 @@
                 <p>Login and get access to all the features</p>
             </div>
             <div>
-                <form action="checkout.html">
+                <center><span class="show_error text-danger"></span></center>
+                <form @submit.prevent="customerLogin()" id="formrest" class="forms-sample" enctype="multipart/form-data">
                     <div class="input_group">
                         <!-- <label for="">User Name </label> -->
-                        <input type="text" placeholder="User Name ">
+                        <span class="text-danger" v-if="errors.email">{{ errors.email[0] }}</span>
+                        <input type="text" placeholder="Email" v-model="login.email">
                         <i class="fa-solid fa-user"></i>
                     </div>
                     <div class="input_group">
-                        <input type="password" placeholder="Password">
+                        <span class="text-danger" v-if="errors.password">{{ errors.password[0] }}</span>
+                        <input type="password" placeholder="Password" v-model="login.password">
                         <i class="toggle-password fa-solid fa-eye"></i>
                     </div>
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-between align-items-center d-none">
                         <div class="d-flex align-items-center">
                             <input type="checkbox" id="remeber"><label for="remeber">Remember me</label>
                         </div>
-                        <a href="forget-password.html">Forget Password</a>
+                        <a href="#">Forget Password</a>
+                        <!-- <a href="forget-password.html">Forget Password</a> -->
                     </div>
                     <div>
                         <button class="btn_logins" type="submit">Login</button>
                     </div>
                     <div class="d-flex">
-                        <p style="font-size: 12px !important;">Don't have Account? <nuxt-link to="/login" class="btn_signup " type="button">SignUp</nuxt-link></p>
+                        <p style="font-size: 12px !important;">Don't have Account? <nuxt-link to="/login" class="btn_signup " type="button">SignUp</nuxt-link>
+                        </p>
                     </div>
                 </form>
-            </div>
-            <div class="social_login d-none">
-                <h4>Login With</h4>
-                <ul>
-                    <li>
-                        <a href="#" class="btn_social"><i class="fa-brands fa-facebook-f"></i></a>
-                    </li>
-                    <li>
-                        <a href="#" class="btn_social"><i class="fa-brands fa-google"></i></a>
-                    </li>
-                    <li>
-                        <a href="#" class="btn_social"><i class="fa-brands fa-twitter"></i></a>
-                    </li>
-                </ul>
             </div>
 
         </div>
     </div>
+
 </div>
 </template>
 
@@ -218,6 +217,13 @@ export default {
             itemCount: 0,
             subtotal: 0,
             updatedQuantity: 0,
+            login: {
+                email: '',
+                password: '',
+            },
+            notifmsg: '',
+            errors: {},
+            // loggedIn: false,
 
         };
     },
@@ -229,7 +235,7 @@ export default {
         this.calculateSubtotal();
         this.loadCart();
         this.cartItemCount();
-        this.subtotal = this.calculateSubtotal(); // Calculate the subtotal and store it in a data property
+        this.subtotal = this.calculateSubtotal();
 
         if (process.client) {
             $(document).ready(function () {
@@ -243,10 +249,53 @@ export default {
             // Now you can work with myElement
         }
     },
+    computed: {
+        loggedIn() {
+            return this.$auth.loggedIn;
+        },
 
+    },
     methods: {
-        sanitizeInput() {
-            console.log("sdfsfsdf...");
+        gotoCheckOut() {
+            this.$router.push('/checkout');
+        },
+        async customerLogin() {
+            try {
+
+                $(".show_error").html("");
+                const postData = {
+                    email: this.login.email,
+                    password: this.login.password,
+                    // Add other parameters as needed
+                };
+                //console.log("==========login email:" +  this.login.email);
+                //console.log("==========login password:" +  this.login.password);
+                //return false; 
+                let {
+                    data
+                } = await this.$axios.post('/auth/login', postData);
+                await this.$auth.setUserToken(data.access_token);
+                this.$router.push('/checkout');
+                //this.loginForm.reset();
+            } catch (err) {
+                console.log(err)
+                console.error('Login error:', err);
+                if (err.response && err.response.status === 401) {
+                    $(".show_error").html("Invalid credentials. Please try again.");
+                } else {
+                    $(".show_error").html('An error occurred. Please try again later.');
+                }
+            }
+        },
+        openLoginModal() {
+            $(".login_popup").fadeIn();
+        },
+        allowOnlyNumbers(event) {
+            var charCode = (event.which) ? event.which : event.keyCode;
+
+            if (String.fromCharCode(charCode).match(/[^0-9]/g)) {
+                event.preventDefault();
+            }
         },
         clearCart() {
             this.loading = true;
@@ -326,7 +375,7 @@ export default {
             const existingItem = this.cart.find((item) => item.product.id === productId);
 
             if (existingItem) {
-                existingItem.quantity += 1;
+                //existingItem.quantity += 1;
             } else {
                 this.cart.push({
                     product: productToAdd,
@@ -371,4 +420,3 @@ export default {
     },
 }
 </script>
- 

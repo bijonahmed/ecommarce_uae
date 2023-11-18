@@ -327,7 +327,7 @@ export default {
             const existingItem = this.cart.find((item) => item.product.id === productId);
 
             if (existingItem) {
-                existingItem.quantity += 1;
+                //existingItem.quantity += 1;
             } else {
                 this.cart.push({
                     product: productToAdd,

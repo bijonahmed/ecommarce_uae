@@ -28,10 +28,10 @@ export default {
     ],
     script: [
       { src: "https://code.jquery.com/jquery-3.7.0.js" },
- 
       { src: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" },
       { src: "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" },
       { src: "https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" },
+      { src: "https://cdn.jsdelivr.net/npm/sweetalert2@11" },
      // { src: "https://code.jquery.com/jquery-3.1.1.slim.min.js" },
  
       //{ src: "/js/priceRange.js" },
@@ -54,7 +54,6 @@ export default {
     '~/plugins/event-bus.js',
     { src: '~plugins/jquery.js', ssr: false }, // Import jQuery
     { src: '~plugins/vue-owl-carousel.js', ssr: false },
-    
   ],
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -66,8 +65,6 @@ export default {
   modules: [
     '@nuxtjs/axios',
     "@nuxtjs/auth-next"
-   // '@nuxtjs/vuex'
-    //'@nuxtjs/vuex'
 
   ],
   auth: {
@@ -76,12 +73,9 @@ export default {
       local: {
         token: {
           property: "access_token",
-          // required: true,
-          // type: 'Bearer'
         },
         user: {
           property: false,
-          // autoFetch: true
         },
         endpoints: {
           login: { url: "/auth/login", method: "post" },
@@ -99,13 +93,13 @@ export default {
   },
    // Axios module configuration: https://go.nuxtjs.dev/config-axios
    axios: {
-     baseURL: "http://127.0.0.1:8000/api",
-     //baseURL: "https://ad-ecom.futuregenit.com/api",
+     //baseURL: "http://127.0.0.1:8000/api",
+     baseURL: "https://ad-ecom.futuregenit.com/api",
     },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: ["defu"],
-    //vendor: ['jquery'],
+    vendor: ['jquery'],
     build: {
       extend(config, { isDev, isClient }) {
         if (isDev && isClient) {

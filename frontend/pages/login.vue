@@ -88,7 +88,7 @@
                                 </div>
                                 <div class="group">
                                     <input style="--i:1;" type="password" class="input" v-model="login.password">
-                                    <span class="text-danger" v-if="errors.name">{{ errors.password[0] }}</span>
+                                    <span class="text-danger" v-if="errors.password">{{ errors.password[0] }}</span>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
                                     <label>Password</label>
@@ -97,7 +97,8 @@
                                 <button type="submit" class="btn_login">Login</button>
                             </form>
                             <div class="text-end">
-                                <a href="forget-password.html">Forget Password?</a>
+                                <!-- <a href="forget-password.html">Forget Password?</a> -->
+                                <a href="#">Forget Password?</a>
                             </div>
 
                             <div class="social_login">
@@ -213,13 +214,17 @@ export default {
                 formData, {
                     headers
                 }).then((response) => {
-                $('#formrest')[0].reset();
                 // Assuming your API returns a JWT token in the response
                 const token = response.data.access_token;
                 console.log("get token: " + token);
                 // Save the token to local storage
                 localStorage.setItem('jwtToken', token);
-                this.$router.push('/checkout');
+                // this.$router.push('/checkout');
+                if (process.client) {
+                    this.$router.push({
+                        path: '/cart/user-profile'
+                    });
+                }
 
             }).catch(error => {
                 if (error.response.status === 422) {
@@ -227,22 +232,24 @@ export default {
                 }
             });
         },
-
         //customerLogin
         async customerLogin() {
             try {
 
                 const postData = {
-                    email: 'rana@gmail.com',
-                    password: 'rana@gmail.com',
+                    email: this.login.email,
+                    password: this.login.password,
                     // Add other parameters as needed
                 };
-
-                let { data } = await this.$axios.post('/auth/login', postData); //await this.login.post('/auth/login');
+                //console.log("==========login email:" +  this.login.email);
+                //console.log("==========login password:" +  this.login.password);
+                //return false; 
+                let {
+                    data
+                } = await this.$axios.post('/auth/login', postData); //await this.login.post('/auth/login');
                 await this.$auth.setUserToken(data.access_token);
                 this.$router.push('/checkout');
-                this.loginForm.reset();
-              
+                //this.loginForm.reset();
 
             } catch (err) {
                 console.log(err)

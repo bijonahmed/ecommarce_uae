@@ -20,24 +20,24 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="sidenav_title">
-                                                <a href="user-profile.html">
+                                                <nuxt-link to="/user/user-profile">
                                                     <h6>My Ecommerce Account</h6>
 
                                                     <i class="fa-solid fa-chevron-right"></i>
-                                                </a>
+                                                </nuxt-link>
                                             </div>
                                             <ul>
-                                                <li>
-                                                    <a href="#"><i class="fa-solid fa-box"></i>Order</a>
+                                                <li v-if="loggedIn">
+                                                    <nuxt-link to="/user/user-orders"><i class="fa-solid fa-box"></i>Order</nuxt-link>
                                                 </li>
-                                                <li>
-                                                    <a href="#"><i class="fa-regular fa-comment-dots"></i>Pending Reviews</a>
+                                                <li v-if="loggedIn">
+                                                    <nuxt-link to="/user/my-reviews"><i class="fa-regular fa-comment-dots"></i>Pending Reviews</nuxt-link>
                                                 </li>
-                                                <li>
-                                                    <a href="#"><i class="fa-solid fa-ticket-simple"></i>Voucher </a>
+                                                <li v-if="loggedIn">
+                                                    <nuxt-link to="#"><i class="fa-solid fa-ticket-simple"></i>Voucher </nuxt-link>
                                                 </li>
-                                                <li>
-                                                    <a href="#"><i class="fa-solid fa-heart"></i>Save items </a>
+                                                <li v-if="loggedIn">
+                                                    <nuxt-link to="/user/user-whichlist"><i class="fa-solid fa-heart"></i>Save items </nuxt-link>
                                                 </li>
                                             </ul>
                                         </div>
@@ -53,7 +53,7 @@
                                             </div>
                                             <ul>
                                                 <li v-for="childCategory in category.children" :key="childCategory.id">
-                                                    <a href="#"><i class="fa-solid fa-mobile-screen-button"></i> {{ childCategory.name }}</a>
+                                                    <a href="#" @click="redirectCategory(category.slug)"><i class="fa-solid fa-mobile-screen-button"></i> {{ childCategory.name }}</a>
                                                 </li>
 
                                             </ul>
@@ -136,15 +136,16 @@
                                     <button class="drop_btn" type="button" @click="logout">Sign Out</button>
                                 </span>
                                 <span v-else>
-                                    <button class="drop_btn login_popup_show" type="button">Sign In</button>
+                                    <button class="drop_btn" type="button" @click="openLoginModal">Sign In</button>
                                 </span>
-                                <li>
+
+                                <li v-if="loggedIn">
                                     <Nuxt-link class="dropdown-item" to="/user/user-profile">MY Account</Nuxt-link>
                                 </li>
-                                <li>
+                                <li v-if="loggedIn">
                                     <Nuxt-link class="dropdown-item" to="/user/user-orders">Orders</Nuxt-link>
                                 </li>
-                                <li>
+                                <li v-if="loggedIn">
                                     <Nuxt-link class="dropdown-item" to="/user/user-whichlist">Wishlist</Nuxt-link>
                                 </li>
                             </ul>
@@ -197,54 +198,7 @@
                                 <img src="images/product(1).jpg" alt="">
                                 <a href="product-details.html">Cat ,Product or brand name here Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis rerum nemo iste hic nobis, porro iusto officiis eum sit eos!</a>
                             </li>
-                            <li>
-                                <a href="product-details.html">Cat ,Product or brand name here Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis rerum nemo iste hic nobis, porro iusto officiis eum sit eos!</a>
-                            </li>
-                            <li>
-                                <a href="product-details.html">Cat ,Product or brand name here Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis rerum nemo iste hic nobis, porro iusto officiis eum sit eos!</a>
-                            </li>
-                            <li>
-                                <img src="images/product(1).jpg" alt="">
-                                <a href="product-details.html">Cat ,Product or brand name here Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis rerum nemo iste hic nobis, porro iusto officiis eum sit eos!</a>
-                            </li>
-                            <li>
-                                <a href="product-details.html">Cat ,Product or brand name here Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis rerum nemo iste hic nobis, porro iusto officiis eum sit eos!</a>
-                            </li>
-                            <li>
-                                <img src="images/product(1).jpg" alt="">
-                                <a href="product-details.html">Cat ,Product or brand name here Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis rerum nemo iste hic nobis, porro iusto officiis eum sit eos!</a>
-                            </li>
-                            <li>
-                                <a href="product-details.html">Cat ,Product or brand name here Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis rerum nemo iste hic nobis, porro iusto officiis eum sit eos!</a>
-                            </li>
-                            <li>
-                                <img src="images/product(1).jpg" alt="">
-                                <a href="product-details.html">Cat ,Product or brand name here Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis rerum nemo iste hic nobis, porro iusto officiis eum sit eos!</a>
-                            </li>
-                            <li>
-                                <a href="product-details.html">Cat ,Product or brand name here Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis rerum nemo iste hic nobis, porro iusto officiis eum sit eos!</a>
-                            </li>
-                            <li>
-                                <img src="images/product(1).jpg" alt="">
-                                <a href="product-details.html">Cat ,Product or brand name here Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis rerum nemo iste hic nobis, porro iusto officiis eum sit eos!</a>
-                            </li>
-                            <li>
-                                <a href="product-details.html">Cat ,Product or brand name here Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis rerum nemo iste hic nobis, porro iusto officiis eum sit eos!</a>
-                            </li>
-                            <li>
-                                <img src="images/product(1).jpg" alt="">
-                                <a href="product-details.html">Cat ,Product or brand name here Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis rerum nemo iste hic nobis, porro iusto officiis eum sit eos!</a>
-                            </li>
-                            <li>
-                                <a href="product-details.html">Cat ,Product or brand name here Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis rerum nemo iste hic nobis, porro iusto officiis eum sit eos!</a>
-                            </li>
-                            <li>
-                                <img src="images/product(1).jpg" alt="">
-                                <a href="product-details.html">Cat ,Product or brand name here Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis rerum nemo iste hic nobis, porro iusto officiis eum sit eos!</a>
-                            </li>
-                            <li>
-                                <a href="product-details.html">Cat ,Product or brand name here Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis rerum nemo iste hic nobis, porro iusto officiis eum sit eos!</a>
-                            </li>
+
                         </ul>
                     </div>
                 </div>
@@ -265,6 +219,7 @@ export default {
             id: '',
             categories: [],
             itemCount: 0,
+            //loggedIn: false,
         };
     },
     async mounted() {
@@ -274,13 +229,19 @@ export default {
         await this.fetchData();
     },
     computed: {
-
+        loggedIn() {
+            return this.$auth.loggedIn;
+        },
     },
     methods: {
+        openLoginModal() {
+            $(".login_popup").fadeIn();
+        },
         logout() {
             localStorage.removeItem('jwtToken');
             this.$router.push('/');
         },
+
         async fetchUserData() {
             const token = localStorage.getItem('jwtToken');
             if (!token) {

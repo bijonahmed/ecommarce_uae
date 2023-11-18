@@ -26,6 +26,7 @@
     "swiper": "^11.0.3",
     "vue": "^2.7.10",
     "vue-axios": "^3.5.2",
+    "vue-confirm-dialog": "^1.1.0",
     "vue-owl-carousel": "^2.0.3",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.10",

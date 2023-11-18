@@ -11,16 +11,16 @@
                     <button class="drop_btn" type="button" @click="logout">Sign Out</button>
                 </span>
                 <span v-else>
-                    <button class="drop_btn login_popup_show" type="button">Sign In</button>
+                    <button class="drop_btn" type="button" @click="openLoginModal">Sign In</button>
                 </span>
 
-                <li>
+                <li v-if="loggedIn">
                     <Nuxt-link class="dropdown-item" to="/user/user-profile">MY Account</Nuxt-link>
                 </li>
-                <li>
+                <li v-if="loggedIn">
                     <Nuxt-link class="dropdown-item" to="/user/user-orders">Orders</Nuxt-link>
                 </li>
-                <li>
+                <li v-if="loggedIn">
                     <Nuxt-link class="dropdown-item" to="/user/user-whichlist">Wishlist</Nuxt-link>
                 </li>
             </ul>
@@ -72,7 +72,9 @@ export default {
 
     },
     methods: {
-
+        openLoginModal() {
+            $(".login_popup").fadeIn();
+        },
         loadCart() {
             const savedCart = localStorage.getItem('cart');
 

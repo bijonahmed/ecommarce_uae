@@ -68,7 +68,7 @@
                                         <Nuxt-link to="/user/my-reviews">My Reviews </Nuxt-link>
                                     </li>
                                     <li class="">
-                                        <Nuxt-link to="/login">LogOut </Nuxt-link>
+                                        <a href="#" @click="logout">LogOut </a>
                                     </li>
                                 </ul>
                             </div>
@@ -438,7 +438,13 @@
         },
         mounted() {
     
-        }
+        },
+        methods: {
+        logout() {
+            localStorage.removeItem('jwtToken');
+            this.$router.push('/');
+        },
+    }
     }
     </script>
     
