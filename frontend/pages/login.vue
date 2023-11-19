@@ -218,11 +218,13 @@ export default {
                 const token = response.data.access_token;
                 console.log("get token: " + token);
                 // Save the token to local storage
-                localStorage.setItem('jwtToken', token);
+                //localStorage.setItem('jwtToken', token);
+
+                this.$auth.setUserToken(token);
                 // this.$router.push('/checkout');
                 if (process.client) {
                     this.$router.push({
-                        path: '/cart/user-profile'
+                        path: '/user/user-profile'
                     });
                 }
 

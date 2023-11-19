@@ -8,7 +8,7 @@ exports.modules = {
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./pages/login.vue?vue&type=template&id=250e4f28&
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./pages/login.vue?vue&type=template&id=41bd348e&
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
@@ -16,7 +16,7 @@ var render = function render() {
 };
 var staticRenderFns = [];
 
-// CONCATENATED MODULE: ./pages/login.vue?vue&type=template&id=250e4f28&
+// CONCATENATED MODULE: ./pages/login.vue?vue&type=template&id=41bd348e&
 
 // EXTERNAL MODULE: external "jquery"
 var external_jquery_ = __webpack_require__(32);
@@ -110,7 +110,9 @@ var external_jquery_default = /*#__PURE__*/__webpack_require__.n(external_jquery
         const token = response.data.access_token;
         console.log("get token: " + token);
         // Save the token to local storage
-        localStorage.setItem('jwtToken', token);
+        //localStorage.setItem('jwtToken', token);
+
+        this.$auth.setUserToken(token);
         // this.$router.push('/checkout');
         if (false) {}
       }).catch(error => {
