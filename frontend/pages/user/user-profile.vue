@@ -47,7 +47,7 @@
         </div>
     </section>
     <!-- Main section start here  -->
-    
+
     <section class="main_content ">
         <div class="container">
             <div class="row">
@@ -133,6 +133,38 @@
                                             </div>
 
                                         </form>
+                                        <hr>
+                                    
+                                        <div class="card-body">
+                                            <div class="border p-4 rounded">
+    <center>Change Password</center>
+                                                <form @submit.prevent="saveData()" id="formrest" class="forms-sample" enctype="multipart/form-data">
+                                                    <div class="row mb-3">
+                                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Password</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="password" class="form-control password" v-model="passdata.password" id="password" placeholder="Password">
+                                                            <span class="text-danger" v-if="errors.password">{{ errors.password[0] }}</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                        <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Confirm Password</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="password" class="form-control password_confirmation" v-model="passdata.password_confirmation" id="password_confirmation" placeholder="Confirm Password">
+                                                            <span class="text-danger" v-if="errors.password_confirmation">{{ errors.password_confirmation[0] }}</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <label class="col-sm-3 col-form-label"></label>
+                                                     
+                                                            <button type="submit" class="btn_cart px-5 w-100"><i class="bx bx-check-circle mr-1"></i> Submit</button>
+                                                        
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -235,6 +267,11 @@ export default {
                 address_3: '',
                 created_at: null,
             },
+            passdata: {
+                password: '',
+                password_confirmation: '',
+            },
+            notifmsg: '',
             orders: [],
             errors: {},
         }
@@ -246,6 +283,27 @@ export default {
 
     },
     methods: {
+        saveData() {
+            const formData = new FormData();
+            formData.append('password', this.passdata.password);
+            formData.append('password_confirmation', this.passdata.password_confirmation);
+            const headers = {
+                'Content-Type': 'multipart/form-data'
+            };
+            this.$axios.post('/auth/updatePassword',
+                formData, {
+                    headers
+                }).then((res) => {
+                $('#formrest')[0].reset();
+                    alert("success");
+                this.$router.push('/user/user-profile');
+
+            }).catch(error => {
+                if (error.response.status === 422) {
+                    this.errors = error.response.data.errors;
+                }
+            });
+        },
         updateProfile() {
             $(".profileupdate").fadeIn();
         },
