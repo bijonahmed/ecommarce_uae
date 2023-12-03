@@ -460,8 +460,8 @@ export default {
         },
 
         async fetchDataCategory() {
-            this.loading = true;
-            await this.$axios.get(`/unauthenticate/filterCategorys`).then(response => {
+                this.loading = true;
+                await this.$axios.get(`/unauthenticate/filterCategorys`).then(response => {
                     this.categories = response.data;
                 })
                 .catch(error => {

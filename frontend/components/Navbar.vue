@@ -84,7 +84,9 @@
                                     <ul v-for="(category, index) in categories" :key="category.id">
                                         <li :key="category.id" v-if="index < limit">
                                             <a href="#" class="d-flex justify-content-between align-items-center" @click="redirectCategory(category.slug)">
-                                                <div class="d-flex align-items-center"><img src="/images/cat_svg/icons8-apple-100.png" alt="">{{ category.name }}</div> <i class="fa-solid fa-angle-right"></i>
+                                                <div class="d-flex align-items-center">
+                                                    <!-- <img src="/images/cat_svg/icons8-apple-100.png" alt=""> -->
+                                                    {{ category.name }}</div> <i class="fa-solid fa-angle-right"></i>
                                             </a>
                                             <div class="sub_menu">
                                                 <div class="row" v-if="category.children && category.children.length > 0">

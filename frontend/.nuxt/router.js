@@ -41,6 +41,7 @@ const _68b19804 = () => interopDefault(import('..\\pages\\seller\\seller-orders.
 const _2414639a = () => interopDefault(import('..\\pages\\seller\\seller-profile.vue' /* webpackChunkName: "pages/seller/seller-profile" */))
 const _64b441d0 = () => interopDefault(import('..\\pages\\seller\\seller-wallet.vue' /* webpackChunkName: "pages/seller/seller-wallet" */))
 const _6229bcf6 = () => interopDefault(import('..\\pages\\user\\my-reviews.vue' /* webpackChunkName: "pages/user/my-reviews" */))
+const _8f4c07f0 = () => interopDefault(import('..\\pages\\user\\order-details.vue' /* webpackChunkName: "pages/user/order-details" */))
 const _d1e18ca8 = () => interopDefault(import('..\\pages\\user\\user-orders.vue' /* webpackChunkName: "pages/user/user-orders" */))
 const _7d2a121c = () => interopDefault(import('..\\pages\\user\\user-profile.vue' /* webpackChunkName: "pages/user/user-profile" */))
 const _b4681f78 = () => interopDefault(import('..\\pages\\user\\user-whichlist.vue' /* webpackChunkName: "pages/user/user-whichlist" */))
@@ -206,6 +207,10 @@ export const routerOptions = {
     path: "/user/my-reviews",
     component: _6229bcf6,
     name: "user-my-reviews"
+  }, {
+    path: "/user/order-details",
+    component: _8f4c07f0,
+    name: "user-order-details"
   }, {
     path: "/user/user-orders",
     component: _d1e18ca8,

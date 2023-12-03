@@ -355,6 +355,7 @@ import Common_MiniTabNavbar from '~/components/Common_MiniTabNavbar.vue';
 import Common_MobileSearchProduct from '~/components/Common_MobileSearchProduct.vue';
 
 export default {
+    middleware: 'auth',
     components: {
         Common_MobileSidebar,
         Common_MiniTabNavbar,

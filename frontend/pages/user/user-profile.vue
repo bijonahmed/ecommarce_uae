@@ -3,6 +3,7 @@
     <LogoAndPayment />
     <!-- navbar section start here  -->
     <section class="search_bar">
+
         <div class="container">
             <div class="row justify-content-between align-items-center">
                 <div class="col-lg-3 col-md-4 col-4">
@@ -46,7 +47,7 @@
         </div>
     </section>
     <!-- Main section start here  -->
-
+    
     <section class="main_content ">
         <div class="container">
             <div class="row">
@@ -64,7 +65,7 @@
                                 <li class="">
                                     <Nuxt-link to="/user/user-whichlist">Wishlist </Nuxt-link>
                                 </li>
-                                <li class="">
+                                <li class="d-none">
                                     <Nuxt-link to="/user/my-reviews">My Reviews </Nuxt-link>
                                 </li>
                                 <li class="">
@@ -76,58 +77,59 @@
 
                 </div>
                 <div class="col-md-8">
+                    <div class="loading-indicator" v-if="loading">
+                        <div class="loader-container">
+                            <center class="loader-text">Loading...</center>
+                            <img src="/loader/loader.gif" alt="Loader" />
+                        </div>
+                    </div>
                     <div class="main_profile">
                         <div class="user">
-                            <img src="/images/powerUp.jpg" class="img-fluid" alt="">
-                            <h3>Jhone Due</h3>
-                            <p><strong>Registerd at:</strong> 17-08-2023</p>
+                            <!-- <img src="/images/powerUp.jpg" class="img-fluid" alt=""> -->
+                            <h3>{{ userdata.name }}</h3>
+                            <p><strong>Registerd at:</strong>{{ userdata.created_at }}</p>
                         </div>
                         <div class="user_details">
                             <div class="d-flex align-items-center justify-content-between">
                                 <h4>Contact Details </h4>
-                                <button type="button" class="btn_edit"><i class="fa-solid fa-pen"></i></button>
+                                <button type="button" class="btn_edit" @click="updateProfile"><i class="fa-solid fa-pen"></i></button>
                                 <!-- profile update modal here  -->
-                                <div class="modal_address_here edit_div">
+                                <div class="modal_address_here profileupdate">
                                     <div class="address_form_modal">
                                         <div class="d-flex justify-content-between">
                                             <p>Update Personal Details </p>
-                                            <button type="button" class="btn-close btn_address_close"></button>
+                                            <button type="button" class="btn-close btn_address_close" @click="closeProfile"></button>
                                         </div>
-                                        <form action="">
+                                        <form @submit.prevent="profileupdate()" id="userSubmitFrm" class="forms-sample" enctype="multipart/form-data">
 
                                             <div>
                                                 <label for="">Email </label>
                                                 <!-- <input type="email" value="usermail@mail.com"  class="form-control"  > -->
-                                                <p>user@mail.com</p>
+                                                <p>{{ userdata.email }}</p>
                                             </div>
                                             <div>
                                                 <label for="name">Name</label>
-                                                <input type="text" name="name" id="name" class="form-control">
+                                                <input type="text" name="name" id="name" class="form-control" v-model="userdata.name">
                                             </div>
                                             <div class="">
-                                                <label for="">Phone </label> <br>
-                                                <input type="text" id="" class="form-control mobile_code" placeholder="Phone Number" name="name">
+                                                <label for="">Address 1 </label> <br>
+                                                <input type="text" id="" class="form-control" placeholder="Address 1" name="name" v-model="userdata.address_1">
 
                                             </div>
                                             <div class="">
-                                                <label for="">Phone 2 </label> <br>
-                                                <input type="text" id="" class="form-control mobile_code" placeholder="Phone Number" name="name">
+                                                <label for="">Address 2 </label> <br>
+                                                <input type="text" id="" class="form-control" placeholder="Address 2" name="name" v-model="userdata.address_2">
+
                                             </div>
-                                            <div>
-                                                <label for="">Birth Day</label>
-                                                <input type="date" class="form-control" name="" id="">
+
+                                            <div class="">
+                                                <label for="">Address 3 </label> <br>
+                                                <input type="text" id="" class="form-control" placeholder="Address 3" name="name" v-model="userdata.address_3">
+
                                             </div>
+
                                             <div>
-                                                <label for="City">Gender </label>
-                                                <select class="form-control" name="" id="city">
-                                                    <option value="" selected disabled>Select Your Gender</option>
-                                                    <option value="">Male</option>
-                                                    <option value="">Female</option>
-                                                    <option value="">others</option>
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <button type="button" class="btn_cart mt-2" style="visibility: unset;">Save</button>
+                                                <button type="submit" class="btn_cart mt-2" style="visibility: unset;">Save</button>
                                             </div>
 
                                         </form>
@@ -138,164 +140,50 @@
                             </div>
                             <div class="user_info">
                                 <h5>Name</h5>
-                                <p>Jhone Due </p>
+                                <p>{{ userdata.name }} </p>
                             </div>
                             <div class="user_info">
                                 <h5>Email</h5>
-                                <p>useremail@mail.com</p>
+                                <p>{{ userdata.email }}</p>
                             </div>
                             <div class="user_info">
                                 <h5>Phone</h5>
-                                <p>+880 19000000 <strong>(Default)</strong></p>
-                                <p>+880 15000000</p>
+                                <p>{{ userdata.phone_number }} <strong>(Default)</strong></p>
                             </div>
+
                             <div class="user_info">
-                                <h5>Birth Day</h5>
-                                <p>01-01-2000</p>
+                                <h5>Address 1</h5>
+                                <p> {{ userdata.address_1 }}</p>
+
                             </div>
+
                             <div class="user_info">
-                                <h5>Gender</h5>
-                                <p>Male</p>
+                                <h5>Address 2: </h5>
+                                <p> {{ userdata.address_2 }} </p>
                             </div>
 
-                            <div class="address_line">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h5>Address 1 <strong>(Defult)</strong></h5>
-                                    <!-- <h5>+880 1700000000</h5> -->
-                                    <button type="button" class="btn_delete"><i class="fa-solid fa-trash-can"></i></button>
-                                    <!-- confirm modal  -->
-                                    <div class="confirm_modal">
-                                        <div class="confirm_div">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <h3>Delete Addess line</h3>
-                                                <button class=" close_modal" type="button"><i class="fa-solid fa-x"></i></button>
-                                            </div>
-                                            <p>Are You Sure?</p>
-                                            <div class="d-flex justify-content-end">
-                                                <button type="button" class="close_modal">Close</button>
-                                                <button type="button" class="btn_confirm">Confirm</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- modal end  -->
-                                </div>
-                                <p>Dhaka, Dhaka Bangladesh</p>
-                                <p style="border: none;">+880 1700000000</p>
+                            <div class="user_info">
+                                <h5>Address 3: </h5>
+                                <p> {{ userdata.address_3 }}</p>
                             </div>
 
-                            <div class="address_line">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h5>Address 2</h5>
-                                    <button type="button" class="btn_delete"><i class="fa-solid fa-trash-can"></i></button>
-                                    <!-- confirm modal  -->
-                                    <div class="confirm_modal">
-                                        <div class="confirm_div">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <h3>Delete Addess line</h3>
-                                                <button class=" close_modal" type="button"><i class="fa-solid fa-x"></i></button>
-                                            </div>
-                                            <p>Are You Sure?</p>
-                                            <div class="d-flex justify-content-end">
-                                                <button type="button" class="close_modal">Close</button>
-                                                <button type="button" class="btn_confirm">Confirm</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- confirm modal  -->
-                                </div>
-                                <p>Dhaka, Dhaka Bangladesh</p>
-                                <p style="border: none;">+880 1700000000</p>
-                                <button type="button" class="add_address"> <i class="fa-solid fa-plus"></i>Add New address</button>
-                                <!-- address modal here  -->
-                                <div class="modal_address_here address_div">
-                                    <div class="address_form_modal">
-                                        <div class="d-flex justify-content-between">
-                                            <p>Add New address</p>
-                                            <button type="button" class="btn-close btn_address_close"></button>
-                                        </div>
-                                        <form action="">
-                                            <div class="adds_type_radio">
-                                                <div class="adds_box">
-                                                    <label for="adds_type1">Home</label>
-                                                    <input type="radio" id="adds_type1" name="adds_type" checked class="red">
-                                                </div>
-                                                <div class="adds_box">
-                                                    <label for="adds_type">Office </label>
-                                                    <input type="radio" id="adds_type" name="adds_type" class="">
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <label for="City">City </label>
-                                                <select class="form-control" name="" id="city">
-                                                    <option value="" selected disabled>Select Your City</option>
-                                                    <option value="">Dhaka</option>
-                                                    <option value="">Tangail</option>
-                                                    <option value="">Gazipur</option>
-                                                    <option value="">Manikganj</option>
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <label for="area">Area</label>
-                                                <input type="text" name="area" id="area" class="form-control">
-                                            </div>
-                                            <div>
-                                                <label for="">Address </label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                            <div>
-                                                <label for="">Land Mark </label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                            <div class="">
-                                                <label for="">Phone </label> <br>
-                                                <input type="text" id="" class="form-control mobile_code" placeholder="Phone Number" name="name">
-                                            </div>
-                                            <div>
-                                                <button type="button" class="btn_cart mt-3" style="visibility: unset;">Save</button>
-                                            </div>
-
-                                        </form>
-                                    </div>
-
-                                </div>
-                            </div>
                         </div>
                         <div class="recent_orders">
                             <h4>Recent Orders </h4>
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Order id</th>
+                                        <th>Order ID</th>
                                         <th>Place On </th>
-                                        <th>Address </th>
-                                        <th>Item</th>
-                                        <th>Total</th>
+                                        <th>Total </th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>74476095</td>
-                                        <td>15 Aug 2023 </td>
-                                        <td>School raod, wirless Mohakhali Dhaka</td>
-                                        <td class="order_item">
-                                            <Nuxt-link to="/product-details"><img src="/images/product(1).jpg" class="img-fluid" alt=""> </Nuxt-link>
-                                            <Nuxt-link to="/product-details"><img src="/images/product(2).jpg" class="img-fluid" alt=""> </Nuxt-link>
-                                            <Nuxt-link to="/product-details"><img src="/images/product(3).jpg" class="img-fluid" alt=""> </Nuxt-link>
-                                        </td>
-                                        <td>6,000 TK</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>74476095</td>
-                                        <td>15 Aug 2023 </td>
-                                        <td>School raod, wirless Mohakhali Dhaka</td>
-                                        <td class="order_item">
-                                            <Nuxt-link to="/product-details"><img src="/images/product(1).jpg" class="img-fluid" alt=""> </Nuxt-link>
-                                            <Nuxt-link to="/product-details"><img src="/images/product(2).jpg" class="img-fluid" alt=""> </Nuxt-link>
-                                            <Nuxt-link to="/product-details"><img src="/images/product(3).jpg" class="img-fluid" alt=""> </Nuxt-link>
-                                        </td>
-                                        <td>6,000 TK</td>
+                                    <tr v-for="order in orders" :key="order.id">
+                                        <td>{{ order.orderId }}</td>
+                                        <td>{{ order.placeOn }}</td>
+                                        <td>{{ order.total }}</td>
                                         <td></td>
                                     </tr>
                                 </tbody>
@@ -323,6 +211,7 @@ import Common_MiniTabNavbar from '~/components/Common_MiniTabNavbar.vue';
 import Common_MobileSearchProduct from '~/components/Common_MobileSearchProduct.vue';
 
 export default {
+    middleware: 'auth',
     components: {
         Common_MobileSidebar,
         Common_MiniTabNavbar,
@@ -332,10 +221,113 @@ export default {
     head: {
         title: 'My Profile',
     },
+
+    data() {
+        return {
+            loading: false,
+            userdata: {
+                name: '',
+                email: '',
+                phone_number: '',
+                address: '',
+                address_1: '',
+                address_2: '',
+                address_3: '',
+                created_at: null,
+            },
+            orders: [],
+            errors: {},
+        }
+    },
     mounted() {
+
+        this.defaultLoading();
+        this.loadingOrders();
 
     },
     methods: {
+        updateProfile() {
+            $(".profileupdate").fadeIn();
+        },
+        closeProfile() {
+            $(".profileupdate").fadeOut();
+        },
+
+        profileupdate() {
+            const formData = new FormData();
+            formData.append('name', this.userdata.name);
+            formData.append('email', this.userdata.email);
+            formData.append('phone_number', this.userdata.phone_number);
+            formData.append('address_1', this.userdata.address_1);
+            formData.append('address_2', this.userdata.address_2);
+            formData.append('address_3', this.userdata.address_3);
+            const headers = {
+                'Content-Type': 'multipart/form-data'
+            };
+            this.$axios.post('/auth/updateprofile',
+                formData, {
+                    headers
+                }).then((res) => {
+                $(".profileupdate").fadeOut();
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your profile has been successfully updated",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
+            });
+
+        },
+        async defaultLoading() {
+
+            this.loading = true;
+            await this.$axios.post(`/auth/me`).then(response => {
+                    this.userdata.name = response.data.name;
+                    this.userdata.email = response.data.email;
+                    this.userdata.phone_number = response.data.phone_number;
+                    this.userdata.address = response.data.address;
+                    this.userdata.address_1 = response.data.address_1;
+                    this.userdata.address_2 = response.data.address_2;
+                    this.userdata.address_3 = response.data.address_3;
+                    // Assuming response.data.created_at is a date string like "2023-11-18T03:04:53.000000Z"
+                    const createdAtDate = new Date(response.data.created_at);
+
+                    // Format the date as "YYYY-MM-DD"
+                    const formattedCreatedAt = createdAtDate.toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "2-digit",
+                        day: "2-digit"
+                    }).replace(/-/g, '');
+
+                    this.userdata.created_at = formattedCreatedAt;
+
+                    console.log("Formatted created_at: " + formattedCreatedAt);
+
+                })
+                .catch(error => {
+                    // Handle error
+                })
+                .finally(() => {
+                    this.loading = false; // Hide loader after response
+                });
+
+        },
+
+        async loadingOrders() {
+            const response = await this.$axios.get(`/order/getOrder`);
+            this.orders = response.data.orderdata;
+
+        },
+        formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit"
+            });
+        },
         logout() {
             localStorage.removeItem('jwtToken');
             this.$router.push('/');
@@ -343,3 +335,41 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.loading-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* For Loader */
+.loader-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
+
+.loader-text {
+    margin: 0;
+    /* Remove default margin */
+}
+
+.loader-top {
+    top: 0;
+}
+
+.loader-bottom {
+    bottom: 0;
+}
+</style>

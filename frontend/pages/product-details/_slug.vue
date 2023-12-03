@@ -101,7 +101,15 @@
                                             <strong>free delivery</strong>
                                             <span style="background-color: red;"><a href="affiliate.html" style="color: #fff;">Click to Get Your affiliate link</a></span>
                                         </div>
-                                        <button> <i class="fa-regular fa-heart"></i></button>
+
+                                        <div v-if="loggedIn">
+                                            <a href="#" @click="addtowishlist"><i class="fa-regular fa-heart"></i></a>
+
+                                        </div>
+                                        <div v-else>
+                                            <a href="#"><i class="fa-regular fa-heart"></i></a>
+                                        </div>
+
                                     </div>
                                     <div class="details_title">
                                         <h1>{{pro_row.name}}</h1>
@@ -540,7 +548,33 @@ export default {
         this.initLightSlider();
         this.fetchData();
     },
+    computed: {
+        loggedIn() {
+            return this.$auth.loggedIn;
+        },
+    },
     methods: {
+        async addtowishlist() {
+            this.loading = true;
+            const productSlug = this.$route.query.slug;
+            await this.$axios.get(`/order/addtowish/${productSlug}`).then(response => {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: 'Item successfully added to your wishlist!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    console.log(response);
+                })
+                .catch(error => {
+                    // Handle error
+                })
+                .finally(() => {
+                    this.loading = false; // Hide loader after response
+                });
+
+        },
         increment() {
             // Increase the quantity value
             this.updatedQuantity++;
@@ -636,9 +670,9 @@ export default {
         },
 
         async fetchData() {
+            const prosulg = this.$route.query.slug;
             this.loading = true;
-            const slug = this.productSlug;
-            const response = await this.$axios.get(`/unauthenticate/productSlug/${slug}`);
+            const response = await this.$axios.get(`/unauthenticate/productSlug/${prosulg}`);
             this.featuresimgs = response.data.featuredImage;
             this.slider_img = response.data.slider_img;
             this.pro_row = response.data.pro_row;

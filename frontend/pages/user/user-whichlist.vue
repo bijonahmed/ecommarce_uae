@@ -64,9 +64,8 @@
                                 <li class="active">
                                     <Nuxt-link to="/user/user-whichlist">Wishlist </Nuxt-link>
                                 </li>
-                                <li class="">
+                                <li class="d-none">
                                     <Nuxt-link to="/user/my-reviews">My Reviews </Nuxt-link>
-
                                 </li>
                                 <li class="">
                                     <a href="#" @click="logout">LogOut </a>
@@ -77,21 +76,27 @@
 
                 </div>
                 <div class="col-md-8">
+                    <div class="loading-indicator" v-if="loading">
+                        <div class="loader-container">
+                            <center class="loader-text">Loading...</center>
+                            <img src="/loader/loader.gif" alt="Loader" />
+                        </div>
+                    </div>
                     <div class="cart">
                         <div class="side_title">
                             <h5>Wishlist</h5>
-                            <button type="button" class="btn_cart" style="visibility: unset; width: fit-content;">Add all to cart</button>
+
                         </div>
                         <div class="card_porduct">
                             <ul>
-                                <li>
+                                <li v-for="product in products" :key="product.wishid">
                                     <div class="row">
                                         <div class="col-8">
                                             <div class="img_title">
-                                                <img src="/images/product(1).jpg" class="img-fluid" alt="">
+                                                <img :src="product.thumnail_img" class="img-fluid" alt="">
                                                 <div>
                                                     <h1>
-                                                        <Nuxt-link to="/product-details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum sapiente placeat, sint asperiores nihil illo tenetur consectetur eaque ad dolor.</Nuxt-link>
+                                                        <nuxt-link :to="`/product-details/${product.slug}`">{{ product.product_name }}</nuxt-link>
                                                     </h1>
                                                     <p>Seller: Ecommerce</p>
                                                     <span>In stock </span>
@@ -101,98 +106,21 @@
                                         </div>
                                         <div class="col-4">
                                             <div class="cart_price">
-                                                <strong>TK 2,000.00</strong>
+                                                <strong>{{ product.price }}</strong>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-between">
-                                        <div><Button class="btn_cart" style="visibility: unset;"><i class="fa-solid fa-trash-can"></i>Remove</Button></div>
+                                        <div><Button class="btn_cart" style="visibility: unset;" @click="remove(product.wishid)"><i class="fa-solid fa-trash-can"></i>Remove</Button></div>
                                         <div>
-                                            <button class="btn_cart" type="button" style="visibility: unset;"><i class="fa-solid fa-cart-shopping"></i> Add To cart </button>
+                                            <button class="btn_cart" type="button" style="visibility: unset;" @click="addToCart(product.slug)"><i class="fa-solid fa-cart-shopping"></i> Details </button>
                                         </div>
                                     </div>
                                 </li>
-                                <li>
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <div class="img_title">
-                                                <img src="/images/product(1).jpg" class="img-fluid" alt="">
-                                                <div>
-                                                    <h1>
-                                                        <Nuxt-link to="/product-details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum sapiente placeat, sint asperiores nihil illo tenetur consectetur eaque ad dolor.</Nuxt-link>
-                                                    </h1>
-                                                    <p>Seller: Ecommerce</p>
-                                                    <span>In stock </span>
-                                                </div>
-                                            </div>
 
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="cart_price">
-                                                <strong>TK 2,000.00</strong>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-between">
-                                        <div><Button class="btn_cart" style="visibility: unset;"><i class="fa-solid fa-trash-can"></i>Remove</Button></div>
-                                        <div>
-                                            <button class="btn_cart" type="button" style="visibility: unset;"><i class="fa-solid fa-cart-shopping"></i> Add To cart </button>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <div class="img_title">
-                                                <img src="/images/product(1).jpg" class="img-fluid" alt="">
-                                                <div>
-                                                    <h1>
-                                                        <Nuxt-link to="/product-details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum sapiente placeat, sint asperiores nihil illo tenetur consectetur eaque ad dolor.</Nuxt-link>
-                                                    </h1>
-                                                    <p>Seller: Ecommerce</p>
-                                                    <span>In stock </span>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="cart_price">
-                                                <strong>TK 2,000.00</strong>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-between">
-                                        <div><Button class="btn_cart" style="visibility: unset;"><i class="fa-solid fa-trash-can"></i>Remove</Button></div>
-                                        <div>
-                                            <button class="btn_cart" type="button" style="visibility: unset;"><i class="fa-solid fa-cart-shopping"></i> Add To cart </button>
-                                        </div>
-                                    </div>
-                                </li>
                             </ul>
                         </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="pagination">
-                                    <ul>
-                                        <li>
-                                            <a href="#"> prv </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="active"> 1 </a>
-                                        </li>
-                                        <li>
-                                            <a href="#"> 2 </a>
-                                        </li>
-                                        <li>
-                                            <a href="#"> 3 </a>
-                                        </li>
-                                        <li>
-                                            <a href="#"> next </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -215,6 +143,7 @@ import Common_MiniTabNavbar from '~/components/Common_MiniTabNavbar.vue';
 import Common_MobileSearchProduct from '~/components/Common_MobileSearchProduct.vue';
 
 export default {
+    middleware: 'auth',
     components: {
         Common_MobileSidebar,
         Common_MiniTabNavbar,
@@ -224,14 +153,109 @@ export default {
     head: {
         title: 'My Wishlist',
     },
+    data() {
+        return {
+            product: [],
+            cart: [],
+            loading: false,
+            products: [],
+            errors: {},
+        }
+    },
     mounted() {
 
+        this.loadingWishList();
     },
     methods: {
+
+        addToCart(product_slug) {
+            this.$router.push({
+                path: '/product-details',
+                query: {
+                    slug: product_slug
+                }
+            })
+
+        },
+
+        async remove(productid) {
+            this.loading = true;
+            await this.$axios.get(`/order/removeWishList/${productid}`).then(response => {
+                    this.loadingWishList();
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "WishList item deleted successfully",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                })
+                .catch(error => {
+                    // Handle error
+                })
+                .finally(() => {
+                    this.loading = false; // Hide loader after response
+                });;
+
+        },
+
+        async loadingWishList() {
+            this.loading = true;
+            await this.$axios.get(`/order/allWishList`).then(response => {
+                    this.products = response.data;
+
+                })
+                .catch(error => {
+                    // Handle error
+                })
+                .finally(() => {
+                    this.loading = false; // Hide loader after response
+                });;
+
+        },
+
         logout() {
             localStorage.removeItem('jwtToken');
             this.$router.push('/');
         },
     }
-    }
+}
 </script>
+
+<style scoped>
+.loading-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* For Loader */
+.loader-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
+
+.loader-text {
+    margin: 0;
+    /* Remove default margin */
+}
+
+.loader-top {
+    top: 0;
+}
+
+.loader-bottom {
+    bottom: 0;
+}
+</style>
