@@ -14,6 +14,7 @@ use App\Models\ProductVarrientHistory;
 use App\Models\Categorys;
 use App\Models\ProductAttributes;
 use App\Models\ProductCategory;
+use App\Models\OrderStatus;
 use App\Models\Product;
 use App\Models\ProductAdditionalImg;
 use App\Models\ProductVarrient;
@@ -35,6 +36,7 @@ class ProductController extends Controller
         $this->userid = $user->id;
     }
 
+   
     public function productUpdate(Request $request)
     {
 
@@ -57,7 +59,7 @@ class ProductController extends Controller
         $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $request->input('name'))));
         $data = array(
             'name'                       => $request->name,
-            'slug'                       => $slug,
+            'slug'                       => "$slug-$product_id",
             'description'                => !empty($request->description) ? $request->description : "",
             'meta_title'                 => !empty($request->meta_title) ? $request->meta_title : "",
             'meta_description'           => !empty($request->meta_description) ? $request->meta_description : "",
@@ -203,6 +205,11 @@ class ProductController extends Controller
         if (empty($request->id)) {
             //INSERT PRODUCT
             $product_id = Product::insertGetId($data);
+
+            if(!empty($product_id)){
+                $slug                  = "$slug-$product_id";
+                DB::table('product')->where('id', $product_id)->update(['slug' => $slug]);
+            }
             //INSERT MULTIPLE IMAGE
             if (!empty($request->file('images'))) {
                 foreach ($request->file('images') as $file) {

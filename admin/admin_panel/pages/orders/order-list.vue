@@ -11,36 +11,23 @@
                             <li class="breadcrumb-item">
                                 <router-link to="/"><a href="javascript:;"><i class="bx bx-home-alt"></i></a></router-link>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Customer List</li>
+                            <li class="breadcrumb-item active" aria-current="page">Order List</li>
                         </ol>
                     </nav>
                 </div>
-                <div class="ms-auto d-none">
-                    <div class="btn-group">
-                        <Nuxt-link to="/customer/newCustomer"><button type="button" class="btn btn-primary"><i class="bx bx-plus"></i>New</button></Nuxt-link>
-                    </div>
-                </div>
+
             </div>
             <!--end breadcrumb-->
             <!-- <span class="loader"></span> -->
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-7">
+                        <div class="col-md-10">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control name" placeholder="Customer Name" v-model="searchQuery.name" @input="handleSearch">
+                                <input type="text" class="form-control name" placeholder="Order ID" v-model="searchQuery.orderId" @input="handleSearch">
                             </div>
                         </div>
-                        
-                        <div class="col-md-3">
-                            <div class="input-group mb-3">
-                                <select class="form-select form-select-solid status" v-model="searchQuery.status" @change="handleSearch">
-                                    <option value="">All Status</option>
-                                    <option value="1">Active</option>
-                                    <option value="0">Inactive</option>
-                                </select>
-                            </div>
-                        </div>
+
                         <div class="col-md-2">
                             <div class="input-group mb-3">
                                 <button class="btn btn-primary w-100" type="button" @click="fetchData">Search</button>
@@ -58,32 +45,23 @@
                         <table class="table table-hover table-sm">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Address 1</th>
-                                    <th>Address 2</th>
-                                    <th>Address 3</th>
+
+                                    <th>OrderId</th>
+                                    <th>Order Date</th>
+                                    <th>Total</th>
                                     <th class="text-center">Status</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="item in paginatedData" :key="item.id">
-                                    <td>{{ item.name }}</td>
-                                    <td>{{ item.email }}</td>
-                                    <td>{{ item.address_1 }}</td>
-                                    <td>{{ item.address_2 }}</td>
-                                    <td>{{ item.address_3 }}</td>
-                                    <td class="text-center">
-                                        <span v-if="(item.status == 1)"> Active </span>
-                                        <span v-else> Inactive </span>
-                                    </td>
+                                    <td>{{ item.orderId }}</td>
+                                    <td>{{ item.placeOn }} </td>
+                                    <td>{{ item.total }}</td>
+                                    <td class="text-center">{{ item.name }}</td>
                                     <td>
                                         <center>
-                                            <nuxt-link :to="{name: 'customer-edit-id', params: {id: item.id}}" variant="warning" size="sm"><i class="bx bx-edit"></i>EDIT
-                                            </nuxt-link>
-                                             <!-- <span  @click="editCustomer(item.id)"><i class="bx bx-edit"></i>Edit</span> -->
-                                            
+                                            <button type="button" @click="edit(item.orderId)"><i class="bx bx-edit"></i></button>
                                         </center>
                                     </td>
                                 </tr>
@@ -113,14 +91,15 @@
 import _ from 'lodash';
 export default {
     head: {
-        title: 'Customer List',
+        title: 'Order List',
     },
     data() {
         return {
             data: [],
             searchQuery: {
                 name: '',
-                phone: '',
+                orderId: '',
+                total: '',
                 status: 1
             },
             searchQueryPhone: '',
@@ -137,20 +116,14 @@ export default {
         },
         filteredData() {
             let result = this.data;
-            if (this.searchQuery.name) {
+            if (this.searchQuery.orderId) {
                 result = result.filter(item =>
-                    item.name.toLowerCase().includes(this.searchQuery.name.toLowerCase())
+                    item.orderId.toLowerCase().includes(this.searchQuery.orderId.toLowerCase())
                 );
             }
-
-            if (this.searchQuery.status) {
-                result = result.filter(item =>
-                    item.status == this.searchQuery.status
-                );
-            }
-           
             return result;
         },
+
         paginatedData() {
             const startIndex = (this.currentPage - 1) * this.perPage;
             return _.slice(this.filteredData, startIndex, startIndex + this.perPage);
@@ -160,11 +133,10 @@ export default {
         async fetchData() {
             $(".customerSpinner").show();
             try {
-                let name = $(".name").val();
-                let status = $(".status").val();
-                //const response = await this.$axios.get('/customer/allCustomers?name=' + name + '&status=' + status);  
-                const response = await this.$axios.get(`/customer/allCustomers`);
-                this.data = response.data.data;
+                const response = await this.$axios.get(`/order/allOrdersAdmin`);
+                console.log("order" + response.data.orderdata);
+
+                this.data = response.data.orderdata;
                 $(".customerSpinner").hide();
             } catch (error) {
                 console.error(error);
@@ -180,8 +152,14 @@ export default {
             this.currentPage++;
         },
 
-        editCustomer(id){
-            this.$router.push({ path: `/edit/${id}` });
+        edit(orderId) {
+            this.$router.push({
+                path: '/orders/details',
+                query: {
+                    orderId: orderId
+                }
+            })
+
         }
     },
 };

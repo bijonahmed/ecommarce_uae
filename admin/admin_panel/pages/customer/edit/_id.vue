@@ -44,13 +44,6 @@
                                             <span class="text-danger" v-if="errors.name">{{ errors.name[0] }}</span>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <label for="inputPhoneNo2" class="col-sm-3 col-form-label">Phone No</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control phone" v-model="insertdata.phone" id="phone" placeholder="Phone No">
-                                            <span class="text-danger" v-if="errors.phone">{{ errors.phone[0] }}</span>
-                                        </div>
-                                    </div>
 
                                     <div class="row mb-3">
                                         <label for="inputPhoneNo2" class="col-sm-3 col-form-label">Email</label>
@@ -61,9 +54,23 @@
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Address</label>
+                                        <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Address 1</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control addres" v-model="insertdata.addres" id="addres" placeholder="Address">
+                                            <input type="text" class="form-control addres" v-model="insertdata.address_1" id="addres" placeholder="Address 1">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Address 2</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control addres" v-model="insertdata.address_2" id="addres" placeholder="Address 2">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Address 3</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control addres" v-model="insertdata.address_3" id="addres" placeholder="Address 3">
                                         </div>
                                     </div>
 
@@ -107,9 +114,10 @@ export default {
             insertdata: {
                 id: '',
                 name: '',
-                phone: '',
                 email: '',
-                addres: '',
+                address_1: '',
+                address_2: '',
+                address_3: '',
                 status: '',
             },
             notifmsg: '',
@@ -125,9 +133,10 @@ export default {
             const formData = new FormData();
             formData.append('id', this.insertdata.id);
             formData.append('name', this.insertdata.name);
-            formData.append('phone', this.insertdata.phone);
             formData.append('email', this.insertdata.email);
-            formData.append('addres', this.insertdata.addres);
+            formData.append('address_1', this.insertdata.address_1);
+            formData.append('address_2', this.insertdata.address_2);
+            formData.append('address_3', this.insertdata.address_3);
             formData.append('status', this.insertdata.status);
             const headers = {
                 'Content-Type': 'multipart/form-data'
@@ -155,7 +164,9 @@ export default {
                 this.insertdata.name = response.data.data.name;
                 this.insertdata.email = response.data.data.email;
                 this.insertdata.phone = response.data.data.phone;
-                this.insertdata.addres = response.data.data.addres;
+                this.insertdata.address_1 = response.data.data.address_1;
+                this.insertdata.address_2 = response.data.data.address_2;
+                this.insertdata.address_3 = response.data.data.address_3;
                 this.insertdata.status = response.data.data.status;
             });
 

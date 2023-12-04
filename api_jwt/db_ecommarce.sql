@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2023 at 08:33 PM
+-- Generation Time: Dec 04, 2023 at 03:05 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -1663,7 +1663,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `orderId`, `customer_id`, `total`, `subtotal`, `order_status`, `created_at`, `updated_at`) VALUES
-(1, '1149541-23', 11, 6090.20, 6090.20, 1, '2023-12-02 21:13:13', '2023-12-03 03:13:13'),
+(1, '1149541-23', 11, 6090.20, 6090.20, 6, '2023-12-02 21:13:13', '2023-12-04 13:44:51'),
 (2, '1134059-23', 11, 6264.20, 6264.20, 2, '2023-12-02 21:15:16', '2023-12-03 03:15:16'),
 (3, '1158246-23', 11, 10.00, 10.00, 3, '2023-12-02 21:16:03', '2023-12-03 03:16:03');
 
@@ -1707,23 +1707,25 @@ INSERT INTO `order_history` (`id`, `order_id`, `product_id`, `quantity`, `price`
 CREATE TABLE `order_status` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `description` text DEFAULT NULL
+  `description` text DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `order_status`
 --
 
-INSERT INTO `order_status` (`id`, `name`, `description`) VALUES
-(1, 'Order Placed', 'This is the initial stage when a customer successfully completes the checkout process and places an order. The system records the order details and assigns a unique order ID'),
-(2, 'Payment Processing', 'Once the order is placed, the system verifies the payment information provided by the customer. If the payment is successful, the order moves to the payment processing stage.'),
-(3, 'Order Confirmed', 'After successful payment processing, the order is confirmed. The system notifies both the customer and the respective vendors about the confirmed order. The vendors start preparing the items for shipment.'),
-(4, 'Item Shipped', 'When the vendor ships the items, the order status is updated to \"Shipped.\" The customer may receive a shipping confirmation along with tracking details.'),
-(5, 'In Transit', 'This status indicates that the order is currently in transit and on its way to the customer. Customers can track the shipment using the provided tracking information.'),
-(6, 'Out for Delivery', 'Once the shipment reaches the local delivery service, the status may change to \"Out for Delivery.\" This notifies the customer that their package is on the way and will be delivered shortly.'),
-(7, 'Delivered', 'The final stage is \"Delivered,\" indicating that the order has reached its destination, and the customer has received the items. The system may also capture the delivery confirmation, including the date and time of delivery.'),
-(8, 'Order Completed', 'After successful delivery and confirmation from the customer, the order status is updated to \"Completed.\" This signifies the successful conclusion of the order process.'),
-(9, 'Cancelled or Returned', 'If the customer cancels the order or returns items, the order status changes accordingly. The system handles cancellations and returns by updating the status to \"Cancelled\" or \"Returned,\" respectively.');
+INSERT INTO `order_status` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'Order Placed', 'Upon successful checkout, the system records the order details and assigns a unique order ID.', '2023-12-04 11:15:23', '2023-12-04 05:55:06'),
+(2, 'Payment Processing', 'After ordering, the system verifies payment info. Successful payments move to processing.', '2023-12-04 11:15:23', '2023-12-04 05:55:48'),
+(3, 'Order Confirmed', 'Payment processed, order confirmed. System notifies customer and vendors. Vendors prep items for shipment.', '2023-12-04 11:15:23', '2023-12-04 05:56:14'),
+(4, 'Item Shipped', 'Vendor ships, order status: \"Shipped.\" Customer gets confirmation and tracking.', '2023-12-04 11:15:23', '2023-12-04 05:56:45'),
+(5, 'In Transit', 'Order in transit; customers track shipment with provided details.', '2023-12-04 11:15:23', '2023-12-04 05:57:14'),
+(6, 'Out for Delivery', '\"Out for Delivery\" status means the package is en route and will be delivered soon, notifying the customer.', '2023-12-04 11:15:23', '2023-12-04 05:57:42'),
+(7, 'Delivered', '\"Delivered\" means items received. System captures delivery confirmation, including date and time.', '2023-12-04 11:15:23', '2023-12-04 05:58:19'),
+(8, 'Order Completed', '\"Completed\" status: delivery confirmed, order process concluded.', '2023-12-04 11:15:23', '2023-12-04 05:58:53'),
+(9, 'Cancelled or Returned', 'Order status adapts to customer actions. \"Cancelled\" for cancellations, \"Returned\" for returns.', '2023-12-04 11:15:23', '2023-12-04 05:59:17');
 
 -- --------------------------------------------------------
 
@@ -2072,7 +2074,11 @@ INSERT INTO `product` (`id`, `name`, `slug`, `description`, `meta_title`, `meta_
 (189, 'MOSISO Camera Backpack, DSLR/SLR/Mirrorless Photography Camera Bag 15-16 inch Waterproof Hardshell Case with Tripod Holder&Laptop Compartment Compatible with Canon/Nikon/Sony, Wine Red', 'mosiso-camera-backpack-dslr-slr-mirrorless-photography-camera-bag-15-16-inch-waterproof-hardshell-case-with-tripod-holder-laptop-compartment-compatible-with-canon-nikon-sony-wine-red', '<ul><li><span style=\"color:rgb(15,17,17);\">Dimension:17.32 x 11.8 x 7.5 inch. 2 compartments included. Padded removable modular inserts in the upper one (16.54 x 11.42 x 5.5 inch) is customized dividers for different cameras, flashes, lens and drones. You can organize the inner padded to adjust the inner storage space according to your needs. Another one (16.93 x 10.63 x 1.58 inch) is laptop compartment to storage up to 16 inch.</span></li><li><span style=\"color:rgb(15,17,17);\">Full open design. 2 accessory pockets on the back face can store cables, sd cards, powerbank and other small items. Tripod/monopod holder is featured with 1 secure strap on one bag side. 1 pocket on another side can store umbrella or water bottle(up to maximum 2.5 diameter). 1 anti-theft pocket is designed on the back for your wallet, cellphone and precious items.</span></li><li><span style=\"color:rgb(15,17,17);\">With waterproof PU leather hardshell protection in front. The foam padded layer can provide good buffer and protection to your internal stuff against shock and drops. High elastic back cushion can ease your pain after long time take.</span></li><li><span style=\"color:rgb(15,17,17);\">Padded shoulder strap varied from 17.72 to maximum 39.4 inch can be adjusted per personal preference. Clip strap featured on the shoulder strap can hang sunglasses, eyeglasses, towels and clothes. 1 durable handle is also designed to meet different demand. Back trolley belt makes it convenient during the trip. Perfect for men and women - camera enthusiasts.</span></li><li><span style=\"color:rgb(15,17,17);\">This multifunctional camera bag is professionally designed for DSLR / SLR / Mirrorless cameras of different brands. Compatible with Nikon D5600, D5300, D3500, D3400, D3300, D3200; compatible with Canon EOS Rebel T6, T6i, SL2 and other standard-size DSLRs. Also designed to be compatible with DJI Mavic Drone(Mavic 2/Air/Pro).</span></li></ul>', 'MOSISO Camera Backpack, DSLR/SLR/Mirrorless Photography Camera Bag 15-16 inch Waterproof Hardshell Case with Tripod Holder&Laptop Compartment Compatible with Canon/Nikon/Sony, Wine Red', 'MOSISO Camera Backpack, DSLR/SLR/Mirrorless Photography Camera Bag 15-16 inch Waterproof Hardshell Case with Tripod Holder&Laptop Compartment Compatible with Canon/Nikon/Sony, Wine Red', 'MOSISO Camera Backpack, DSLR/SLR/Mirrorless Photography Camera Bag 15-16 inch Waterproof Hardshell Case with Tripod Holder&Laptop Compartment Compatible with Canon/Nikon/Sony, Wine Red', 'MOSISO, Camera, Backpack,, DSLR/SLR/Mirrorless, Photography, Camera, Bag, 15-16, inch, Waterproof, Hardshell, Case, with, Tripod, Holder&Laptop, Compartment, Compatible, with, Canon/Nikon/Sony,, Wine, Red', 0, '123456', 'abc.com', 2, 249.00, 'pc', 100, 1, 1, 0, 'abc.com', 10.00, 1, 1, 0, 1, 10.00000, '5', 2, '5', 1, '/backend/files/0muGWwXkifechibt4qj1.jpg', 1, 1, NULL, NULL);
 INSERT INTO `product` (`id`, `name`, `slug`, `description`, `meta_title`, `meta_description`, `meta_keyword`, `product_tag`, `brand`, `sku`, `external_link`, `cash_dev_status`, `price`, `unit`, `stock_qty`, `stock_mini_qty`, `stock_status`, `manufacturer`, `download_link`, `discount`, `discount_status`, `shipping_days`, `free_shopping`, `flat_rate_status`, `flat_rate_price`, `vat`, `vat_status`, `tax`, `tax_status`, `thumnail_img`, `status`, `entry_by`, `created_at`, `updated_at`) VALUES
 (190, 'Arthome Window Film Privacy Film Frosted Decorative No Glue Self Static Cling Anti UV Removable for Home Living Room Bedroom Bathroom Kitchen Office(90x254cm)…', 'arthome-window-film-privacy-film-frosted-decorative-no-glue-self-static-cling-anti-uv-removable-for-home-living-room-bedroom-bathroom-kitchen-office-90x254cm-', '<ul><li><span style=\"color:rgb(15,17,17);\">✔ NO ADHESIVES: Glue Free Design Cuts Down Chemical Release Drastically, Easy Applies in Minutes</span></li><li><span style=\"color:rgb(15,17,17);\">✔ EASY REMOVAL: Leaving No Residue after Removal and the Film Can Even Be Used An!</span></li><li><span style=\"color:rgb(15,17,17);\">✔ ENERGY SAVING: Retain Heat in Winter Comfort and Keep It out in Summer. Control Heat and Block Out 96% of UV Rays</span></li><li><span style=\"color:rgb(15,17,17);\">✔ MORE VALUE :Roll Size 35.4 (W) x 100 (L) inches,budget-friendly choice. Reusable and Durable</span></li></ul>', 'Arthome Window Film Privacy Film Frosted Decorative No Glue Self Static Cling Anti UV Removable for Home Living Room Bedroom Bathroom Kitchen Office(90x254cm)…', 'Arthome Window Film Privacy Film Frosted Decorative No Glue Self Static Cling Anti UV Removable for Home Living Room Bedroom Bathroom Kitchen Office(90x254cm)…', 'Arthome Window Film Privacy Film Frosted Decorative No Glue Self Static Cling Anti UV Removable for Home Living Room Bedroom Bathroom Kitchen Office(90x254cm)…', 'Arthome, Window, Film, Privacy, Film, Frosted, Decorative, No, Glue, Self, Static, Cling, Anti, UV, Removable, for, Home, Living, Room, Bedroom, Bathroom, Kitchen, Office(90x254cm)…', 0, '123456', 'abc.com', 2, 75.00, 'pc', 100, 1, 1, 0, 'abc.com', 10.00, 1, 1, 0, 1, 10.00000, '5', 2, '5', 1, '/backend/files/307CTFJKO2leV5BbtVTq.jpg', 1, 1, NULL, NULL),
-(192, 'Canon EOS 250D DSLR Camera With EFS 18-55 DC III Lens Kit', 'canon-eos-250d-dslr-camera-with-efs-18-55-dc-iii-lens-kit', '<ul><li><span style=\"color:rgb(15,17,17);\">Rich vibrant archival quality images you can hold</span></li><li><span style=\"color:rgb(15,17,17);\">Produces 68 mm square prints which are perfect for the social media user and which have a thicker writing edge، making them perfect for scrapbooking</span></li><li><span style=\"color:rgb(15,17,17);\">Available in four colours and designed to look cool and classy with excellent ergonomics</span></li></ul>', 'Canon EOS 250D DSLR Camera With EFS 18-55 DC III Lens Kit', 'Canon EOS 250D DSLR Camera With EFS 18-55 DC III Lens Kit', 'Canon EOS 250D DSLR Camera With EFS 18-55 DC III Lens Kit', 'Canon, EOS, 250D, DSLR, Camera, With, EFS, 18-55, DC, III, Lens, Kit', 0, '123456', 'abc.com', 2, 1949.00, 'pc', 100, 1, 1, 0, 'abc.com', 10.00, 1, 1, 0, 1, 10.00000, '5', 2, '5', 1, '/backend/files/5mLahcTV8k9eD3sIIeKt.jpg', 1, 1, NULL, NULL);
+(192, 'Canon EOS 250D DSLR Camera With EFS 18-55 DC III Lens Kit', 'canon-eos-250d-dslr-camera-with-efs-18-55-dc-iii-lens-kit-192', '<ul><li><span style=\"color:rgb(15,17,17);\">Rich vibrant archival quality images you can hold</span></li><li><span style=\"color:rgb(15,17,17);\">Produces 68 mm square prints which are perfect for the social media user and which have a thicker writing edge، making them perfect for scrapbooking</span></li><li><span style=\"color:rgb(15,17,17);\">Available in four colours and designed to look cool and classy with excellent ergonomics</span></li></ul>', 'Canon EOS 250D DSLR Camera With EFS 18-55 DC III Lens Kit', 'Canon EOS 250D DSLR Camera With EFS 18-55 DC III Lens Kit', 'Canon EOS 250D DSLR Camera With EFS 18-55 DC III Lens Kit', 'Canon, EOS, 250D, DSLR, Camera, With, EFS, 18-55, DC, III, Lens, Kit', 0, '123456', 'abc.com', 2, 1949.00, 'pc', 100, 1, 1, 0, 'abc.com', 10.00, 0, 1, 0, 1, 10.00000, '5', 2, '5', 1, '/backend/files/5mLahcTV8k9eD3sIIeKt.jpg', 1, 1, NULL, '2023-12-04 04:33:19'),
+(194, 'testing product', 'testing-product', '<p>testing product</p>', '', '', '', '', 0, '65656', '', 2, 5400.00, '', 1, 1, 1, 0, '', 0.00, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/WWlFbrF7gRN0Eq1V0qFR.jpg', 1, 1, NULL, NULL),
+(195, NULL, 'testing-product-194', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-12-04 04:55:51', '2023-12-04 04:55:51'),
+(196, 'Books', 'books', '', '', '', '', '', 0, '152', '', 2, 500.00, '', 1, 1, 1, 0, '', 0.00, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/0SjOktB6bbcswI1DG9Ot.jpg', 1, 1, NULL, NULL),
+(197, 'Books', 'books-197', '', '', '', '', '', 0, '152', '', 2, 500.00, '', 1, 1, 1, 0, '', 0.00, 1, 1, 0, 0, 0.00000, '0', 1, '0', 1, '/backend/files/MOY4X38rO87iBVGPdiBB.jpg', 1, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -11514,7 +11520,9 @@ INSERT INTO `produc_categories` (`id`, `product_id`, `category_id`, `parent_id`)
 (191, 188, 288, '20,288'),
 (192, 189, 289, '20,289'),
 (193, 190, 290, '20,290'),
-(195, 192, 292, '20,292');
+(195, 192, 292, '20,292'),
+(198, 194, 25, '1,25'),
+(199, 197, 25, '1,25');
 
 -- --------------------------------------------------------
 
@@ -11835,7 +11843,7 @@ INSERT INTO `users` (`id`, `role_id`, `employee_id`, `name`, `email`, `image`, `
 (1, 1, 4, 'JONS', 'admin@gmail.com', '/backend/files/Gj1CClu5li9lnBa8bqxx.jpg', '343434', 'Dhaka', NULL, NULL, NULL, 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'admin', NULL, '$2a$12$KTM4o4shushdJtyHggJOEuoVzhTde88F2M2VZ1B89egoavVyQOycG', NULL, 1, '2023-06-22 03:20:43', '2023-07-14 04:47:21', 1),
 (2, 2, 6, 'Employee6 Six Emp', 'OnlinessSit2221@gmail.com', NULL, '324234', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Employee6', NULL, '$2y$10$4kiOBSk.NaB6ufs2rjKbU.BprUAELnD8vKdxbe0kSTRD3c6p7AlO2', NULL, 1, NULL, NULL, 1),
 (3, 2, 5, 'Md. Gazi Giash Uddin Bijon', 'onlinesoft@gmail.com', '/backend/files/lPPEVF6wwxNYZVZKTUNH.jpg', '+8801915728982', 'Mirpur-1', NULL, NULL, NULL, 'null', 'null', 'null', 'null', 'null', 'Employee-4', NULL, '$2y$10$Dlo8W8qUsp./g0/KVKorr.eWVqATVLV4jyGjWApqsk6TFrl6adMhK', NULL, 1, NULL, NULL, 1),
-(4, 2, 4, 'Employee-3', 'we2022@gmail.com', NULL, '343434', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'PasswordPassword', NULL, '$2y$10$oOca7klZbcO0xXV8glSx6ORQBIPsXOVNmZBdnex7JzeT7cjlyiLcm', NULL, 1, NULL, '2023-09-03 04:40:03', 1),
+(4, 2, 4, 'Customers', 'we2022@gmail.com', NULL, '343434', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'PasswordPassword', NULL, '$2y$10$oOca7klZbcO0xXV8glSx6ORQBIPsXOVNmZBdnex7JzeT7cjlyiLcm', NULL, 1, NULL, '2023-09-03 04:40:03', 1),
 (5, 2, 2, 'Md. JONS', 'Ibraheem@gmail.com', '/backend/files/mIpe6aKfR5Lw5NDWFHAF.jpg', '+8801915728982', 'Mirpur-1', NULL, NULL, NULL, 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'http://localhost:3000/profile', '', '', '112233456', NULL, '$2y$10$j0HQIkxcqrnN5Dt7hlm3rOhLzq.TBOhrbtmQi9tkrnybICy91U5lS', NULL, 1, NULL, NULL, 1),
 (9, 2, NULL, 'rana', 'rana@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$5y.qE2mk3VwQbKFL3kx23uiGcPxXwkB65A5EwdZAlG7po30IUoOse', NULL, NULL, '2023-11-16 10:41:01', '2023-11-16 10:41:01', 1),
 (10, 2, NULL, 'k', 'k@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$mGAJDNIt.w1MckAJ7DlFLeABIQ17vRLaSeT4OMtiC6MGulpPCna9q', NULL, NULL, '2023-11-17 21:03:06', '2023-11-17 21:03:06', 1),
@@ -12363,7 +12371,7 @@ ALTER TABLE `order_history`
 -- AUTO_INCREMENT for table `order_status`
 --
 ALTER TABLE `order_status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `payment_type`
@@ -12399,7 +12407,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=194;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=198;
 
 --
 -- AUTO_INCREMENT for table `product_attributes`
@@ -12429,7 +12437,7 @@ ALTER TABLE `product_variants_history`
 -- AUTO_INCREMENT for table `produc_categories`
 --
 ALTER TABLE `produc_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=198;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=200;
 
 --
 -- AUTO_INCREMENT for table `produc_img_history`

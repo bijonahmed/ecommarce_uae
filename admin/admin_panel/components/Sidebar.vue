@@ -45,14 +45,14 @@
                 </a>
                 <ul class="menu dropdown-menu" aria-labelledby="submenuDropdown_31" style="width:100%;">
                     <li>
-                        <Nuxt-link to="#"><i class="bx bx-right-arrow-alt"></i>All Orders</Nuxt-link>
+                        <Nuxt-link to="/orders/order-list"><i class="bx bx-right-arrow-alt"></i>All Orders</Nuxt-link>
                     </li>
                     <li>
                         <Nuxt-link to="#"><i class="bx bx-right-arrow-alt"></i>Inhouse orders</Nuxt-link>
                     </li>
 
                     <li>
-                        <Nuxt-link to="#"><i class="bx bx-right-arrow-alt"></i>Seller Orders</Nuxt-link>
+                        <Nuxt-link to="/orders/order-list"><i class="bx bx-right-arrow-alt"></i>Seller Orders</Nuxt-link>
                     </li>
 
                     <li>
@@ -115,12 +115,9 @@
                 </a>
                 <ul class="menu dropdown-menu" aria-labelledby="submenuDropdown_34" style="width:100%;">
                     <li>
-                        <Nuxt-link to="#"><i class="bx bx-right-arrow-alt"></i>Customer Add</Nuxt-link>
+                        <Nuxt-link to="/customer/customerList"><i class="bx bx-right-arrow-alt"></i>All Customer</Nuxt-link>
                     </li>
-                    <li>
-                        <Nuxt-link to="#"><i class="bx bx-right-arrow-alt"></i>Customer List</Nuxt-link>
-                    </li>
-
+                    
                 </ul>
             </li>
 
@@ -260,6 +257,9 @@
                     </li>
                     <li>
                         <Nuxt-link to="/brands/brands-list"><i class="bx bx-right-arrow-alt"></i>Brands</Nuxt-link>
+                    </li>
+                    <li>
+                        <Nuxt-link to="/orders/status-list"><i class="bx bx-right-arrow-alt"></i>Order Status</Nuxt-link>
                     </li>
                 </ul>
             </li>

@@ -8,6 +8,8 @@ use App\Models\Product;
 //use Darryldecode\Cart\Cart;
 use Illuminate\Support\Facades\Session;
 use App\Models\Order;
+use Validator;
+use App\Models\OrderStatus;
 use App\Models\OrderHistory;
 use App\Models\WishList;
 use App\Models\User;
@@ -24,6 +26,67 @@ class OrderController extends Controller
         $this->userid = $user->id;
     }
 
+    public function orderStatusRow($id)
+    {
+        try {
+            $row = OrderStatus::find($id);
+            $response = [
+                'data' => $row,
+                'message' => 'success'
+            ];
+        } catch (\Throwable $th) {
+            $response = [
+                'data' => [],
+                'message' => 'failed'
+            ];
+        }
+        return response()->json($response, 200);
+    }
+
+    public function save_order(Request $request)
+    {
+        //dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'name'           => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+        $data = array(
+            'name'        => $request->name,
+            'description' => $request->description,
+        );
+        if (empty($request->id)) {
+            OrderStatus::insertGetId($data);
+        } else {
+            OrderStatus::where('id', $request->id)->update($data);
+        }
+
+        $response = [
+            'data' => $data,
+            'message' => 'success'
+        ];
+        return response()->json($response, 200);
+    }
+
+    public function orderStatus()
+    {
+
+        try {
+            $rows = OrderStatus::all();
+            $response = [
+                'data' => $rows,
+                'message' => 'success'
+            ];
+        } catch (\Throwable $th) {
+            $response = [
+                'data' => [],
+                'message' => 'failed'
+            ];
+        }
+        return response()->json($response, 200);
+    }
+
     function addtowish($slug)
     {
         $findproduct = Product::where('slug', $slug)->select('id')->first();
@@ -36,7 +99,7 @@ class OrderController extends Controller
 
     function allWishList()
     {
-        $rows = WishList::join('product', 'product.id', '=', 'wishlist.id')->select('wishlist.id as wishid','product.thumnail_img', 'product.slug', 'product.name', 'price', 'product.id')->get();
+        $rows = WishList::join('product', 'product.id', '=', 'wishlist.id')->select('wishlist.id as wishid', 'product.thumnail_img', 'product.slug', 'product.name', 'price', 'product.id')->get();
         $products = [];
         foreach ($rows as $key => $v) {
             $products[] = [
@@ -48,14 +111,14 @@ class OrderController extends Controller
                 'slug'         => $v->slug,
 
             ];
-        }     
+        }
 
         return response()->json($products, 200);
     }
 
+    function removeWishList($id)
+    {
 
-    function removeWishList($id){
-        
         $wishlistItem = WishList::find($id);
         if (!$wishlistItem) {
             return response()->json(['error' => 'WishList item not found'], 404);
@@ -63,7 +126,6 @@ class OrderController extends Controller
         $wishlistItem->delete();
         return response()->json(['message' => 'WishList item deleted successfully']);
     }
-
 
     function generateUniqueRandomNumber($length = 5)
     {
@@ -91,24 +153,39 @@ class OrderController extends Controller
         return response()->json($order, 200);
     }
 
+
+    public function update_order_status(Request $request)
+    {
+        $data['order_status'] = $request->orderstatus;
+        Order::where('orderId', $request->orderId)->update($data);
+        return response()->json("update successfully", 200);
+    }
     public function orderDetails($order_id)
     {
 
-        $findorder       =  Order::join('order_status', 'order_status.id', '=', 'orders.order_status')->select('orders.*', 'order_status.name as orderstatus')->where('customer_id', $this->userid)->where('orderId', $order_id)->first();
+        $orderStatus     = orderStatus::all();
+        $findorder       = Order::join('order_status', 'order_status.id', '=', 'orders.order_status')->select('orders.*', 'order_status.name as orderstatus', 'order_status.id as orderstatus_id')->where('orderId', $order_id)->first();
         $data['orders']  = OrderHistory::join('product', 'product.id', '=', 'order_history.product_id')
-            ->select('product.name as product_name', 'order_history.*')
+            ->select('product.name as product_name', 'product.thumnail_img', 'order_history.*')
             ->where('order_id', $findorder->id)->get();
         foreach ($data['orders'] as $v) {
             $orders[] = [
                 'product_name'    => $v->product_name,
-                'quantity'        =>  $v->quantity,
-                'price'           =>  $v->price,
+                'thumbnail_img'   => url($v->thumnail_img),
+                'quantity'        => $v->quantity,
+                'price'           => $v->price,
                 'total'           => $v->quantity * $v->price,
             ];
         }
 
+        $findCustomer = User::where('id', $findorder->customer_id)->first();
+        $order['customername']  = !empty($findCustomer->name) ? $findCustomer->name : "";
+        $order['customeremail'] = !empty($findCustomer->email) ? $findCustomer->email : "";
         $order['orderdata']     = $orders;
         $order['orderrow']      = !empty($findorder->orderstatus) ? $findorder->orderstatus : "";
+        $order['orderstatus_id'] = !empty($findorder->orderstatus_id) ? $findorder->orderstatus_id : "";
+        $order['OrderStatus']   = $orderStatus;
+        //dd($data['orderStatus']);
         return response()->json($order, 200);
     }
     public function allOrders()
@@ -120,6 +197,28 @@ class OrderController extends Controller
             ->get(); //Order::where('customer_id', $this->userid)->get();
         foreach ($data['orders'] as $v) {
             $orders[] = [
+                'name'         => $v->name,
+                'orderId'      => $v->orderId,
+                'placeOn'      => date_format(date_create($v->created_at), "Y-m-d"),
+                'total'        => number_format($v->total, 2),
+            ];
+        }
+
+        $order['orderdata']      = $orders;
+
+        return response()->json($order, 200);
+    }
+
+
+    public function allOrdersAdmin()
+    {
+
+        $data['orders']  = Order::join('order_status', 'orders.order_status', '=', 'order_status.id')
+            ->select('orders.*', 'order_status.name')
+            ->get(); //Order::where('customer_id', $this->userid)->get();
+        foreach ($data['orders'] as $v) {
+            $orders[] = [
+                'id'           => $v->id,
                 'name'         => $v->name,
                 'orderId'      => $v->orderId,
                 'placeOn'      => date_format(date_create($v->created_at), "Y-m-d"),

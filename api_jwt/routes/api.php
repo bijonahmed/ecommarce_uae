@@ -130,6 +130,7 @@ Route::group([
     Route::get('deleteCategory', [ProductController::class, 'deleteCategory']);
     Route::get('getVarientHistory', [ProductController::class, 'getVarientHistory']);
     Route::get('removeProducts/{id}', [ProductController::class, 'removeProducts']);
+
 });
 
 Route::group([
@@ -184,6 +185,11 @@ Route::group([
     Route::get('addtowish/{slug}', [OrderController::class, 'addtowish']);
     Route::get('allWishList/', [OrderController::class, 'allWishList']);
     Route::get('removeWishList/{productid}', [OrderController::class, 'removeWishList']);
+    Route::get('orderStatus', [OrderController::class, 'orderStatus']);
+    Route::get('orderStatusRow/{id}', [OrderController::class, 'orderStatusRow']);
+    Route::post('save_order', [OrderController::class, 'save_order']);
+    Route::get('allOrdersAdmin', [OrderController::class, 'allOrdersAdmin']);
+    Route::post('update_order_status', [OrderController::class, 'update_order_status']);
 });
 
 
